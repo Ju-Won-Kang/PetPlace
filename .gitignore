@@ -1,3 +1,35 @@
+target/
+!.mvn/wrapper/maven-wrapper.jar
+!**/src/main/**/target/
+!**/src/test/**/target/
+### IntelliJ IDEA ###
+.idea/modules.xml
+.idea/jarRepositories.xml
+.idea/compiler.xml
+.idea/libraries/
+*.iws
+*.iml
+*.ipr
+
+### Eclipse ###
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings
+.springBeans
+.sts4-cache
+
+### NetBeans ###
+/nbproject/private/
+/nbbuild/
+/dist/
+/nbdist/
+/.nb-gradle/
+build/
+!**/src/main/**/build/
+!**/src/test/**/build/
+
 # Created by https://www.toptal.com/developers/gitignore/api/macos,intellij,eclipse,java,windows
 # Edit at https://www.toptal.com/developers/gitignore?templates=macos,intellij,eclipse,java,windows
 
@@ -294,4 +326,8 @@ Reference/
 
 Servers
 
+# class files
+src/main/webapp/WEB-INF/classes
+scr/**/*.properties
 # End of https://www.toptal.com/developers/gitignore/api/macos,intellij,eclipse,java,windows
+
