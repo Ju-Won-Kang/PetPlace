@@ -3,6 +3,7 @@ target/
 #!.mvn/wrapper/maven-wrapper.jar
 #!**/src/main/**/target/
 #!**/src/test/**/target/
+
 ### IntelliJ IDEA ###
 .idea/modules.xml
 .idea/jarRepositories.xml
@@ -330,6 +331,7 @@ Servers
 # class files
 src/main/webapp/WEB-INF/classes
 scr/**/*.properties
+<<<<<<< HEAD
 
 # maven file
 pom.xml
@@ -339,5 +341,7 @@ Mvnw
 
 Src/test/
 
+=======
+>>>>>>> bfe9bd592ef08bae8791c300e9e3b5fb08dc3f0a
 # End of https://www.toptal.com/developers/gitignore/api/macos,intellij,eclipse,java,windows
 
