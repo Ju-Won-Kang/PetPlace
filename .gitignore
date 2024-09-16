@@ -331,7 +331,7 @@ Servers
 
 # class files
 src/main/webapp/WEB-INF/classes
-scr/**/*.properties
+src/**/*.properties
 
 # maven file
 pom.xml
