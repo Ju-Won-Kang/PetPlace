@@ -12,6 +12,7 @@ target/
 *.iws
 *.iml
 *.ipr
+.idea/
 
 ### Eclipse ###
 .apt_generated
@@ -331,7 +332,6 @@ Servers
 # class files
 src/main/webapp/WEB-INF/classes
 scr/**/*.properties
-<<<<<<< HEAD
 
 # maven file
 pom.xml
@@ -339,9 +339,7 @@ mvnw.cmd
 .mvn/
 Mvnw
 
-Src/test/
+src/test/
 
-=======
->>>>>>> bfe9bd592ef08bae8791c300e9e3b5fb08dc3f0a
 # End of https://www.toptal.com/developers/gitignore/api/macos,intellij,eclipse,java,windows
 
