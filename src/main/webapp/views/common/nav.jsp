@@ -18,7 +18,11 @@
     <title>PetPlace - 펫플레이스(반려동물 종합 플랫폼)</title>
     <link rel="stylesheet" href="css/nav.css">
     <!-- Link Swiper's CSS -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
+    <script src="js/index.js"></script>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </head>
 <body>
     <header>
@@ -33,9 +37,23 @@
             <a href="">입양</a>
             <a href="<%=contextPath%>/searchHospital.do">동물병원찾기</a>
             <a href="">기능</a>
-            <a href="">
+
+            <button type="button" id="user" onclick="userBtn()">
                 <img src="images/user.png">
-            </a>
+            </button>
+            <div id="user-info">
+                <p>USER</p>
+                <div id="user-img"></div>
+                <div id="login-form">
+                    <form action="">
+                        <input type="text" name="userId" placeholder="아이디" required>
+                        <input type="password" name="userPwd" placeholder="비밀번호" required> <br> <br>
+                        <button type="submit">로그인</button>
+                        <button type="button">회원가입</button>
+                    </form>
+                </div>
+
+            </div>
             <script>
                 function searchHospital() {
                     console.log(location.href);
@@ -44,6 +62,6 @@
             </script>
         </div>
     </header>
-<%--    <div class="line"></div>--%>
+    <%--    <div class="line"></div>--%>
 </body>
 </html>
