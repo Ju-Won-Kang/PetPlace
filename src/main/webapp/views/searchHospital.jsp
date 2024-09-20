@@ -10,10 +10,12 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-    <meta charset="utf-8"/>
-    <title>Kakao 지도 시작하기</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>인근 동물병원 찾기</title>
     <script src="js/Geolocation_API.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
@@ -38,7 +40,7 @@
     <%-- 카카오맵 API 키 가져오기 --%>
     <%
         Properties prop = new Properties();
-        String filePath = searchHospitalServlet.class.getResource("/resources/config.properties").getPath();
+        String filePath = searchHospitalServlet.class.getResource("/config.properties").getPath();
         prop.load(new FileInputStream(filePath));
         String apiKey = prop.getProperty("KAKAO_MAP_API_KEY");
     %>
