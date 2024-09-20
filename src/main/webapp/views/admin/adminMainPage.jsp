@@ -61,7 +61,7 @@
                         <input type="text" class="form-control">
                     </div>
                     <div class="input-group input-group-lg mb-3 w-50">
-                        <span class="input-group-text" >카테고리</span>
+                        <span class="input-group-text">카테고리</span>
                         <select class="form-select form-select-lg">
                             <option>1</option>
                             <option>2</option>
@@ -89,6 +89,9 @@
                         <span class="input-group-text">상품 상세페이지</span>
                         <input type="file" class="form-control">
                     </div>
+
+                    <button type="submit" class="btn btn-secondary">상품 등록</button>
+
                 </form>
             </div>
             <div id="content-right">
@@ -98,10 +101,6 @@
     </section>
 
     <!-- 관리자 페이지 -> 메인 페이지 로 변경 필요 -->
-    <%@include file="../common/footer.jsp" %>
-    <script>
-        document.querySelector("#adminPage").innerHTML = "<a href="
-        <%=request.getContextPath()%>">메인 홈페이지</a>";
-    </script>
+    <%@include file="adminPageFooter.jsp" %>
 </body>
 </html>
