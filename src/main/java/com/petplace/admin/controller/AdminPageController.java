@@ -23,7 +23,7 @@ public class AdminPageController extends HttpServlet {
         int nav = Integer.parseInt(request.getParameter("nav"));
         switch (nav) {
             case 1:
-                request.getRequestDispatcher("views/admin/adminMainPage.jsp").forward(request, response);
+                request.getRequestDispatcher("views/admin/adminCreateProductPage.jsp").forward(request, response);
             case 2:
             case 3:
             case 4:
