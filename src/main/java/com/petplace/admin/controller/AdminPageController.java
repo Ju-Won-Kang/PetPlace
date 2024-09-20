@@ -3,7 +3,7 @@ package com.petplace.admin.controller;/**
  * fileName       : AdminPageController
  * author         : jun
  * date           : 2024. 9. 20.
- * description    :
+ * description    : 세션id로 관리자페이지 접근 가능 여부 확인 후 포워드
  * ===========================================================
  * DATE              AUTHOR             NOTE
  * -----------------------------------------------------------
@@ -20,7 +20,7 @@ import java.io.IOException;
 public class AdminPageController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+        request.getRequestDispatcher("views/admin/adminMainPage.jsp").forward(request,response);
     }
 
     @Override
