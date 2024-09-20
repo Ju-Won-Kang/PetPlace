@@ -20,7 +20,17 @@ import java.io.IOException;
 public class AdminPageController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        request.getRequestDispatcher("views/admin/adminMainPage.jsp").forward(request,response);
+        int nav = Integer.parseInt(request.getParameter("nav"));
+        switch (nav) {
+            case 1:
+                request.getRequestDispatcher("views/admin/adminMainPage.jsp").forward(request, response);
+            case 2:
+            case 3:
+            case 4:
+            case 5:
+            case 6:
+
+        }
     }
 
     @Override

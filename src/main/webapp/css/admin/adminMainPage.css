@@ -2,51 +2,6 @@ body * {
     box-sizing: border-box;
 }
 
-body div {
-    /*border: 1px solid black;*/
-}
-
-section {
-    width: 1400px;
-    margin: auto;
-    margin-top: 30px;
-    display: flex;
-}
-
-nav {
-    width: 200px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    margin-right: 60px;
-}
-
-nav div {
-    width: 100%;
-    height: 100px;
-    text-align: center;
-}
-nav div{
-    border-bottom: 2px solid #c4c4c4;
-}
-nav div img, nav div label{
-    line-height: 100px;
-}
-nav div > label{
-    font-size: 16px;
-    font-weight: 700;
-    padding-left: 5px;
-}
-nav div:nth-child(1) {
-    border-top: 2px solid black;
-}
-
-nav div:nth-child(6) {
-    border-bottom: 2px solid black;
-}
-
-
 #wrap {
     width: calc(100% - 200px);
     display: flex;
@@ -56,11 +11,13 @@ nav div:nth-child(6) {
     width: 50%;
     position: relative;
 }
-#wrap > #content-left button{
+
+#wrap > #content-left button {
     float: right;
     margin-right: 50px;
 }
-.btn-secondary{
+
+.btn-secondary {
     background-color: #7A97CC !important;
 }
 

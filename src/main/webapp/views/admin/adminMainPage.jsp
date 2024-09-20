@@ -27,32 +27,7 @@
 <body>
     <%@include file="adminPageHeader.jsp" %>
     <section>
-        <nav>
-            <div>
-                <img src="images/image%2065.png">
-                <label>상품 등록</label>
-            </div>
-            <div>
-                <img src="images/image%2070.png">
-                <label>상품 수정</label>
-            </div>
-            <div>
-                <img src="images/image%2068.png">
-                <label>상품 삭제</label>
-            </div>
-            <div>
-                <img src="images/image%2062.png">
-                <label>리뷰 관리</label>
-            </div>
-            <div>
-                <img src="images/image%2061.png">
-                <label>1:1 문의</label>
-            </div>
-            <div>
-                <img src="images/image%2072.png">
-                <label>배송 관리</label>
-            </div>
-        </nav>
+        <%@include file="adminNav.jsp"%>
         <div id="wrap">
             <div id="content-left">
                 <form action="">
@@ -95,7 +70,6 @@
                 </form>
             </div>
             <div id="content-right">
-
             </div>
         </div>
     </section>
