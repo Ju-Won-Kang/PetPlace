@@ -25,9 +25,9 @@
     </style>
 </head>
 <body onload="getLocation()">
-    <%@include file="/views/common/nav.jsp"%>
+    <%@include file="../common/nav.jsp"%>
     <section>
-
+        <div></div>
         <div id="map">
             <div class="spinner-border"></div>
         </div>
@@ -44,6 +44,5 @@
         <p id="status"></p>
         <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=${apiKey}"></script>
     </section>
-<%--    <%@include file="/views/common/footer.jsp"%>--%>
 </body>
 </html>

@@ -1,4 +1,5 @@
-package com.petplace.hospital.controller;/**
+package com.petplace.hospital.controller;
+/**
  * packageName    : com.petplace.controller
  * fileName       : searchHospitalServlet
  * author         : jun
@@ -16,7 +17,7 @@ import jakarta.servlet.annotation.*;
 
 import java.io.IOException;
 
-@WebServlet(name = "searchHospital.hs", value = "/searchHospital.hs")
+@WebServlet(name = "searchHospital.do", value = "/searchHospital.do")
 public class searchHospitalServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
