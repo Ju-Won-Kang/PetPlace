@@ -6,7 +6,7 @@ function getLocation() {
         navigator.geolocation.getCurrentPosition(
             (position) => {
                 const { latitude, longitude, accuracy } = position.coords;
-                status.textContent = `위도: ${latitude}, 경도: ${longitude}, 정확도: ${accuracy}미터`;
+                // status.textContent = `위도: ${latitude}, 경도: ${longitude}, 정확도: ${accuracy}미터`;
                 mapLoad(latitude, longitude)
             },
             (error) => {
@@ -28,5 +28,4 @@ function mapLoad(latitude, longitude) {
         center: new kakao.maps.LatLng(latitude, longitude),
         level: 3
     };
-        let map = new kakao.maps.Map(container, options);
 }
