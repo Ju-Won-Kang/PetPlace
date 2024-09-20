@@ -50,7 +50,7 @@
                 <a href="">문의하기</a>
             </div>
             <div id="adminPage">
-                <a href="">관리자 페이지</a>
+                <a href="<%=request.getContextPath()%>/adminPage.ad">관리자 페이지</a>
             </div>
         </div>
     </div>
