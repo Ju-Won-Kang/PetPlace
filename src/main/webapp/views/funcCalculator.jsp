@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
 </head>
 <body>
-    <%@include file="views/common/nav.jsp" %>
+    <%@ include file="views/common/nav.jsp" %> <!-- views/common/nav.jsp -->
 
     <div class="wrap">
         <div class="option">
@@ -151,6 +151,7 @@
         </div>
         
         <!-- ************************** Calory 계산기 ****************************-->
+        <!-- 
 		<div id="dog1-img"></div>
         <div id="cat1-img"></div>
 
@@ -224,12 +225,42 @@
                 </div>
             </div>
         </div>
+    	-->
+    	
+    	<!-- ************************** Calory 계산기 ****************************-->
+    	<!-- 
+   		<div>
+			<div>
+				<div></div>
+				<div></div>
+			</div>
 
-    </div>
-    
-    <!-- ************************** Calory 계산기 ****************************-->
-    
-    
+            <div>
+                <div>
+                    <div>
+                        <button>강아지</button>
+                    </div>
+                    <div>
+                        <button>고양이</button>
+                    </div>
+                </div>
+                <table class="pet-value">
+                    <tr>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                </table>
+                <div>
+                    <button>측정하기</button>
+                </div>
+            </div>
+        </div>
+    	-->
+    	
     <!-- ************************** 계산기 결과 ****************************-->
     <div id="result"></div>
     
