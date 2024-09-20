@@ -1,17 +1,19 @@
 body * {
     box-sizing: border-box;
 }
-body div{
-    border: 1px solid black;
+
+body div {
+    /*border: 1px solid black;*/
 }
-section{
+
+section {
     width: 1400px;
     margin: auto;
     margin-top: 30px;
     display: flex;
 }
 
-nav{
+nav {
     width: 200px;
     display: flex;
     flex-direction: column;
@@ -19,19 +21,43 @@ nav{
     align-items: center;
     /*gap: 20px;*/
 }
-nav div{
+
+nav div {
     width: 100%;
-    height: 60px;
+    height: 100px;
     text-align: center;
 }
-nav div:nth-child(1){
+nav div{
+    border-bottom: 2px solid #c4c4c4;
+}
+nav div img, nav div label{
+    line-height: 100px;
+}
+nav div:nth-child(1) {
     border-top: 2px solid black;
 }
-nav div:nth-child(6){
+
+nav div:nth-child(6) {
     border-bottom: 2px solid black;
 }
 
-
-#wrap{
+#wrap {
     width: calc(100% - 200px);
+    display: flex;
+}
+
+#wrap > #content-left {
+    width: 50%;
+}
+
+#wrap > #content-right {
+    width: 50%;
+}
+
+.input-group-text {
+    background-color: #8aa2ce !important;
+}
+
+#wrap > #content-left > form{
+    padding-left: 30px;
 }
