@@ -35,7 +35,7 @@
             <a href="#">커뮤니티</a>
             <a href="">쇼핑</a>
             <a href="">입양</a>
-            <a href="<%=contextPath%>/searchHospital.hs">동물병원찾기</a>
+            <a href="<%=contextPath%>/searchHospital.do">동물병원찾기</a>
             <a href="">기능</a>
 
             <button type="button" id="user" onclick="userBtn()">
