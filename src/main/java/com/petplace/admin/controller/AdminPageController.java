@@ -24,7 +24,21 @@ public class AdminPageController extends HttpServlet {
         switch (nav) {
             case 1:
                 request.getRequestDispatcher("views/admin/adminCreateProductPage.jsp").forward(request, response);
+                break;
+            /*
+             * 상품 정보를 DB에서 가져와서 포워딩
+             */
             case 2:
+                int listCount;
+                int currentPage;
+                int pageLimit = 10;
+                int boardLimit = 10;
+                int maxPage;
+                int startPage;
+                int endPage;
+
+                request.getRequestDispatcher("views/admin/adminModifyProductPage.jsp").forward(request,response);
+                break;
             case 3:
             case 4:
             case 5:

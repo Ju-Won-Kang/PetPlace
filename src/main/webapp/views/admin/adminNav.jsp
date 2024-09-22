@@ -26,30 +26,31 @@
         };
     </script>
     <nav>
-        <div id="div1" onclick='location.href = <%=request.getContextPath() + "/adminPage?nav=1"%>'>
+        <div id="div1" onclick="location.href='<%=request.getContextPath() + "/adminPage?nav=1"%>'">
             <img src="images/image%2065.png">
-            <label id="label1" class="none-select" for="div1">상품 등록</label>
+            <label id="label1" class="none-select">상품 등록</label>
         </div>
-        <div id="div2" onclick='location.href = <%=request.getContextPath() + "/adminPage?nav=2"%>'>
+        <div id="div2" onclick="location.href='<%=request.getContextPath() + "/adminPage?nav=2"%>'">
             <img src="images/image%2070.png">
-            <label id="label2" class="none-select" for="div2">상품 수정</label>
+            <label id="label2" class="none-select">상품 수정</label>
         </div>
-        <div id="div3" onclick='location.href = <%=request.getContextPath() + "/adminPage?nav=3"%>'>
+        <div id="div3" onclick="location.href='<%=request.getContextPath() + "/adminPage?nav=3"%>'">
             <img src="images/image%2068.png">
-            <label id="label3" class="none-select" for="div3">상품 삭제</label>
+            <label id="label3" class="none-select">상품 삭제</label>
         </div>
-        <div id="div4" onclick='location.href = <%=request.getContextPath() + "/adminPage?nav=4"%>'>
+        <div id="div4" onclick="location.href='<%=request.getContextPath() + "/adminPage?nav=4"%>'">
             <img src="images/image%2062.png">
-            <label id="label4" class="none-select" for="div4">리뷰 관리</label>
+            <label id="label4" class="none-select">리뷰 관리</label>
         </div>
-        <div id="div5" onclick='location.href = <%=request.getContextPath() + "/adminPage?nav=5"%>'>
+        <div id="div5" onclick="location.href='<%=request.getContextPath() + "/adminPage?nav=5"%>'">
             <img src="images/image%2061.png">
-            <label id="label5" class="none-select" for="div5">1:1 문의</label>
+            <label id="label5" class="none-select">1:1 문의</label>
         </div>
-        <div id="div6" onclick='location.href = <%=request.getContextPath() + "/adminPage?nav=6"%>'>
+        <div id="div6" onclick="location.href='<%=request.getContextPath() + "/adminPage?nav=6"%>'">
             <img src="images/image%2072.png">
-            <label id="label6" class="none-select" for="div6">배송 관리</label>
+            <label id="label6" class="none-select">배송 관리</label>
         </div>
+
     </nav>
 </body>
 </html>
