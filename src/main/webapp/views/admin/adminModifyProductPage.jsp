@@ -43,7 +43,6 @@
         </div>
     </section>
 
-    <!-- 관리자 페이지 -> 메인 페이지 로 변경 필요 -->
     <%@include file="adminPageFooter.jsp" %>
 </body>
 </html>
