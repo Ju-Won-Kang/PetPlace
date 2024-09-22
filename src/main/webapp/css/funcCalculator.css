@@ -336,7 +336,7 @@ a {
     border-radius: 10px;
     font-size: 20px;
     font-weight: 600;
-    display: flex;
+    display: none;
     align-items: center;
     justify-content: center;
     text-align: center;

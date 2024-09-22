@@ -1,8 +1,8 @@
 // ******************************* 계산기 종류 버튼 ******************************
 function resultBtn(){
-    const resultBox = document.getElementById("result");
+    const result = document.getElementById("result");
 
-    resultBox.innerHTML = "";
+    result.style.display = "none";
 }
 
 function weightBtn(){
@@ -107,7 +107,10 @@ function calcWeightDogBtn(){
     dogTable.style.display = "flex";
     catTable.style.display = "none";
 
-    resultBtn()
+    const input1 = document.getElementById("now-weight").value = "0";
+    const input2 = document.getElementById("pet-bcs").value = "0";
+
+    resultBtn();
 }
 
 function calcWeightCatBtn(){
@@ -123,7 +126,10 @@ function calcWeightCatBtn(){
     dogTable.style.display = "none";
     catTable.style.display = "flex";
 
-    resultBtn()
+    const input1 = document.getElementById("now-weight").value = "0";
+    const input2 = document.getElementById("pet-bcs").value = "0";
+
+    resultBtn();
 }
 
 function weightCalcBtn(){
@@ -158,6 +164,7 @@ function weightCalcBtn(){
     const computedDogStyle = window.getComputedStyle(dogBtn);
     const computedCatStyle = window.getComputedStyle(catBtn);
 
+    result.style.display = "flex";
 
     if(computedDogStyle.backgroundColor === "rgb(191, 206, 236)"){
         result.innerHTML = `고객님의 강아지 체중은 "${inputWeight}(kg)"으로 표준체중은 "${(regularDogWeight).toFixed(2)}(kg)" 입니다.<br>
@@ -204,7 +211,10 @@ function calcCaloryDogBtn(){
     dogContent.style.display = "flex";
     catContent.style.display = "none";
 
-    resultBtn()
+    const input1 = document.getElementById("calory-weight").value = "0";
+    const input2 = document.getElementById("figure").value = "0";
+
+    resultBtn();
 }
 
 function calcCaloryCatBtn(){
@@ -220,7 +230,10 @@ function calcCaloryCatBtn(){
     dogContent.style.display = "none";
     catContent.style.display = "flex";
 
-    resultBtn()
+    const input1 = document.getElementById("calory-weight").value = "0";
+    const input2 = document.getElementById("figure").value = "0";
+
+    resultBtn();
 }
 
 function caloryCalcBtn(){
@@ -238,6 +251,7 @@ function caloryCalcBtn(){
     const computedDogStyle = window.getComputedStyle(dogBtn);
     const computedCatStyle = window.getComputedStyle(catBtn);
 
+    result.style.display = "flex";
 
     if(computedDogStyle.backgroundColor === "rgb(191, 206, 236)"){
         result.innerHTML = `고객님의 강아지 권장 칼로리량은 약 "${dayCalory}(kcal)" 입니다.`;
@@ -263,7 +277,10 @@ function calcFeedDogBtn(){
     dogContent.style.display = "flex";
     catContent.style.display = "none";
 
-    resultBtn()
+    const input1 = document.getElementById("pet-day-calory").value = "0";
+    const input2 = document.getElementById("feed-day-calory").value = "0";
+
+    resultBtn();
 }
 
 function calcFeedCatBtn(){
@@ -279,7 +296,10 @@ function calcFeedCatBtn(){
     dogContent.style.display = "none";
     catContent.style.display = "flex";
 
-    resultBtn()
+    const input1 = document.getElementById("pet-day-calory").value = "0";
+    const input2 = document.getElementById("feed-day-calory").value = "0";
+
+    resultBtn();
 }
 
 function feedCalcBtn(){
@@ -296,6 +316,7 @@ function feedCalcBtn(){
     const computedDogStyle = window.getComputedStyle(dogBtn);
     const computedCatStyle = window.getComputedStyle(catBtn);
 
+    result.style.display = "flex";
 
     if(computedDogStyle.backgroundColor === "rgb(191, 206, 236)"){
         result.innerHTML = `고객님의 강아지 권장 사료량은 약 "${FeedAmount.toFixed(2)}(g)" 입니다.`;
