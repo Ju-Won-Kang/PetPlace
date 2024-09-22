@@ -25,3 +25,8 @@ body * {
 #wrap > table th:nth-child(3){width: 120px;}
 #wrap > table th:nth-child(4){width: 80px;}
 #wrap > table th:nth-child(5){width: 150px}
+#wrap > table th:nth-child(5){width: 150px}
+#wrap > table th:nth-child(6){width: 80px}
+.btn-secondary {
+    background-color: #7A97CC !important;
+}

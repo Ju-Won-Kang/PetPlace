@@ -29,6 +29,7 @@
                 <th>가격</th>
                 <th>상품 수량</th>
                 <th>게시 날짜</th>
+                <th>수정</th>
                 </thead>
                 <tbody>
                     <tr>
@@ -37,6 +38,9 @@
                         <td>12,900원</td>
                         <td>5개</td>
                         <td>2024.09.21</td>
+                        <td>
+                            <button type="button" class="btn btn-secondary btn-sm">수정</button>
+                        </td>
                     </tr>
                 </tbody>
             </table>
