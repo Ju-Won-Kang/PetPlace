@@ -6,28 +6,28 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PetPlace - 계산기</title>
-    <script src="js/funcCalculator.js"></script>
     <link rel="stylesheet" href="css/funcCalculator.css">
+    <script type="text/javascript" src="js/funcCalculator.js"></script>
 </head>
 <body>
     <%@ include file="/views/common/nav.jsp" %>
 
     <div class="wrap">
         <div class="option">
-            <button id="weight-btn">표준체중&nbsp;&nbsp;</button>
-            <button id="calory-btn">&nbsp;&nbsp;권장칼로리&nbsp;&nbsp;</button>
-            <button id="feed-btn">&nbsp;&nbsp;권장사료량</button>
+            <button id="weight-btn" onclick="weightBtn()">표준체중&nbsp;&nbsp;</button>
+            <button id="calory-btn" onclick="caloryBtn()">&nbsp;&nbsp;권장칼로리&nbsp;&nbsp;</button>
+            <button id="feed-btn" onclick="feedBtn()">&nbsp;&nbsp;권장사료량</button>
         </div>
-		
+
 		<!-- ************************** content 계산기 ****************************-->
 
         <div class="content">
 
         <!-- ************************** Weight 계산기 ****************************-->
             
-            <div class="weight-content">
+            <div id="weight-content" class="weight-content">
                 <div class="left-content">
-                    <table class="dog-table">
+                    <table id="dog-table" class="dog-table">
                         <tr>
                             <td colspan="2"><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Body condition Score for Dogs</b><br><br></td>
                         </tr>
@@ -88,7 +88,7 @@
                     </table>
 
 
-                    <table class="cat-table">
+                    <table id="cat-table" class="cat-table">
                         <tr>
                             <td colspan="2"><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Body condition Score for Cats</b><br><br></td>
                         </tr>
@@ -150,26 +150,26 @@
                 </div>
                 <div class="right-content">
                     <div class="calc">
-                        <div class="btn">
+                        <div class="pet-type-btn">
                             <div id="dog-btn">
-                                <button>강아지</button>
+                                <button id="dog-type-weight-btn" onclick="calcWeightDogBtn()">강아지</button>
                             </div>
                             <div id="cat-btn">
-                                <button>고양이</button>
+                                <button id="cat-type-weight-btn" onclick="calcWeightCatBtn()">고양이</button>
                             </div>
                         </div>
                         <table class="pet-value">
                             <tr id="weight">
                                 <th>현재 몸무게</th>
-                                <td><input type="text" name="weight" value="0">&nbsp;kg</td>
+                                <td><input type="text" id="now-weight" name="weight" value="0">&nbsp;kg</td>
                             </tr>
                             <tr id="bcs">
                                 <th>BCS</th>
-                                <td><input type="number" name="bcs" value="0" min="1" max="9" setp="1"></td>
+                                <td><input type="number" id="pet-bcs" name="bcs" value="0" min="1" max="9" step="1"></td>
                             </tr>
                         </table>
                         <div id="result-btn">
-                            <button>측정하기</button>
+                            <button onclick="weightCalcBtn()">측정하기</button>
                         </div>
                     </div>
                 </div> 
@@ -178,9 +178,9 @@
         
         <!-- ************************** Calory 계산기 ****************************-->
             
-            <div class="calory-content">
+            <div id="calory-content" class="calory-content">
                 <div class="left-content">
-                    <div class="left-dog-content">
+                    <div id="left-dog-content" class="left-dog-content">
                         <div id="dog1-img"></div>
                         <table class="dog-calory-table">
                             <tr class="calory-table-title">
@@ -226,7 +226,7 @@
                         </table>    
                     </div>
                 
-                    <div class="left-cat-content">
+                    <div id="left-cat-content" class="left-cat-content">
                         <div id="cat1-img"></div>
                         <table class="cat-calory-table">
                             <tr class="calory-table-title">
@@ -274,26 +274,26 @@
                 </div>
                 <div class="right-content">
                     <div class="calc">
-                        <div class="btn">
+                        <div class="pet-type-btn">
                             <div id="dog-btn">
-                                <button>강아지</button>
+                                <button id="dog-type-calory-btn" onclick="calcCaloryDogBtn()">강아지</button>
                             </div>
                             <div id="cat-btn">
-                                <button>고양이</button>
+                                <button id="cat-type-calory-btn" onclick="calcCaloryCatBtn()">고양이</button>
                             </div>
                         </div>
                         <table class="pet-value">
                             <tr id="weight">
                                 <th>현재 몸무게</th>
-                                <td><input type="text" name="weight2" value="0">&nbsp;kg</td>
+                                <td><input type="text" id="calory-weight" name="calory-weight" value="0">&nbsp;kg</td>
                             </tr>
                             <tr id="bcs">
                                 <th>수치</th>
-                                <td><input type="text" name="figure" value="0"></td>
+                                <td><input type="text" id="figure" name="figure" value="0"></td>
                             </tr>
                         </table>
                         <div id="result-btn">
-                            <button>측정하기</button>
+                            <button onclick="caloryCalcBtn()">측정하기</button>
                         </div>
                     </div>
                 </div> 
@@ -302,35 +302,35 @@
     	
     	<!-- ************************** Feed 계산기 ****************************-->
             
-            <div class="feed-content">
+            <div id="feed-content" class="feed-content">
                 <div class="left-content">
-                    <div>
+                    <div class="left-pet-img">
                         <div id="dog2-img"></div>
                         <div id="cat2-img"></div>
                     </div>
                 </div>
                 <div class="right-content">
                     <div class="calc">
-                        <div class="btn">
+                        <div class="pet-type-btn">
                             <div id="dog-btn">
-                                <button>강아지</button>
+                                <button id="dog-type-feed-btn" onclick="calcFeedDogBtn()">강아지</button>
                             </div>
                             <div id="cat-btn">
-                                <button>고양이</button>
+                                <button id="cat-type-feed-btn" onclick="calcFeedCatBtn()">고양이</button>
                             </div>
                         </div>
                         <table class="pet-value">
                             <tr id="weight">
                                 <th>권장 칼로리</th>
-                                <td><input type="text" name="calory" value="0">&nbsp;kcal</td>
+                                <td><input type="text" id="pet-day-calory" name="pet-day-calory" value="0">&nbsp;kcal</td>
                             </tr>
                             <tr id="bcs">
                                 <th>사료 칼로리</th>
-                                <td><input type="text" name="feed-calory" value="0">&nbsp;kcal/100g</td>
+                                <td><input type="text" id="feed-day-calory" name="feed-calory" value="0">&nbsp;kcal/kg</td>
                             </tr>
                         </table>
                         <div id="result-btn">
-                            <button>측정하기</button>
+                            <button onclick="feedCalcBtn()">측정하기</button>
                         </div>
                     </div>
                 </div>
