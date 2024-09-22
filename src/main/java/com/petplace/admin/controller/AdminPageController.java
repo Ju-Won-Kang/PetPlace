@@ -40,6 +40,7 @@ public class AdminPageController extends HttpServlet {
                 request.getRequestDispatcher("views/admin/adminModifyProductPage.jsp").forward(request,response);
                 break;
             case 3:
+                request.getRequestDispatcher("views/admin/adminDeleteProductPage.jsp").forward(request,response);
             case 4:
             case 5:
             case 6:
