@@ -6,7 +6,6 @@
 <head>
     <meta charset="UTF-8"> 
     <title>상품 목록</title>
-    
     <link rel="stylesheet" href="css/shopping-list.css">
 </head>
 <body>
@@ -31,7 +30,14 @@
         <div id="dogproduct-line1">
 
             <div class="dogFood">
-                <div class="dogFood-img"><img class="product_1-img" src="<%=contextPath%>/images/dogproduct1.jpg" alt="프로베스트 사료"></div>
+               
+                <div onclick="location.href='<%=contextPath%>/shoppingdetail.do'" class="dogFood-img">
+    			<img class="product_1-img" src="<%=contextPath%>/images/dogproduct1.jpg" alt="프로베스트 사료"></div>
+
+                <a href="<%=contextPath%>/shopping.do">쇼핑</a>
+                <div href="<%=contextPath%>/shopping.do">쇼핑</a>
+                
+                </div>
                 <div class="dogFood-info">
                     <p class="dogFood-name">프로베스트 독 5kg</p>
                     <p class="dogFood-price">28,000원</p>
