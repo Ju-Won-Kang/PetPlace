@@ -9,9 +9,10 @@ import java.io.IOException;
 
 @WebServlet(name = "shopping.do", urlPatterns = { "/shopping.do" })
 public class shoppingServlet extends HttpServlet {
+	
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.getRequestDispatcher("views/shopping.jsp").forward(request, response);
+		request.getRequestDispatcher("views/shopping/shopping.jsp").forward(request, response);
 	}
 
 	@Override
