@@ -234,7 +234,7 @@ a {
 #dog1-img{
     width: 180px;
     height: 180px;
-    background: url(../images/dog1.png) no-repeat center/contain;
+    background: url(../images/dog1_img.png) no-repeat center/contain;
     position: absolute;
     margin-top: -70px;
     margin-left: 100px;
@@ -272,7 +272,7 @@ a {
 #cat1-img{
     width: 180px;
     height: 180px;
-    background: url(../images/cat1.png) no-repeat center/contain;
+    background: url(../images/cat1_img.png) no-repeat center/contain;
     position: absolute;
     margin-top: -70px;
     margin-left: 100px;
@@ -314,14 +314,14 @@ a {
 #dog2-img{
     width: 250px;
     height: 250px;
-    background: url(../images/dog2.png) no-repeat center/contain;
+    background: url(../images/dog2_img.png) no-repeat center/contain;
 }
 
 #cat2-img{
     display: none;
     width: 250px;
     height: 250px;
-    background: url(../images/cat2.png) no-repeat center/contain;
+    background: url(../images/cat2_img.png) no-repeat center/contain;
 }
 
 /* <!-- ************************** 계산기 결과 ****************************--> */
