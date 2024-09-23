@@ -13,4 +13,14 @@
     <servlet-name>funcCalculator.do</servlet-name>
     <url-pattern>/funcCalculator.do</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>adopt.do</display-name>
+    <servlet-name>adopt.do</servlet-name>
+    <servlet-class>com.petplace.adopt.controller.adoptMissingServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>adopt.do</servlet-name>
+    <url-pattern>/adopt.do</url-pattern>
+  </servlet-mapping>
 </web-app>
