@@ -8,7 +8,7 @@ body * {
 }
 
 #wrap > #content-left {
-    width: 50%;
+    width: 60%;
     position: relative;
 }
 
@@ -28,4 +28,22 @@ body * {
 .input-group-text {
     background-color: #8aa2ce !important;
     color: white !important;
+}
+.input-group > input {
+    flex-grow: 0;
+    flex-basis: 100px;
+    width: 30%;
+}
+.hide{
+    display: none;
+}
+.expose{
+    display: inline-flex;
+
+}
+#category{
+    display: flex;
+    flex-direction: row;
+    justify-content: start;
+    gap: 15px;
 }

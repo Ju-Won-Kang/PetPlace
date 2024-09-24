@@ -10,16 +10,27 @@ package com.petplace.admin.controller;/**
  * 2024. 9. 24.        jun       최초 생성
  */
 
+import com.petplace.admin.model.vo.Category;
+import com.petplace.admin.model.vo.Product;
+import com.petplace.product.service.ProductService;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 @WebServlet(name = "adminCreateProduct.pd", value = "/adminCreateProduct.pd")
 public class AdminCreateProductController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+        // 카테고리 리스트
+        ArrayList<Category> cList = new ProductService().selectCategoryList();
+
+        // 포워딩
+        request.setAttribute("category",cList);
+        System.out.println(cList);
         request.setAttribute("nav",1);
         request.getRequestDispatcher("views/admin/adminCreateProductPage.jsp").forward(request, response);
 
