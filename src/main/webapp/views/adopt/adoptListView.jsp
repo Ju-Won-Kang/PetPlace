@@ -6,17 +6,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PetPlace - 입양(실종 게시판)</title>
-    <link rel="stylesheet" href="css/adoptMissing.css">
-    <script type="text/javascript" src="js/funcCalculator.js"></script>
+    <link rel="stylesheet" href="css/adoptListView.css">
+    
+    <script type="text/javascript" src="js/adoptListView.js"></script>
 </head>
 <body>
     <%@ include file="/views/common/nav.jsp" %>
 
     <div class="content">
         <div class="adopt-type-btn">
-            <button id="missing-btn">유기 / 실종&nbsp;&nbsp;</button>
+            <button id="missing-btn" onclick="adoptMissingBtn()">유기 / 실종&nbsp;&nbsp;</button>
             <p>|</p>
-            <button id="distribute-btn">&nbsp;&nbsp;분양</button>
+            <button id="distribute-btn" onclick="adoptDistributeBtn()">&nbsp;&nbsp;분양</button>
         </div>
         <div class="find-pet-option">
             <div class="select-pet-place">
@@ -36,8 +37,8 @@
                 <!-- <input type="submit" value=" " src="images/Search.png"> -->
             </form>
         </div>
-        <div class="missing-pet-table">
-            <table>
+        <div class="missing-distribute-pet-table">
+            <table id="missing-pet-table" class="missing-pet-table">
                 <thead>
                     <tr class="table-line">
                         <th>번호</th>
@@ -50,7 +51,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr class="table-line">
+                    <tr class="table-line" onclick="detailMissingPage()">
                         <td>1</td>
                         <td><img src="<%=contextPath%>/images/image 10.png"></td>
                         <td class="table-title">
@@ -176,6 +177,145 @@
                         <td>경기도 수원시 팔달구<br>
                             xx동</td>
                         <td>04 - 12</td>
+                        <td>김지석</td>
+                        <td>23</td>
+                    </tr>
+                </tbody>
+            </table>
+            <script>
+                function detailMissingPage(){
+                    location.herf="<%=contextPath%>/missingDetail.do";
+                }
+            </script>
+
+            <table id="distribute-pet-table" class="distribute-pet-table">
+                <thead>
+                    <tr class="table-line">
+                        <th>번호</th>
+                        <th>사진</th>
+                        <th>동물정보</th>
+                        <th>분양장소</th>
+                        <th>글쓴이</th>
+                        <th>조회수</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="table-line" onclick="detailDistributePage()">
+                        <td>1</td>
+                        <td><img src="<%=contextPath%>/images/image 10.png"></td>
+                        <td class="table-title">
+                            <p>뱅갈 고양이 분양합니다~</p>
+                            <span>진짜 잘생겼어요~~ 수컷이고요. 생후 10개월 된 아이에요</span>
+                        </td>                       
+                        <td>경기 김포시 양촌읍</td>
+                        <td>서유라</td>
+                        <td>192</td>
+                    </tr>
+                    <tr class="table-line">
+                        <td>2</td>
+                        <td><img src="<%=contextPath%>/images/image 7.png"></td>
+                        <td class="table-title">
+                            <p>검정색 강아지 분양 받아가세요~</p>
+                            <span>진짜 잘생겼어요~~ 수컷이고요. 생후 10개월 된 아이에요</span>
+                        </td>  
+                        <td>경기도 수원시 팔달구<br>
+                            xx동</td>
+                        <td>김지석</td>
+                        <td>23</td>
+                    </tr>
+                    <tr class="table-line">
+                        <td>2</td>
+                        <td><img src="<%=contextPath%>/images/image 7.png"></td>
+                        <td class="table-title">
+                            <p>검정색 강아지 분양 받아가세요~</p>
+                            <span>진짜 잘생겼어요~~ 수컷이고요. 생후 10개월 된 아이에요</span>
+                        </td>  
+                        <td>경기도 수원시 팔달구<br>
+                            xx동</td>
+                        <td>김지석</td>
+                        <td>23</td>
+                    </tr>
+                    <tr class="table-line">
+                        <td>2</td>
+                        <td><img src="<%=contextPath%>/images/image 7.png"></td>
+                        <td class="table-title">
+                            <p>검정색 강아지 분양 받아가세요~</p>
+                            <span>진짜 잘생겼어요~~ 수컷이고요. 생후 10개월 된 아이에요</span>
+                        </td>  
+                        <td>경기도 수원시 팔달구<br>
+                            xx동</td>
+                        <td>김지석</td>
+                        <td>23</td>
+                    </tr>
+                    <tr class="table-line">
+                        <td>2</td>
+                        <td><img src="<%=contextPath%>/images/image 7.png"></td>
+                        <td class="table-title">
+                            <p>검정색 강아지 분양 받아가세요~</p>
+                            <span>진짜 잘생겼어요~~ 수컷이고요. 생후 10개월 된 아이에요</span>
+                        </td>  
+                        <td>경기도 수원시 팔달구<br>
+                            xx동</td>
+                        <td>김지석</td>
+                        <td>23</td>
+                    </tr>
+                    <tr class="table-line">
+                        <td>2</td>
+                        <td><img src="<%=contextPath%>/images/image 7.png"></td>
+                        <td class="table-title">
+                            <p>검정색 강아지 분양 받아가세요~</p>
+                            <span>진짜 잘생겼어요~~ 수컷이고요. 생후 10개월 된 아이에요</span>
+                        </td>  
+                        <td>경기도 수원시 팔달구<br>
+                            xx동</td>
+                        <td>김지석</td>
+                        <td>23</td>
+                    </tr>
+                    <tr class="table-line">
+                        <td>2</td>
+                        <td><img src="<%=contextPath%>/images/image 7.png"></td>
+                        <td class="table-title">
+                            <p>검정색 강아지 분양 받아가세요~</p>
+                            <span>진짜 잘생겼어요~~ 수컷이고요. 생후 10개월 된 아이에요</span>
+                        </td>  
+                        <td>경기도 수원시 팔달구<br>
+                            xx동</td>
+                        <td>김지석</td>
+                        <td>23</td>
+                    </tr>
+                    <tr class="table-line">
+                        <td>2</td>
+                        <td><img src="<%=contextPath%>/images/image 7.png"></td>
+                        <td class="table-title">
+                            <p>검정색 강아지 분양 받아가세요~</p>
+                            <span>진짜 잘생겼어요~~ 수컷이고요. 생후 10개월 된 아이에요</span>
+                        </td>  
+                        <td>경기도 수원시 팔달구<br>
+                            xx동</td>
+                        <td>김지석</td>
+                        <td>23</td>
+                    </tr>
+                    <tr class="table-line">
+                        <td>2</td>
+                        <td><img src="<%=contextPath%>/images/image 7.png"></td>
+                        <td class="table-title">
+                            <p>검정색 강아지 분양 받아가세요~</p>
+                            <span>진짜 잘생겼어요~~ 수컷이고요. 생후 10개월 된 아이에요</span>
+                        </td>  
+                        <td>경기도 수원시 팔달구<br>
+                            xx동</td>
+                        <td>김지석</td>
+                        <td>23</td>
+                    </tr>
+                    <tr class="table-line">
+                        <td>2</td>
+                        <td><img src="<%=contextPath%>/images/image 7.png"></td>
+                        <td class="table-title">
+                            <p>검정색 강아지 분양 받아가세요~</p>
+                            <span>진짜 잘생겼어요~~ 수컷이고요. 생후 10개월 된 아이에요</span>
+                        </td>  
+                        <td>경기도 수원시 팔달구<br>
+                            xx동</td>
                         <td>김지석</td>
                         <td>23</td>
                     </tr>

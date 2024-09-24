@@ -5,13 +5,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PetPlace - 입양(분양 게시판)</title>
-    <link rel="stylesheet" href="css/adoptDistribute.css">
-    <script type="text/javascript" src="js/funcCalculator.js"></script>
+    <title>PetPlace - 입양(실종 게시판) - 상세페이지</title>
+    <link rel="stylesheet" href="css/missingDetailView.css">
+    
+    <script type="text/javascript" src="js/missingDetailView.js"></script>
 </head>
 <body>
     <%@ include file="/views/common/nav.jsp" %>
-    
+
+    <div class="content">
+        
+    </div>
     
     <%@ include file="/views/common/footer.jsp" %>
 </body>

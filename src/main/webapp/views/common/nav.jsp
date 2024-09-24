@@ -34,7 +34,7 @@
 
             <a href="#">커뮤니티</a>
             <a href="">쇼핑</a>
-            <a href="<%=contextPath%>/adopt.do">입양</a>
+            <a href="<%=contextPath%>/adoptList.do">입양</a>
             <a href="<%=contextPath%>/searchHospital.do">동물병원찾기</a>
             <a href="<%=contextPath%>/funcCalculator.do">기능</a>
 
