@@ -11,7 +11,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/admin/adminCreateProductPage.css">
+    <link rel="stylesheet" href="css/admin/adminCreateProductForm.css">
     <!-- bootstrap -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
@@ -22,53 +22,53 @@
             flex-basis: 100px;
             width: 30%;
         }
-        .hide{
+
+        .hide {
             display: none;
         }
-        .expose{
-            display: inline-block;
 
-        }
     </style>
 </head>
 <body>
     <%@include file="adminPageHeader.jsp" %>
     <script>
-        window.onload = function() {
+        window.onload = function () {
             let nav = "<%=request.getAttribute("nav")%>";
             console.log(<%=request.getAttribute("nav")%>)
             let navElement = document.querySelector("#label" + nav);  // id 값이 label1, label2 등으로 되어 있다고 가정
             selectCheck(navElement, nav);
         };
-        function CheckOther(){
+
+        function CheckOther() {
             let selectEl = document.querySelector("#select-category");
             let inputEl = document.querySelector("#select-input");
-            if(selectEl.value ==="30"){
-                inputEl.className = "input-group input-group-3m mb-3 expose";
-            }else{
-                inputEl.className = "input-group input-group-3m mb-3 hide";
+            if (selectEl.value === "30") {
+                inputEl.className = "input-group input-group-3m mb-3 w-35 expose";
+            } else {
+                inputEl.className = "input-group input-group-3m mb-3 w-25 hide";
             }
         }
     </script>
     <section>
-        <%@include file="adminNav.jsp"%>
+        <%@include file="adminNav.jsp" %>
         <div id="wrap">
             <div id="content-left">
-                <form action="productInsert.pd">
+                <form action="productInsert.do" method="post" enctype="multipart/form-data">
                     <div id="category">
-                    <div class="input-group input-group-lg mb-3 w-50">
-                        <span class="input-group-text">카테고리</span>
-                        <select id="select-category" class="form-select form-select-lg" name="categoryNo" onchange="CheckOther();">
-                            <c:forEach var="c" items="${category}">
-                                <option value="${c.categoryNo}">${c.categoryName}</option>
-                            </c:forEach>
-                            <option value="30">기타</option>
-                        </select>
-                    </div>
-                    <div id="select-input" class="input-group input-group-3m mb-3 hide">
-                        <span class="input-group-text">기타 카테고리</span>
-                        <input type="text" class="form-control" name="categoryName">
-                    </div>
+                        <div class="input-group input-group-lg mb-3 w-50">
+                            <span class="input-group-text">카테고리</span>
+                            <select id="select-category" class="form-select form-select-lg" name="categoryNo"
+                                    onchange="CheckOther();">
+                                <c:forEach var="c" items="${category}">
+                                    <option value="${c.categoryNo}">${c.categoryName}</option>
+                                </c:forEach>
+                                <option value="30">기타</option>
+                            </select>
+                        </div>
+                        <div id="select-input" class="input-group input-group-3m mb-3 w-25 hide">
+                            <span class="input-group-text">기타 카테고리</span>
+                            <input type="text" class="form-control" name="categoryName">
+                        </div>
                     </div>
 
                     <div class="input-group input-group-lg mb-3 w-50">
@@ -112,8 +112,8 @@
 
                 </form>
             </div>
-<%--            <div id="content-right">--%>
-            </div>
+            <%--            <div id="content-right">--%>
+        </div>
         </div>
     </section>
 

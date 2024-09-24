@@ -8,7 +8,7 @@ body * {
 }
 
 #wrap > #content-left {
-    width: 60%;
+    width: 65%;
     position: relative;
 }
 
@@ -38,7 +38,7 @@ body * {
     display: none;
 }
 .expose{
-    display: inline-flex;
+    /*display: inline-flex;*/
 
 }
 #category{
@@ -46,4 +46,7 @@ body * {
     flex-direction: row;
     justify-content: start;
     gap: 15px;
+}
+.w-35{
+    width: 35% !important;
 }

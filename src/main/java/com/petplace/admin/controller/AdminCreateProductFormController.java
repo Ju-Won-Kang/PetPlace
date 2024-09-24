@@ -11,7 +11,6 @@ package com.petplace.admin.controller;/**
  */
 
 import com.petplace.admin.model.vo.Category;
-import com.petplace.admin.model.vo.Product;
 import com.petplace.product.service.ProductService;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
@@ -21,7 +20,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 @WebServlet(name = "adminCreateProduct.pd", value = "/adminCreateProduct.pd")
-public class AdminCreateProductController extends HttpServlet {
+public class AdminCreateProductFormController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
@@ -32,7 +31,7 @@ public class AdminCreateProductController extends HttpServlet {
         request.setAttribute("category",cList);
         System.out.println(cList);
         request.setAttribute("nav",1);
-        request.getRequestDispatcher("views/admin/adminCreateProductPage.jsp").forward(request, response);
+        request.getRequestDispatcher("views/admin/adminCreateProductForm.jsp").forward(request, response);
 
     }
 
