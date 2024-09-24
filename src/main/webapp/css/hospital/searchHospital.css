@@ -7,11 +7,22 @@ section{
     min-width: 1400px;
     margin: auto;
     margin-top: 30px;
+    display: flex;
+}
+.inner-left{
+    width: 400px;
+    height: 1000px;
+    border: 1px solid #7A97CC;
+    border-radius: 45px;
 }
 #map {
-    width: 500px;
-    height: 400px;
+    margin-left: 50px;
+    width: 60%;
+    height: 600px;
     position: relative;
+    border: 1px solid #7A97CC;
+    border-radius: 45px;
+
 }
 .spinner-border {
     position: absolute;

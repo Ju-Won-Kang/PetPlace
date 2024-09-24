@@ -20,29 +20,41 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- searchHospital CSS -->
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/hospital/searchHospital.css">
+    <%-- 카카오맵 API 키 가져오기 --%>
+    <%
+        Properties prop = new Properties();
+        String filePath = searchHospitalServlet.class.getResource("/config.properties").getPath();
+        prop.load(new FileInputStream(filePath));
+        String apiKey = prop.getProperty("KAKAO_MAP_API_KEY");
+    %>
+        <c:set var="apiKey" value="<%=apiKey%>"/>
+    <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=${apiKey}&libraries=services"></script>
+    <%-- 키워드 검색용 서비스 라이브러리--%>
+<%--    <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=${apiKey}&libraries=services">--%>
+
+    </script>
     <style>
 
     </style>
 </head>
 <body onload="getLocation()">
-    <%@include file="../common/nav.jsp"%>
+    <%@include file="../common/nav.jsp" %>
     <section>
-        <div></div>
-        <div id="map">
-            <div class="spinner-border"></div>
+        <div class="inner-left">
+            <form onsubmit="">
+                <input type="text" name="hospitalName" placeholder="동물병원 이름 검색">
+                <button type="submit">검색</button>
+            </form>
+            <hr>
+            <ul id="placesList"></ul>
+            <div id="pagination"></div>
         </div>
-        <%-- 카카오맵 API 키 가져오기 --%>
-        <%
-            Properties prop = new Properties();
-            String filePath = searchHospitalServlet.class.getResource("/config.properties").getPath();
-            prop.load(new FileInputStream(filePath));
-            String apiKey = prop.getProperty("KAKAO_MAP_API_KEY");
-        %>
-        <%-- 카카오맵 API 키 pageScope에 저장 --%>
-        <c:set var="apiKey" value="<%=apiKey%>"/>
-    <%--    <button onclick="getLocation()">위치 찾기</button>--%>
+        <div id="map"></div>
+        <div class="spinner-border"></div>
+    <%-- 카카오맵 API 키 pageScope에 저장 --%>
+<%--            <button onclick="getLocation()">위치 찾기</button>--%>
         <p id="status"></p>
-        <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=${apiKey}"></script>
+
     </section>
 </body>
 </html>
