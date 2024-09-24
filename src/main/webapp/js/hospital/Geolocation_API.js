@@ -87,14 +87,13 @@ function mapLoad(latitude, longitude) {
                 '   <h5>' + places.place_name + '</h5>';
 
         if (places.road_address_name) {
-            itemStr += '    <span>' + places.road_address_name + '</span>' +
-                '   <span class="jibun gray">' + places.address_name + '</span>';
+            itemStr += '    <span>' + places.road_address_name + '</span>' + '<br>' +
+                '   <span class="jibun gray">' + places.address_name + '</span>' + '<br>';
         } else {
-            itemStr += '    <span>' + places.address_name + '</span>';
+            itemStr += '    <span>' + places.address_name + '</span>' + '<br>';
         }
 
-        itemStr += '  <span class="tel">' + places.phone + '</span>' +
-            '</div>';
+        itemStr += '  <span class="tel">' + places.phone + '</span>' + '</div>';
 
         el.innerHTML = itemStr;
         el.className = 'item';

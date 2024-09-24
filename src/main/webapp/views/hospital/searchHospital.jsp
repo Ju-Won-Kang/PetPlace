@@ -41,13 +41,10 @@
     <%@include file="../common/nav.jsp" %>
     <section>
         <div class="inner-left">
-            <form onsubmit="">
-                <input type="text" name="hospitalName" placeholder="동물병원 이름 검색">
-                <button type="submit">검색</button>
-            </form>
-            <hr>
-            <ul id="placesList"></ul>
-            <div id="pagination"></div>
+            <div id="list">
+                <ul id="placesList"></ul>
+                <div id="pagination"></div>
+            </div>
         </div>
         <div id="map"></div>
         <div class="spinner-border"></div>

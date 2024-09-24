@@ -10,14 +10,15 @@ section{
     display: flex;
 }
 .inner-left{
-    width: 400px;
-    height: 1000px;
+    width: 20%;
+    height: 600px;
     border: 1px solid #7A97CC;
     border-radius: 45px;
+
 }
 #map {
     margin-left: 50px;
-    width: 60%;
+    width: 80%;
     height: 600px;
     position: relative;
     border: 1px solid #7A97CC;
@@ -33,3 +34,36 @@ section{
     margin: auto;
     color: #7A97CC;
 }
+#placesList{}
+#placesList >li:nth-child(1){padding-top: 30px}
+ul, li {
+    list-style: none;
+}
+.item{
+    padding: 10px 0px;
+}
+#placesList .info .gray {
+    color: #8a8a8a;
+}
+
+#placesList .info .jibun {
+    padding-left: 26px;
+    background: url(https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/places_jibun.png) no-repeat;
+}
+#placesList .info .tel {
+    color: #009900;
+}
+.info{
+    width: 100%;
+    margin: auto;
+}
+#list{
+    float: left;
+    width: 100%;
+    overflow-y: auto;
+    margin: 20px 0px;
+    height: 540px;
+    /*border: 1px solid #7A97CC;*/
+    /*border-radius: 45px;*/
+}
+.none{}
