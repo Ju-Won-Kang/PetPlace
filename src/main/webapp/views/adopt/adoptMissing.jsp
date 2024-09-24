@@ -53,7 +53,10 @@
                     <tr class="table-line">
                         <td>1</td>
                         <td><img src="<%=contextPath%>/images/image 10.png"></td>
-                        <td class="table-title">고양이 잃어버리신 분 뱅갈 고양이...</td>                       
+                        <td class="table-title">
+                            <p>고양이 잃어버리신 분 뱅갈 고양이</p>
+                            <span>고양이 잃어버리신 분 뱅갈 고양이</span>
+                        </td>                       
                         <td>경기 김포시 양촌읍</td>
                         <td>09 - 06</td>
                         <td>서유라</td>
@@ -62,7 +65,10 @@
                     <tr class="table-line">
                         <td>2</td>
                         <td><img src="<%=contextPath%>/images/image 7.png"></td>
-                        <td class="table-title">검정색 강아지 잃어버리신 분 찾...</td>
+                        <td class="table-title">
+                            <p>검정색 강아지 잃어버리신 분 찾아요</p>
+                            <span>검정색 강아지 잃어버리신 분 찾아요</span>
+                        </td>  
                         <td>경기도 수원시 팔달구<br>
                             xx동</td>
                         <td>04 - 12</td>
@@ -70,9 +76,12 @@
                         <td>23</td>
                     </tr>
                     <tr class="table-line">
-                        <td>3</td>
+                        <td>2</td>
                         <td><img src="<%=contextPath%>/images/image 7.png"></td>
-                        <td class="table-title">검정색 강아지 잃어버리신 분 찾...</td>
+                        <td class="table-title">
+                            <p>검정색 강아지 잃어버리신 분 찾아요</p>
+                            <span>검정색 강아지 잃어버리신 분 찾아요</span>
+                        </td>  
                         <td>경기도 수원시 팔달구<br>
                             xx동</td>
                         <td>04 - 12</td>
@@ -80,9 +89,12 @@
                         <td>23</td>
                     </tr>
                     <tr class="table-line">
-                        <td>4</td>
+                        <td>2</td>
                         <td><img src="<%=contextPath%>/images/image 7.png"></td>
-                        <td class="table-title">검정색 강아지 잃어버리신 분 찾...</td>
+                        <td class="table-title">
+                            <p>검정색 강아지 잃어버리신 분 찾아요</p>
+                            <span>검정색 강아지 잃어버리신 분 찾아요</span>
+                        </td>  
                         <td>경기도 수원시 팔달구<br>
                             xx동</td>
                         <td>04 - 12</td>
@@ -90,9 +102,12 @@
                         <td>23</td>
                     </tr>
                     <tr class="table-line">
-                        <td>5</td>
+                        <td>2</td>
                         <td><img src="<%=contextPath%>/images/image 7.png"></td>
-                        <td class="table-title">검정색 강아지 잃어버리신 분 찾...</td>
+                        <td class="table-title">
+                            <p>검정색 강아지 잃어버리신 분 찾아요</p>
+                            <span>검정색 강아지 잃어버리신 분 찾아요</span>
+                        </td>  
                         <td>경기도 수원시 팔달구<br>
                             xx동</td>
                         <td>04 - 12</td>
@@ -100,9 +115,12 @@
                         <td>23</td>
                     </tr>
                     <tr class="table-line">
-                        <td>6</td>
+                        <td>2</td>
                         <td><img src="<%=contextPath%>/images/image 7.png"></td>
-                        <td class="table-title">검정색 강아지 잃어버리신 분 찾...</td>
+                        <td class="table-title">
+                            <p>검정색 강아지 잃어버리신 분 찾아요</p>
+                            <span>검정색 강아지 잃어버리신 분 찾아요</span>
+                        </td>  
                         <td>경기도 수원시 팔달구<br>
                             xx동</td>
                         <td>04 - 12</td>
@@ -110,9 +128,12 @@
                         <td>23</td>
                     </tr>
                     <tr class="table-line">
-                        <td>7</td>
+                        <td>2</td>
                         <td><img src="<%=contextPath%>/images/image 7.png"></td>
-                        <td class="table-title">검정색 강아지 잃어버리신 분 찾...</td>
+                        <td class="table-title">
+                            <p>검정색 강아지 잃어버리신 분 찾아요</p>
+                            <span>검정색 강아지 잃어버리신 분 찾아요</span>
+                        </td>  
                         <td>경기도 수원시 팔달구<br>
                             xx동</td>
                         <td>04 - 12</td>
@@ -120,9 +141,12 @@
                         <td>23</td>
                     </tr>
                     <tr class="table-line">
-                        <td>8</td>
+                        <td>2</td>
                         <td><img src="<%=contextPath%>/images/image 7.png"></td>
-                        <td class="table-title">검정색 강아지 잃어버리신 분 찾...</td>
+                        <td class="table-title">
+                            <p>검정색 강아지 잃어버리신 분 찾아요</p>
+                            <span>검정색 강아지 잃어버리신 분 찾아요</span>
+                        </td>  
                         <td>경기도 수원시 팔달구<br>
                             xx동</td>
                         <td>04 - 12</td>
@@ -130,9 +154,12 @@
                         <td>23</td>
                     </tr>
                     <tr class="table-line">
-                        <td>9</td>
+                        <td>2</td>
                         <td><img src="<%=contextPath%>/images/image 7.png"></td>
-                        <td class="table-title">검정색 강아지 잃어버리신 분 찾...</td>
+                        <td class="table-title">
+                            <p>검정색 강아지 잃어버리신 분 찾아요</p>
+                            <span>검정색 강아지 잃어버리신 분 찾아요</span>
+                        </td>  
                         <td>경기도 수원시 팔달구<br>
                             xx동</td>
                         <td>04 - 12</td>
@@ -140,9 +167,12 @@
                         <td>23</td>
                     </tr>
                     <tr class="table-line">
-                        <td>10</td>
+                        <td>2</td>
                         <td><img src="<%=contextPath%>/images/image 7.png"></td>
-                        <td class="table-title">검정색 강아지 잃어버리신 분 찾...</td>
+                        <td class="table-title">
+                            <p>검정색 강아지 잃어버리신 분 찾아요</p>
+                            <span>검정색 강아지 잃어버리신 분 찾아요</span>
+                        </td>  
                         <td>경기도 수원시 팔달구<br>
                             xx동</td>
                         <td>04 - 12</td>

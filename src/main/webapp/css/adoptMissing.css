@@ -79,7 +79,7 @@ td, th{
     width: 100%;
     height: 40px;
     display: flex;
-    padding: 0 20px 0 20px;
+    padding: 0 80px 0 80px;
 }
 
 .select-pet-place{
@@ -100,6 +100,7 @@ td, th{
 .select-pet-place select:focus{
     outline: none;
 }
+
 .find-pet-option > form{
     width: 80%;
     height: 80%;
@@ -138,8 +139,9 @@ td, th{
 }
 
 .missing-pet-table{
-    width: 100%;
-    padding: 0 20px 0 20px;
+    width: 90%;
+    margin: auto;
+    padding: 0 10px 0 10px;
 }
 
 .table-line{
@@ -160,9 +162,35 @@ td, th{
     background-color: rgba(218, 224, 236, 1);
 }
 
-.missing-pet-table > tbody p{
-    height: 50%;
+.table-title{
+    padding: 10px 0 10px 0;
+}
+
+.table-title > p{
+    width: 100%;
+    height: 20%;
     margin: 0;
+    margin-bottom: 15px;
+    font-size: 20px;
+    color: rgb(127, 161, 224);
+    display: inline-block;
+    width: 220px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+
+}
+
+.table-title > span{
+    width: 100%;
+    height: 60%;
+    resize: none;
+    border: none;
+    display: block;
+    width: 220px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
 }
 
 .missing-pet-table > table > thead th{
