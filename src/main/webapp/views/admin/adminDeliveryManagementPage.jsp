@@ -19,6 +19,13 @@
 </head>
 <body>
     <%@include file="adminPageHeader.jsp" %>
+    <script>
+        window.onload = function (){
+            let nav = "<%=request.getAttribute("nav")%>";
+            let navEl = document.querySelector("#label" + nav);
+            selectCheck(navEl, nav);
+        }
+    </script>
     <section>
         <%@include file="adminNav.jsp"%>
         <div id="wrap">

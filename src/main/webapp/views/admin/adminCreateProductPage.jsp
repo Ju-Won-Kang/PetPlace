@@ -26,11 +26,19 @@
 </head>
 <body>
     <%@include file="adminPageHeader.jsp" %>
+    <script>
+        window.onload = function() {
+            let nav = "<%=request.getAttribute("nav")%>";
+            console.log(<%=request.getAttribute("nav")%>)
+            let navElement = document.querySelector("#label" + nav);  // id 값이 label1, label2 등으로 되어 있다고 가정
+            selectCheck(navElement, nav);
+        };
+    </script>
     <section>
         <%@include file="adminNav.jsp"%>
         <div id="wrap">
             <div id="content-left">
-                <form action="">
+                <form action="productInsert.pd">
                     <div class="input-group input-group-lg mb-3 w-50">
                         <span class="input-group-text">상품 코드</span>
                         <input type="text" class="form-control">
