@@ -22,4 +22,14 @@
     <servlet-name>funcCalculator.do</servlet-name>
     <url-pattern>/funcCalculator.do</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>login.me</display-name>
+    <servlet-name>login.me</servlet-name>
+    <servlet-class>com.petplace.member.controller.LoginController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>login.me</servlet-name>
+    <url-pattern>/login.me</url-pattern>
+  </servlet-mapping>
 </web-app>
