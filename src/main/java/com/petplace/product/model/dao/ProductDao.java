@@ -66,6 +66,9 @@ public class ProductDao {
         int result = 0;
         PreparedStatement pstmt = null;
         String sql = prop.getProperty("insertProduct");
+        return 0;
     }
-    public int insertAtachmentList(Connection conn)
+    public int insertAtachmentList(Connection conn){
+        return 0;
+    }
 }

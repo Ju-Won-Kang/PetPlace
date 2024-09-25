@@ -33,8 +33,10 @@ public class ProductService {
     public int CreateProduct(Product p, ArrayList<AttachmentProduct> list){
         Connection conn = getConnection();
         ProductDao pDao = new ProductDao();
+//
+//        int result1 = pDao.insertProduct(conn, p);
+//        int result2 = pDao.insertAtachmentList(conn, list);
+        return 0;
 
-        int result1 = pDao.insertProduct(conn, p);
-        int result2 = pDao.insertAtachmentList(conn, list);
     }
 }
