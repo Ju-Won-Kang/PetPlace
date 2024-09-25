@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+	<entry key="loginMember">
+		SELECT MEMBER_ID,
+			   MEMBER_PWD,
+			   MEMBER_NAME,
+			   NICKNAME,
+			   PHONE,
+			   MEMBER_NUMBER,
+			   MEMBER_ADDRESS,
+			   MEMBER_DATE,
+			   STATUS
+		FROM MEMBER 
+		WHERE MEMBER_ID = ? 
+		  AND MEMBER_PWD = ?
+		  AND STATUS = 'Y'
+	</entry>
+</properties>
