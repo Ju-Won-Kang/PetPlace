@@ -6,9 +6,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PetPlace - 입양(실종 게시판)</title>
-    <link rel="stylesheet" href="css/adoptListView.css">
+    <link rel="stylesheet" href="css/adopt/adoptListView.css">
     
-    <script type="text/javascript" src="js/adoptListView.js"></script>
+    <script type="text/javascript" src="js/adopt/adoptListView.js"></script>
 </head>
 <body>
     <%@ include file="/views/common/nav.jsp" %>
