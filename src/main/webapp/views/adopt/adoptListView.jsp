@@ -184,7 +184,8 @@
             </table>
             <script>
                 function detailMissingPage(){
-                    location.herf="<%=contextPath%>/missingDetail.do";
+                    console.log("????")
+                    location.href="<%=contextPath%>/missingDetail.do";
                 }
             </script>
 
