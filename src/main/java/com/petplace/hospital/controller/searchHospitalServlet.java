@@ -1,9 +1,10 @@
-package com.petplace.hospital.controller;/**
+package com.petplace.hospital.controller;
+/**
  * packageName    : com.petplace.controller
  * fileName       : searchHospitalServlet
  * author         : jun
  * date           : 2024. 9. 12.
- * description    :
+ * description    : 포워딩을 위한 서블릿
  * ===========================================================
  * DATE              AUTHOR             NOTE
  * -----------------------------------------------------------
@@ -20,7 +21,7 @@ import java.io.IOException;
 public class searchHospitalServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        request.getRequestDispatcher("views/searchHospital.jsp").forward(request,response);
+        request.getRequestDispatcher("views/hospital/searchHospital.jsp").forward(request,response);
     }
 
     @Override
