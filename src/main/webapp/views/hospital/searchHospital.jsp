@@ -16,27 +16,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>인근 동물병원 찾기</title>
-    <script src="js/Geolocation_API.js"></script>
+    <script src="js/hospital/Geolocation_API.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <style>
-        #map {
-            position: relative;
-        }
-        .spinner-border {
-            position: absolute;
-            top: 0;
-            right: 0;
-            bottom: 0;
-            left: 0;
-            margin: auto;
-            color: #7A97CC;
-        }
-    </style>
-</head>
-<body onload="getLocation()">
-    <div id="map" style="width:500px;height:400px;">
-        <div class="spinner-border"></div>
-    </div>
+    <!-- searchHospital CSS -->
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/hospital/searchHospital.css">
     <%-- 카카오맵 API 키 가져오기 --%>
     <%
         Properties prop = new Properties();
@@ -44,11 +27,31 @@
         prop.load(new FileInputStream(filePath));
         String apiKey = prop.getProperty("KAKAO_MAP_API_KEY");
     %>
-    <%-- 카카오맵 API 키 pageScope에 저장 --%>
-    <c:set var="apiKey" value="<%=apiKey%>"/>
-    <button onclick="getLocation()">위치 찾기</button>
-    <p id="status">위치를 찾지 못했습니다.</p>
-    <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=${apiKey}"></script>
+        <c:set var="apiKey" value="<%=apiKey%>"/>
+    <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=${apiKey}&libraries=services"></script>
+    <%-- 키워드 검색용 서비스 라이브러리--%>
+<%--    <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=${apiKey}&libraries=services">--%>
 
+    </script>
+    <style>
+
+    </style>
+</head>
+<body onload="getLocation()">
+    <%@include file="../common/nav.jsp" %>
+    <section>
+        <div class="inner-left">
+            <div id="list">
+                <ul id="placesList"></ul>
+                <div id="pagination"></div>
+            </div>
+        </div>
+        <div id="map"></div>
+        <div class="spinner-border"></div>
+    <%-- 카카오맵 API 키 pageScope에 저장 --%>
+<%--            <button onclick="getLocation()">위치 찾기</button>--%>
+        <p id="status"></p>
+
+    </section>
 </body>
 </html>

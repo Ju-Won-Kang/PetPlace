@@ -1,4 +1,4 @@
-package com.petplace.func.controller;
+package com.petplace.shopping.controller;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -8,24 +8,14 @@ import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 /**
- * Servlet implementation class funcCalculatorServlet
+ * Servlet implementation class shoppingdetailServlet
  */
-public class funcCalculatorServlet extends HttpServlet {
-	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public funcCalculatorServlet() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
-
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
+@WebServlet(name = "shoppingdetail.do", urlPatterns = { "/shoppingdetail.do" })
+public class shoppingdetailServlet extends HttpServlet {
+	
+	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.getRequestDispatcher("views/funcCalculator/funcCalculator.jsp").forward(request, response);
+		request.getRequestDispatcher("views/shopping/shopping-detail.jsp").forward(request, response);
 	}
 
 	/**
