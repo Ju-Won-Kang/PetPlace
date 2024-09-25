@@ -57,7 +57,7 @@
                     <div id="category">
                         <div class="input-group input-group-lg mb-3 w-50">
                             <span class="input-group-text">카테고리</span>
-                            <select id="select-category" class="form-select form-select-lg" name="categoryNo"
+                            <select id="select-category" class="form-select form-select-lg" name="productCategory"
                                     onchange="CheckOther();">
                                 <c:forEach var="c" items="${category}">
                                     <option value="${c.categoryNo}">${c.categoryName}</option>
@@ -73,35 +73,35 @@
 
                     <div class="input-group input-group-lg mb-3 w-50">
                         <span class="input-group-text">상품명</span>
-                        <input type="text" class="form-control">
+                        <input type="text" class="form-control" name="productName">
                     </div>
                     <div class="input-group input-group-lg mb-3 w-50">
                         <span class="input-group-text">제조사</span>
-                        <input type="text" class="form-control">
+                        <input type="text" class="form-control" name="company">
                     </div>
                     <div class="input-group input-group-lg mb-3 w-50">
                         <span class="input-group-text">상품 가격</span>
-                        <input type="text" class="form-control">
+                        <input type="number" class="form-control" name="price">
                     </div>
                     <div class="input-group input-group-lg mb-3 w-50">
                         <span class="input-group-text">상품 재고 수량</span>
-                        <input type="number" class="form-control">
+                        <input type="number" class="form-control" name="inventory">
                     </div>
                     <div class="input-group input-group-lg mb-3 w-50">
                         <span class="input-group-text">주원료</span>
-                        <input type="text" class="form-control">
+                        <input type="text" class="form-control" name="ingredient">
                     </div>
                     <div class="input-group input-group-lg mb-3 w-50">
                         <span class="input-group-text">원산지</span>
-                        <input type="text" class="form-control">
+                        <input type="text" class="form-control" name="origin">
                     </div>
                     <div class="input-group input-group-lg mb-3 w-50">
                         <span class="input-group-text">중량</span>
-                        <input type="text" class="form-control">
+                        <input type="text" class="form-control" name="productWeight">
                     </div>
                     <div class="input-group input-group-lg mb-3 w-50">
                         <span class="input-group-text">칼로리</span>
-                        <input type="text" class="form-control">
+                        <input type="text" class="form-control" name="kcal">
                     </div>
                     <div class="input-group input-group-lg mb-3 w-75">
                         <span class="input-group-text">상품 상세페이지</span>

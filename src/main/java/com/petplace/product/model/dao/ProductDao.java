@@ -1,8 +1,7 @@
 package com.petplace.product.model.dao;
 
 import com.petplace.admin.model.vo.Category;
-import com.petplace.admin.model.vo.Product;
-import com.petplace.common.JDBCTemplate;
+import com.petplace.product.model.vo.Product;
 
 import static com.petplace.common.JDBCTemplate.*;
 
@@ -63,4 +62,10 @@ public class ProductDao {
         }
         return cList;
     }
+    public int insertProduct(Connection conn, Product p){
+        int result = 0;
+        PreparedStatement pstmt = null;
+        String sql = prop.getProperty("insertProduct");
+    }
+    public int insertAtachmentList(Connection conn)
 }

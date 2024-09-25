@@ -5,4 +5,11 @@
         SELECT category_no, category_name
         from category
     </entry>
+    <entry key="insertProduct">
+        INSERT INTO PRODUCT(
+        PRODUCT_NO,
+        PRODUCT_CATEGORY,
+        COMPANY
+        )
+    </entry>
 </properties>
