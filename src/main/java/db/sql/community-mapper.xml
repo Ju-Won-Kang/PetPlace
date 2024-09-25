@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+	<entry key="selectListCount">
+		SELECT COUNT(*) AS COUNT
+			FROM COMMUNITY
+	</entry>
+	<entry key="selectList">
+		SELECT *
+		FROM(SELECT ROWNUM RNUM, A.*
+		     FROM (SELECT COMMUNITY_NO,
+		                  COMMUNITY_CATEGORY,
+		                  COMMUNITY_TITLE,
+		                  NICKNAME,
+		                  TO_CHAR(COMMUNITY_DATE, 'YYYY/MM/DD') AS "COMMUNITY_DATE",
+		                  COMMUNITY_VIEWS,
+		                  COMMUNITY_GOOD
+		           FROM COMMUNITY B
+		           JOIN MEMBER M USING(MEMBER_ID)
+		           ORDER BY COMMUNITY_NO DESC) A)
+		WHERE RNUM BETWEEN ? AND ?
+	</entry>
+</properties>
