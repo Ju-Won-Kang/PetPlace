@@ -31,18 +31,12 @@
                 <img src="images/Logo.png">
                 <%System.out.println();%>
             </a>
-
-<<<<<<< HEAD
-            <a href="#">커뮤니티</a>
-            <a href="">쇼핑</a>
-            <a href="<%=contextPath%>/adoptList.do">입양</a>
-=======
+            
             <a href="<%=contextPath%>/communityList.do">커뮤니티</a>
             <a href="<%=contextPath%>/shopping.do">쇼핑</a>
             <a href="">입양</a>
->>>>>>> 72ce468638339d6d4ecf2b189e6e5ce66eb6f8cb
             <a href="<%=contextPath%>/searchHospital.do">동물병원찾기</a>
-            <a href="">기능</a>
+            <a href="<%=contextPath%>/funcCalculator.do">기능</a>
 
 			<c:choose>
 				<%-- 로그인 전 --%>
