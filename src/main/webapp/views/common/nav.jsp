@@ -32,7 +32,7 @@
                 <%System.out.println();%>
             </a>
 
-            <a href="#">커뮤니티</a>
+            <a href="<%=contextPath%>/communityList.do">커뮤니티</a>
             <a href="<%=contextPath%>/shopping.do">쇼핑</a>
             <a href="">입양</a>
             <a href="<%=contextPath%>/searchHospital.do">동물병원찾기</a>
@@ -75,29 +75,3 @@
     <%--    <div class="line"></div> --%>
 </body>
 </html>
-
-
-
-이름: <input type="text" id="input1">
-나이: <input type="text" id="input2">
-<button onclick = "test();">전송</button>
-
-<script>
-	function test(){
-    	// http://localhost:8888/jsp/jqAjax.do
-        $.ajax({
-        	type: "post",
-            url : "localhost:8888/jsp/jqAjax.do",
-            data : {
-            	name : $("input1").val(),
-                age : document.querySelector("input2").value
-                },
-                success : function(result){
-                	console.log(result);
-                   },
-                   error : function(){
-                   	console.log("요청실패");
-                    }
-                })
-            }
-</script>
