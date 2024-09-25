@@ -13,4 +13,13 @@
     <servlet-name>communityList.do</servlet-name>
     <url-pattern>/communityList.do</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <display-name>funcCalculator.do</display-name>
+    <servlet-name>funcCalculator.do</servlet-name>
+    <servlet-class>com.petplace.func.controller.funcCalculatorServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>funcCalculator.do</servlet-name>
+    <url-pattern>/funcCalculator.do</url-pattern>
+  </servlet-mapping>
 </web-app>
