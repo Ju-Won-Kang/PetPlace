@@ -30,6 +30,7 @@ import java.util.List;
 public class AdminInsertProductController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        // POST Request에 대한 인코딩 설정
         request.setCharacterEncoding("UTF-8");
 
         if(JakartaServletFileUpload.isMultipartContent(request)){
@@ -97,7 +98,7 @@ public class AdminInsertProductController extends HttpServlet {
                         atP.setFilePath("images/product_upfile/");
 
                         // 썸네일 사진 지정
-                        int fileLevel = item.getFieldName().equals("file1") ? 1 : 2;
+                        int fileLevel = item.getFieldName().equals("thumbnail") ? 1 : 2;
                         atP.setFileLevel(fileLevel);
                         list.add(atP);
                     }
@@ -106,13 +107,15 @@ public class AdminInsertProductController extends HttpServlet {
 
             // DB에 저장
             int result = new ProductService().CreateProduct(p, list);
-
+            HttpSession session = request.getSession();
+            if(result > 0){ // 성공
+                session.setAttribute("alertMsg","상품 등록에 성공했습니다.");
+                response.sendRedirect(request.getContextPath() + "/adminCreateProduct.pd");
+            }else { // 실패
+                session.setAttribute("alertMsg", "상품 등록에 실패하였습니다.");
+                response.sendRedirect(request.getContextPath() + "/adminCreateProduct.pd");
+            }
         }
-        String productName = request.getParameter("");
-
-        HttpSession session = request.getSession();
-
-        response.sendRedirect("views/admin/adminCreateproductForm.jsp");
     }
 
     @Override
