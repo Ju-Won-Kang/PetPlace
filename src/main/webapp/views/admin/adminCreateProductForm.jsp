@@ -53,7 +53,7 @@
         <%@include file="adminNav.jsp" %>
         <div id="wrap">
             <div id="content-left">
-                <form action="productInsert.do" method="post" enctype="multipart/form-data">
+                <form action="${pageContext.request.contextPath}/productInsert.do" method="post" enctype="multipart/form-data">
                     <div id="category">
                         <div class="input-group input-group-lg mb-3 w-50">
                             <span class="input-group-text">카테고리</span>
