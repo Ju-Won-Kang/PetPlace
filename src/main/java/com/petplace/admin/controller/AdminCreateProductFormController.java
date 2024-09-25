@@ -3,14 +3,14 @@ package com.petplace.admin.controller;/**
  * fileName       : AdminCreateProduct
  * author         : jun
  * date           : 2024. 9. 24.
- * description    :
+ * description    : 상품 등록 페이지로 포워딩을 위한 서블릿
  * ===========================================================
  * DATE              AUTHOR             NOTE
  * -----------------------------------------------------------
  * 2024. 9. 24.        jun       최초 생성
  */
 
-import com.petplace.admin.model.vo.Category;
+import com.petplace.admin.model.dto.Category;
 import com.petplace.product.service.ProductService;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
