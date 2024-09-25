@@ -1,12 +1,11 @@
 <%--
   Created by IntelliJ IDEA.
   User: jun
-  Date: 2024. 9. 19.
-  Time: 13:51
+  Date: 2024. 9. 20.
+  Time: 13:52
   To change this template use File | Settings | File Templates.
 --%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%
     String contextPath = request.getContextPath();
 %>
@@ -15,29 +14,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PetPlace - 펫플레이스(반려동물 종합 플랫폼)</title>
-    <link rel="stylesheet" href="css/nav.css">
-    <!-- Link Swiper's CSS -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
-    <script src="js/index.js"></script>
-
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="css/admin/adminPageHeader.css">
+    <title>Title</title>
 </head>
 <body>
     <header>
         <div id="header-wrap">
-            <a href="<%=contextPath%>">
+            <a href="<%=contextPath%>/adminPage?nav=1">
                 <img src="images/Logo.png">
                 <%System.out.println();%>
             </a>
-
-            <a href="#">커뮤니티</a>
-            <a href="">쇼핑</a>
-            <a href="">입양</a>
-            <a href="<%=contextPath%>/searchHospital.do">동물병원찾기</a>
-            <a href="<%=contextPath%>/funcCalculator.do">기능</a>
-
+            <a href="#" class="hide">커뮤니티</a>
+            <a href="" class="hide">쇼핑</a>
+            <a href="" class="hide">입양</a>
+            <a href="" class="hide">동물병원찾기</a>
+            <a href="" class="hide">기능</a>
             <button type="button" id="user" onclick="userBtn()">
                 <img src="images/user.png">
             </button>
@@ -62,6 +53,5 @@
             </script>
         </div>
     </header>
-    <%--    <div class="line"></div>--%>
 </body>
 </html>
