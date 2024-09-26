@@ -49,6 +49,29 @@
             ?,
             ?
         )
-
+    </entry>
+    <entry key="selectListCount">
+        SELECT COUNT(*) as "COUNT"
+        from product
+        where status = 'Y'
+    </entry>
+    <entry key="selectProductList">
+        SELECT *
+        FROM(SELECT ROWNUM RNUM, A.*
+            FROM(select PRODUCT_NO,
+                        PRODUCT_CATEGORY,
+                        COMPANY,
+                        PRODUCT_NAME,
+                        PRICE,
+                        INVENTORY,
+                        INGREDIENT,
+                        ORIGIN,
+                        PRODUCT_WEIGHT,
+                        KCAL,
+                        TO_CHAR(ENROLL_DATE,'YYYY/MM/DD') AS "ENROLL_DATE",
+                        TO_CHAR(MODIFY_DATE,'YYYY/MM/DD') AS "MODIFY_DATE"
+                from product p
+                order by MODIFY_DATE) A )
+        WHERE RNUM BETWEEN ? AND ?
     </entry>
 </properties>

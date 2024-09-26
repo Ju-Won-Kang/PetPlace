@@ -32,25 +32,121 @@
             <table>
                 <thead>
                 <th>상품코드</th>
+                <th>카테고리</th>
                 <th>상품명</th>
+                <th>중량</th>
                 <th>가격</th>
                 <th>상품 수량</th>
                 <th>게시 날짜</th>
                 <th>수정</th>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>A001</td>
-                        <td>로얄 캐닌 3kg</td>
-                        <td>12,900원</td>
-                        <td>5개</td>
-                        <td>2024.09.21</td>
-                        <td>
-                            <button type="button" class="btn btn-secondary btn-sm">수정</button>
-                        </td>
-                    </tr>
+                    <c:choose>
+                        <c:when test="${not empty pList}">
+                            <c:forEach var="product" items="${pList}">
+                                <tr>
+                                    <td>${product.productNo}</td>
+                                    <td>${product.productCategory}</td>
+                                    <td>${product.productName}</td>
+                                    <td>${product.productWeight} kg</td>
+                                    <td>${product.price}원</td>
+                                    <td>${product.inventory}개</td>
+                                    <td>${product.enrollDate}</td>
+                                    <td>
+                                        <button type="button" class="btn btn-secondary btn-sm">수정</button>
+                                    </td>
+                                </tr>
+                            </c:forEach>
+                        </c:when>
+                        <c:otherwise>
+                            <tr>
+                                <td colspan="9">등록된 제품이 없습니다.</td>
+                            </tr>
+                        </c:otherwise>
+                    </c:choose>
                 </tbody>
             </table>
+            <div id="pagenation">
+                <nav>
+                    <ul class="pagination">
+                            <c:choose>
+                                <c:when test="${pi.startPage != 1 || (pi.startPage / pi.boardLimit)  > 1}">
+                                    <li class="page-item">
+                                        <a href="${pageContext.request.contextPath}/adminModifyProduct.pd?cpage=${pi.startPage - pi.boardLimit}" class="page-link">
+                                            <span aria-hidden="true">&laquo;</span>
+                                        </a>
+                                    </li>
+                                </c:when>
+                                <c:otherwise>
+                                    <li class="page-item disabled">
+                                        <a href="#" class="page-link">
+                                            <span aria-hidden="true">&laquo;</span>
+                                        </a>
+                                    </li>
+                                </c:otherwise>
+                            </c:choose>
+                            <c:choose>
+                                <c:when test="${pi.currentPage > 1}">
+                                    <li class="page-item">
+                                        <a href="${pageContext.request.contextPath}/adminModifyProduct.pd?cpage=${pi.currentPage - 1}" class="page-link">
+                                            <span aria-hidden="true">&lt;</span>
+                                        </a>
+                                    </li>
+                                </c:when>
+                                <c:otherwise>
+                                    <li class="page-item disabled">
+                                        <a href="#" class="page-link">
+                                            <span aria-hidden="true">&lt;</span>
+                                        </a>
+                                    </li>
+                                </c:otherwise>
+                            </c:choose>
+
+                        <c:forEach var="page" begin="${pi.startPage}" end="${pi.endPage}" step="1">
+                            <c:choose>
+                                <c:when test="${page == pi.currentPage}">
+                                        <li class="page-item active"><a class="page-link" href="#">${page}</a></li>
+                                </c:when>
+                                <c:otherwise>
+                                    <li class="page-item"><a class="page-link" href="${pageContext.request.contextPath}/adminModifyProduct.pd?cpage=${page}">${page}</a></li>
+                                </c:otherwise>
+                            </c:choose>
+                        </c:forEach>
+                        <c:choose>
+                            <c:when test="${pi.currentPage < pi.maxPage}">
+                                <li class="page-item">
+                                    <a href="${pageContext.request.contextPath}/adminModifyProduct.pd?cpage=${pi.currentPage + 1}" class="page-link">
+                                        <span aria-hidden="true">&gt;</span>
+                                    </a>
+                                </li>
+                            </c:when>
+                            <c:otherwise>
+                                <li class="page-item disabled">
+                                    <a href="#" class="page-link">
+                                        <span aria-hidden="true">&gt;</span>
+                                    </a>
+                                </li>
+                            </c:otherwise>
+                        </c:choose>
+                        <c:choose>
+                            <c:when test="${(pi.endPage / boardLimit)  < pi.maxPage}">
+                                <li class="page-item">
+                                    <a href="${pageContext.request.contextPath}/adminModifyProduct.pd?cpage=${pi.endPage + 1}" class="page-link">
+                                        <span aria-hidden="true">&raquo;</span>
+                                    </a>
+                                </li>
+                            </c:when>
+                            <c:otherwise>
+                                <li class="page-item disabled">
+                                    <a href="#" class="page-link">
+                                        <span aria-hidden="true">&raquo;</span>
+                                    </a>
+                                </li>
+                            </c:otherwise>
+                        </c:choose>
+                    </ul>
+                </nav>
+            </div>
         </div>
     </section>
 

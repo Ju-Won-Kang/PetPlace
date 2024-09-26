@@ -3,6 +3,8 @@ package com.petplace.product.service;
 import com.petplace.admin.model.dto.Category;
 
 import static com.petplace.common.JDBCTemplate.*;
+
+import com.petplace.common.PageInfo;
 import com.petplace.product.model.dao.ProductDao;
 import com.petplace.product.model.vo.AttachmentProduct;
 import com.petplace.product.model.vo.Product;
@@ -24,7 +26,7 @@ import static com.petplace.common.JDBCTemplate.getConnection;
  * 2024. 9. 24.        jun       최초 생성
  */
 public class ProductService {
-    public ArrayList<Category> selectCategoryList(){
+    public ArrayList<Category> selectCategoryList() {
         Connection conn = getConnection();
         ArrayList<Category> cList = new ProductDao().selectCategoryList(conn);
         close(conn);
@@ -37,20 +39,38 @@ public class ProductService {
      * @param list 썸네일, 상품 상세정보 파일 정보를 담은 리스트
      * @return DB에서 Product 테이블, Attachment_product 테이블에 Insert한 결과값
      */
-    public int CreateProduct(Product p, ArrayList<AttachmentProduct> list){
+    public int CreateProduct(Product p, ArrayList<AttachmentProduct> list) {
         Connection conn = getConnection();
         ProductDao pDao = new ProductDao();
 
         int result1 = pDao.insertProduct(conn, p);
         int result2 = pDao.insertAttachmentList(conn, list);
 
-        if (result1 > 0 &&result2>0){
+        if (result1 > 0 && result2 > 0) {
             commit(conn);
-        }else {
+        } else {
             rollback(conn);
         }
         close(conn);
         return result1 * result2;
 
+    }
+
+    public int selectListCount() {
+        int listCount = 0;
+        Connection conn = getConnection();
+
+        listCount = new ProductDao().selectListCount(conn);
+
+        close(conn);
+        return listCount;
+    }
+
+    public ArrayList<Product> selectProductList(PageInfo pi) {
+        Connection conn = getConnection();
+        ArrayList<Product> pList = new ProductDao().selectProductList(conn, pi);
+
+        close(conn);
+        return pList;
     }
 }

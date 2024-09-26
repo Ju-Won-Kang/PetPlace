@@ -1,6 +1,7 @@
 package com.petplace.product.model.dao;
 
 import com.petplace.admin.model.dto.Category;
+import com.petplace.common.PageInfo;
 import com.petplace.product.model.vo.AttachmentProduct;
 import com.petplace.product.model.vo.Product;
 
@@ -124,5 +125,66 @@ public class ProductDao {
             close(pstmt);
         }
         return result;
+    }
+    public int selectListCount(Connection conn){
+        int listCount = 0;
+        PreparedStatement pstmt = null;
+        ResultSet rset = null;
+        String sql = prop.getProperty("selectListCount");
+
+        try {
+            pstmt = conn.prepareStatement(sql);
+
+            rset = pstmt.executeQuery();
+            if(rset.next()){
+                listCount = rset.getInt("COUNT");
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }finally {
+            close(rset);
+            close(pstmt);
+        }
+        return listCount;
+    }
+    public ArrayList<Product> selectProductList(Connection conn, PageInfo pi){
+        ArrayList<Product> pList = new ArrayList<>();
+        PreparedStatement pstmt = null;
+        ResultSet rset = null;
+        String sql = prop.getProperty("selectProductList");
+        int startRow = (pi.getCurrentPage() - 1) * pi.getBoardLimit() + 1;
+        int endRow = startRow + pi.getBoardLimit() - 1;
+
+        try {
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setInt(1,startRow);
+            pstmt.setInt(2,endRow);
+
+            rset = pstmt.executeQuery();
+
+            while (rset.next()){
+                pList.add(new Product(
+                        rset.getString("PRODUCT_NO"),
+                        rset.getString("PRODUCT_CATEGORY"),
+                        rset.getString("COMPANY"),
+                        rset.getString("PRODUCT_NAME"),
+                        rset.getInt("PRICE"),
+                        rset.getInt("INVENTORY"),
+                        rset.getString("INGREDIENT"),
+                        rset.getString("ORIGIN"),
+                        rset.getInt("PRODUCT_WEIGHT"),
+                        rset.getInt("KCAL"),
+                        rset.getString("ENROLL_DATE"),
+                        rset.getString("MODIFY_DATE")
+                ));
+            }
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } finally {
+            close(rset);
+            close(pstmt);
+        }
+        return pList;
     }
 }

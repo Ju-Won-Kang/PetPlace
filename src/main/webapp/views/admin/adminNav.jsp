@@ -29,7 +29,7 @@
             <img src="images/image%2065.png">
             <label id="label1" class="none-select">상품 등록</label>
         </div>
-        <div id="div2" onclick="location.href='<%=request.getContextPath() + "/adminModifyProduct.pd"%>'">
+        <div id="div2" onclick="location.href='<%=request.getContextPath() + "/adminModifyProduct.pd?cpage=1"%>'">
             <img src="images/image%2070.png">
             <label id="label2" class="none-select">상품 수정</label>
         </div>
