@@ -18,6 +18,12 @@
     <title>Title</title>
 </head>
 <body>
+    <c:if test="${not empty sessionScope.alertMsg}">
+        <script>
+            alert("${sessionScope.alertMsg}")
+        </script>
+        ${sessionScope.remove("alertMsg")}
+    </c:if>
     <nav>
         <div id="div1" onclick="location.href='<%=request.getContextPath() + "/adminCreateProduct.pd"%>'">
             <img src="images/image%2065.png">

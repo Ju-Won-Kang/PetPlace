@@ -76,12 +76,6 @@
     </script>
     <section>
         <%@include file="adminNav.jsp" %>
-        <c:if test="${not empty sessionScope.alertMsg}">
-            <script>
-                alert("${sessionScope.alertMsg}")
-            </script>
-            ${sessionScope.remove("alertMsg")}
-        </c:if>
         <div id="wrap">
             <div id="content-left">
                 <form action="${pageContext.request.contextPath}/productInsert.do" method="post"

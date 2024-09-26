@@ -25,6 +25,12 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </head>
 <body>
+    <c:if test="${not empty sessionScope.alertMsg}">
+        <script>
+            alert("${sessionScope.alertMsg}")
+        </script>
+        ${sessionScope.remove("alertMsg")}
+    </c:if>
     <header>
         <div id="header-wrap">
             <a href="<%=contextPath%>">
@@ -32,7 +38,7 @@
                 <%System.out.println();%>
             </a>
 
-            <a href="<%=contextPath%>/communityList.do">커뮤니티</a>
+            <a href="<%=contextPath%>/communityList.do?cpage=1">커뮤니티</a>
             <a href="<%=contextPath%>/shopping.do">쇼핑</a>
             <a href="">입양</a>
             <a href="<%=contextPath%>/searchHospital.do">동물병원찾기</a>
