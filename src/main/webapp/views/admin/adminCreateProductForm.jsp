@@ -78,8 +78,7 @@
         <%@include file="adminNav.jsp" %>
         <div id="wrap">
             <div id="content-left">
-                <form action="${pageContext.request.contextPath}/productInsert.do" method="post"
-                      enctype="multipart/form-data">
+                <form action="${pageContext.request.contextPath}/productInsert.do" method="post" enctype="multipart/form-data" onsubmit="updateOtherCategory();">
                     <div id="category">
                         <div class="input-group input-group-lg mb-3 w-50">
                             <span class="input-group-text">카테고리</span>
@@ -96,7 +95,7 @@
                         </div>
                         <div id="select-input" class="input-group input-group-3m mb-3 w-25 hide">
                             <span class="input-group-text">기타 카테고리</span>
-                            <input type="number" class="form-control" name="categoryName">
+                            <input type="text" class="form-control" name="categoryName">
                         </div>
                     </div>
 
