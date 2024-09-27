@@ -2,7 +2,53 @@
 <!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
 <properties>
     <entry key="selectCategoryList">
-        SELECT category_no, category_name
-        from category
+        SELECT PRODUCT_CATEGORY
+        from product
+        group by PRODUCT_CATEGORY
+    </entry>
+    <entry key="insertProduct">
+        INSERT INTO PRODUCT(
+        PRODUCT_NO,
+        PRODUCT_CATEGORY,
+        COMPANY,
+        PRODUCT_NAME,
+        PRICE,
+        INVENTORY,
+        INGREDIENT,
+        ORIGIN,
+        PRODUCT_WEIGHT,
+        KCAL
+        )
+        values(
+            SEQ_PNO.NEXTVAL,
+            ?,
+            ?,
+            ?,
+            ?,
+            ?,
+            ?,
+            ?,
+            ?,
+            ?
+        )
+    </entry>
+    <entry key="insertAttachmentList">
+        INSERT INTO ATTACHMENT_PRODUCT(
+            FILE_NO,
+            REF_PNO,
+            ORIGIN_NAME,
+            CHANGE_NAME,
+            FILE_PATH,
+            FILE_LEVEL
+        )
+        values(
+            SEQ_APNO.NEXTVAL,
+            SEQ_PNO.CURRVAL,
+            ?,
+            ?,
+            ?,
+            ?
+        )
+
     </entry>
 </properties>
