@@ -13,7 +13,7 @@ import java.util.Properties;
 
 import com.petplace.common.PageInfo;
 import com.petplace.community.model.dao.CommunityDao;
-import com.petplace.product.model.vo.Product;
+import com.petplace.shopping.model.vo.Shopping;
 
 public class ShoppingDao {
 	private Properties prop = new Properties();
@@ -54,9 +54,9 @@ public class ShoppingDao {
 		return shoppingListCount;
 	}
 	
-	public ArrayList<Product> selectShoppingList(Connection conn, PageInfo pi){
+	public ArrayList<Shopping> selectShoppingList(Connection conn, PageInfo pi){
 		
-		ArrayList<Product> list = new ArrayList<>();
+		ArrayList<Shopping> list = new ArrayList<>();
 		
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
@@ -79,11 +79,12 @@ public class ShoppingDao {
 			rset = pstmt.executeQuery();
 			
 			while(rset.next()) {
-				Product p = new Product();
-				p.setProductNo(rset.getString("product_no"));
-				p.setProductName(rset.getString("product_name"));
-				p.setPrice(rset.getInt("price"));
-				list.add(p);
+				Shopping s = new Shopping();
+				s.setProductNo(rset.getString("product_no"));
+				s.setProductName(rset.getString("product_name"));
+				s.setPrice(rset.getInt("price"));
+				s.setProductImg(rset.getString("product_img"));
+				list.add(s);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();

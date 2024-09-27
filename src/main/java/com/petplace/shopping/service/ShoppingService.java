@@ -7,7 +7,7 @@ import java.sql.Connection;
 import java.util.ArrayList;
 
 import com.petplace.common.PageInfo;
-import com.petplace.product.model.vo.Product;
+import com.petplace.shopping.model.vo.Shopping;
 import com.petplace.shopping.dao.ShoppingDao;
 
 public class ShoppingService {
@@ -21,10 +21,10 @@ public class ShoppingService {
 		return shoppingListCount;
 	}
 	
-	public ArrayList<Product> selectShoppingList(PageInfo pi){
+	public ArrayList<Shopping> selectShoppingList(PageInfo pi){
 		Connection conn = getConnection();
 		
-		ArrayList<Product> list = new ShoppingDao().selectShoppingList(conn, pi);
+		ArrayList<Shopping> list = new ShoppingDao().selectShoppingList(conn, pi);
 		
 		close(conn);
 		

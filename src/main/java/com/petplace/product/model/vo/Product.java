@@ -15,7 +15,7 @@ import java.sql.Date;
  */
 public class Product {
     private String productNo;           // 상품번호
-    private String productCategory;    // 상품카테고리명
+    private String productCategory;     // 상품카테고리명
     private String company;             // 제조사
     private String productName;         // 상품명
     private int price;                  // 가격
@@ -24,7 +24,7 @@ public class Product {
     private String origin;              // 원산지
     private int productWeight;          // 중량
     private int kcal;                   // 칼로리
-private Date enrollDate;                // 등록날짜
+    private Date enrollDate;            // 등록날짜
     private Date modifyDate;            // 수정날짜
     private String status;              // 상태
 
