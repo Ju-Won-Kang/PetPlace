@@ -32,6 +32,8 @@ public class shoppingServlet extends HttpServlet {
 		// listCount : 총 게시글 수
 		listCount = new ShoppingService().selectShoppingListCount();
 		
+		System.out.println(listCount);
+		
 		//현재 페이지(사용자가 요청한 페이지)
 		currentPage = Integer.parseInt(request.getParameter("cpage"));
 		
@@ -75,6 +77,8 @@ public class shoppingServlet extends HttpServlet {
 		
 		PageInfo pi = new PageInfo(listCount, currentPage, pageLimit, boardLimit, maxPage, startPage, endPage);
 		ArrayList<Product> list = new ShoppingService().selectShoppingList(pi);
+		
+		System.out.println(list);
 		
 		request.setAttribute("pi", pi);
 		request.setAttribute("list", list);
