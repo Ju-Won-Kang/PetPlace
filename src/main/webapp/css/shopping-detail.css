@@ -2,72 +2,69 @@ body * {
     box-sizing: border-box;
 }
 
-body{
+body {
     border: solid black;
-    width: 100%;
-    height: 100%;
-    min-width: 1143px;
+    height: 100vh;
+    width: 1000px;
+    min-width: 1000px; /* 최소 너비 설정 */
+    box-sizing: border-box;
 }
-
-
 
 #body-wrap{
     display: flex;
-    width: 100%;
-
+    width: 80%;
+    margin: auto; /* 가운데로  */
 }
 
-#left-body,#right-body {
-    width: 50%;
-    height: 100vh;
+#left-body, #right-body{
+    flex: 1; /* flex를 사용하여 자동으로 너비를 조절 */
+    height: 100%;
     margin: 20px;
     margin-top: 40px;
-    border: 1px solid gray;
 }
 
-#left-body{
+#left-body {
     margin-right: 10px;
 }
 
-#right-body{
+#right-body {
     margin-left: 10px;
     padding: 20px;
-}
-
-#right-body > div{
-    
+    border: 1px solid rgb(205, 205, 205);
 }
 
 #mainFood{
     height: 50%;
-    width: 100%;
+    width: 95%;
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-top: 100px;
+    margin: auto;
 
+    border: 1px solid rgb(205, 205, 205);
+}
 
+#mainFood > img{
+    height: 100%;
 }
 
 #subFoods{
     height: 100px;
     display: flex;
     justify-content: center;
-    margin-top: 50px;
-
+    margin-top: 10px;
 }
-#subFoods > div{
-    border: 1px solid gray;
 
-}
+
 .subFood-img{
     width: 50px;
     height: 50px;
     margin: 10px;
+    border: 1px solid rgb(229, 228, 228);
 }
 
 #main-info{
-    height: 15%;
+    height: 13%;
 }
 
 #main-info > div{
@@ -82,22 +79,30 @@ body{
     font-size:xx-large
 }
 
+#main-info-top > div{
+    padding-top: 10px;
+}
+
 #main-info-bottom{
     display: flex;
     justify-content: start;
 }
 
-#stars{
-    height: 100%;
+hr{
+    margin: 5px;
+}
+
+#stars{ /* 이미지로 임시대체(좌측정렬 안맞음) */
+    width: 150px;
+    object-fit: contain;
 }
 
 #review{
+    color: rgb(60, 60, 239);
+    font-weight: 400;
     height: 100%;
     display: flex;
     align-items: center;
-}
-
-#priceInfo > div{
 }
 
 #price{
@@ -105,11 +110,13 @@ body{
 }
 
 #bigPrice{
+    color: red;
     font-size: x-large;
     font-weight: 600;
 }
 
 #smallPrice{
+    font-weight: 800;
     font-size: medium;
     display: inline-block;
     padding-top: 10px;
@@ -117,9 +124,14 @@ body{
 
 #delivery-info {
     width: 100%;
+    padding-top: 10px;
 }
 
-#delivery-info div{ /* 택배사 택배명 배송비 3000원*/
+#delivery-info div, #product-table tr td{ /* 택배사 ~ xx kcal */
+    font-weight: 600;                    /* 좀 굵어보이긴 한데 일단..*/
+}
+
+#delivery-info div{ 
     font-size: 20px;
 
 }
@@ -148,6 +160,10 @@ body{
     padding-top: 10px;
 }
 
+#free-del-price{
+    padding-left: 10px;
+}
+
 table{
     width: 100%;
 }
@@ -164,27 +180,78 @@ table{
     margin-top: 15px;
 }
 
-#product-btr > button{
+#product-btr button{
     background: none;
     border-radius: 5px 5px 5px 5px;
+    height: 40px;
+    margin: 5px;
 }
 
 #btn-wrap{
     border: 1px black;
-
 }
-
-#btn-wrap > input{
-    border: none;
-    width: 25px;
-    padding: 0px;
-
-}
-
 
 #product-count{
-    width: 30px;
+    width: 75px;
     text-align: center;
 }
 
+#btn-wrap > input::-webkit-inner-spin-button, ::-webkit-outer-spin-button{
+    -webkit-appearance: inner-spin-button;
+    opacity: 1;
+}
 
+#btn-wrap{
+    display: flex;
+    justify-content: space-between;
+    color: red;
+    font-size: x-large;
+    font-weight: 600;
+}
+
+#shopping-buttons{
+    display: flex;
+    justify-content: space-around;
+    padding-top: 30px;
+}
+
+#shopping-buttons button{
+    width: 260px;
+    height: 40px;
+    border-radius: 10px 10px 10px 10px;
+}
+
+#shopping-cart{
+    background-color: white;
+    border: 1px solid rgb(205, 205, 205);
+}
+
+#buy-btn{
+    border: none;
+    background-color: rgb(76, 179, 76);
+    color: aliceblue;
+}
+
+
+#bottom-body{
+    border: 1px solid rgb(205, 205, 205);
+    width:77.5%;
+    margin: auto;
+}
+
+#pro-detail-review-QNA{
+    position:sticky;
+    display: flex;
+    top: 5px;
+    border: 1px solid black;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    font-weight: 600;
+    height: 70px;
+
+}
+
+#ddd{
+    height: 1000px;
+}

@@ -33,7 +33,7 @@
 
                 </div>
                 <div id="main-info-bottom">
-                    <img id="stars" src="<%=contextPath %>/images/stars.png" alt=""><p id="review">1000개 상품평</p>
+                    <img id="stars" src="<%=contextPath %>/images/stars.jpg" alt=""><p id="review">1000개 상품평</p>
                 </div>
             </div>
             <hr>
@@ -49,7 +49,7 @@
                     </div>
                     <div id="delivery-price">
                         <div>배송비</div>
-                        <div>3000원 <div>2만원이상 구매시 무료</div></div>
+                        <div>3000원 <div id="free-del-price">2만원이상 구매시 무료</div></div>
                     </div>
                 </div>
             </div>
@@ -59,7 +59,7 @@
             <div>
                 <div id="product-info-title"><h4><b>상품 정보</b></h4></div>
                 
-                <table>
+                <table id="product-table">
                     <tr class="product-info">
                         <td>주 원료</td>
                         <td>소고기</td>
@@ -90,25 +90,41 @@
                         </div>
                     </tr>
                 </table>
-                <hr>
             </div>
-            <div>
+            
+            <hr>
+
+            <div id="prouduct-count-wrap">
                 <h4><b>상품 수량</b></h4>
                 <div id="btn-wrap">
-                    <input type="button" class="minus" value="-"></input>
-                    <input type="text" id="product-count" value="1" >
-                    <input type="button" class="plus" value="+"></input>
+                    <input type="number" id="product-count" value="1" width="50px" >
+                    <div>22,000원</div>
                 </div>
-                <div></div>
-
             </div>
-            <div></div>
-
+            <div id="shopping-buttons">
+                <button id="shopping-cart">장바구니</button>
+                <button id="buy-btn">구매하기</button>
+            </div>
         </div>
+    </div>
+
+    <div id="bottom-body">
+        <div id="bottom-body-1Line">
+            <div id="pro-detail-review-QNA">
+                <div>상품상세</div>
+                <div>리뷰</div>
+                <div>Q & A</div>
+            </div>
+        </div>
+        <div></div>
+        <div></div>
+
+    </div>
+    <div id="ddd"> <!-- 스티키헤더 만들기 -->
 
     </div>
     
-    
+    <img id="stars" src="<%=contextPath %>/images/test.jpg" alt="">
     
 </body>
 </html>
