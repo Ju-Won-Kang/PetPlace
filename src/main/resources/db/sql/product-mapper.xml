@@ -8,16 +8,16 @@
     </entry>
     <entry key="insertProduct">
         INSERT INTO PRODUCT(
-        PRODUCT_NO,
-        PRODUCT_CATEGORY,
-        COMPANY,
-        PRODUCT_NAME,
-        PRICE,
-        INVENTORY,
-        INGREDIENT,
-        ORIGIN,
-        PRODUCT_WEIGHT,
-        KCAL
+            PRODUCT_NO,
+            PRODUCT_CATEGORY,
+            COMPANY,
+            PRODUCT_NAME,
+            PRICE,
+            INVENTORY,
+            INGREDIENT,
+            ORIGIN,
+            PRODUCT_WEIGHT,
+            KCAL
         )
         values(
             SEQ_PNO.NEXTVAL,
@@ -76,12 +76,12 @@
     </entry>
     <entry key="selectAttachment">
         SELECT FILE_NO,
-        REF_PNO,
-        ORIGIN_NAME,
-        CHANGE_NAME,
-        FILE_PATH,
-        TO_CHAR(UPLOAD_DATE,'YYYY/MM/DD') AS "UPLOAD_DATE",
-        FILE_LEVEL
+            REF_PNO,
+            ORIGIN_NAME,
+            CHANGE_NAME,
+            FILE_PATH,
+            TO_CHAR(UPLOAD_DATE,'YYYY/MM/DD') AS "UPLOAD_DATE",
+            FILE_LEVEL
         from Attachment_product
         where REF_PNO = ?
             and status = 'Y'
@@ -115,32 +115,23 @@
         STATUS = 'Y'
         where PRODUCT_NO = ?
     </entry>
-    <entry key="updateAttachment">
-        update ATTACHMENT_PRODUCT
-        set ORIGIN_NAME = ?,
-            CHANGE_NAME = ?,
-            FILE_PATH = ?,
-            MODIFY_DATE = SYSDATE,
-            FILE_LEVEL = ?,
-            STATUS = 'Y',
-        where FILE_NO = ?
-    </entry>
+
     <entry key="insertAttachmentList">
         INSERT INTO ATTACHMENT_PRODUCT(
-        FILE_NO,
-        REF_PNO,
-        ORIGIN_NAME,
-        CHANGE_NAME,
-        FILE_PATH,
-        FILE_LEVEL
+            FILE_NO,
+            REF_PNO,
+            ORIGIN_NAME,
+            CHANGE_NAME,
+            FILE_PATH,
+            FILE_LEVEL
         )
         values(
-        SEQ_APNO.NEXTVAL,
-        ?,
-        ?,
-        ?,
-        ?,
-        ?
+            SEQ_APNO.NEXTVAL,
+            ?,
+            ?,
+            ?,
+            ?,
+            ?
         )
     </entry>
     <entry key="deleteAttachmentProduct">

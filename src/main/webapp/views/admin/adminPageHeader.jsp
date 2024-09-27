@@ -20,7 +20,7 @@
 <body>
     <header>
         <div id="header-wrap">
-            <a href="<%=contextPath%>/adminPage?nav=1">
+            <a href="<%=contextPath%>/adminCreateProduct.pd">
                 <img src="images/Logo.png">
                 <%System.out.println();%>
             </a>

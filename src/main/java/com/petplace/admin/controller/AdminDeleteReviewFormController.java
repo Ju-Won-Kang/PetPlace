@@ -20,8 +20,8 @@ import java.io.IOException;
 public class AdminDeleteReviewFormController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        request.setAttribute("nav",4);
-        request.getRequestDispatcher("views/admin/adminDeleteReviewPage.jsp").forward(request,response);
+        request.setAttribute("nav", 4);
+        request.getRequestDispatcher("views/admin/adminDeleteReviewPage.jsp").forward(request, response);
     }
 
     @Override

@@ -33,7 +33,7 @@ public class AdminInsertProductController extends HttpServlet {
         // POST Request에 대한 인코딩 설정
         request.setCharacterEncoding("UTF-8");
 
-        if(JakartaServletFileUpload.isMultipartContent(request)){
+        if (JakartaServletFileUpload.isMultipartContent(request)) {
             int fileMaxSize = 1024 * 1024 * 300; // 300MB
             int requestMaxSize = 1024 * 1024 * 350; // 350MB
 
@@ -50,41 +50,41 @@ public class AdminInsertProductController extends HttpServlet {
             Product p = new Product();
             ArrayList<AttachmentProduct> list = new ArrayList<>();
 
-            for(FileItem item : formItems){
+            for (FileItem item : formItems) {
                 System.out.println(item);
-                if(item.isFormField()){
-                    switch (item.getFieldName()){
-                        case "productCategory" :
+                if (item.isFormField()) {
+                    switch (item.getFieldName()) {
+                        case "productCategory":
                             p.setProductCategory(item.getString(Charset.forName("UTF-8")));
                             break;
-                        case "productName" :
+                        case "productName":
                             p.setProductName(item.getString(Charset.forName("UTF-8")));
                             break;
-                        case "company" :
+                        case "company":
                             p.setCompany(item.getString(Charset.forName("UTF-8")));
                             break;
-                        case "price" :
+                        case "price":
                             p.setPrice(Integer.parseInt(item.getString(Charset.forName("UTF-8"))));
                             break;
-                        case "inventory" :
+                        case "inventory":
                             p.setInventory(Integer.parseInt(item.getString(Charset.forName("UTF-8"))));
                             break;
-                        case "ingredient" :
+                        case "ingredient":
                             p.setIngredient(item.getString(Charset.forName("UTF-8")));
                             break;
-                        case "origin" :
+                        case "origin":
                             p.setOrigin(item.getString(Charset.forName("UTF-8")));
                             break;
-                        case "productWeight" :
+                        case "productWeight":
                             p.setProductWeight(Integer.parseInt(item.getString(Charset.forName("UTF-8"))));
                             break;
-                        case "kcal" :
+                        case "kcal":
                             p.setKcal(Integer.parseInt(item.getString(Charset.forName("UTF-8"))));
                             break;
                     }
-                }else { // file
+                } else { // file
                     String originName = item.getName();
-                    if(originName.length() > 0){
+                    if (originName.length() > 0) {
                         String tmpName = "productFile_" + System.currentTimeMillis();
                         String type = originName.substring(originName.lastIndexOf("."));
                         String changeName = tmpName + type;
@@ -108,10 +108,10 @@ public class AdminInsertProductController extends HttpServlet {
             // DB에 저장
             int result = new ProductService().CreateProduct(p, list);
             HttpSession session = request.getSession();
-            if(result > 0){ // 성공
-                session.setAttribute("alertMsg","상품 등록에 성공했습니다.");
+            if (result > 0) { // 성공
+                session.setAttribute("alertMsg", "상품 등록에 성공했습니다.");
                 response.sendRedirect(request.getContextPath() + "/adminCreateProduct.pd");
-            }else { // 실패
+            } else { // 실패
                 session.setAttribute("alertMsg", "상품 등록에 실패하였습니다.");
                 response.sendRedirect(request.getContextPath() + "/adminCreateProduct.pd");
             }

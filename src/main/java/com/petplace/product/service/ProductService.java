@@ -61,6 +61,11 @@ public class ProductService {
 
     }
 
+    /**
+     * 총게시글 개수 반환
+     *
+     * @return listCount
+     */
     public int selectListCount() {
         int listCount = 0;
         Connection conn = getConnection();
@@ -71,6 +76,12 @@ public class ProductService {
         return listCount;
     }
 
+    /**
+     * 페이징 처리를 위한 상품목록 조회
+     *
+     * @param pi 페이징처리용 객체
+     * @return Product 리스트
+     */
     public ArrayList<Product> selectProductList(PageInfo pi) {
         Connection conn = getConnection();
         ArrayList<Product> pList = new ProductDao().selectProductList(conn, pi);
@@ -79,6 +90,12 @@ public class ProductService {
         return pList;
     }
 
+    /**
+     * 특정 상품번호에 해당하는 상품 첨부파일 리스트 조회
+     *
+     * @param productNo 조회하고자하는 상품번호
+     * @return AttachmentProduct 객체
+     */
     public ArrayList<AttachmentProduct> selectAttachment(String productNo) {
         Connection conn = getConnection();
         ArrayList<AttachmentProduct> atList = new ProductDao().selectAttachment(conn, productNo);
@@ -87,6 +104,12 @@ public class ProductService {
         return atList;
     }
 
+    /**
+     * 특정 상품번호에 해당하는 상품 정보 조회
+     *
+     * @param productNo 조회하고자하는 상품번호
+     * @return Product객체
+     */
     public Product selectProduct(String productNo) {
         Connection conn = getConnection();
         Product p = new ProductDao().selectProduct(conn, productNo);
@@ -95,6 +118,13 @@ public class ProductService {
         return p;
     }
 
+    /**
+     * 상품 Update, 첨부파일 삭제 & 입력
+     *
+     * @param p    수정 데이터가 있는 Product객체
+     * @param list 첨부파일 리스트
+     * @return 트랜잭션 처리 결과 값
+     */
     public int updateProduct(Product p, ArrayList<AttachmentProduct> list) {
         Connection conn = getConnection();
         int result1 = new ProductDao().updateProduct(conn, p);

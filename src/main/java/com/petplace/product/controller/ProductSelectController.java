@@ -25,9 +25,9 @@ public class ProductSelectController extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         Product p = new ProductService().selectProduct(request.getParameter("productNo"));
         response.setContentType("application/json; charset=utf-8");
-        if(p !=null){
+        if (p != null) {
             new Gson().toJson(p, response.getWriter());
-        }else{
+        } else {
             response.getWriter().print("XXXX");
 
         }

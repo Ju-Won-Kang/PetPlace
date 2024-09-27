@@ -29,9 +29,9 @@ public class ProductSelectAttachmentProduct extends HttpServlet {
         ArrayList<AttachmentProduct> atList = new ProductService().selectAttachment(productNo);
 
         response.setContentType("application/json; charset=utf-8");
-        if(atList.isEmpty()){
+        if (atList.isEmpty()) {
             response.getWriter().print("XXXX");
-        }else{
+        } else {
             new Gson().toJson(atList, response.getWriter());
         }
     }

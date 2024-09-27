@@ -11,6 +11,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="${pageContext.request.contextPath}/images/Logo.png"/>
     <link rel="stylesheet" href="css/admin/adminCreateProductForm.css">
     <!-- bootstrap -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -78,7 +79,8 @@
         <%@include file="adminNav.jsp" %>
         <div id="wrap">
             <div id="content-left">
-                <form action="${pageContext.request.contextPath}/productInsert.do" method="post" enctype="multipart/form-data" onsubmit="updateOtherCategory();">
+                <form action="${pageContext.request.contextPath}/productInsert.do" method="post"
+                      enctype="multipart/form-data" onsubmit="updateOtherCategory();">
                     <div id="category">
                         <div class="input-group input-group-lg mb-3 w-50">
                             <span class="input-group-text">카테고리</span>

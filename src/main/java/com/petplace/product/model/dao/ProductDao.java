@@ -130,6 +130,12 @@ public class ProductDao {
         return result;
     }
 
+    /**
+     * 총 상품 개수 조회
+     *
+     * @param conn
+     * @return
+     */
     public int selectListCount(Connection conn) {
         int listCount = 0;
         PreparedStatement pstmt = null;
@@ -152,6 +158,13 @@ public class ProductDao {
         return listCount;
     }
 
+    /**
+     * 페이징 처리를 위한 상품 리스트 조회
+     *
+     * @param conn
+     * @param pi
+     * @return
+     */
     public ArrayList<Product> selectProductList(Connection conn, PageInfo pi) {
         ArrayList<Product> pList = new ArrayList<>();
         PreparedStatement pstmt = null;
@@ -193,6 +206,13 @@ public class ProductDao {
         return pList;
     }
 
+    /**
+     * 특정 상품 첨부파일 리스트 조회
+     *
+     * @param conn
+     * @param productNo
+     * @return
+     */
     public ArrayList<AttachmentProduct> selectAttachment(Connection conn, String productNo) {
         ArrayList<AttachmentProduct> atList = new ArrayList<>();
 //        HashMap<String, ModifyProduct> productMap = new HashMap<>();
@@ -227,6 +247,13 @@ public class ProductDao {
         return atList;
     }
 
+    /**
+     * 특정 상품 정보 조회
+     *
+     * @param conn
+     * @param productNo
+     * @return
+     */
     public Product selectProduct(Connection conn, String productNo) {
         Product p = null;
         PreparedStatement pstmt = null;
@@ -262,7 +289,15 @@ public class ProductDao {
         }
         return p;
     }
-    public int updateProduct(Connection conn, Product p){
+
+    /**
+     * 상품 정보 수정
+     *
+     * @param conn
+     * @param p    수정한 상품 정보
+     * @return
+     */
+    public int updateProduct(Connection conn, Product p) {
         int result = 0;
         PreparedStatement pstmt = null;
         String sql = prop.getProperty("updateProduct");
@@ -286,37 +321,23 @@ public class ProductDao {
         }
         return result;
     }
-    public int updateAttachment(Connection conn, ArrayList<AttachmentProduct> list){
-        int result = 1;
-        PreparedStatement pstmt = null;
-        String sql = prop.getProperty("updateAttachment");
 
-        try {
-            for(AttachmentProduct atP : list){
-                pstmt = conn.prepareStatement(sql);
-                pstmt.setString(1,atP.getOriginName());
-                pstmt.setString(2,atP.getChangeName());
-                pstmt.setString(3,atP.getFilePath());
-                pstmt.setInt(4,atP.getFileLevel());
-
-                result *= pstmt.executeUpdate();
-            }
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        } finally {
-            close(pstmt);
-        }
-        return result;
-    }
-    public int deleteAttachmentProduct(Connection conn, String productNo){
-        int result =0;
+    /**
+     * 참조하는 상품 첨부파일 전부 삭제
+     *
+     * @param conn
+     * @param productNo
+     * @return
+     */
+    public int deleteAttachmentProduct(Connection conn, String productNo) {
+        int result = 0;
         PreparedStatement pstmt = null;
         String sql = prop.getProperty("deleteAttachmentProduct");
 
         try {
-                pstmt = conn.prepareStatement(sql);
-                pstmt.setString(1, productNo);
-                result = pstmt.executeUpdate();
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setString(1, productNo);
+            result = pstmt.executeUpdate();
         } catch (SQLException e) {
             throw new RuntimeException(e);
         } finally {
@@ -324,6 +345,15 @@ public class ProductDao {
         }
         return result;
     }
+
+    /**
+     * 특정 상품번호로 첨부파일 리스트 저장
+     *
+     * @param conn
+     * @param list      첨부파일 리스트
+     * @param productNo 참조하는 상품번호
+     * @return
+     */
     public int insertAttachmentList(Connection conn, ArrayList<AttachmentProduct> list, String productNo) {
         int result = 1;
         PreparedStatement pstmt = null;

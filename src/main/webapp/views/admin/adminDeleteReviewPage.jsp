@@ -11,6 +11,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="${pageContext.request.contextPath}/images/Logo.png"/>
     <link rel="stylesheet" href="css/admin/adminDeleteReviewPage.css">
     <!-- bootstrap -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -20,7 +21,7 @@
 <body>
     <%@include file="adminPageHeader.jsp" %>
     <script>
-        window.onload = function (){
+        window.onload = function () {
             let nav = "<%=request.getAttribute("nav")%>";
             let navEl = document.querySelector("#label" + nav);
             selectCheck(navEl, nav);

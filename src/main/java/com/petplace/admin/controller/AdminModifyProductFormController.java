@@ -49,7 +49,7 @@ public class AdminModifyProductFormController extends HttpServlet {
          *
          * 총 게시글 수 / 한 페이지에 보여줄 게시글 수 -> 올림
          */
-        maxPage = (int)Math.ceil((double)listCount / boardLimit);
+        maxPage = (int) Math.ceil((double) listCount / boardLimit);
 
         /**
          * startPage : 페이징바 시작 수
@@ -86,8 +86,8 @@ public class AdminModifyProductFormController extends HttpServlet {
         request.setAttribute("pi", pi);
         request.setAttribute("pList", pList);
 
-        request.setAttribute("nav",2);
-        request.getRequestDispatcher("views/admin/adminModifyProductPage.jsp").forward(request,response);
+        request.setAttribute("nav", 2);
+        request.getRequestDispatcher("views/admin/adminModifyProductPage.jsp").forward(request, response);
     }
 
     @Override
