@@ -80,6 +80,10 @@ tbody tr {
 .btn-secondary {
     background-color: #7A97CC !important;
 }
+button[type=button]{
+    border-color: white;
+}
+
 
 tbody tr {
     margin-bottom: 8px;
@@ -102,7 +106,7 @@ tbody tr {
     color: #7A97CC !important;
 }
 .hide{
-    display: none;
+    display: none !important;
 }
 .disabled{
     /*$pagination-disabled-border-color:  $gray-100;*/
@@ -112,4 +116,28 @@ tbody tr {
     color: white !important;
     background-color: #7A97CC !Important;
     border: solid 1px #7A97CC !Important;
+}
+
+/*-------------------- Modal --------------------*/
+#category {
+    display: flex;
+    flex-direction: row;
+    justify-content: start;
+    gap: 15px;
+}
+.expose {
+    display: inline-flex;
+}
+.input-group-text {
+    background-color: #8aa2ce !important;
+    color: white !important;
+}
+
+.input-group > input {
+    flex-grow: 0;
+    flex-basis: 100px;
+    width: 30%;
+}
+button[type=submit]{
+    border-color: white;
 }

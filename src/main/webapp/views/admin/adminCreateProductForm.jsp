@@ -110,7 +110,7 @@
                     <div class="input-group input-group-lg mb-3 w-50">
                         <span class="input-group-text">상품 가격</span>
                         <input id="money" type="text" class="form-control" name="price"
-                               onkeyup="inputNumberFormat(this);" placeholder="원">
+                               placeholder="원">
                     </div>
                     <div class="input-group input-group-lg mb-3 w-50">
                         <span class="input-group-text">상품 재고 수량</span>

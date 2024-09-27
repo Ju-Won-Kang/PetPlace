@@ -1,5 +1,7 @@
 package com.petplace.product.model.vo;
 
+import java.util.Objects;
+
 /**
  * packageName    : com.petplace.product.model.vo
  * fileName       : Attachment
@@ -22,6 +24,16 @@ public class AttachmentProduct {
     private String status;
 
     public AttachmentProduct() {
+    }
+
+    public AttachmentProduct(String fileNo, String refPNo, String originName, String changeName, String filePath, String uploadDate, int fileLevel) {
+        this.fileNo = fileNo;
+        this.refPNo = refPNo;
+        this.originName = originName;
+        this.changeName = changeName;
+        this.filePath = filePath;
+        this.uploadDate = uploadDate;
+        this.fileLevel = fileLevel;
     }
 
     public AttachmentProduct(String fileNo, String originName, String changeName, String filePath, int fileLevel) {

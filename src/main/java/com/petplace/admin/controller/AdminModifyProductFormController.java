@@ -21,7 +21,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 @WebServlet(name = "adminModifyProduct.pd", value = "/adminModifyProduct.pd")
-public class AdminModifyProductController extends HttpServlet {
+public class AdminModifyProductFormController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         //------------------------ 페이징 처리 ------------------------

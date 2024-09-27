@@ -17,7 +17,7 @@ import jakarta.servlet.annotation.*;
 import java.io.IOException;
 
 @WebServlet(name = "adminDeliveryManagement.pd", value = "/adminDeliveryManagement.pd")
-public class AdminDeliveryManagementController extends HttpServlet {
+public class AdminDeliveryManagementFormController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.setAttribute("nav",6);
