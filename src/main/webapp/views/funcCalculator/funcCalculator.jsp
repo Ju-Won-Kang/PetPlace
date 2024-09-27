@@ -6,8 +6,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PetPlace - 계산기</title>
-    <link rel="stylesheet" href="css/funcCalculator.css">
-    <script type="text/javascript" src="js/funcCalculator.js"></script>
+    <link rel="stylesheet" href="css/funcCalculator/funcCalculator.css">
+    <script type="text/javascript" src="js/funcCalculator/funcCalculator.js"></script>
 </head>
 <body>
     <%@ include file="/views/common/nav.jsp" %>
