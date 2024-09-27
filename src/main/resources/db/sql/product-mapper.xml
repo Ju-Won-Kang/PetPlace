@@ -8,16 +8,16 @@
     </entry>
     <entry key="insertProduct">
         INSERT INTO PRODUCT(
-        PRODUCT_NO,
-        PRODUCT_CATEGORY,
-        COMPANY,
-        PRODUCT_NAME,
-        PRICE,
-        INVENTORY,
-        INGREDIENT,
-        ORIGIN,
-        PRODUCT_WEIGHT,
-        KCAL
+            PRODUCT_NO,
+            PRODUCT_CATEGORY,
+            COMPANY,
+            PRODUCT_NAME,
+            PRICE,
+            INVENTORY,
+            INGREDIENT,
+            ORIGIN,
+            PRODUCT_WEIGHT,
+            KCAL
         )
         values(
             SEQ_PNO.NEXTVAL,
@@ -32,7 +32,7 @@
             ?
         )
     </entry>
-    <entry key="insertAttachmentList">
+    <entry key="enrollAttachmentList">
         INSERT INTO ATTACHMENT_PRODUCT(
             FILE_NO,
             REF_PNO,
@@ -49,6 +49,93 @@
             ?,
             ?
         )
+    </entry>
+    <entry key="selectListCount">
+        SELECT COUNT(*) as "COUNT"
+        from product
+        where status = 'Y'
+    </entry>
+    <entry key="selectProductList">
+        SELECT *
+        FROM(SELECT ROWNUM RNUM, A.*
+            FROM(select PRODUCT_NO,
+                        PRODUCT_CATEGORY,
+                        COMPANY,
+                        PRODUCT_NAME,
+                        PRICE,
+                        INVENTORY,
+                        INGREDIENT,
+                        ORIGIN,
+                        PRODUCT_WEIGHT,
+                        KCAL,
+                        TO_CHAR(ENROLL_DATE,'YYYY/MM/DD') AS "ENROLL_DATE",
+                        TO_CHAR(MODIFY_DATE,'YYYY/MM/DD') AS "MODIFY_DATE"
+                from product p
+                order by MODIFY_DATE) A )
+        WHERE RNUM BETWEEN ? AND ?
+    </entry>
+    <entry key="selectAttachment">
+        SELECT FILE_NO,
+            REF_PNO,
+            ORIGIN_NAME,
+            CHANGE_NAME,
+            FILE_PATH,
+            TO_CHAR(UPLOAD_DATE,'YYYY/MM/DD') AS "UPLOAD_DATE",
+            FILE_LEVEL
+        from Attachment_product
+        where REF_PNO = ?
+            and status = 'Y'
+    </entry>
+    <entry key="selectProduct">
+        select PRODUCT_NO,
+            PRODUCT_CATEGORY,
+            COMPANY,
+            PRODUCT_NAME,
+            PRICE,
+            INVENTORY,
+            INGREDIENT,
+            ORIGIN,
+            PRODUCT_WEIGHT,
+            KCAL,
+            TO_CHAR(ENROLL_DATE,'YYYY/MM/DD') AS "ENROLL_DATE",
+            TO_CHAR(MODIFY_DATE,'YYYY/MM/DD') AS "MODIFY_DATE"
+        from product p
+        where PRODUCT_NO = ?
+    </entry>
+    <entry key="updateProduct">
+        update product
+        set COMPANY = ?,
+        PRICE = ?,
+        INVENTORY = ?,
+        INGREDIENT = ?,
+        ORIGIN = ?,
+        PRODUCT_WEIGHT = ?,
+        KCAL = ?,
+        MODIFY_DATE = SYSDATE,
+        STATUS = 'Y'
+        where PRODUCT_NO = ?
+    </entry>
 
+    <entry key="insertAttachmentList">
+        INSERT INTO ATTACHMENT_PRODUCT(
+            FILE_NO,
+            REF_PNO,
+            ORIGIN_NAME,
+            CHANGE_NAME,
+            FILE_PATH,
+            FILE_LEVEL
+        )
+        values(
+            SEQ_APNO.NEXTVAL,
+            ?,
+            ?,
+            ?,
+            ?,
+            ?
+        )
+    </entry>
+    <entry key="deleteAttachmentProduct">
+        delete from ATTACHMENT_PRODUCT
+        where REF_PNO = ?
     </entry>
 </properties>

@@ -17,11 +17,11 @@ import jakarta.servlet.annotation.*;
 import java.io.IOException;
 
 @WebServlet(name = "adminDeleteReview.re", value = "/adminDeleteReview.re")
-public class AdminDeleteReviewController extends HttpServlet {
+public class AdminDeleteReviewFormController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        request.setAttribute("nav",4);
-        request.getRequestDispatcher("views/admin/adminDeleteReviewPage.jsp").forward(request,response);
+        request.setAttribute("nav", 4);
+        request.getRequestDispatcher("views/admin/adminDeleteReviewPage.jsp").forward(request, response);
     }
 
     @Override

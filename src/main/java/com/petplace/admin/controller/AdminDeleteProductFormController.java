@@ -1,6 +1,6 @@
 package com.petplace.admin.controller;/**
  * packageName    : com.petplace.admin.controller
- * fileName       : AdminDeliveryManagementController
+ * fileName       : AdminDeleteProductController
  * author         : jun
  * date           : 2024. 9. 24.
  * description    :
@@ -16,13 +16,12 @@ import jakarta.servlet.annotation.*;
 
 import java.io.IOException;
 
-@WebServlet(name = "adminDeliveryManagement.pd", value = "/adminDeliveryManagement.pd")
-public class AdminDeliveryManagementController extends HttpServlet {
+@WebServlet(name = "adminDeleteProduct.pd", value = "/adminDeleteProduct.pd")
+public class AdminDeleteProductFormController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        request.setAttribute("nav",6);
-        request.getRequestDispatcher("views/admin/adminDeliveryManagementPage.jsp").forward(request,response);
-
+        request.setAttribute("nav", 3);
+        request.getRequestDispatcher("views/admin/adminDeleteProductPage.jsp").forward(request, response);
     }
 
     @Override

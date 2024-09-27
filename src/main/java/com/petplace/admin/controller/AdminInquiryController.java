@@ -20,8 +20,8 @@ import java.io.IOException;
 public class AdminInquiryController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        request.setAttribute("nav",5);
-        request.getRequestDispatcher("views/admin/adminInquiryPage.jsp").forward(request,response);
+        request.setAttribute("nav", 5);
+        request.getRequestDispatcher("views/admin/adminInquiryPage.jsp").forward(request, response);
 
     }
 

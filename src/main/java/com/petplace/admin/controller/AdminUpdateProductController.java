@@ -1,13 +1,13 @@
 package com.petplace.admin.controller;/**
  * packageName    : com.petplace.admin.controller
- * fileName       : AdminInsertProductController
+ * fileName       : AdminModifyProduct
  * author         : jun
- * date           : 2024. 9. 25.
- * description    : 관리자페이지의 상품 등록 form에서 전달된 값을 DB에 넣는 코드
+ * date           : 2024. 9. 27.
+ * description    :
  * ===========================================================
  * DATE              AUTHOR             NOTE
  * -----------------------------------------------------------
- * 2024. 9. 25.        jun       최초 생성
+ * 2024. 9. 27.        jun       최초 생성
  */
 
 import com.petplace.product.model.vo.AttachmentProduct;
@@ -26,13 +26,10 @@ import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.List;
 
-@WebServlet(name = "productInsert.do", value = "/productInsert.do")
-public class AdminInsertProductController extends HttpServlet {
+@WebServlet(name = "modifyProduct.pd", value = "/modifyProduct.pd")
+public class AdminUpdateProductController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        // POST Request에 대한 인코딩 설정
-        request.setCharacterEncoding("UTF-8");
-
         if (JakartaServletFileUpload.isMultipartContent(request)) {
             int fileMaxSize = 1024 * 1024 * 300; // 300MB
             int requestMaxSize = 1024 * 1024 * 350; // 350MB
@@ -54,6 +51,9 @@ public class AdminInsertProductController extends HttpServlet {
                 System.out.println(item);
                 if (item.isFormField()) {
                     switch (item.getFieldName()) {
+                        case "productNo":
+                            p.setProductNo(item.getString(Charset.forName("UTF-8")));
+                            break;
                         case "productCategory":
                             p.setProductCategory(item.getString(Charset.forName("UTF-8")));
                             break;
@@ -104,16 +104,18 @@ public class AdminInsertProductController extends HttpServlet {
                     }
                 }
             }
+            System.out.println("요청 정보 : " + p);
+            System.out.println("요청 정보 : " + list);
 
             // DB에 저장
-            int result = new ProductService().CreateProduct(p, list);
+            int result = new ProductService().updateProduct(p, list);
             HttpSession session = request.getSession();
             if (result > 0) { // 성공
-                session.setAttribute("alertMsg", "상품 등록에 성공했습니다.");
-                response.sendRedirect(request.getContextPath() + "/adminCreateProduct.pd");
+                session.setAttribute("alertMsg", "상품 수정에 성공했습니다.");
+                response.sendRedirect(request.getContextPath() + "/adminModifyProduct.pd?cpage=1");
             } else { // 실패
-                session.setAttribute("alertMsg", "상품 등록에 실패하였습니다.");
-                response.sendRedirect(request.getContextPath() + "/adminCreateProduct.pd");
+                session.setAttribute("alertMsg", "상품 수정에 실패하였습니다.");
+                response.sendRedirect(request.getContextPath() + "/adminModifyProduct.pd?cpage=1");
             }
         }
     }
