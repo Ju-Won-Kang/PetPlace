@@ -39,7 +39,7 @@
     <div id="products">
         <div id="dogproduct-line1">
 			<% if(list.isEmpty()) { %>
-					<p>존재하는 쇼핑 목록이 없습니다.</p>
+                <p>존재하는 쇼핑 목록이 없습니다.</p>
 			<% } else { %>
 				<% for(Shopping s : list) { %>
 		            <div class="dogFood">
