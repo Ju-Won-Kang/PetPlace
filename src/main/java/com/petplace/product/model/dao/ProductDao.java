@@ -215,7 +215,6 @@ public class ProductDao {
      */
     public ArrayList<AttachmentProduct> selectAttachment(Connection conn, String productNo) {
         ArrayList<AttachmentProduct> atList = new ArrayList<>();
-//        HashMap<String, ModifyProduct> productMap = new HashMap<>();
         PreparedStatement pstmt = null;
         ResultSet rset = null;
         String sql = prop.getProperty("selectAttachment");
@@ -377,6 +376,12 @@ public class ProductDao {
         return result;
     }
 
+    /**
+     * 상품 STATUS 변경
+     * @param conn
+     * @param productNo
+     * @return
+     */
     public int deleteProduct(Connection conn, String productNo) {
         int result = 0;
         PreparedStatement pstmt = null;
@@ -395,6 +400,12 @@ public class ProductDao {
         return result;
     }
 
+    /**
+     * 참조하는 상품 삭제시 첨부파일 STATUS 변경
+     * @param conn
+     * @param productNo
+     * @return
+     */
     public int disableAttachmentProduct(Connection conn, String productNo) {
         int result = 0;
         PreparedStatement pstmt = null;

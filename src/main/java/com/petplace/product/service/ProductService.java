@@ -149,6 +149,11 @@ public class ProductService {
         return result1 * result2 * result3;
     }
 
+    /**
+     * 상품 Delete, 첨부파일 Delete(Update로 STATUS = 'N'으로 변경)
+     * @param productNo 삭제하고자하는 상품 번호
+     * @return
+     */
     public int deleteProduct(String productNo) {
         Connection conn = getConnection();
         int result1 = new ProductDao().deleteProduct(conn, productNo);

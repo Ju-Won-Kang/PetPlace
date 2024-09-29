@@ -3,7 +3,7 @@ package com.petplace.admin.controller;/**
  * fileName       : AdminDeleteProductController
  * author         : jun
  * date           : 2024. 9. 29.
- * description    :
+ * description    : 상품 삭제(STATUS = 'N')
  * ===========================================================
  * DATE              AUTHOR             NOTE
  * -----------------------------------------------------------
