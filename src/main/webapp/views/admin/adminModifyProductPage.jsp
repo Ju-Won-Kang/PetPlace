@@ -28,17 +28,6 @@
             crossorigin="anonymous"></script>
     <script src="js/admin/adminModifyProductPage.js"></script>
     <title>상품 관리자 페이지</title>
-    <style>
-        .spinner-border {
-            position: absolute;
-            top: 0;
-            right: 0;
-            bottom: 0;
-            left: 0;
-            margin: auto;
-            color: #7A97CC;
-        }
-    </style>
 </head>
 <body>
     <%@include file="adminPageHeader.jsp" %>
@@ -202,7 +191,6 @@
                         <button type="submit" class="btn btn-secondary">상품 수정</button>
                     </div>
                 </form>
-
             </div>
         </div>
     </div>

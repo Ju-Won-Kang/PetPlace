@@ -13,6 +13,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/png" href="${pageContext.request.contextPath}/images/Logo.png"/>
     <link rel="stylesheet" href="css/admin/adminDeleteProductPage.css">
+    <script src="js/admin/adminDeleteProductPage.js"></script>
     <!-- bootstrap -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
@@ -65,7 +66,7 @@
                                 <td>
                                     <button type="button" class="btn btn-secondary btn-sm" data-bs-toggle="modal"
                                             data-bs-target="#modifyProductModal"
-                                            onclick="modifyProudct(${product.productNo})">수정
+                                            onclick="deleteProduct('${product.productName}','${product.productNo}')">삭제
                                     </button>
                                 </td>
                             </tr>
@@ -168,6 +169,30 @@
             </div>
         </div>
     </section>
+    <div class="modal fade" id="modifyProductModal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <h4 class="modal-title"></h4>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+
+                <form action="delteProduct.pd">
+                    <!-- Modal body -->
+                    <div class="modal-body">
+                    </div>
+
+                    <!-- Modal footer -->
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-danger">상품 삭제</button>
+                    </div>
+                </form>
+
+            </div>
+        </div>
+    </div>
 <%--    <section>--%>
 <%--        <%@include file="adminNav.jsp" %>--%>
 <%--        <div id="wrap">--%>

@@ -11,10 +11,6 @@ import com.petplace.product.model.vo.Product;
 
 import java.sql.Connection;
 import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.function.Predicate;
-import java.util.stream.Collectors;
 
 import static com.petplace.common.JDBCTemplate.getConnection;
 
@@ -153,4 +149,22 @@ public class ProductService {
         return result1 * result2 * result3;
     }
 
+    public int deleteProduct(String productNo) {
+        Connection conn = getConnection();
+        int result1 = new ProductDao().deleteProduct(conn, productNo);
+
+        int result2 = 0;
+        if (result1 > 0) {
+            result2 = new ProductDao().disableAttachmentProduct(conn, productNo);
+            if(result2 > 0){
+                commit(conn);
+            }
+        } else {
+            rollback(conn);
+        }
+        System.out.println("삭제할 상품 번호 : " + productNo);
+        System.out.println("상품 삭제 result1 : " + result1);
+        System.out.println("상품 삭제 result2 : " + result2);
+        return result1 * result2;
+    }
 }
