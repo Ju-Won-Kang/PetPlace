@@ -33,7 +33,7 @@
             <img src="images/image%2070.png">
             <label id="label2" class="none-select">상품 수정</label>
         </div>
-        <div id="div3" onclick="location.href='<%=request.getContextPath() + "/adminDeleteProduct.pd"%>'">
+        <div id="div3" onclick="location.href='<%=request.getContextPath() + "/adminDeleteProduct.pd?cpage=1"%>'">
             <img src="images/image%2068.png">
             <label id="label3" class="none-select">상품 삭제</label>
         </div>
