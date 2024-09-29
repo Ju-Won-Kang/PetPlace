@@ -37,7 +37,7 @@
             <img src="images/image%2068.png">
             <label id="label3" class="none-select">상품 삭제</label>
         </div>
-        <div id="div4" onclick="location.href='<%=request.getContextPath() + "/adminDeleteReview.re"%>'">
+        <div id="div4" onclick="location.href='<%=request.getContextPath() + "/adminDeleteReview.re?cpage=1"%>'">
             <img src="images/image%2062.png">
             <label id="label4" class="none-select">리뷰 관리</label>
         </div>
