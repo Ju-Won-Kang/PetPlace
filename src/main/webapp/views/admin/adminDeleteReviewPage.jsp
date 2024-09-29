@@ -76,7 +76,7 @@
                     </c:when>
                     <c:otherwise>
                         <tr>
-                            <td colspan="9">등록된 제품이 없습니다.</td>
+                            <td colspan="9">등록된 리뷰가 없습니다.</td>
                         </tr>
                     </c:otherwise>
                 </c:choose>
