@@ -74,13 +74,13 @@
                                     <c:choose>
                                         <c:when test="${empty inquiry.answer}">
                                             <button type="button" class="btn btn-secondary btn-sm" data-bs-toggle="modal"
-                                                    data-bs-target="#modifyProductModal"
+                                                    data-bs-target="#answerInquiryModal"
                                                     onclick="answerInquiry(${inquiry.inquiryNo})">답변
                                             </button>
                                         </c:when>
                                         <c:otherwise>
                                             <button type="button" class="btn btn-secondary btn-sm hide" data-bs-toggle="modal"
-                                                    data-bs-target="#modifyProductModal"
+                                                    data-bs-target="#answerInquiryModal"
                                                     onclick="answerInquiry(${inquiry.inquiryNo})">수정
                                             </button>
                                         </c:otherwise>
@@ -186,7 +186,7 @@
             </div>
         </div>
     </section>
-    <div class="modal fade" id="modifyProductModal">
+    <div class="modal fade" id="answerInquiryModal">
         <div class="modal-dialog">
             <div class="modal-content">
 
