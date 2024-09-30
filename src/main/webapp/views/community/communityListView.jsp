@@ -67,7 +67,7 @@
 					</tr>
 				<% } else { %>
 					<% for(Community c : list) {%>
-						<tr>
+						<tr onclick="clickDetailPage(<%=c.getCummunity_no() %>)">
 							<td><%=c.getCummunity_no() %></td>
 							<td><%=c.getCommunity_category() %></td>
 							<td><%=c.getCommunity_title() %></td>
@@ -79,6 +79,11 @@
 					<% } %>
 				<% } %>
 			</tbody>
+			<script>
+	            function clickDetailPage(communityNo){
+	                location.href = "<%=contextPath%>/communityDetail.do?cno=" + communityNo;
+	            }
+        	</script>
 		</table>
 		<c:if test="${loginUser ne null }">
 			<div id="write" class="container mt-3" align="right">

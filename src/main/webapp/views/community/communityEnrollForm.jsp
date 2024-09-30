@@ -19,7 +19,8 @@
   <form action="<%=contextPath%>/communityInsert.do" method="post" enctype="multipart/form-data">
     <input type="hidden" name="memberId" value="${loginUser.memberId }">
     <div id="title-form">
-      <select name="category">
+      <select name="category" required>
+        <option value="" selected disabled hidden>카테고리</option>
         <option value="개">개</option>
         <option value="고양이">고양이</option>
         <option value="기타">기타</option>
@@ -35,14 +36,14 @@
       <div>
         <textarea name="detail" id=""></textarea>
         <br>
-        <input type="file">
+        <input type="file" name="cimg">
       </div>
       
     </div>
     <br>
     <div id="content-btn">
       <div id="submit-btn"><input type="submit" value="작성"></div>
-      <div id="reset-btn"><a>취소</a></div>
+      <div id="reset-btn"><input type="reset" value="취소"></div>
     </div>
     </form>
     

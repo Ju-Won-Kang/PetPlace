@@ -38,7 +38,11 @@ public class CommunityService {
 		
 		CommunityDao bDao = new CommunityDao();
 		int result1 = bDao.insertCommunity(conn, c);
-		int result2 = bDao.insertCommunityAttachmentList(conn, list);
+		int result2 = 1;
+		
+		if(list != null) {
+			result2 = bDao.insertCommunityAttachmentList(conn, list);
+		}
 		
 		if(result1 > 0 && result2 > 0) {
 			commit(conn);

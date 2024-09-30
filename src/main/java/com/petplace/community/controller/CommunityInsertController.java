@@ -18,6 +18,7 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 
 /**
  * Servlet implementation class CommunityInsertController
@@ -45,7 +46,7 @@ public class CommunityInsertController extends HttpServlet {
 			int requestMaxSize = 1024 * 1024 * 20; //20
 			
 			//2. 전달파일 저장경로
-			String savePath = request.getServletContext().getRealPath("/resources/thumbnail_upfile/");
+			String savePath = request.getServletContext().getRealPath("/images/community_upfile/");
 			
 			//3.DiskFileItemFactory(파일을 임시로 저장) 객체 생성
 			DiskFileItemFactory factory = DiskFileItemFactory.builder().get();
@@ -88,26 +89,31 @@ public class CommunityInsertController extends HttpServlet {
 						String type = originName.substring(originName.lastIndexOf("."));
 						String changeName = tmpName + type; //서버에 저장할 파일명
 						
-						CommunityAttachment at = new CommunityAttachment();
-						at.setOriginName(originName);
-						at.setChangeName(changeName);
-						at.setFilePath("resources/thumbnail_upfile/");
+						File f = new File(savePath, changeName);
+                        item.write(f.toPath());
+                        
+						CommunityAttachment atC = new CommunityAttachment();
+						atC.setOriginName(originName);
+						atC.setChangeName(changeName);
+						atC.setFilePath("/images/community_upfile/");
 						
-						list.add(at);
+						list.add(atC);
 					}
 				}
 			}
 			
 			int result = new CommunityService().insertCommunity(c, list);
-			
+			HttpSession session = request.getSession();
 			if(result > 0) {//성공
+				session.setAttribute("alertMsg", "커뮤니티 게시글 등록에 성공했습니다.");
 				response.sendRedirect(request.getContextPath() + "/communityList.do?cpage=1");
 			} else { //실패 -> 업로드된 파일 삭제해주고 에러페이지
 				 
 				 for(CommunityAttachment at : list) {
 					 new File(savePath + at.getChangeName()).delete();
 				 }
-				 request.getRequestDispatcher("views/common/errorPage.jsp").forward(request, response);
+				 session.setAttribute("alertMsg", "커뮤니티 게시글 등록에 실패하였습니다.");
+				 response.sendRedirect(request.getContextPath() + "/communityList.do?cpage=1");
 			}
 		}
 	}

@@ -105,7 +105,6 @@ public class CommunityDao {
 		
 		PreparedStatement pstmt = null;
 		String sql = prop.getProperty("insertCommunity");
-		
 		try {
 			pstmt = conn.prepareStatement(sql);
 			
@@ -120,7 +119,6 @@ public class CommunityDao {
 		} finally {
 			close(pstmt);
 		}
-		
 		return result;
 	}
 	

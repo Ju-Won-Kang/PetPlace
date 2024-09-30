@@ -52,4 +52,14 @@
     <servlet-name>communityInsert.do</servlet-name>
     <url-pattern>/communityInsert.do</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>communityDetail.do</display-name>
+    <servlet-name>communityDetail.do</servlet-name>
+    <servlet-class>com.petplace.community.controller.CommunityDetailController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>communityDetail.do</servlet-name>
+    <url-pattern>/communityDetail.do</url-pattern>
+  </servlet-mapping>
 </web-app>
