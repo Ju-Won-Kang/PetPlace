@@ -71,6 +71,7 @@
                         TO_CHAR(ENROLL_DATE,'YYYY/MM/DD') AS "ENROLL_DATE",
                         TO_CHAR(MODIFY_DATE,'YYYY/MM/DD') AS "MODIFY_DATE"
                 from product p
+                where status ='Y'
                 order by MODIFY_DATE) A )
         WHERE RNUM BETWEEN ? AND ?
     </entry>
@@ -137,5 +138,15 @@
     <entry key="deleteAttachmentProduct">
         delete from ATTACHMENT_PRODUCT
         where REF_PNO = ?
+    </entry>
+    <entry key="deleteProduct">
+        update product
+        set status = 'N'
+        where product_no = ?
+    </entry>
+    <entry key="deleteAttachmentProduct">
+        update ATTACHMENT_PRODUCT
+        set status = 'N'
+        where ref_pno = ?
     </entry>
 </properties>

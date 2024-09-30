@@ -1,6 +1,6 @@
 package com.petplace.admin.controller;/**
  * packageName    : com.petplace.admin.controller
- * fileName       : AdminDeleteProductController
+ * fileName       : AdminInquiryController
  * author         : jun
  * date           : 2024. 9. 24.
  * description    :
@@ -11,7 +11,9 @@ package com.petplace.admin.controller;/**
  */
 
 import com.petplace.common.PageInfo;
-import com.petplace.product.model.vo.Product;
+import com.petplace.inquiry.model.dto.InquiryList;
+import com.petplace.inquiry.model.vo.Inquiry;
+import com.petplace.inquiry.service.InquiryService;
 import com.petplace.product.service.ProductService;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
@@ -20,8 +22,8 @@ import jakarta.servlet.annotation.*;
 import java.io.IOException;
 import java.util.ArrayList;
 
-@WebServlet(name = "adminDeleteProduct.pd", value = "/adminDeleteProduct.pd")
-public class AdminDeleteProductFormController extends HttpServlet {
+@WebServlet(name = "adminInquiry.in", value = "/adminInquiry.in")
+public class AdminInquiryFormController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         //------------------------ 페이징 처리 ------------------------
@@ -35,20 +37,22 @@ public class AdminDeleteProductFormController extends HttpServlet {
         int startPage; //페이징바의 시작 수
         int endPage; //페이징바의 마지막 수
         // listCount : 총 게시글 수
-        listCount = new ProductService().selectListCount();
+        listCount = new InquiryService().selectListCount();
 
         //현재 페이지(사용자가 요청한 페이지)
         currentPage = Integer.parseInt(request.getParameter("cpage"));
         PageInfo pi = PageInfo.getPageInfo(listCount, currentPage, pageLimit, boardLimit);
 
-        ArrayList<Product> pList = new ProductService().selectProductList(pi);
-        System.out.println(pList);
+        ArrayList<InquiryList> iList = new InquiryService().selectInquiryList(pi);
+        System.out.println(iList);
         System.out.println(pi);
 
         request.setAttribute("pi", pi);
-        request.setAttribute("pList", pList);
-        request.setAttribute("nav", 3);
-        request.getRequestDispatcher("views/admin/adminDeleteProductPage.jsp").forward(request, response);
+        request.setAttribute("iList", iList);
+
+        request.setAttribute("nav", 5);
+        request.getRequestDispatcher("views/admin/adminInquiryPage.jsp").forward(request, response);
+
     }
 
     @Override

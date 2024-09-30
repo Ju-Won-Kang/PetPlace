@@ -33,15 +33,15 @@
             <img src="images/image%2070.png">
             <label id="label2" class="none-select">상품 수정</label>
         </div>
-        <div id="div3" onclick="location.href='<%=request.getContextPath() + "/adminDeleteProduct.pd"%>'">
+        <div id="div3" onclick="location.href='<%=request.getContextPath() + "/adminDeleteProduct.pd?cpage=1"%>'">
             <img src="images/image%2068.png">
             <label id="label3" class="none-select">상품 삭제</label>
         </div>
-        <div id="div4" onclick="location.href='<%=request.getContextPath() + "/adminDeleteReview.re"%>'">
+        <div id="div4" onclick="location.href='<%=request.getContextPath() + "/adminDeleteReview.re?cpage=1"%>'">
             <img src="images/image%2062.png">
             <label id="label4" class="none-select">리뷰 관리</label>
         </div>
-        <div id="div5" onclick="location.href='<%=request.getContextPath() + "/adminInquiry.in"%>'">
+        <div id="div5" onclick="location.href='<%=request.getContextPath() + "/adminInquiry.in?cpage=1"%>'">
             <img src="images/image%2061.png">
             <label id="label5" class="none-select">1:1 문의</label>
         </div>

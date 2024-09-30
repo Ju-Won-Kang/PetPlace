@@ -80,7 +80,8 @@ tbody tr {
 .btn-secondary {
     background-color: #7A97CC !important;
 }
-button[type=button]{
+
+button[type=button] {
     border-color: white;
 }
 
@@ -105,29 +106,32 @@ tbody tr {
 .page-item * {
     color: #7A97CC !important;
 }
-.hide{
+
+.hide {
     display: none !important;
 }
-.disabled{
+
+.disabled {
     /*$pagination-disabled-border-color:  $gray-100;*/
 }
-.pagination > .active > a
-{
+
+.pagination > .active > a {
     color: white !important;
     background-color: #7A97CC !Important;
     border: solid 1px #7A97CC !Important;
 }
 
 /*-------------------- Modal --------------------*/
-#category {
-    display: flex;
-    flex-direction: row;
-    justify-content: start;
-    gap: 15px;
+.spinner-border {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    margin: auto;
+    color: #7A97CC;
 }
-.expose {
-    display: inline-flex;
-}
+
 .input-group-text {
     background-color: #8aa2ce !important;
     color: white !important;
@@ -138,6 +142,7 @@ tbody tr {
     flex-basis: 100px;
     width: 30%;
 }
-button[type=submit]{
+
+button[type=submit] {
     border-color: white;
 }

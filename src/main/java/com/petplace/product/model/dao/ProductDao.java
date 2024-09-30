@@ -215,7 +215,6 @@ public class ProductDao {
      */
     public ArrayList<AttachmentProduct> selectAttachment(Connection conn, String productNo) {
         ArrayList<AttachmentProduct> atList = new ArrayList<>();
-//        HashMap<String, ModifyProduct> productMap = new HashMap<>();
         PreparedStatement pstmt = null;
         ResultSet rset = null;
         String sql = prop.getProperty("selectAttachment");
@@ -369,6 +368,54 @@ public class ProductDao {
                 pstmt.setInt(5, atP.getFileLevel());
                 result *= pstmt.executeUpdate();
             }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } finally {
+            close(pstmt);
+        }
+        return result;
+    }
+
+    /**
+     * 상품 STATUS 변경
+     * @param conn
+     * @param productNo
+     * @return
+     */
+    public int deleteProduct(Connection conn, String productNo) {
+        int result = 0;
+        PreparedStatement pstmt = null;
+        String sql = prop.getProperty("deleteProduct");
+
+        try {
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setString(1,productNo);
+
+            result = pstmt.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } finally {
+            close(pstmt);
+        }
+        return result;
+    }
+
+    /**
+     * 참조하는 상품 삭제시 첨부파일 STATUS 변경
+     * @param conn
+     * @param productNo
+     * @return
+     */
+    public int disableAttachmentProduct(Connection conn, String productNo) {
+        int result = 0;
+        PreparedStatement pstmt = null;
+        String sql = prop.getProperty("deleteAttachmentProduct");
+
+        try {
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setString(1,productNo);
+
+            result = pstmt.executeUpdate();
         } catch (SQLException e) {
             throw new RuntimeException(e);
         } finally {
