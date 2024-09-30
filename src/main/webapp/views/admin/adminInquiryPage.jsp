@@ -196,7 +196,7 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                 </div>
 
-                <form action="answerInquiry.do">
+                <form action="answerInquiry.do" method="post">
                     <!-- Modal body -->
                     <div class="modal-body">
                         <div class="spinner-border"></div>
