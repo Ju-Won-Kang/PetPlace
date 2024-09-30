@@ -1,7 +1,7 @@
 body{
     width: 1400px;
     min-width: 1400px; /* 최소 너비 설정 */
-    box-sizing: border-box;
+    margin: auto;
 }
 
 body *{
@@ -69,23 +69,31 @@ div{
 
 /* ************** product *************** */
 #products{
-    max-width: 1400px;
+    margin: auto;
+    max-width: 1000px;
     display: flex;
-    flex-direction: column;
-    justify-content: center;
     align-items: center;
+    justify-content: center;
+    margin-top: 50px;
 }
 
 #dogproduct-line1{
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    gap: 70px;
+    width: 1400px;
+    display: grid;
+    grid-template-rows: 300px 300px;
+    grid-template-columns: 150px 150px 150px 150px;
+    justify-content: space-around;
 }
 
 .dogFood{        
     width: 150px;
     display: inline-block;
+}
+
+#none-list{
+    font-size: 18px;
+    font-weight: 600;
+    color: red;
 }
 
 .product_1-img{
@@ -100,10 +108,6 @@ div{
     display: flex;
     justify-content: center;
     align-items: center;
-}
-
-@media (min-width: 1000px){
-    .video-grid{ grid-template-columns: 1fr 1fr 1fr 1fr; }
 }
 
 #dog-img1{
