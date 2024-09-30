@@ -22,10 +22,10 @@
     <%@include file="../common/nav.jsp"%>
     <div id="menubar">
         <div id="animal-category">
-            <a href="">전체</a>
-            <a href="">멍멍이</a>
-            <a href="">냥</a>
-            <a href="">기타</a>
+            <a href="" onclick="selectAllList()">전체</a>
+            <a href="" onclick="selectDogList()">멍멍이</a>
+            <a href="" onclick="selectCatList()">냥</a>
+            <a href="" onclick="selectEtcList()">기타</a>
         </div>
         <div id="search-area">
             <input type="search">
@@ -33,32 +33,69 @@
         </div>
        
     </div>
-    
-    <div id="menu-bottom-bar"></div>
 
     <div id="products">
-        <div id="dogproduct-line1">
-			<% if(list.isEmpty()) { %>
-					<p>존재하는 쇼핑 목록이 없습니다.</p>
-			<% } else { %>
-				<% for(Shopping s : list) { %>
-		            <div class="dogFood">
-		               
-		                <div onclick="location.href='<%=contextPath%>/shoppingdetail.do'" class="dogFood-img">
-		    				<img class="product_1-img" src="<%=contextPath%>/<%=s.getProductImg()%>" alt="프로베스트 사료">
-		    			</div>
-						<!-- 별점은 리뷰를 아직 만들지 않아 추후에 추가할 예정 -->
-						<!-- 리뷰를 아직 만들지 않아 상품평의 개수도 추후에 추가할 예정 -->
-		                <div class="dogFood-info">
-		                    <p class="dogFood-name"><%=s.getProductName() %></p>
-		                    <p class="dogFood-price"><%=s.getPrice() %> 원</p>
-		                    <p class="dogFood-etc" id="stars">★★★★★</p>
-		                    <p class="dogFood-etc" id="star-after"> 16,610개 상품평</p>
-		                </div>
-		            </div>
-		        <% } %>
-	        <% } %>
-        </div>
+        <% if(list.isEmpty()) { %>
+            <p id="none-list">존재하는 쇼핑 목록이 없습니다.</p>
+        <% } else { %>
+            <div id="dogproduct-line1">
+                <% for(Shopping s : list) { %>
+                    <div class="dogFood">
+                        
+                        <div onclick="location.href='<%=contextPath%>/shoppingdetail.do'" class="dogFood-img">
+                            <img class="product_1-img" src="<%=contextPath%>/<%=s.getProductImg()%>" alt="프로베스트 사료">
+                        </div>
+                        <!-- 별점은 리뷰를 아직 만들지 않아 추후에 추가할 예정 -->
+                        <!-- 리뷰를 아직 만들지 않아 상품평의 개수도 추후에 추가할 예정 -->
+                        <div class="dogFood-info">
+                            <p class="dogFood-name"><%=s.getProductName() %></p>
+                            <p class="dogFood-price"><%=s.getPrice() %> 원</p>
+                            <p class="dogFood-etc" id="stars">★★★★★</p>
+                            <p class="dogFood-etc" id="star-after"> 16,610개 상품평</p>
+                        </div>
+                    </div>
+                <% } %>}
+            </div>
+        <% } %>
+
+        <script>
+            function selectDogList(){
+                $.ajax({
+                    url : "dogList.do",
+                    contentType : "application/json",
+                    data : {
+                        categoryName: "강아지"
+                    },
+                    success: function(result){
+                        $('#dogproduct-line1').empty();
+                        
+                        if (result.length === 0) {
+                            $('#dogproduct-line1').append('<p id="none-list">존재하는 강아지 카테고리 목록이 없습니다.</p>');
+                        } else {
+                            for (let s of result) {
+                                $('#dogproduct-line1').append(`
+                                    <div class="dogFood">
+                                        <div onclick="location.href='${contextPath}/shoppingdetail.do'" class="dogFood-img">
+                                            <img class="product_1-img" src="${contextPath}/${s.productImg}" alt="${s.productName}">
+                                        </div>
+                                        <div class="dogFood-info">
+                                            <p class="dogFood-name">${s.productName}</p>
+                                            <p class="dogFood-price">${s.price} 원</p>
+                                            <p class="dogFood-etc" id="stars">★★★★★</p>
+                                            <p class="dogFood-etc" id="star-after">16,610개 상품평</p>
+                                        </div>
+                                    </div>
+                                `);
+                            }
+                        }
+                    },
+                    error: function(){
+                        console.log("강아지 카테고리 쇼핑 목록 조회 ajax통신 실패")
+                    }
+                })
+            }
+        </script>
+
         <br><br>
         <div>
             <div align="center">

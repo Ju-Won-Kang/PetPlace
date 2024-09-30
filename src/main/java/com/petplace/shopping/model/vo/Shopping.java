@@ -22,9 +22,10 @@ public class Shopping {
 		super();
 	}
     
-	public Shopping(String productNo, String productName, int price, String productImg) {
+	public Shopping(String productNo, String productCategory, String productName, int price, String productImg) {
 		super();
 		this.productNo = productNo;
+		this.productCategory = productCategory;
 		this.productName = productName;
 		this.price = price;
 		this.productImg = productImg;
