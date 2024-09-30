@@ -37,14 +37,8 @@
                 <img src="images/Logo.png">
                 <%System.out.println();%>
             </a>
-<<<<<<< HEAD
-            
-            <a href="<%=contextPath%>/communityList.do">커뮤니티</a>
-            <a href="<%=contextPath%>/shopping.do?cpage=1">쇼핑</a>
-=======
             <a href="<%=contextPath%>/communityList.do?cpage=1">커뮤니티</a>
-            <a href="<%=contextPath%>/shopping.do">쇼핑</a>
->>>>>>> 8fb180c562b9ab8fac93731f963ac6496aca5f10
+            <a href="<%=contextPath%>/shopping.do?cpage=1">쇼핑</a>
             <a href="<%=contextPath%>/adoptList.do">입양</a>
             <a href="<%=contextPath%>/searchHospital.do">동물병원찾기</a>
             <a href="<%=contextPath%>/funcCalculator.do">기능</a>
