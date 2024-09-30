@@ -12,9 +12,9 @@ package com.petplace.inquiry.model.dto;
  * 2024. 9. 29.        jun       최초 생성
  */
 public class InquiryList {
-    private String inquiryNo;
+    private int inquiryNo;
     private String memberId;
-    private String productNo;
+    private int productNo;
     private String productName;
     private String inquiryTitle;
     private String inquiryDetail;
@@ -25,7 +25,7 @@ public class InquiryList {
     }
 
 
-    public InquiryList(String inquiryNo, String memberId, String productNo, String productName, String inquiryTitle, String inquiryDetail, String inquiryDate, String answer) {
+    public InquiryList(int inquiryNo, String memberId, int productNo, String productName, String inquiryTitle, String inquiryDetail, String inquiryDate, String answer) {
         this.inquiryNo = inquiryNo;
         this.memberId = memberId;
         this.productNo = productNo;
@@ -36,11 +36,11 @@ public class InquiryList {
         this.answer = answer;
     }
 
-    public String getInquiryNo() {
+    public int getInquiryNo() {
         return inquiryNo;
     }
 
-    public void setInquiryNo(String inquiryNo) {
+    public void setInquiryNo(int inquiryNo) {
         this.inquiryNo = inquiryNo;
     }
 
@@ -92,11 +92,11 @@ public class InquiryList {
         this.answer = answer;
     }
 
-    public String getProductNo() {
+    public int getProductNo() {
         return productNo;
     }
 
-    public void setProductNo(String productNo) {
+    public void setProductNo(int productNo) {
         this.productNo = productNo;
     }
 

@@ -2,12 +2,8 @@ package com.petplace.review.model.dao;
 
 import static com.petplace.common.JDBCTemplate.*;
 
-import com.petplace.common.JDBCTemplate;
 import com.petplace.common.PageInfo;
-import com.petplace.product.model.dao.ProductDao;
 import com.petplace.review.model.dto.ReviewList;
-import com.petplace.review.model.vo.Review;
-import com.petplace.review.service.ReviewService;
 
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -91,7 +87,7 @@ public class ReviewDao {
             rset = pstmt.executeQuery();
             while (rset.next()){
                 rList.add(new ReviewList(
-                    rset.getString("REVIEW_NO"),
+                    rset.getInt("REVIEW_NO"),
                     rset.getString("MEMBER_ID"),
                     rset.getString("PRODUCT_NAME"),
                     rset.getInt("STAR"),
@@ -114,14 +110,14 @@ public class ReviewDao {
      * @param reviewNo 삭제하고자하는 리뷰 번호
      * @return
      */
-    public int deleteReview(Connection conn, String reviewNo) {
+    public int deleteReview(Connection conn, int reviewNo) {
         int result = 0;
         PreparedStatement pstmt = null;
         String sql = prop.getProperty("deleteReview");
 
         try {
             pstmt = conn.prepareStatement(sql);
-            pstmt.setString(1,reviewNo);
+            pstmt.setInt(1,reviewNo);
 
             result = pstmt.executeUpdate();
         } catch (SQLException e) {

@@ -10,7 +10,6 @@ package com.petplace.admin.controller;/**
  * 2024. 9. 29.        jun       최초 생성
  */
 
-import com.petplace.product.service.ProductService;
 import com.petplace.review.service.ReviewService;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
@@ -22,9 +21,9 @@ import java.io.IOException;
 public class AdminDeleteReviewController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String reviewNo = request.getParameter("reviewNo");
+        int reviewNo = Integer.parseInt(request.getParameter("reviewNo"));
         int result = new ReviewService().deleteReview(reviewNo);
-
+        System.out.println("리뷰번호"+reviewNo);
         HttpSession session = request.getSession();
         if (result > 0) { // 성공
             session.setAttribute("alertMsg", "상품 수정에 성공했습니다.");

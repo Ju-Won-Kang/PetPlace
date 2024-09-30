@@ -12,9 +12,9 @@ package com.petplace.review.model.vo;
  * 2024. 9. 29.        jun       최초 생성
  */
 public class Review {
-    private String reviewNo;
+    private int reviewNo;
     private String memberId;
-    private String productNo;
+    private int productNo;
     private int star;
     private String reviewDetail;
     private String reviewDate;
@@ -22,7 +22,7 @@ public class Review {
     public Review() {
     }
 
-    public Review(String reviewNo, String memberId, String productNo, int star, String reviewDetail, String reviewDate) {
+    public Review(int reviewNo, String memberId, int productNo, int star, String reviewDetail, String reviewDate) {
         this.reviewNo = reviewNo;
         this.memberId = memberId;
         this.productNo = productNo;
@@ -31,11 +31,11 @@ public class Review {
         this.reviewDate = reviewDate;
     }
 
-    public String getReviewNo() {
+    public int getReviewNo() {
         return reviewNo;
     }
 
-    public void setReviewNo(String reviewNo) {
+    public void setReviewNo(int reviewNo) {
         this.reviewNo = reviewNo;
     }
 
@@ -47,11 +47,11 @@ public class Review {
         this.memberId = memberId;
     }
 
-    public String getProductNo() {
+    public int getProductNo() {
         return productNo;
     }
 
-    public void setProductNo(String productNo) {
+    public void setProductNo(int productNo) {
         this.productNo = productNo;
     }
 
