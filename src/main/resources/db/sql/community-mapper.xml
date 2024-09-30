@@ -20,4 +20,48 @@
 		           ORDER BY COMMUNITY_NO DESC) A)
 		WHERE RNUM BETWEEN ? AND ?
 	</entry>
+	<entry key="insertCommunity">
+		INSERT
+		INTO COMMUNITY(
+						COMMUNITY_NO,
+						MEMBER_ID,
+						COMMUNITY_CATEGORY,
+						COMMUNITY_TITLE,
+						COMMUNITY_DETAIL,
+						COMMUNITY_DATE,
+						COMMUNITY_VIEWS,
+						COMMUNITY_GOOD,
+						COMMUNITY_BAD
+						)
+				VALUES(
+						SEQ_CNO.NEXTVAL,
+						?,
+						?,
+						?,
+						?,
+						SYSDATE,
+						0,
+						0,
+						0
+						)					
+	</entry>
+	<entry key="insertCommunityAttachmentList">
+		INSERT
+		INTO ATTACHMENT_COMMUNITY(
+								  FILE_NO,
+								  REF_CNO,
+								  ORIGIN_NAME,
+								  CHANGE_NAME,
+								  FILE_PATH,
+								  UPLOAD_DATE
+								  )
+						   VALUES(
+								  SEQ_ACNO.NEXTVAL,
+								  SEQ_CNO.CURRVAL,
+								  ?,
+								  ?,
+								  ?,
+								  SYSDATE
+								 )
+	</entry>
 </properties>
