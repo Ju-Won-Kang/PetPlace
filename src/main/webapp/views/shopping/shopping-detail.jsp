@@ -6,7 +6,7 @@
 <head>
     <meta charset="UTF-8">
     <title>상품 상세</title>
-    <link rel="stylesheet" href="css/shopping-detail.css"> <!-- css연결 -->
+    <link rel="stylesheet" href="css/shopping/shopping-detail.css"> <!-- css연결 -->
 </head>
 <body>
     <%@include file="../common/nav.jsp"%>
@@ -15,7 +15,6 @@
         <div id="left-body">
             <div id="mainFood">
                 <img src="<%=contextPath%>/images/dogproduct1.jpg" alt="상품 이미지">
-
             </div>
             <div id="subFoods">
                 <div class="subFood-img"></div>
@@ -116,7 +115,9 @@
                 <div>Q & A</div>
             </div>
         </div>
-        <div></div>
+        <div>
+            <img src="<%=contextPath %>/images/product_upfile/stars.jpg" alt="">
+        </div>
         <div></div>
 
     </div>

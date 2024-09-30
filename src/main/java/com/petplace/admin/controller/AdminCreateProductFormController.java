@@ -29,7 +29,6 @@ public class AdminCreateProductFormController extends HttpServlet {
 
         // 포워딩
         request.setAttribute("category",cList);
-        System.out.println(cList);
         request.setAttribute("nav",1);
         request.getRequestDispatcher("views/admin/adminCreateProductForm.jsp").forward(request, response);
 

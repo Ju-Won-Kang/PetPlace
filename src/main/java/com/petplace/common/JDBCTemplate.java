@@ -24,10 +24,12 @@ public class JDBCTemplate {
      *
      * @return conn : Connection 객체 반환
      */
+	
     public static Connection getConnection() {
         Connection conn = null;
         Properties prop = new Properties();
         String filePath = JDBCTemplate.class.getResource("/db/driver/driver.properties").getPath();
+        
         try {
             prop.load(new FileInputStream(filePath));
             Class.forName(prop.getProperty("driver"));

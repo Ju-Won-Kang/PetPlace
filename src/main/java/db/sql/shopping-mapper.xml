@@ -18,4 +18,20 @@
 		WHERE RNUM BETWEEN ? AND ?
 	</entry>
 	
+	
+	<entry key="selectAttachmentProduct">   
+		SELECT PRODUCT_NO,
+			   PRODUCT_NAME,
+			   FILE_PATH || CHANGE_NAME AS "TITLE_IMG",
+			   PRICE,
+			   STAR,
+			   R.COUNT(*),
+			   PRODUCT_CATEGORY
+		  FROM PRODUCT P
+		  JOIN REVIEW R USING(PRODUCT_NO) 
+		  JOIN ATTACHMENT_PRODUCT ON(PRODUCT_NO = REF_PNO)
+		 WHERE PRODUCT_NO = ?
+		   AND P.STATUS = 'Y'
+		   AND FILE_LEVEL = 1   
+	</entry>
 </properties>

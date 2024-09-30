@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 import com.petplace.common.PageInfo;
+import com.petplace.product.model.vo.AttachmentProduct;
 import com.petplace.product.model.vo.Product;
 import com.petplace.shopping.service.ShoppingService;
 
@@ -76,9 +77,7 @@ public class shoppingServlet extends HttpServlet {
 		endPage = endPage > maxPage ? maxPage : endPage;
 		
 		PageInfo pi = new PageInfo(listCount, currentPage, pageLimit, boardLimit, maxPage, startPage, endPage);
-		ArrayList<Product> list = new ShoppingService().selectShoppingList(pi);
-		
-		System.out.println(list);
+		ArrayList<Product> list = new ShoppingService().selectShoppingList();
 		
 		request.setAttribute("pi", pi);
 		request.setAttribute("list", list);

@@ -16,7 +16,7 @@
 <head>
     <meta charset="UTF-8"> 
     <title>상품 목록</title>
-    <link rel="stylesheet" href="css/shopping-list.css">
+    <link rel="stylesheet" href="css/shopping/shopping-list.css">
 </head>
 <body>
     <%@include file="../common/nav.jsp"%>
@@ -47,7 +47,8 @@
 		            <div class="dogFood">
 		               
 		                <div onclick="location.href='<%=contextPath%>/shoppingdetail.do'" class="dogFood-img">
-		    				<img class="product_1-img" src="<%=contextPath%>/images/dogproduct1.jpg" alt="프로베스트 사료">
+		    				<!-- <img class="product_1-img" src="<%=contextPath%>/images/.jpg" alt="프로베스트 사료"> -->
+                            <img class="product_1-img" src="<%=contextPath%>/images/.jpg" alt="프로베스트 사료">
 		    			</div>
 						<!-- 별점은 리뷰를 아직 만들지 않아 추후에 추가할 예정 -->
 						<!-- 리뷰를 아직 만들지 않아 상품평의 개수도 추후에 추가할 예정 -->

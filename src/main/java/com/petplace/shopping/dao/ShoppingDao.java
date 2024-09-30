@@ -11,8 +11,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Properties;
 
-import com.petplace.common.PageInfo;
 import com.petplace.community.model.dao.CommunityDao;
+import com.petplace.product.model.vo.AttachmentProduct;
 import com.petplace.product.model.vo.Product;
 
 public class ShoppingDao {
@@ -54,7 +54,7 @@ public class ShoppingDao {
 		return shoppingListCount;
 	}
 	
-	public ArrayList<Product> selectShoppingList(Connection conn, PageInfo pi){
+	public ArrayList<Product> selectShoppingList(Connection conn){
 		
 		ArrayList<Product> list = new ArrayList<>();
 		
@@ -65,6 +65,15 @@ public class ShoppingDao {
 		
 		try {
 			pstmt = conn.prepareStatement(sql);
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				Product p = new Product();
+				p.setProductNo(rset.getInt("productNo"));
+				p.setProductName("productCategory");
+				p.set(rset.getInt("productNo"));
+			}
+			
 			/*
 			 * currentPage : 1 -> 1~10
 			 * currentPage : 2 -> 11~20
@@ -93,6 +102,22 @@ public class ShoppingDao {
 		}
 		
 		return list;
+	}
+	
+	public AttachmentProduct selectAttachmentProduct(Connection conn, int productNo) {
+		ResultSet rset = null;
+		AttachmentProduct atp = null;
 		
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("selectAttachmentProduct");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, 0); // 뭘 넣어야할지를 몰라서 작성불가
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return atp;
 	}
 }
