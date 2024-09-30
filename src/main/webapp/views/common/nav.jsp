@@ -32,7 +32,7 @@
                 <%System.out.println();%>
             </a>
 
-            <a href="<%=contextPath%>/communityList.do">커뮤니티</a>
+            <a href="<%=contextPath%>/communityList.do?cpage=1">커뮤니티</a>
             <a href="<%=contextPath%>/shopping.do">쇼핑</a>
             <a href="">입양</a>
             <a href="<%=contextPath%>/searchHospital.do">동물병원찾기</a>

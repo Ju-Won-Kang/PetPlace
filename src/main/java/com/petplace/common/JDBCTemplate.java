@@ -33,6 +33,7 @@ public class JDBCTemplate {
             Class.forName(prop.getProperty("driver"));
             conn = DriverManager.getConnection(prop.getProperty("url"), prop.getProperty("username"), prop.getProperty("password"));
             System.out.println("DB Connection Success");
+            conn.setAutoCommit(false); // 자동 커밋 비활성화
         } catch (ClassNotFoundException e) {
             throw new RuntimeException(e);
         } catch (FileNotFoundException e) {

@@ -80,6 +80,27 @@
 				<% } %>
 			</tbody>
 		</table>
+		<c:if test="${loginUser ne null }">
+			<div id="write" class="container mt-3" align="right">
+				<div><a href="<%=contextPath%>/communityWrite.do">글쓰기</a></div>
+			</div>
+		</c:if>
+		<br>
+        <div align="center">
+        	<%if(currentPage > 1) { %>
+            	<button onclick="location.href='<%=contextPath%>/communityList.do?cpage=<%=currentPage - 1%>'">&lt;</button>
+            <% } %>
+            <% for(int p = startPage; p <= endPage; p++) { %>
+                <% if(p == currentPage) { %>
+                    <button disabled><%=p%></button>
+                <% } else {%>
+                    <button onclick="location.href='<%=contextPath%>/communityList.do?cpage=<%=p%>'"><%=p%></button>
+                <% } %>
+            <% } %>
+            <%if(currentPage < maxPage) { %>
+            	<button onclick="location.href='<%=contextPath%>/communityList.do?cpage=<%=currentPage + 1%>'">&gt;</button>
+        	<% } %>
+        </div>
 	</div>
 	<%@include file="../common/footer.jsp" %>
 </body>
