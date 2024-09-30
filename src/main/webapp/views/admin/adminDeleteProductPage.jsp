@@ -65,7 +65,7 @@
                                 <td>${product.enrollDate}</td>
                                 <td>
                                     <button type="button" class="btn btn-secondary btn-sm" data-bs-toggle="modal"
-                                            data-bs-target="#modifyProductModal"
+                                            data-bs-target="#deleteProductModal"
                                             onclick="deleteProduct('${product.productName}','${product.productNo}')">삭제
                                     </button>
                                 </td>
@@ -169,7 +169,7 @@
             </div>
         </div>
     </section>
-    <div class="modal fade" id="modifyProductModal">
+    <div class="modal fade" id="deleteProductModal">
         <div class="modal-dialog">
             <div class="modal-content">
 

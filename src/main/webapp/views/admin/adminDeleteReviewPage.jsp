@@ -67,7 +67,7 @@
                                 <td>${review.reviewDate}</td>
                                 <td>
                                     <button type="button" class="btn btn-secondary btn-sm" data-bs-toggle="modal"
-                                            data-bs-target="#modifyProductModal"
+                                            data-bs-target="#deleteReviewModal"
                                             onclick="deleteReview(${review.reviewNo})">삭제
                                     </button>
                                 </td>
@@ -171,7 +171,7 @@
             </div>
         </div>
     </section>
-    <div class="modal fade" id="modifyProductModal">
+    <div class="modal fade" id="deleteReviewModal">
         <div class="modal-dialog">
             <div class="modal-content">
 

@@ -1,4 +1,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%--
   Created by IntelliJ IDEA.
   User: jun
@@ -45,7 +47,7 @@
             <img src="images/image%2061.png">
             <label id="label5" class="none-select">1:1 문의</label>
         </div>
-        <div id="div6" onclick="location.href='<%=request.getContextPath() + "/adminDeliveryManagement.pd"%>'">
+        <div id="div6" onclick="location.href='<%=request.getContextPath() + "/adminDeliveryManagement.pd?cpage=1"%>'">
             <img src="images/image%2072.png">
             <label id="label6" class="none-select">배송 관리</label>
         </div>
