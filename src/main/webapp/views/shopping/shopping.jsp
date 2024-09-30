@@ -22,10 +22,10 @@
     <%@include file="../common/nav.jsp"%>
     <div id="menubar">
         <div id="animal-category">
-            <span onclick="selectList('강아지');">전체</span>
+            <span onclick="selectList('전체');">전체</span>
             <span onclick="selectList('강아지');">멍멍이</span>
-            <span onclick="selectList('강아지');">냥</span>
-            <span onclick="selectList('강아지');">기타</span>
+            <span onclick="selectList('고양이');">냥</span>
+            <span onclick="selectList('기타');">기타</span>
         </div>
         <div id="search-area">
             <input type="search">
@@ -59,7 +59,7 @@
         <% } %>
 
         <script>
-            function selectList(type){
+            function selectList(type){       	
                 $.ajax({
                     url : "dogList.do",
                     contentType : "application/json",
@@ -70,22 +70,23 @@
                         $('#dogproduct-line1').empty();
                         
                         if (result.length === 0) {
-                            $('#dogproduct-line1').append('<p id="none-list">존재하는 강아지 카테고리 목록이 없습니다.</p>');
+                        	$('#products').html('<p id="none-list">해당 카테고리 목록이 없습니다.</p>');
                         } else {
                             for (let s of result) {
-                                $('#dogproduct-line1').append(`
-                                    <div class="dogFood">
-                                        <div onclick="location.href='${contextPath}/shoppingdetail.do'" class="dogFood-img">
-                                            <img class="product_1-img" src="${contextPath}/${s.productImg}" alt="${s.productName}">
-                                        </div>
-                                        <div class="dogFood-info">
-                                            <p class="dogFood-name">${s.productName}</p>
-                                            <p class="dogFood-price">${s.price} 원</p>
-                                            <p class="dogFood-etc" id="stars">★★★★★</p>
-                                            <p class="dogFood-etc" id="star-after">16,610개 상품평</p>
-                                        </div>
-                                    </div>
-                                `);
+                            	console.log(s);
+                            	 $('#dogproduct-line1').append(`
+                                         <div class="dogFood">
+                                             <div onclick="location.href='${contextPath}/shoppingdetail.do'" class="dogFood-img">
+                                                 <img class="product_1-img" src="` + s.productImg + `" alt="` + s.productImg + `">
+                                             </div>
+                                             <div class="dogFood-info">
+                                                 <p class="dogFood-name">` + s.productName + `</p>
+                                                 <p class="dogFood-price">` + s.price + ` 원</p>
+                                                 <p class="dogFood-etc" id="stars">★★★★★</p>
+                                                 <p class="dogFood-etc" id="star-after">16,610개 상품평</p>
+                                             </div>
+                                         </div>
+                                     `);
                             }
                         }
                     },

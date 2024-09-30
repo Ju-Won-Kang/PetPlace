@@ -34,7 +34,20 @@ public class AjaxShoppingDogListController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String categoryName = (String)(request.getParameter("categoryName"));
 		
-		ArrayList<Shopping> list = new ShoppingService().selectDogList(categoryName);
+		ArrayList<Shopping> list = new ArrayList<>();
+		ShoppingService sService = new ShoppingService();
+		
+		if(categoryName.equals("전체")) {
+			list = sService.selectAllList(categoryName);
+		} else if(categoryName.equals("강아지")) {
+			list = sService.selectCategoryList(categoryName);
+		} else if(categoryName.equals("고양이")) {
+			list = sService.selectCategoryList(categoryName);
+		} else if(categoryName.equals("기타")) {
+			list = sService.selectCategoryList(categoryName);
+		} else {
+			System.out.println("존재하지 않는 카테고리 입니다");
+		}
 		
 		response.setContentType("application/json; charset=utf-8");
 		new Gson().toJson(list, response.getWriter());

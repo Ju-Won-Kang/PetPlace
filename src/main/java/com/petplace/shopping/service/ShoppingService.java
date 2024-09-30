@@ -31,10 +31,21 @@ public class ShoppingService {
 		return list;
 	}
 	
-	public ArrayList<Shopping> selectDogList(String categoryName) {
+	public ArrayList<Shopping> selectAllList(String categoryName) {
 		Connection conn = getConnection();
 		
-		ArrayList<Shopping> list = new ShoppingDao().selectDogList(conn, categoryName);
+		ArrayList<Shopping> list = new ShoppingDao().selectAllList(conn, categoryName);
+		
+		close(conn);
+		
+		return list;
+	}
+	
+	
+	public ArrayList<Shopping> selectCategoryList(String categoryName) {
+		Connection conn = getConnection();
+		
+		ArrayList<Shopping> list = new ShoppingDao().selectCategoryList(conn, categoryName);
 		
 		close(conn);
 		
