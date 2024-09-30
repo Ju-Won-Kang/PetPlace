@@ -22,10 +22,10 @@
     <%@include file="../common/nav.jsp"%>
     <div id="menubar">
         <div id="animal-category">
-            <a href="" onclick="selectAllList()">전체</a>
-            <a href="" onclick="selectDogList()">멍멍이</a>
-            <a href="" onclick="selectCatList()">냥</a>
-            <a href="" onclick="selectEtcList()">기타</a>
+            <span onclick="selectList('강아지');">전체</span>
+            <span onclick="selectList('강아지');">멍멍이</span>
+            <span onclick="selectList('강아지');">냥</span>
+            <span onclick="selectList('강아지');">기타</span>
         </div>
         <div id="search-area">
             <input type="search">
@@ -59,12 +59,12 @@
         <% } %>
 
         <script>
-            function selectDogList(){
+            function selectList(type){
                 $.ajax({
                     url : "dogList.do",
                     contentType : "application/json",
                     data : {
-                        categoryName: "강아지"
+                        categoryName: type
                     },
                     success: function(result){
                         $('#dogproduct-line1').empty();
@@ -95,27 +95,26 @@
                 })
             }
         </script>
+    </div>
 
-        <br><br>
+    <br><br>
         <div>
             <div align="center">
-        	<%if(currentPage > 1) { %>
-            	<button onclick="location.href='<%=contextPath%>/shopping.do?cpage=<%=currentPage - 1%>'">&lt;</button>
-            <% } %>
-            <% for(int p = startPage; p <= endPage; p++) { %>
-                <% if(p == currentPage) { %>
-                    <button disabled><%=p%></button>
-                <% } else {%>
-                    <button onclick="location.href='<%=contextPath%>/shopping.do?cpage=<%=p%>'"><%=p%></button>
+                <%if(currentPage > 1) { %>
+                    <button onclick="location.href='<%=contextPath%>/shopping.do?cpage=<%=currentPage - 1%>'">&lt;</button>
                 <% } %>
-            <% } %>
-            <%if(currentPage < maxPage) { %>
-            	<button onclick="location.href='<%=contextPath%>/shopping.do?cpage=<%=currentPage + 1%>'">&gt;</button>
-        	<% } %>
+                <% for(int p = startPage; p <= endPage; p++) { %>
+                    <% if(p == currentPage) { %>
+                        <button disabled><%=p%></button>
+                    <% } else {%>
+                        <button onclick="location.href='<%=contextPath%>/shopping.do?cpage=<%=p%>'"><%=p%></button>
+                    <% } %>
+                <% } %>
+                <%if(currentPage < maxPage) { %>
+                    <button onclick="location.href='<%=contextPath%>/shopping.do?cpage=<%=currentPage + 1%>'">&gt;</button>
+                <% } %>
+            </div>
         </div>
-
-        </div>
-    </div>
 
     <%@include file="../common/footer.jsp"%>
 </body>

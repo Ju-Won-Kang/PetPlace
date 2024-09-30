@@ -109,6 +109,8 @@ public class ShoppingDao {
 		
 		try {
 			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, categoryName);
+			
 			rset = pstmt.executeQuery();
 			
 			while(rset.next()) {

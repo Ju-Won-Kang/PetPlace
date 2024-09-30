@@ -33,7 +33,7 @@
 		              JOIN ATTACHMENT_PRODUCT ON (PRODUCT_NO = REF_PNO)
 		             WHERE P.STATUS = 'Y'
 		               AND MOD(TO_NUMBER(FILE_NO), 2) = 1
-		               AND PRODUCT_CATEGORY = "고양이"
+		               AND PRODUCT_CATEGORY = ?
 		             ORDER BY PRODUCT_NO DESC) A)
 		WHERE RNUM BETWEEN ? AND ?
 	</entry>
