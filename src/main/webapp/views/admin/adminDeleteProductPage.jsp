@@ -86,7 +86,7 @@
                         <c:choose>
                             <c:when test="${pi.startPage != 1 || (pi.startPage / pi.boardLimit)  > 1}">
                                 <li class="page-item">
-                                    <a href="${pageContext.request.contextPath}/adminModifyProduct.pd?cpage=${pi.startPage - pi.boardLimit}"
+                                    <a href="${pageContext.request.contextPath}/adminDeleteProduct.pd?cpage=${pi.startPage - pi.boardLimit}"
                                        class="page-link">
                                         <span aria-hidden="true">&laquo;</span>
                                     </a>
@@ -103,7 +103,7 @@
                         <c:choose>
                             <c:when test="${pi.currentPage > 1}">
                                 <li class="page-item">
-                                    <a href="${pageContext.request.contextPath}/adminModifyProduct.pd?cpage=${pi.currentPage - 1}"
+                                    <a href="${pageContext.request.contextPath}/adminDeleteProduct.pd?cpage=${pi.currentPage - 1}"
                                        class="page-link">
                                         <span aria-hidden="true">&lt;</span>
                                     </a>
@@ -125,7 +125,7 @@
                                 </c:when>
                                 <c:otherwise>
                                     <li class="page-item"><a class="page-link"
-                                                             href="${pageContext.request.contextPath}/adminModifyProduct.pd?cpage=${page}">${page}</a>
+                                                             href="${pageContext.request.contextPath}/adminDeleteProduct.pd?cpage=${page}">${page}</a>
                                     </li>
                                 </c:otherwise>
                             </c:choose>
@@ -133,7 +133,7 @@
                         <c:choose>
                             <c:when test="${pi.currentPage < pi.maxPage}">
                                 <li class="page-item">
-                                    <a href="${pageContext.request.contextPath}/adminModifyProduct.pd?cpage=${pi.currentPage + 1}"
+                                    <a href="${pageContext.request.contextPath}/adminDeleteProduct.pd?cpage=${pi.currentPage + 1}"
                                        class="page-link">
                                         <span aria-hidden="true">&gt;</span>
                                     </a>
@@ -150,7 +150,7 @@
                         <c:choose>
                             <c:when test="${(pi.endPage / boardLimit)  < pi.maxPage}">
                                 <li class="page-item">
-                                    <a href="${pageContext.request.contextPath}/adminModifyProduct.pd?cpage=${pi.endPage + 1}"
+                                    <a href="${pageContext.request.contextPath}/adminDeleteProduct.pd?cpage=${pi.endPage + 1}"
                                        class="page-link">
                                         <span aria-hidden="true">&raquo;</span>
                                     </a>
