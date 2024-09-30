@@ -1,28 +1,30 @@
 package com.petplace.admin.controller;/**
  * packageName    : com.petplace.admin.controller
- * fileName       : AdminInquiryController
+ * fileName       : AdminInsertInquiryAnswerController
  * author         : jun
- * date           : 2024. 9. 24.
+ * date           : 2024. 9. 30.
  * description    :
  * ===========================================================
  * DATE              AUTHOR             NOTE
  * -----------------------------------------------------------
- * 2024. 9. 24.        jun       최초 생성
+ * 2024. 9. 30.        jun       최초 생성
  */
 
+import com.petplace.inquiry.service.InquiryService;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
 
 import java.io.IOException;
 
-@WebServlet(name = "adminInquiry.in", value = "/adminInquiry.in")
-public class AdminInquiryController extends HttpServlet {
+@WebServlet(name = "answerInquiry.do", value = "/answerInquiry.do")
+public class AdminInsertInquiryAnswerController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        request.setAttribute("nav", 5);
-        request.getRequestDispatcher("views/admin/adminInquiryPage.jsp").forward(request, response);
-
+        request.setCharacterEncoding("UTF-8");
+        String inquiryNo = request.getParameter("inquiryNo");
+        String answer = request.getParameter("answer");
+        int result = new InquiryService().insertInquiry(inquiryNo, answer);
     }
 
     @Override
