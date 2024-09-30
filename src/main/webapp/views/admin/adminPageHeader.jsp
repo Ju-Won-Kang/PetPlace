@@ -20,15 +20,15 @@
 <body>
     <header>
         <div id="header-wrap">
-            <a href="<%=contextPath%>/adminPage?nav=1">
+            <a href="<%=contextPath%>/adminCreateProduct.pd">
                 <img src="images/Logo.png">
                 <%System.out.println();%>
             </a>
-            <a href="#" class="hide">커뮤니티</a>
-            <a href="" class="hide">쇼핑</a>
-            <a href="" class="hide">입양</a>
-            <a href="" class="hide">동물병원찾기</a>
-            <a href="" class="hide">기능</a>
+            <a href="#" class="hidden">커뮤니티</a>
+            <a href="" class="hidden">쇼핑</a>
+            <a href="" class="hidden">입양</a>
+            <a href="" class="hidden">동물병원찾기</a>
+            <a href="" class="hidden">기능</a>
             <button type="button" id="user" onclick="userBtn()">
                 <img src="images/user.png">
             </button>

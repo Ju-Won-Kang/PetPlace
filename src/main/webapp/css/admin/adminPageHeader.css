@@ -75,6 +75,6 @@ header {
 #user > img {
     background-color: white;
 }
-.hide{
+.hidden{
     visibility: hidden;
 }

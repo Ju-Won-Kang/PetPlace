@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+    <entry key="selectListCount">
+        select count(*) as "count"
+        from review
+    </entry>
+    <entry key="selectReviewList">
+        SELECT *
+        FROM(SELECT ROWNUM RNUM, A.*
+                FROM(select REVIEW_NO,
+                    MEMBER_ID,
+                    PRODUCT_NAME,
+                    STAR,
+                    REVIEW_DETAIL,
+                    TO_CHAR(REVIEW_DATE,'YYYY/MM/DD') AS "REVIEW_DATE"
+                    from REVIEW r
+                    join product using(PRODUCT_NO)
+                order by REVIEW_NO DESC) A )
+        WHERE RNUM BETWEEN ? AND ?
+    </entry>
+    <entry key="deleteReview">
+        delete from review
+        where review_no = ?
+    </entry>
+</properties>

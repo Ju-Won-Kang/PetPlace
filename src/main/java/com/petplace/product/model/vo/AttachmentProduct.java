@@ -1,6 +1,6 @@
 package com.petplace.product.model.vo;
 
-import java.sql.Date;
+import java.util.Objects;
 
 /**
  * packageName    : com.petplace.product.model.vo
@@ -19,14 +19,32 @@ public class AttachmentProduct {
     private String originName;
     private String changeName;
     private String filePath;
-    private Date uploadDate;
+    private String uploadDate;
     private int fileLevel;
     private String status;
 
     public AttachmentProduct() {
     }
 
-    public AttachmentProduct(String fileNo, String refPNo, String originName, String changeName, String filePath, Date uploadDate, int fileLevel, String status) {
+    public AttachmentProduct(String fileNo, String refPNo, String originName, String changeName, String filePath, String uploadDate, int fileLevel) {
+        this.fileNo = fileNo;
+        this.refPNo = refPNo;
+        this.originName = originName;
+        this.changeName = changeName;
+        this.filePath = filePath;
+        this.uploadDate = uploadDate;
+        this.fileLevel = fileLevel;
+    }
+
+    public AttachmentProduct(String fileNo, String originName, String changeName, String filePath, int fileLevel) {
+        this.fileNo = fileNo;
+        this.originName = originName;
+        this.changeName = changeName;
+        this.filePath = filePath;
+        this.fileLevel = fileLevel;
+    }
+
+    public AttachmentProduct(String fileNo, String refPNo, String originName, String changeName, String filePath, String uploadDate, int fileLevel, String status) {
         this.fileNo = fileNo;
         this.refPNo = refPNo;
         this.originName = originName;
@@ -77,11 +95,11 @@ public class AttachmentProduct {
         this.filePath = filePath;
     }
 
-    public Date getUploadDate() {
+    public String getUploadDate() {
         return uploadDate;
     }
 
-    public void setUploadDate(Date uploadDate) {
+    public void setUploadDate(String uploadDate) {
         this.uploadDate = uploadDate;
     }
 
