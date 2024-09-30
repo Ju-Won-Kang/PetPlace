@@ -22,13 +22,8 @@ public class Product {
     private String origin;              // 원산지
     private int productWeight;          // 중량
     private int kcal;                   // 칼로리
-<<<<<<< HEAD
-    private Date enrollDate;            // 등록날짜
-    private Date modifyDate;            // 수정날짜
-=======
     private String enrollDate;            // 등록날짜
     private String modifyDate;            // 수정날짜
->>>>>>> 8fb180c562b9ab8fac93731f963ac6496aca5f10
     private String status;              // 상태
 
     public Product() {

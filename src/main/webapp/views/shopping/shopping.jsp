@@ -54,7 +54,7 @@
                             <p class="dogFood-etc" id="star-after"> 16,610개 상품평</p>
                         </div>
                     </div>
-                <% } %>}
+                <% } %>
             </div>
         <% } %>
 
