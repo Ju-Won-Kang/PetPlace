@@ -64,7 +64,7 @@ header {
 #user-img {
     width: 100%;
     height: 20%;
-    background: url(../images/user.png) no-repeat center/contain;
+    background: url(../../images/user.png) no-repeat center/contain;
     margin-top: 15px;
 }
 

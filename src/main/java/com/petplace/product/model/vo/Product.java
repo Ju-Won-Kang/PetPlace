@@ -1,7 +1,5 @@
 package com.petplace.product.model.vo;
 
-import java.sql.Date;
-
 /**
  * packageName    : com.petplace.product.model.vo
  * fileName       : Product
@@ -14,7 +12,7 @@ import java.sql.Date;
  * 2024. 9. 25.        jun       최초 생성
  */
 public class Product {
-    private String productNo;           // 상품번호
+    private int productNo;           // 상품번호
     private String productCategory;    // 상품카테고리명
     private String company;             // 제조사
     private String productName;         // 상품명
@@ -24,14 +22,14 @@ public class Product {
     private String origin;              // 원산지
     private int productWeight;          // 중량
     private int kcal;                   // 칼로리
-private Date enrollDate;                // 등록날짜
-    private Date modifyDate;            // 수정날짜
+    private String enrollDate;            // 등록날짜
+    private String modifyDate;            // 수정날짜
     private String status;              // 상태
 
     public Product() {
     }
 
-    public Product(String productNo, String product_category, String company, String productName, int price, int inventory, String ingredient, String origin, int productWeight, int kcal, Date enrollDate, Date modifyDate, String status) {
+    public Product(int productNo, String product_category, String company, String productName, int price, int inventory, String ingredient, String origin, int productWeight, int kcal, String enrollDate, String modifyDate, String status) {
         this.productNo = productNo;
         this.productCategory = product_category;
         this.company = company;
@@ -47,7 +45,22 @@ private Date enrollDate;                // 등록날짜
         this.status = status;
     }
 
-    public Product(String product_category, String company, String productName, int price, int inventory, String ingredient, String origin, int productWeight, int kcal, Date enrollDate, Date modifyDate, String status) {
+    public Product(int productNo, String productCategory, String company, String productName, int price, int inventory, String ingredient, String origin, int productWeight, int kcal, String enrollDate, String modifyDate) {
+        this.productNo = productNo;
+        this.productCategory = productCategory;
+        this.company = company;
+        this.productName = productName;
+        this.price = price;
+        this.inventory = inventory;
+        this.ingredient = ingredient;
+        this.origin = origin;
+        this.productWeight = productWeight;
+        this.kcal = kcal;
+        this.enrollDate = enrollDate;
+        this.modifyDate = modifyDate;
+    }
+
+    public Product(String product_category, String company, String productName, int price, int inventory, String ingredient, String origin, int productWeight, int kcal, String enrollDate, String modifyDate, String status) {
         this.productCategory = product_category;
         this.company = company;
         this.productName = productName;
@@ -62,11 +75,11 @@ private Date enrollDate;                // 등록날짜
         this.status = status;
     }
 
-    public String getProductNo() {
+    public int getProductNo() {
         return productNo;
     }
 
-    public void setProductNo(String productNo) {
+    public void setProductNo(int productNo) {
         this.productNo = productNo;
     }
 
@@ -142,19 +155,19 @@ private Date enrollDate;                // 등록날짜
         this.kcal = kcal;
     }
 
-    public Date getEnrollDate() {
+    public String getEnrollDate() {
         return enrollDate;
     }
 
-    public void setEnrollDate(Date enrollDate) {
+    public void setEnrollDate(String enrollDate) {
         this.enrollDate = enrollDate;
     }
 
-    public Date getModifyDate() {
+    public String getModifyDate() {
         return modifyDate;
     }
 
-    public void setModifyDate(Date modifyDate) {
+    public void setModifyDate(String modifyDate) {
         this.modifyDate = modifyDate;
     }
 
