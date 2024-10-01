@@ -1,122 +1,95 @@
 package com.petplace.shopping.dao;
 
-import static com.petplace.common.JDBCTemplate.close;
-
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Properties;
 
-import com.petplace.community.model.dao.CommunityDao;
-import com.petplace.product.model.vo.AttachmentProduct;
-import com.petplace.product.model.vo.Product;
+import org.apache.ibatis.session.RowBounds;
+import org.apache.ibatis.session.SqlSession;
+
+import com.petplace.common.PageInfo;
+import com.petplace.shopping.model.dto.ShoppingList;
 
 public class ShoppingDao {
-	private Properties prop = new Properties();
 
-	public ShoppingDao() {
-		String filePath = CommunityDao.class.getResource("/db/sql/shopping-mapper.xml").getPath();
-		
-		try {
-			prop.loadFromXML(new FileInputStream(filePath));
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-	}
-	
-	public int selectShoppingListCount(Connection conn) {
-		
-		int shoppingListCount = 0;
-		
-		PreparedStatement pstmt = null;
-		ResultSet rset = null;
-		
-		String sql = prop.getProperty("selectShoppingListCount");
-		
-		try {
-			pstmt = conn.prepareStatement(sql);
-			rset = pstmt.executeQuery();
-			
-			if(rset.next()) {
-				shoppingListCount = rset.getInt("count");
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-			close(rset);
-			close(pstmt);
-		}
-		
-		return shoppingListCount;
-	}
-	
-	public ArrayList<Product> selectShoppingList(Connection conn){
-		
-		ArrayList<Product> list = new ArrayList<>();
-		
-		PreparedStatement pstmt = null;
-		ResultSet rset = null;
-		
-		String sql = prop.getProperty("selectShoppingList");
-		
-//		try {
-//			pstmt = conn.prepareStatement(sql);
-//			rset = pstmt.executeQuery();
-//			
-//			while(rset.next()) {
-//				Product p = new Product();
-//				p.setProductNo(rset.getInt("productNo"));
-//				p.setProductName("productCategory");
-//			}
-			
-			/*
-			 * currentPage : 1 -> 1~10
-			 * currentPage : 2 -> 11~20
-			 */
-			
-			int startRow = (pi.getCurrentPage() - 1) * pi.getBoardLimit() + 1;
-			int endRow = startRow + pi.getBoardLimit() - 1;
-			
-			pstmt.setInt(1, startRow);
-			pstmt.setInt(2, endRow);
-			
-			rset = pstmt.executeQuery();
-			
-			while(rset.next()) {
-				Product p = new Product();
-				p.setProductNo(rset.getString("product_no"));
-				p.setProductName(rset.getString("product_name"));
-				p.setPrice(rset.getInt("price"));
-				list.add(p);
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-			close(rset);
-			close(pstmt);
-		}
-		
-		return list;
-	}
-	
-	public AttachmentProduct selectAttachmentProduct(Connection conn, int productNo) {
-		ResultSet rset = null;
-		AttachmentProduct atp = null;
-		
-		PreparedStatement pstmt = null;
-		String sql = prop.getProperty("selectAttachmentProduct");
-		
-		try {
-			pstmt = conn.prepareStatement(sql);
-			pstmt.setInt(1, 0); // 뭘 넣어야할지를 몰라서 작성불가
-			
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		return atp;
-	}
+   public int selectShoppingListCount(SqlSession sqlSession) {
+      return sqlSession.selectOne("shoppingMapper.selectShoppingListCount");
+   }
+   
+   public ArrayList<ShoppingList> selectShoppingList(SqlSession sqlSession, PageInfo pi){
+      int offset = (pi.getCurrentPage() - 1) * pi.getBoardLimit();
+      int limit = pi.getBoardLimit();
+      RowBounds rowBounds = new RowBounds(offset, limit);
+      
+      return (ArrayList)sqlSession.selectList("shoppingMapper.selectShoppingList", null, rowBounds);
+      
+   }
+   
+//   public ArrayList<Shopping> selectAllList(Connection conn, String categoryName){
+//      
+//      ArrayList<Shopping> list = new ArrayList<>();
+//      
+//      PreparedStatement pstmt = null;
+//      ResultSet rset = null;
+//      
+//      String sql = prop.getProperty("selectAllList");
+//      
+//      try {
+//         pstmt = conn.prepareStatement(sql);
+//         
+//         rset = pstmt.executeQuery();
+//         while(rset.next()) {
+//            Shopping s = new Shopping();
+//            s.setProductNo(rset.getString("product_no"));
+//            s.setProductName(rset.getString("product_name"));
+//            s.setPrice(rset.getInt("price"));
+//            s.setProductCategory(rset.getString("product_category"));
+//            s.setProductImg(rset.getString("product_img"));
+//            list.add(s);
+//         }
+//         
+//         
+//      } catch (SQLException e) {
+//         e.printStackTrace();
+//      } finally {
+//         close(rset);
+//         close(pstmt);
+//      }
+//      
+//      return list;
+//      
+//   }
+//   
+//   public ArrayList<Shopping> selectCategoryList(Connection conn, String categoryName){
+//      
+//      ArrayList<Shopping> list = new ArrayList<>();
+//      
+//      PreparedStatement pstmt = null;
+//      ResultSet rset = null;
+//      
+//      String sql = prop.getProperty("selectCategoryList");
+//      
+//      try {
+//         pstmt = conn.prepareStatement(sql);
+//         pstmt.setString(1, categoryName);
+//         
+//         rset = pstmt.executeQuery();
+//         while(rset.next()) {
+//            Shopping s = new Shopping();
+//            s.setProductNo(rset.getString("product_no"));
+//            s.setProductName(rset.getString("product_name"));
+//            s.setPrice(rset.getInt("price"));
+//            s.setProductCategory(rset.getString("product_category"));
+//            s.setProductImg(rset.getString("product_img"));
+//            list.add(s);
+//         }
+//         
+//      } catch (SQLException e) {
+//         e.printStackTrace();
+//      } finally {
+//         close(rset);
+//         close(pstmt);
+//      }
+//      
+//      return list;
+//      
+//   }
 }

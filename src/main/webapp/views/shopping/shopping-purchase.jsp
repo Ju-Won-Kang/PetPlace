@@ -4,15 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-
-
-    <link rel="stylesheet" href="css/shopping/shopping-purchase.css"> <!-- css연결 -->
+    <link rel="stylesheet" href="css/shopping/shopping-purchase.css">
 </head>
 <body>
     <%@include file="../common/nav.jsp"%>
     <div id="body-wrap">
         <h1>주문/결제</h1>
-        <br>
+        <hr>
         <h2>구매자 정보</h2>
         <table id="purchaser-table">
             <tr>
@@ -36,7 +34,9 @@
                 <td>배송 전 문자 바랍니다</td>
             </tr>
         </table>
-
+        <br>
+        
+        <h3>결제 정보</h3>
         <table id="payInfo-table">
             <tr>
                 <td>총 상품가격</td>
@@ -52,28 +52,42 @@
             </tr>
             <tr>
                 <td>결제수단</td>
-                <td>카드결제</td>
-                <td>카카오페이</td>
+                <td>
+                    <input type="radio" name="pay-how">카드결제 
+                    <input type="radio" name="pay-how">카카오페이
+                </td>
             </tr>
         </table>
 
-        <table>
-            <tr>
-                <td>카드 결제</td>
-                <td><button>카드사</button></td>
-            </tr>
-            <tr>
-                <td>카드번호</td>
-                <td><input type="text" placeholder="카드번호 입력"></td>
-            </tr>
-            <tr>
-                <td>카드 비밀번호</td>
-                <td><input type="text" placeholder="비밀번호 입력"></td>
-            </tr>
-        </table>
-
-        <button>결제하기</button>
-
+        <br>
+        <h3>결제수단</h3>
+        <form action="">
+            <table id="pay-method">
+                <tr>
+                    <td>카드 결제</td>
+                    <td>
+                        <select>
+                            <option value="국민">국민</option>
+                            <option value="신한">신한</option>
+                            <option value="하나">하나</option>
+                            <option value="우리">우리</option>
+                            <option value="농협">농협</option>
+                            <option value="기업">기업</option> 
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>카드번호</td>
+                    <td><input type="text" placeholder="카드번호 입력"></td>
+                </tr>
+                <tr>
+                    <td>카드 비밀번호</td>
+                    <td><input type="text" placeholder="비밀번호 입력"></td>
+                </tr>
+            </table>
+            <br><br>
+            <input id="payment-btn" type="submit" value="결제하기">
+        </form>
     </div>
 </body>
 </html>
