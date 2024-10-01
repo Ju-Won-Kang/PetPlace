@@ -92,7 +92,7 @@ public class ProductService {
      * @param productNo 조회하고자하는 상품번호
      * @return AttachmentProduct 객체
      */
-    public ArrayList<AttachmentProduct> selectAttachment(String productNo) {
+    public ArrayList<AttachmentProduct> selectAttachment(int productNo) {
         Connection conn = getConnection();
         ArrayList<AttachmentProduct> atList = new ProductDao().selectAttachment(conn, productNo);
 
@@ -106,7 +106,7 @@ public class ProductService {
      * @param productNo 조회하고자하는 상품번호
      * @return Product객체
      */
-    public Product selectProduct(String productNo) {
+    public Product selectProduct(int productNo) {
         Connection conn = getConnection();
         Product p = new ProductDao().selectProduct(conn, productNo);
 
@@ -154,7 +154,7 @@ public class ProductService {
      * @param productNo 삭제하고자하는 상품 번호
      * @return
      */
-    public int deleteProduct(String productNo) {
+    public int deleteProduct(int productNo) {
         Connection conn = getConnection();
         int result1 = new ProductDao().deleteProduct(conn, productNo);
 

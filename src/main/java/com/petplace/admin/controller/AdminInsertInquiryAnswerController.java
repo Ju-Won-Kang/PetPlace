@@ -22,7 +22,7 @@ public class AdminInsertInquiryAnswerController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.setCharacterEncoding("UTF-8");
-        String inquiryNo = request.getParameter("inquiryNo");
+        int inquiryNo = Integer.parseInt(request.getParameter("inquiryNo"));
         String answer = request.getParameter("answer");
         int result = new InquiryService().insertInquiry(inquiryNo, answer);
     }

@@ -5,11 +5,8 @@ import com.petplace.purchase.model.dto.PurchaseList;
 import org.apache.ibatis.session.RowBounds;
 import org.apache.ibatis.session.SqlSession;
 
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Objects;
 
 /**
  * packageName    : com.petplace.purchase.model.dao
@@ -34,7 +31,7 @@ public class PurchaseDao {
         System.out.println("구매 리스트 : " + (ArrayList) sqlSession.selectList("purchaseMapper.selectPurchaseList", null, rowBounds));
         return (ArrayList) sqlSession.selectList("purchaseMapper.selectPurchaseList", null, rowBounds);
     }
-    public int insertWayBill(SqlSession sqlSession, HashMap<String, String> map){
+    public int insertWayBill(SqlSession sqlSession, HashMap<String, Object> map){
         return sqlSession.update("purchaseMapper.insertWayBill", map);
     }
 }
