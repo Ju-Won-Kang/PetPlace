@@ -16,7 +16,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PetPlace - 펫플레이스(반려동물 종합 플랫폼)</title>
-    <link rel="stylesheet" href="css/nav.css">
+    <link rel="stylesheet" href="css/common/nav.css">
     <!-- Link Swiper's CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
     <script src="js/index.js"></script>
@@ -25,44 +25,49 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </head>
 <body>
+    <c:if test="${not empty sessionScope.alertMsg}">
+        <script>
+            alert("${sessionScope.alertMsg}")
+        </script>
+        ${sessionScope.remove("alertMsg")}
+    </c:if>
     <header>
         <div id="header-wrap">
             <a href="<%=contextPath%>">
                 <img src="images/Logo.png">
                 <%System.out.println();%>
             </a>
-            
-            <a href="<%=contextPath%>/communityList.do">커뮤니티</a>
-            <a href="<%=contextPath%>/shopping.do?cpage=1"">쇼핑</a>
+            <a href="<%=contextPath%>/communityList.do?cpage=1">커뮤니티</a>
+            <a href="<%=contextPath%>/shopping.do?cpage=1">쇼핑</a>
             <a href="<%=contextPath%>/adoptList.do">입양</a>
             <a href="<%=contextPath%>/searchHospital.do">동물병원찾기</a>
             <a href="<%=contextPath%>/funcCalculator.do">기능</a>
 
-			<c:choose>
-				<%-- 로그인 전 --%>
-				<c:when test="${empty loginUser }">
-		            <button type="button" id="user" onclick="userBtn()">
-		                <img src="images/user.png">
-		            </button>
-		            <div id="user-info">
-		                <p>USER</p>
-		                <div id="user-img"></div>
-		                <div id="login-form">
-		                    <form action="<%=contextPath%>/login.me" method="post">
-		                        <input type="text" name="userId" placeholder="아이디" required>
-		                        <input type="password" name="userPwd" placeholder="비밀번호" required> <br> <br>
-		                        <button type="submit">로그인</button>
-		                        <button type="button">회원가입</button>
-		                    </form>
-		                </div>
-		            </div>
-		    	</c:when>
-		    	<%-- 로그인 후 --%>
-		    	<c:otherwise>
-		    		<button type="button" id="user">
-		                <img src="images/user.png">
-		            </button>
-		    	</c:otherwise>
+            <c:choose>
+                <%-- 로그인 전 --%>
+                <c:when test="${empty loginUser }">
+                    <button type="button" id="user" onclick="userBtn()">
+                        <img src="images/user.png">
+                    </button>
+                    <div id="user-info">
+                        <p>USER</p>
+                        <div id="user-img"></div>
+                        <div id="login-form">
+                            <form action="<%=contextPath%>/login.me" method="post">
+                                <input type="text" name="userId" placeholder="아이디" required>
+                                <input type="password" name="userPwd" placeholder="비밀번호" required> <br> <br>
+                                <button type="submit">로그인</button>
+                                <button type="button">회원가입</button>
+                            </form>
+                        </div>
+                    </div>
+                </c:when>
+                <%-- 로그인 후 --%>
+                <c:otherwise>
+                    <button type="button" id="user">
+                        <img src="images/user.png">
+                    </button>
+                </c:otherwise>
             </c:choose>
             <script>
                 function searchHospital() {

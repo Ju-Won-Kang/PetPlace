@@ -1,7 +1,5 @@
 package com.petplace.product.model.vo;
 
-import java.sql.Date;
-
 /**
  * packageName    : com.petplace.product.model.vo
  * fileName       : Attachment
@@ -14,19 +12,37 @@ import java.sql.Date;
  * 2024. 9. 25.        jun       최초 생성
  */
 public class AttachmentProduct {
-    private String fileNo;
-    private String refPNo;
+    private int fileNo;
+    private int refPNo;
     private String originName;
     private String changeName;
     private String filePath;
-    private Date uploadDate;
+    private String uploadDate;
     private int fileLevel;
     private String status;
 
     public AttachmentProduct() {
     }
 
-    public AttachmentProduct(String fileNo, String refPNo, String originName, String changeName, String filePath, Date uploadDate, int fileLevel, String status) {
+    public AttachmentProduct(int fileNo, int refPNo, String originName, String changeName, String filePath, String uploadDate, int fileLevel) {
+        this.fileNo = fileNo;
+        this.refPNo = refPNo;
+        this.originName = originName;
+        this.changeName = changeName;
+        this.filePath = filePath;
+        this.uploadDate = uploadDate;
+        this.fileLevel = fileLevel;
+    }
+
+    public AttachmentProduct(int fileNo, String originName, String changeName, String filePath, int fileLevel) {
+        this.fileNo = fileNo;
+        this.originName = originName;
+        this.changeName = changeName;
+        this.filePath = filePath;
+        this.fileLevel = fileLevel;
+    }
+
+    public AttachmentProduct(int fileNo, int refPNo, String originName, String changeName, String filePath, String uploadDate, int fileLevel, String status) {
         this.fileNo = fileNo;
         this.refPNo = refPNo;
         this.originName = originName;
@@ -37,19 +53,19 @@ public class AttachmentProduct {
         this.status = status;
     }
 
-    public String getFileNo() {
+    public int getFileNo() {
         return fileNo;
     }
 
-    public void setFileNo(String fileNo) {
+    public void setFileNo(int fileNo) {
         this.fileNo = fileNo;
     }
 
-    public String getRefPNo() {
+    public int getRefPNo() {
         return refPNo;
     }
 
-    public void setRefPNo(String refPNo) {
+    public void setRefPNo(int refPNo) {
         this.refPNo = refPNo;
     }
 
@@ -77,11 +93,11 @@ public class AttachmentProduct {
         this.filePath = filePath;
     }
 
-    public Date getUploadDate() {
+    public String getUploadDate() {
         return uploadDate;
     }
 
-    public void setUploadDate(Date uploadDate) {
+    public void setUploadDate(String uploadDate) {
         this.uploadDate = uploadDate;
     }
 

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+    <entry key="selectListCount">
+        select count(*) as "count"
+        from inquiry
+    </entry>
+    <entry key="selectInquiryList">
+        SELECT *
+        FROM(SELECT ROWNUM RNUM, A.*
+                FROM(select INQUIRY_NO,
+                    MEMBER_ID,
+                    PRODUCT_NO,
+                    PRODUCT_NAME,
+                    INQUIRY_TITLE,
+                    INQUIRY_DETAIL,
+                    TO_CHAR(INQUIRY_DATE,'YYYY/MM/DD') AS "INQUIRY_DATE",
+                    ANSWER
+                from INQUIRY I
+                join product using(PRODUCT_NO)
+                order by INQUIRY_NO DESC) A )
+        WHERE RNUM BETWEEN ? AND ?
+    </entry>
+    <entry key="selectInquiry">
+        select INQUIRY_TITLE,
+        INQUIRY_DETAIL
+        from inquiry
+        where INQUIRY_NO = ?
+    </entry>
+    <entry key="insertInquiry">
+        update INQUIRY
+        set answer = ?
+        where INQUIRY_NO = ?
+    </entry>
+</properties>
