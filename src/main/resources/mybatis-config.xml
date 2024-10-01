@@ -12,8 +12,9 @@
   <!-- typeAliases : VO/DTO클래스들의 풀클래스명을 단순한 클래스명(별칭)으로 사용하기위한 별칭등록을 하는 영역 -->
   <typeAliases>
   	<typeAlias type="com.petplace.member.model.vo.Member" alias="Member" />
-  	<typeAlias type="com.petplace.board.model.vo.Board" alias="Board" />
-	<typeAlias type="com.petplace.board.model.vo.Reply" alias="Reply" />
+	<typeAlias type="com.petplace.review.model.vo.Review" alias="Review" />
+	<typeAlias type="com.petplace.shopping.model.vo.Shopping" alias="Shopping" />
+	<typeAlias type="com.petplace.product.model.vo.AttachmentProduct" alias="AttachmentProduct" />
   </typeAliases>
 
   <!-- environments : mybatis에서 연동할 db정보들을 등록하는 여역 -->
@@ -49,5 +50,7 @@
     <mapper resource="/mappers/member-mapper.xml"/>
     <mapper resource="/mappers/board-mapper.xml"/>
     <mapper resource="/mappers/product-mapper.xml"/>
+    <mapper resource="/mappers/purchase-mapper.xml"/>
+    <mapper resource="/mappers/shopping-mapper.xml"/>
   </mappers>
 </configuration>
