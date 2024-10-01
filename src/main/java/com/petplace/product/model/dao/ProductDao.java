@@ -4,6 +4,8 @@ import com.petplace.admin.model.dto.Category;
 import com.petplace.common.PageInfo;
 import com.petplace.product.model.vo.AttachmentProduct;
 import com.petplace.product.model.vo.Product;
+import org.apache.ibatis.session.RowBounds;
+import org.apache.ibatis.session.SqlSession;
 
 import static com.petplace.common.JDBCTemplate.*;
 
@@ -14,6 +16,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Objects;
 import java.util.Properties;
 
 /**
@@ -45,27 +49,8 @@ public class ProductDao {
      * @param conn Connection 객체
      * @return 카테고리 리스트 객체
      */
-    public ArrayList<Category> selectCategoryList(Connection conn) {
-        ArrayList<Category> cList = new ArrayList<>();
-        ResultSet rSet = null;
-        PreparedStatement pstmt = null;
-        String sql = prop.getProperty("selectCategoryList");
-
-        try {
-            pstmt = conn.prepareStatement(sql);
-            rSet = pstmt.executeQuery();
-
-            while (rSet.next()) {
-                cList.add(new Category(rSet.getString("PRODUCT_CATEGORY")));
-
-            }
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        } finally {
-            close(rSet);
-            close(pstmt);
-        }
-        return cList;
+    public ArrayList<Category> selectCategoryList(SqlSession sqlSession) {
+        return (ArrayList) sqlSession.selectList("productMapper.selectCategoryList", null);
     }
 
     /**
@@ -75,30 +60,8 @@ public class ProductDao {
      * @param p    Request시 Parameter 정보를 담은 Product 객체
      * @return DB에 Insert 결과값
      */
-    public int insertProduct(Connection conn, Product p) {
-        int result = 0;
-        PreparedStatement pstmt = null;
-        String sql = prop.getProperty("insertProduct");
-
-        try {
-            pstmt = conn.prepareStatement(sql);
-            pstmt.setString(1, p.getProductCategory());
-            pstmt.setString(2, p.getCompany());
-            pstmt.setString(3, p.getProductName());
-            pstmt.setInt(4, p.getPrice());
-            pstmt.setInt(5, p.getInventory());
-            pstmt.setString(6, p.getIngredient());
-            pstmt.setString(7, p.getOrigin());
-            pstmt.setInt(8, p.getProductWeight());
-            pstmt.setInt(9, p.getKcal());
-
-            result = pstmt.executeUpdate();
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        } finally {
-            close(pstmt);
-        }
-        return result;
+    public int insertProduct(SqlSession sqlSession, Product p) {
+        return sqlSession.insert("productMapper.insertProduct", p);
     }
 
     /**
@@ -108,26 +71,8 @@ public class ProductDao {
      * @param list 썸네일, 상품 상세정보 파일 정보를 담은 리스트
      * @return DB에 Insert 결과값
      */
-    public int enrollAttachmentList(Connection conn, ArrayList<AttachmentProduct> list) {
-        int result = 1;
-        PreparedStatement pstmt = null;
-        String sql = prop.getProperty("enrollAttachmentList");
-
-        try {
-            for (AttachmentProduct atP : list) {
-                pstmt = conn.prepareStatement(sql);
-                pstmt.setString(1, atP.getOriginName());
-                pstmt.setString(2, atP.getChangeName());
-                pstmt.setString(3, atP.getFilePath());
-                pstmt.setInt(4, atP.getFileLevel());
-                result *= pstmt.executeUpdate();
-            }
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        } finally {
-            close(pstmt);
-        }
-        return result;
+    public int enrollAttachmentList(SqlSession sqlSession, AttachmentProduct at) {
+        return sqlSession.insert("productMapper.enrollAttachmentList", at);
     }
 
     /**
@@ -136,26 +81,8 @@ public class ProductDao {
      * @param conn
      * @return
      */
-    public int selectListCount(Connection conn) {
-        int listCount = 0;
-        PreparedStatement pstmt = null;
-        ResultSet rset = null;
-        String sql = prop.getProperty("selectListCount");
-
-        try {
-            pstmt = conn.prepareStatement(sql);
-
-            rset = pstmt.executeQuery();
-            if (rset.next()) {
-                listCount = rset.getInt("COUNT");
-            }
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        } finally {
-            close(rset);
-            close(pstmt);
-        }
-        return listCount;
+    public int selectListCount(SqlSession sqlSession) {
+        return sqlSession.selectOne("productMapper.selectListCount");
     }
 
     /**
@@ -165,45 +92,11 @@ public class ProductDao {
      * @param pi
      * @return
      */
-    public ArrayList<Product> selectProductList(Connection conn, PageInfo pi) {
-        ArrayList<Product> pList = new ArrayList<>();
-        PreparedStatement pstmt = null;
-        ResultSet rset = null;
-        String sql = prop.getProperty("selectProductList");
-        int startRow = (pi.getCurrentPage() - 1) * pi.getBoardLimit() + 1;
-        int endRow = startRow + pi.getBoardLimit() - 1;
-
-        try {
-            pstmt = conn.prepareStatement(sql);
-            pstmt.setInt(1, startRow);
-            pstmt.setInt(2, endRow);
-
-            rset = pstmt.executeQuery();
-
-            while (rset.next()) {
-                pList.add(new Product(
-                        rset.getInt("PRODUCT_NO"),
-                        rset.getString("PRODUCT_CATEGORY"),
-                        rset.getString("COMPANY"),
-                        rset.getString("PRODUCT_NAME"),
-                        rset.getInt("PRICE"),
-                        rset.getInt("INVENTORY"),
-                        rset.getString("INGREDIENT"),
-                        rset.getString("ORIGIN"),
-                        rset.getInt("PRODUCT_WEIGHT"),
-                        rset.getInt("KCAL"),
-                        rset.getString("ENROLL_DATE"),
-                        rset.getString("MODIFY_DATE")
-                ));
-            }
-
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        } finally {
-            close(rset);
-            close(pstmt);
-        }
-        return pList;
+    public ArrayList<Product> selectProductList(SqlSession sqlSession, PageInfo pi) {
+        int offset = (pi.getCurrentPage() - 1) * pi.getBoardLimit();
+        int limit = pi.getBoardLimit();
+        RowBounds rowBounds = new RowBounds(offset, limit);
+        return (ArrayList) sqlSession.selectList("productMapper.selectProductList", null, rowBounds);
     }
 
     /**
@@ -213,37 +106,8 @@ public class ProductDao {
      * @param productNo
      * @return
      */
-    public ArrayList<AttachmentProduct> selectAttachment(Connection conn, int productNo) {
-        ArrayList<AttachmentProduct> atList = new ArrayList<>();
-        PreparedStatement pstmt = null;
-        ResultSet rset = null;
-        String sql = prop.getProperty("selectAttachment");
-
-        try {
-            pstmt = conn.prepareStatement(sql);
-            pstmt.setInt(1, productNo);
-
-            rset = pstmt.executeQuery();
-
-            while (rset.next()) {
-                atList.add(new AttachmentProduct(
-                        rset.getInt("FILE_NO"),
-                        rset.getInt("REF_PNO"),
-                        rset.getString("ORIGIN_NAME"),
-                        rset.getString("CHANGE_NAME"),
-                        rset.getString("FILE_PATH"),
-                        rset.getString("UPLOAD_DATE"),
-                        rset.getInt("FILE_LEVEL")
-                ));
-            }
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        } finally {
-            close(rset);
-            close(pstmt);
-        }
-        System.out.println(atList);
-        return atList;
+    public ArrayList<AttachmentProduct> selectAttachment(SqlSession sqlSession, int productNo) {
+        return (ArrayList) sqlSession.selectList("productMapper.selectAttachment", productNo);
     }
 
     /**
@@ -253,40 +117,8 @@ public class ProductDao {
      * @param productNo
      * @return
      */
-    public Product selectProduct(Connection conn, int productNo) {
-        Product p = null;
-        PreparedStatement pstmt = null;
-        ResultSet rset = null;
-        String sql = prop.getProperty("selectProduct");
-
-        try {
-            pstmt = conn.prepareStatement(sql);
-            pstmt.setInt(1, productNo);
-            rset = pstmt.executeQuery();
-
-            if (rset.next()) {
-                p = new Product(
-                        rset.getInt("PRODUCT_NO"),
-                        rset.getString("PRODUCT_CATEGORY"),
-                        rset.getString("COMPANY"),
-                        rset.getString("PRODUCT_NAME"),
-                        rset.getInt("PRICE"),
-                        rset.getInt("INVENTORY"),
-                        rset.getString("INGREDIENT"),
-                        rset.getString("ORIGIN"),
-                        rset.getInt("PRODUCT_WEIGHT"),
-                        rset.getInt("KCAL"),
-                        rset.getString("ENROLL_DATE"),
-                        rset.getString("MODIFY_DATE")
-                );
-            }
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        } finally {
-            close(rset);
-            close(pstmt);
-        }
-        return p;
+    public Product selectProduct(SqlSession sqlSession, int productNo) {
+        return sqlSession.selectOne("productMapper.selectProduct", productNo);
     }
 
     /**
@@ -296,29 +128,8 @@ public class ProductDao {
      * @param p    수정한 상품 정보
      * @return
      */
-    public int updateProduct(Connection conn, Product p) {
-        int result = 0;
-        PreparedStatement pstmt = null;
-        String sql = prop.getProperty("updateProduct");
-
-        try {
-            pstmt = conn.prepareStatement(sql);
-            pstmt.setString(1, p.getCompany());
-            pstmt.setInt(2, p.getPrice());
-            pstmt.setInt(3, p.getInventory());
-            pstmt.setString(4, p.getIngredient());
-            pstmt.setString(5, p.getOrigin());
-            pstmt.setInt(6, p.getProductWeight());
-            pstmt.setInt(7, p.getKcal());
-            pstmt.setInt(8, p.getProductNo());
-
-            result = pstmt.executeUpdate();
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        } finally {
-            close(pstmt);
-        }
-        return result;
+    public int updateProduct(SqlSession sqlSession, Product p) {
+        return sqlSession.update("productMapper.updateProduct", p);
     }
 
     /**
@@ -328,21 +139,8 @@ public class ProductDao {
      * @param productNo
      * @return
      */
-    public int deleteAttachmentProduct(Connection conn, int productNo) {
-        int result = 0;
-        PreparedStatement pstmt = null;
-        String sql = prop.getProperty("deleteAttachmentProduct");
-
-        try {
-            pstmt = conn.prepareStatement(sql);
-            pstmt.setInt(1, productNo);
-            result = pstmt.executeUpdate();
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        } finally {
-            close(pstmt);
-        }
-        return result;
+    public int deleteAttachmentProduct(SqlSession sqlSession, int productNo) {
+        return sqlSession.delete("productMapper.deleteAttachmentProduct", productNo);
     }
 
     /**
@@ -353,74 +151,29 @@ public class ProductDao {
      * @param productNo 참조하는 상품번호
      * @return
      */
-    public int insertAttachmentList(Connection conn, ArrayList<AttachmentProduct> list, int productNo) {
-        int result = 1;
-        PreparedStatement pstmt = null;
-        String sql = prop.getProperty("insertAttachmentList");
-
-        try {
-            for (AttachmentProduct atP : list) {
-                pstmt = conn.prepareStatement(sql);
-                pstmt.setInt(1, productNo);
-                pstmt.setString(2, atP.getOriginName());
-                pstmt.setString(3, atP.getChangeName());
-                pstmt.setString(4, atP.getFilePath());
-                pstmt.setInt(5, atP.getFileLevel());
-                result *= pstmt.executeUpdate();
-            }
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        } finally {
-            close(pstmt);
-        }
-        return result;
+    public int insertAttachmentList(SqlSession sqlSession, HashMap<String, Object> map) {
+        return sqlSession.insert("productMapper.insertAttachmentList", map);
     }
 
     /**
      * 상품 STATUS 변경
+     *
      * @param conn
      * @param productNo
      * @return
      */
-    public int deleteProduct(Connection conn, int productNo) {
-        int result = 0;
-        PreparedStatement pstmt = null;
-        String sql = prop.getProperty("deleteProduct");
-
-        try {
-            pstmt = conn.prepareStatement(sql);
-            pstmt.setInt(1,productNo);
-
-            result = pstmt.executeUpdate();
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        } finally {
-            close(pstmt);
-        }
-        return result;
+    public int deleteProduct(SqlSession sqlSession, int productNo) {
+        return sqlSession.update("productMapper.deleteProduct", productNo);
     }
 
     /**
      * 참조하는 상품 삭제시 첨부파일 STATUS 변경
+     *
      * @param conn
      * @param productNo
      * @return
      */
-    public int disableAttachmentProduct(Connection conn, int productNo) {
-        int result = 0;
-        PreparedStatement pstmt = null;
-        String sql = prop.getProperty("deleteAttachmentProduct");
-
-        try {
-            pstmt = conn.prepareStatement(sql);
-            pstmt.setInt(1,productNo);
-
-            result = pstmt.executeUpdate();
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        } finally {
-            close(pstmt);
-        }
-        return result;
+    public int disableAttachmentProduct(SqlSession sqlSession, int productNo) {
+        return sqlSession.update("productMapper.disableAttachmentProduct", productNo);
     }
 }

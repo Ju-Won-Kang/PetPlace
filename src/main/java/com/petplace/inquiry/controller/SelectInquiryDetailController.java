@@ -23,9 +23,10 @@ import java.io.IOException;
 public class SelectInquiryDetailController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String inquiryNo = request.getParameter("inquiryNo");
-        Inquiry inquiry = new InquiryService().selectInquiry(Integer.parseInt(inquiryNo));
+        request.setCharacterEncoding("UTF-8");
+        int inquiryNo = Integer.parseInt(request.getParameter("inquiryNo"));
         System.out.println(inquiryNo);
+        Inquiry inquiry = new InquiryService().selectInquiry(inquiryNo);
         response.setContentType("application/json; charset=utf-8");
         if(inquiry !=null){
             new Gson().toJson(inquiry,response.getWriter());
