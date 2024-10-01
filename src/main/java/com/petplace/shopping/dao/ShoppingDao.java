@@ -63,16 +63,15 @@ public class ShoppingDao {
 		
 		String sql = prop.getProperty("selectShoppingList");
 		
-		try {
-			pstmt = conn.prepareStatement(sql);
-			rset = pstmt.executeQuery();
-			
-			while(rset.next()) {
-				Product p = new Product();
-				p.setProductNo(rset.getInt("productNo"));
-				p.setProductName("productCategory");
-				p.set(rset.getInt("productNo"));
-			}
+//		try {
+//			pstmt = conn.prepareStatement(sql);
+//			rset = pstmt.executeQuery();
+//			
+//			while(rset.next()) {
+//				Product p = new Product();
+//				p.setProductNo(rset.getInt("productNo"));
+//				p.setProductName("productCategory");
+//			}
 			
 			/*
 			 * currentPage : 1 -> 1~10

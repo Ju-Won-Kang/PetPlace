@@ -51,14 +51,9 @@ public class AdminCreateProductFormController extends HttpServlet {
         ArrayList<Category> cList = new ProductService().selectCategoryList();
 
         // 포워딩
-<<<<<<< HEAD
-        request.setAttribute("category",cList);
-        request.setAttribute("nav",1);
-=======
         request.setAttribute("category", cList);
         System.out.println(cList);
         request.setAttribute("nav", 1);
->>>>>>> 79eab4cb28163d2b998f415142f23b834e28a983
         request.getRequestDispatcher("views/admin/adminCreateProductForm.jsp").forward(request, response);
 
     }

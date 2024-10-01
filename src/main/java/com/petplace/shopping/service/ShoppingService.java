@@ -33,7 +33,7 @@ public class ShoppingService {
 	
 	public AttachmentProduct selectAttachmentProduct(int productNo) {
 		Connection conn = getConnection();
-		AttachmentProduct at = new ShoppingDao().selectAttachmentProduct(conn, int productNo);
+		AttachmentProduct at = new ShoppingDao().selectAttachmentProduct(conn, productNo);
 		return at;
 	}
 	
