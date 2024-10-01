@@ -1,18 +1,12 @@
 package com.petplace.shopping.dao;
 
-import static com.petplace.common.JDBCTemplate.close;
-
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.ArrayList;
 
 import org.apache.ibatis.session.RowBounds;
 import org.apache.ibatis.session.SqlSession;
 
 import com.petplace.common.PageInfo;
-import com.petplace.shopping.model.vo.Shopping;
+import com.petplace.shopping.model.dto.ShoppingList;
 
 public class ShoppingDao {
 
@@ -20,7 +14,7 @@ public class ShoppingDao {
 		return sqlSession.selectOne("shoppingMapper.selectShoppingListCount");
 	}
 	
-	public ArrayList<Shopping> selectShoppingList(SqlSession sqlSession, PageInfo pi){
+	public ArrayList<ShoppingList> selectShoppingList(SqlSession sqlSession, PageInfo pi){
 		int offset = (pi.getCurrentPage() - 1) * pi.getBoardLimit();
 		int limit = pi.getBoardLimit();
 		RowBounds rowBounds = new RowBounds(offset, limit);

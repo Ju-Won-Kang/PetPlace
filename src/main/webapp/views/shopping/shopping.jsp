@@ -1,10 +1,10 @@
 <%@ page language="java" contentType="text/html;charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ page import="com.petplace.common.PageInfo, java.util.ArrayList, com.petplace.shopping.model.vo.Shopping, com.petplace.review.model.vo.Review" %>
+<%@ page import="com.petplace.common.PageInfo, java.util.ArrayList, com.petplace.shopping.model.dto.ShoppingList, com.petplace.review.model.vo.Review" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%
     PageInfo pi = (PageInfo)request.getAttribute("pi");
-    ArrayList<Shopping> list = (ArrayList<Shopping>)request.getAttribute("list");
+    ArrayList<ShoppingList> list = (ArrayList<ShoppingList>)request.getAttribute("list");
 
     int currentPage = pi.getCurrentPage();
     int startPage = pi.getStartPage();
@@ -39,7 +39,7 @@
             <p id="none-list">존재하는 쇼핑 목록이 없습니다.</p>
         <% } else { %>
             <div id="dogproduct-line1">
-                <% for(Shopping s : list) { %>
+                <% for(ShoppingList s : list) { %>
                     <div class="dogFood">
                         
                         <div onclick="location.href='<%=contextPath%>/shoppingdetail.do'" class="dogFood-img">

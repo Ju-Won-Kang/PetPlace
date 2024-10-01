@@ -13,6 +13,7 @@
 <typeAliases>
   <typeAlias type="com.petplace.purchase.model.dto.PurchaseList" alias="PurchaseList"/>
   <typeAlias type="com.petplace.shopping.model.vo.Shopping" alias="Shopping"/>
+  <typeAlias type="com.petplace.shopping.model.dto.ShoppingList" alias="ShoppingList"/>
   <typeAlias type="com.petplace.purchase.model.vo.Purchase" alias="Purchase"/>
   <typeAlias type="com.petplace.review.model.dto.ReviewList" alias="ReviewList"/>
   <typeAlias type="com.petplace.product.model.vo.Product" alias="Product"/>

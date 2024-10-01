@@ -5,7 +5,7 @@ import java.util.ArrayList;
 
 import com.petplace.common.PageInfo;
 import com.petplace.common.Template;
-import com.petplace.shopping.model.vo.Shopping;
+import com.petplace.shopping.model.dto.ShoppingList;
 import com.petplace.shopping.service.ShoppingServiceImpl;
 
 import jakarta.servlet.ServletException;
@@ -27,7 +27,7 @@ public class shoppingServlet extends HttpServlet {
 		
 		PageInfo pi = Template.getPageInfo(listCount, currentPage, 10, 8);
 		
-		ArrayList<Shopping> list = sService.selectShoppingList(pi);
+		ArrayList<ShoppingList> list = sService.selectShoppingList(pi);
 		
 		request.setAttribute("list", list);
 		request.setAttribute("pi", pi);
