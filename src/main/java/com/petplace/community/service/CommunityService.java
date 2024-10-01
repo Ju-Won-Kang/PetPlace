@@ -1,34 +1,19 @@
 package com.petplace.community.service;
 
-import static com.petplace.common.JDBCTemplate.close;
-import static com.petplace.common.JDBCTemplate.getConnection;
-
-import java.sql.Connection;
 import java.util.ArrayList;
 
 import com.petplace.common.PageInfo;
-import com.petplace.community.model.dao.CommunityDao;
 import com.petplace.community.model.vo.Community;
+import com.petplace.community.model.vo.CommunityAttachment;
 
-public class CommunityService {
+public interface CommunityService {
+	//communityList 관련
+	public int selectListCount();
+	public ArrayList<Community> selectList(PageInfo pi);
 	
-	public int selectListCount() {
-		Connection conn = getConnection();
-		
-		int listCount = new CommunityDao().selectListCount(conn);
-		close(conn);
-		
-		return listCount;
-	}
+	//community insert
+	public int insertCommunity(Community c, CommunityAttachment atC);
 	
-	public ArrayList<Community> selectList(PageInfo pi) {
-		Connection conn = getConnection();
-		
-		ArrayList<Community> list = new CommunityDao().selectList(conn, pi);
-		close(conn);
-		
-		return list;
-	}
-	
-	
+	//community detail
+	public Community increaseCount(int communityNo);
 }
