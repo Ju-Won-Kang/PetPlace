@@ -1,10 +1,10 @@
 <%@ page language="java" contentType="text/html;charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ page import="com.petplace.common.PageInfo, java.util.ArrayList, com.petplace.shopping.model.dto.ShoppingList, com.petplace.review.model.vo.Review" %>
+<%@ page import="com.petplace.common.PageInfo, java.util.ArrayList, com.petplace.shopping.model.vo.Shopping" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%
     PageInfo pi = (PageInfo)request.getAttribute("pi");
-    ArrayList<ShoppingList> list = (ArrayList<ShoppingList>)request.getAttribute("list");
+    ArrayList<Shopping> list = (ArrayList<Shopping>)request.getAttribute("list");
 
     int currentPage = pi.getCurrentPage();
     int startPage = pi.getStartPage();
@@ -23,9 +23,9 @@
     <div id="menubar">
         <div id="animal-category">
             <a href="<%=contextPath%>/shopping.do?cpage=1">전체</a>
-            <a href="<%=contextPath%>/shopping.do?cpage=1">멍멍이</a>
-            <a href="<%=contextPath%>/shopping.do?cpage=1">냥</a>
-            <a href="<%=contextPath%>/shopping.do?cpage=1">기타</a>
+            <a href="<%=contextPath%>/shoppingDog.do?cpage=1">멍멍이</a>
+            <a href="<%=contextPath%>/shoppingCat.do?cpage=1">냥</a>
+            <a href="<%=contextPath%>/shoppingEtc.do?cpage=1">기타</a>
         </div>
         <div id="search-area">
             <input type="search">
@@ -39,7 +39,7 @@
             <p id="none-list">존재하는 쇼핑 목록이 없습니다.</p>
         <% } else { %>
             <div id="dogproduct-line1">
-                <% for(ShoppingList s : list) { %>
+                <% for(Shopping s : list) { %>
                     <div class="dogFood">
                         
                         <div onclick="location.href='<%=contextPath%>/shoppingdetail.do'" class="dogFood-img">
@@ -50,7 +50,7 @@
                         <div class="dogFood-info">
                             <p class="dogFood-name"><%=s.getProductName() %></p>
                             <p class="dogFood-price"><%=s.getPrice() %> 원</p>
-                            <p class="dogFood-etc" id="stars"></p>
+                            <p class="dogFood-etc" id="stars">★★★★★</p>
                             <p class="dogFood-etc" id="star-after"> 16,610개 상품평</p>
                         </div>
                     </div>
