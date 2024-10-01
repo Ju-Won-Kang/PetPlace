@@ -21,7 +21,7 @@ import java.io.IOException;
 public class AdminInsertWayBillController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String purchaseNo = request.getParameter("purchaseNo");
+        int purchaseNo = Integer.parseInt(request.getParameter("purchaseNo"));
         String wayBill = request.getParameter("wayBill");
         int result = new PurchaseServiceImpl().insertWayBill(purchaseNo, wayBill);
         HttpSession session = request.getSession();

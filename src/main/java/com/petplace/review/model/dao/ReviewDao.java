@@ -2,12 +2,10 @@ package com.petplace.review.model.dao;
 
 import static com.petplace.common.JDBCTemplate.*;
 
-import com.petplace.common.JDBCTemplate;
 import com.petplace.common.PageInfo;
-import com.petplace.product.model.dao.ProductDao;
 import com.petplace.review.model.dto.ReviewList;
-import com.petplace.review.model.vo.Review;
-import com.petplace.review.service.ReviewService;
+import org.apache.ibatis.session.RowBounds;
+import org.apache.ibatis.session.SqlSession;
 
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -46,24 +44,8 @@ public class ReviewDao {
      * @param conn
      * @return
      */
-    public int selectListCount(Connection conn) {
-        int result = 0;
-        PreparedStatement pstmt= null;
-        ResultSet rset = null;
-        String sql = prop.getProperty("selectListCount");
-        try {
-            pstmt = conn.prepareStatement(sql);
-            rset = pstmt.executeQuery();
-            if(rset.next()){
-                result = rset.getInt("count");
-            }
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        } finally {
-            close(rset);
-            close(pstmt);
-        }
-        return result;
+    public int selectListCount(SqlSession sqlSession) {
+        return sqlSession.selectOne("reviewMapper.selectListCount");
     }
 
     /**
@@ -72,40 +54,11 @@ public class ReviewDao {
      * @param pi
      * @return
      */
-    public ArrayList<ReviewList> selectReviewList(Connection conn, PageInfo pi) {
-        ArrayList<ReviewList> rList = new ArrayList<>();
-        ResultSet rset = null;
-        PreparedStatement pstmt = null;
-        String sql = prop.getProperty("selectReviewList");
-        int startRow = (pi.getCurrentPage() - 1) * pi.getBoardLimit() + 1;
-        int endRow = startRow + pi.getBoardLimit() - 1;
-
-        System.out.println(startRow);
-        System.out.println(endRow);
-        try {
-            pstmt = conn.prepareStatement(sql);
-
-            pstmt.setInt(1,startRow);
-            pstmt.setInt(2,endRow);
-
-            rset = pstmt.executeQuery();
-            while (rset.next()){
-                rList.add(new ReviewList(
-                    rset.getString("REVIEW_NO"),
-                    rset.getString("MEMBER_ID"),
-                    rset.getString("PRODUCT_NAME"),
-                    rset.getInt("STAR"),
-                    rset.getString("REVIEW_DETAIL"),
-                    rset.getString("REVIEW_DATE")
-                ));
-            }
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        } finally {
-            close(rset);
-            close(pstmt);
-        }
-        return rList;
+    public ArrayList<ReviewList> selectReviewList(SqlSession sqlSession, PageInfo pi) {
+        int offset = (pi.getCurrentPage() - 1) * pi.getBoardLimit();
+        int limit = pi.getBoardLimit();
+        RowBounds rowBounds = new RowBounds(offset, limit);
+        return (ArrayList)sqlSession.selectList("reviewMapper.selectReviewList", null, rowBounds);
     }
 
     /**
@@ -114,21 +67,7 @@ public class ReviewDao {
      * @param reviewNo 삭제하고자하는 리뷰 번호
      * @return
      */
-    public int deleteReview(Connection conn, String reviewNo) {
-        int result = 0;
-        PreparedStatement pstmt = null;
-        String sql = prop.getProperty("deleteReview");
-
-        try {
-            pstmt = conn.prepareStatement(sql);
-            pstmt.setString(1,reviewNo);
-
-            result = pstmt.executeUpdate();
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        } finally {
-            close(pstmt);
-        }
-        return result;
+    public int deleteReview(SqlSession sqlSession, int reviewNo) {
+        return sqlSession.delete("reviewMapper.deleteReview", reviewNo);
     }
 }

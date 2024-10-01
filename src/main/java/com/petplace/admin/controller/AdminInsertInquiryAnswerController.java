@@ -22,9 +22,17 @@ public class AdminInsertInquiryAnswerController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.setCharacterEncoding("UTF-8");
-        String inquiryNo = request.getParameter("inquiryNo");
+        int inquiryNo = Integer.parseInt(request.getParameter("inquiryNo"));
         String answer = request.getParameter("answer");
         int result = new InquiryService().insertInquiry(inquiryNo, answer);
+        HttpSession session = request.getSession();
+        if (result > 0) { // 성공
+            session.setAttribute("alertMsg", "상품 문의 답변에 성공했습니다.");
+            response.sendRedirect(request.getContextPath() + "/adminInquiry.in?cpage=1");
+        } else { // 실패
+            session.setAttribute("alertMsg", "상품 문의 답변에 실패하였습니다.");
+            response.sendRedirect(request.getContextPath() + "/adminInquiry.in?cpage=1");
+        }
     }
 
     @Override

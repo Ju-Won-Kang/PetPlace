@@ -1,9 +1,10 @@
 package com.petplace.review.service;
 
 import com.petplace.common.PageInfo;
+import com.petplace.common.Template;
 import com.petplace.review.model.dao.ReviewDao;
 import com.petplace.review.model.dto.ReviewList;
-import com.petplace.review.model.vo.Review;
+import org.apache.ibatis.session.SqlSession;
 
 import static com.petplace.common.JDBCTemplate.*;
 
@@ -28,9 +29,9 @@ public class ReviewService {
      * @return
      */
     public int selectListCount() {
-        Connection conn = getConnection();
-        int result = new ReviewDao().selectListCount(conn);
-        close(conn);
+        SqlSession sqlSession = Template.getSqlSession();
+        int result = new ReviewDao().selectListCount(sqlSession);
+        sqlSession.close();
         return result;
     }
 
@@ -40,10 +41,10 @@ public class ReviewService {
      * @return
      */
     public ArrayList<ReviewList> selectReviewList(PageInfo pi) {
-        Connection conn = getConnection();
-        ArrayList<ReviewList> rList = new ReviewDao().selectReviewList(conn, pi);
+        SqlSession sqlSession = Template.getSqlSession();
 
-        close(conn);
+        ArrayList<ReviewList> rList = new ReviewDao().selectReviewList(sqlSession, pi);
+        sqlSession.close();
         return rList;
     }
 
@@ -52,10 +53,15 @@ public class ReviewService {
      * @param reviewNo
      * @return
      */
-    public int deleteReview(String reviewNo){
-        Connection conn = getConnection();
-        int result = new ReviewDao().deleteReview(conn, reviewNo);
-        close(conn);
+    public int deleteReview(int reviewNo){
+        SqlSession sqlSession = Template.getSqlSession();
+        int result = new ReviewDao().deleteReview(sqlSession, reviewNo);
+        if (result > 0) {
+            sqlSession.commit();
+        } else {
+            sqlSession.rollback();
+        }
+        sqlSession.close();
         return result;
     }
 }

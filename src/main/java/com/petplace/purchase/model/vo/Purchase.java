@@ -12,9 +12,9 @@ package com.petplace.purchase.model.vo;
  * 2024. 9. 30.        jun       최초 생성
  */
 public class Purchase {
-    private String purchaseNo;      // 구매코드
+    private int purchaseNo;      // 구매코드
     private String memberId;        // 주문자 아이디
-    private String productNo;       // 상품번호
+    private int productNo;       // 상품번호
     private int quantity;           // 구매수량
     private int amountPrice;        // 결제금액
     private String purchaseDate;    // 결제일
@@ -27,7 +27,7 @@ public class Purchase {
     public Purchase() {
     }
 
-    public Purchase(String purchaseNo, String memberId, String productNo, int quantity, int amountPrice, String purchaseDate, String payType, String request, String cardNo, int wayBill, String multiDetail) {
+    public Purchase(int purchaseNo, String memberId, int productNo, int quantity, int amountPrice, String purchaseDate, String payType, String request, String cardNo, int wayBill, String multiDetail) {
         this.purchaseNo = purchaseNo;
         this.memberId = memberId;
         this.productNo = productNo;
@@ -41,11 +41,11 @@ public class Purchase {
         this.multiDetail = multiDetail;
     }
 
-    public String getPurchaseNo() {
+    public int getPurchaseNo() {
         return purchaseNo;
     }
 
-    public void setPurchaseNo(String purchaseNo) {
+    public void setPurchaseNo(int purchaseNo) {
         this.purchaseNo = purchaseNo;
     }
 
@@ -57,11 +57,11 @@ public class Purchase {
         this.memberId = memberId;
     }
 
-    public String getProductNo() {
+    public int getProductNo() {
         return productNo;
     }
 
-    public void setProductNo(String productNo) {
+    public void setProductNo(int productNo) {
         this.productNo = productNo;
     }
 

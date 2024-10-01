@@ -178,7 +178,7 @@
                 <!-- Modal Header -->
                 <div class="modal-header">
                     <h4 class="modal-title">해당 리뷰를을 정말 삭제하시겠습니까?</h4>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+<%--                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>--%>
                 </div>
 
                 <form action="deleteReview.re">

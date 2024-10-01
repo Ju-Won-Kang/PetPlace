@@ -23,7 +23,7 @@ import java.io.IOException;
 public class ProductSelectController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        Product p = new ProductService().selectProduct(request.getParameter("productNo"));
+        Product p = new ProductService().selectProduct(Integer.parseInt(request.getParameter("productNo")));
         response.setContentType("application/json; charset=utf-8");
         if (p != null) {
             new Gson().toJson(p, response.getWriter());

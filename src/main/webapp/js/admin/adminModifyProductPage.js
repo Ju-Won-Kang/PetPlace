@@ -23,7 +23,7 @@ function modifyProudct(productNo) {
                         case "productNo":
                             str += "<div class=\"input-group input-group-sm mb-3 w-50\">\n" +
                                 "    <span class=\"input-group-text\">상품 코드</span>\n" +
-                                "    <input type=\"text\" class=\"form-control\" readonly  name=\"productNo\" value=" + productInfo.productNo +">\n" +
+                                "    <input type=\"number\" class=\"form-control\" readonly  name=\"productNo\" value=" + productInfo.productNo +">\n" +
                                 "</div>";
                             break;
                         case "productCategory":

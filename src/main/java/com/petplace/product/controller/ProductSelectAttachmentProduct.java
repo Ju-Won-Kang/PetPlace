@@ -24,7 +24,7 @@ import java.util.ArrayList;
 public class ProductSelectAttachmentProduct extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String productNo = request.getParameter("productNo");
+        int productNo = Integer.parseInt(request.getParameter("productNo"));
         System.out.println(productNo);
         ArrayList<AttachmentProduct> atList = new ProductService().selectAttachment(productNo);
 

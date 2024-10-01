@@ -10,7 +10,7 @@ function answerInquiry(inquiryNo) {
         success: function (inquiryInfo) {
             let str = "";
 
-            str += "<input name='inquiryNo' value='" + inquiryNo + "' class='hide'>";
+            str += "<input type='number' name='inquiryNo' value='" + inquiryNo + "' class='hide'>";
 
             str += "<div class=\"input-group input-group-sm mb-3 w-50\">\n" +
                 "    <span class=\"input-group-text\">문의 제목</span>\n" +

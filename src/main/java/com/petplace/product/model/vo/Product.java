@@ -12,7 +12,7 @@ package com.petplace.product.model.vo;
  * 2024. 9. 25.        jun       최초 생성
  */
 public class Product {
-    private String productNo;           // 상품번호
+    private int productNo;           // 상품번호
     private String productCategory;    // 상품카테고리명
     private String company;             // 제조사
     private String productName;         // 상품명
@@ -29,7 +29,7 @@ public class Product {
     public Product() {
     }
 
-    public Product(String productNo, String product_category, String company, String productName, int price, int inventory, String ingredient, String origin, int productWeight, int kcal, String enrollDate, String modifyDate, String status) {
+    public Product(int productNo, String product_category, String company, String productName, int price, int inventory, String ingredient, String origin, int productWeight, int kcal, String enrollDate, String modifyDate, String status) {
         this.productNo = productNo;
         this.productCategory = product_category;
         this.company = company;
@@ -45,7 +45,7 @@ public class Product {
         this.status = status;
     }
 
-    public Product(String productNo, String productCategory, String company, String productName, int price, int inventory, String ingredient, String origin, int productWeight, int kcal, String enrollDate, String modifyDate) {
+    public Product(int productNo, String productCategory, String company, String productName, int price, int inventory, String ingredient, String origin, int productWeight, int kcal, String enrollDate, String modifyDate) {
         this.productNo = productNo;
         this.productCategory = productCategory;
         this.company = company;
@@ -75,11 +75,11 @@ public class Product {
         this.status = status;
     }
 
-    public String getProductNo() {
+    public int getProductNo() {
         return productNo;
     }
 
-    public void setProductNo(String productNo) {
+    public void setProductNo(int productNo) {
         this.productNo = productNo;
     }
 

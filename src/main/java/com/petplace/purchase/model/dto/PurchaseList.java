@@ -12,7 +12,7 @@ package com.petplace.purchase.model.dto;
  * 2024. 9. 30.        jun       최초 생성
  */
 public class PurchaseList {
-    private String purchaseNo;      // 구매코드
+    private int purchaseNo;      // 구매코드
     private String productName;     // 상품명
     private int quantity;           // 구매수량
     private String memberId;        // 주문자 아이디
@@ -20,13 +20,13 @@ public class PurchaseList {
     private int amountPrice;        // 결제금액
     private String request;         // 요청사항
     private String purchaseDate;    // 결제일
-    private int wayBill;            // 운송장 번호
+    private String wayBill;            // 운송장 번호
     private String multiDetail;     // 다중 구매 내용
 
     public PurchaseList() {
     }
 
-    public PurchaseList(String purchaseNo, String productName, int quantity, String memberId, String payType, int amountPrice, String request, String purchaseDate, int wayBill, String multiDetail) {
+    public PurchaseList(int purchaseNo, String productName, int quantity, String memberId, String payType, int amountPrice, String request, String purchaseDate, String wayBill, String multiDetail) {
         this.purchaseNo = purchaseNo;
         this.productName = productName;
         this.quantity = quantity;
@@ -39,11 +39,11 @@ public class PurchaseList {
         this.multiDetail = multiDetail;
     }
 
-    public String getPurchaseNo() {
+    public int getPurchaseNo() {
         return purchaseNo;
     }
 
-    public void setPurchaseNo(String purchaseNo) {
+    public void setPurchaseNo(int purchaseNo) {
         this.purchaseNo = purchaseNo;
     }
 
@@ -103,11 +103,11 @@ public class PurchaseList {
         this.purchaseDate = purchaseDate;
     }
 
-    public int getWayBill() {
+    public String getWayBill() {
         return wayBill;
     }
 
-    public void setWayBill(int wayBill) {
+    public void setWayBill(String wayBill) {
         this.wayBill = wayBill;
     }
 
