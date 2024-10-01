@@ -1,6 +1,7 @@
 package com.petplace.shopping.service;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import org.apache.ibatis.session.SqlSession;
 
@@ -23,44 +24,36 @@ public class ShoppingServiceImpl implements ShoppingService {
 	}
 	
 	@Override
-	public ArrayList<ShoppingList> selectShoppingList(PageInfo pi) {
+	public ArrayList<ShoppingList> selectShoppingList(PageInfo pi, String categoryName) {
 		SqlSession sqlSession = Template.getSqlSession();
 		
-		ArrayList<ShoppingList> list = sDao.selectShoppingList(sqlSession, pi);
+		ArrayList<ShoppingList> list = sDao.selectShoppingList(sqlSession, pi, categoryName);
 		
 		sqlSession.close();
 		
 		return list;
 	}
-	
-	
-	
-	
-//	public ArrayList<Shopping> selectAllList(String categoryName) {
-//		Connection conn = getConnection();
-//		
-//		ArrayList<Shopping> list = new ShoppingDao().selectAllList(conn, categoryName);
-//		
-//		close(conn);
-//		
-//		return list;
-//	}
-//	
-//	
-//	public ArrayList<Shopping> selectCategoryList(String categoryName) {
-//		Connection conn = getConnection();
-//		
-//		ArrayList<Shopping> list = new ShoppingDao().selectCategoryList(conn, categoryName);
-//		
-//		close(conn);
-//		
-//		return list;
-//	}
 
+	@Override
+	public int selectSearchCount(HashMap<String, String> map) {
+		SqlSession sqlSession = Template.getSqlSession();
+		
+		int result = sDao.selectSearchCount(sqlSession, map);
+		
+		sqlSession.close();
+		
+		return result;
+	}
 
-
-
-
-
+	@Override
+	public ArrayList<ShoppingList> selectSearchList(HashMap<String, String> map, PageInfo pi) {
+		SqlSession sqlSession = Template.getSqlSession();
+		
+		ArrayList<ShoppingList> list = sDao.selectSearchList(sqlSession, map, pi);
+		
+		sqlSession.close();
+		
+		return list;
+	}
 
 }

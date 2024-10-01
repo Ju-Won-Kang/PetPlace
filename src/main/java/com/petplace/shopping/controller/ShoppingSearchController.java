@@ -2,37 +2,57 @@ package com.petplace.shopping.controller;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import com.petplace.common.PageInfo;
 import com.petplace.common.Template;
 import com.petplace.shopping.model.dto.ShoppingList;
+import com.petplace.shopping.service.ShoppingService;
 import com.petplace.shopping.service.ShoppingServiceImpl;
 
 import jakarta.servlet.ServletException;
-import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
-@WebServlet(name = "shopping.do", urlPatterns = { "/shopping.do" })
-public class shoppingServlet extends HttpServlet {
-	
-	@Override
+/**
+ * Servlet implementation class ShoppingSearchController
+ */
+public class ShoppingSearchController extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+       
+    /**
+     * @see HttpServlet#HttpServlet()
+     */
+    public ShoppingSearchController() {
+        super();
+        // TODO Auto-generated constructor stub
+    }
+
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		ShoppingServiceImpl sService = new ShoppingServiceImpl();
-		//------------------------ 페이징 처리 ------------------------
+		String categoryName = request.getParameter("category");
+		String keyword = request.getParameter("keyword");
+		
+		HashMap<String, String> map = new HashMap<>();
+		map.put("categoryName", categoryName);
+		map.put("keyword", keyword);
+		
+		ShoppingService sService = new ShoppingServiceImpl();
 		
 		int currentPage = Integer.parseInt(request.getParameter("cpage"));
-		String categoryName = (String)(request.getParameter("category")); 
-		System.err.println(categoryName);
-		int listCount = sService.selectShoppingListCount(); //총 게시글 수
+		int searchCount = sService.selectSearchCount(map);
 		
-		PageInfo pi = Template.getPageInfo(listCount, currentPage, 10, 8);
+		PageInfo pi = Template.getPageInfo(searchCount, currentPage, 10, 8);
+		ArrayList<ShoppingList> list = sService.selectSearchList(map, pi);
 		
-		ArrayList<ShoppingList> list = sService.selectShoppingList(pi, categoryName);
-		System.out.println(list);
 		request.setAttribute("list", list);
 		request.setAttribute("pi", pi);
+		request.setAttribute("categoryName", categoryName);
+		request.setAttribute("keyword", keyword);
+		
 		if(categoryName != null) {
 			if(categoryName.equals("강아지")) {
 				request.getRequestDispatcher("views/shopping/shoppingDogList.jsp").forward(request, response);
@@ -44,10 +64,15 @@ public class shoppingServlet extends HttpServlet {
 		} else {
 			request.getRequestDispatcher("views/shopping/shopping.jsp").forward(request, response);
 		}
+
 	}
 
-	@Override
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
+
 }

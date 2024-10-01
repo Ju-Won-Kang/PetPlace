@@ -32,4 +32,14 @@
     <servlet-name>login.me</servlet-name>
     <url-pattern>/login.me</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>shoppingSearch.do</display-name>
+    <servlet-name>shoppingSearch.do</servlet-name>
+    <servlet-class>com.petplace.shopping.controller.ShoppingSearchController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>shoppingSearch.do</servlet-name>
+    <url-pattern>/shoppingSearch.do</url-pattern>
+  </servlet-mapping>
 </web-app>
