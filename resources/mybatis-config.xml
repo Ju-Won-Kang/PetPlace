@@ -12,6 +12,8 @@
 <!-- typeAliases : VO/DTO클래스들의 풀클래스명을 단순한 클래스명(별칭)으로 사용하기 위해 별칭 등록을 하는 영역 -->
 <typeAliases>
   <typeAlias type="com.petplace.purchase.model.dto.PurchaseList" alias="PurchaseList"/>
+  <typeAlias type="com.petplace.shopping.model.vo.Shopping" alias="Shopping"/>
+  <typeAlias type="com.petplace.shopping.model.dto.ShoppingList" alias="ShoppingList"/>
   <typeAlias type="com.petplace.purchase.model.vo.Purchase" alias="Purchase"/>
   <typeAlias type="com.petplace.review.model.dto.ReviewList" alias="ReviewList"/>
   <typeAlias type="com.petplace.product.model.vo.Product" alias="Product"/>
@@ -19,7 +21,6 @@
   <typeAlias type="com.petplace.admin.model.dto.Category" alias="Category"/>
   <typeAlias type="com.petplace.inquiry.model.dto.InquiryList" alias="InquiryList"/>
   <typeAlias type="com.petplace.inquiry.model.vo.Inquiry" alias="Inquiry"/>
-
   <!-- Common -->
   <typeAlias type="java.util.HashMap" alias="HashMap"/>
   <typeAlias type="java.util.List" alias="List"/>
@@ -54,6 +55,6 @@
     <mapper resource="/mappers/product-mapper.xml"/>
     <mapper resource="/mappers/review-mapper.xml"/>
     <mapper resource="/mappers/inquiry-mapper.xml"/>
-
+    <mapper resource="/mappers/shopping-mapper.xml"/>
   </mappers>
 </configuration>
