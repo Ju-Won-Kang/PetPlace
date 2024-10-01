@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html;charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ page import="com.petplace.common.PageInfo, java.util.ArrayList, com.petplace.shopping.model.vo.Shopping, com.petplace.review.model.vo.Review" %>
+<%@ page import="com.petplace.common.PageInfo, java.util.ArrayList, com.petplace.shopping.model.vo.Shopping" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%
     PageInfo pi = (PageInfo)request.getAttribute("pi");
@@ -50,7 +50,7 @@
                         <div class="dogFood-info">
                             <p class="dogFood-name"><%=s.getProductName() %></p>
                             <p class="dogFood-price"><%=s.getPrice() %> 원</p>
-                            <p class="dogFood-etc" id="stars"></p>
+                            <p class="dogFood-etc" id="stars">★★★★★</p>
                             <p class="dogFood-etc" id="star-after"> 16,610개 상품평</p>
                         </div>
                     </div>

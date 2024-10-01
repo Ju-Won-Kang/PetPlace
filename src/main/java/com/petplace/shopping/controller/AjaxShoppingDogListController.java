@@ -5,7 +5,7 @@ import java.util.ArrayList;
 
 import com.google.gson.Gson;
 import com.petplace.shopping.model.vo.Shopping;
-import com.petplace.shopping.service.ShoppingService;
+import com.petplace.shopping.service.ShoppingServiceImpl;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -35,7 +35,7 @@ public class AjaxShoppingDogListController extends HttpServlet {
 		String categoryName = (String)(request.getParameter("categoryName"));
 		
 		ArrayList<Shopping> list = new ArrayList<>();
-		ShoppingService sService = new ShoppingService();
+		ShoppingServiceImpl sService = new ShoppingServiceImpl();
 		
 		if(categoryName.equals("전체")) {
 			list = sService.selectAllList(categoryName);
