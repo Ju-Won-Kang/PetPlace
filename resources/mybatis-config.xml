@@ -15,7 +15,6 @@
   <typeAlias type="com.petplace.purchase.model.vo.Purchase" alias="Purchase"/>
   <typeAlias type="com.petplace.review.model.dto.ReviewList" alias="ReviewList"/>
   <typeAlias type="com.petplace.product.model.vo.Product" alias="Product"/>
-  <typeAlias type="com.petplace.product.model.vo.Product" alias="Product"/>
   <typeAlias type="com.petplace.product.model.vo.AttachmentProduct" alias="AttachmentProduct"/>
   <typeAlias type="com.petplace.admin.model.dto.Category" alias="Category"/>
   <typeAlias type="com.petplace.inquiry.model.dto.InquiryList" alias="InquiryList"/>
@@ -23,6 +22,8 @@
 
   <!-- Common -->
   <typeAlias type="java.util.HashMap" alias="HashMap"/>
+  <typeAlias type="java.util.List" alias="List"/>
+
 </typeAliases>
     <!-- environments : mybatis에서 연동할 db정보들을 등록하는 영역 -->
   <environments default="development">
@@ -50,6 +51,9 @@
 <!--mappers : 실행할 sql문들을 기록해둔 mapper 파일들을 등록하는 영역 -->
   <mappers>
     <mapper resource="/mappers/purchase-mapper.xml"/>
+    <mapper resource="/mappers/product-mapper.xml"/>
+    <mapper resource="/mappers/review-mapper.xml"/>
+    <mapper resource="/mappers/inquiry-mapper.xml"/>
 
   </mappers>
 </configuration>

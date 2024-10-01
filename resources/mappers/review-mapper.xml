@@ -2,7 +2,7 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="purchaseMapper">
+<mapper namespace="reviewMapper">
     <resultMap id="reviewListSet" type="ReviewList">
         <result column="REVIEW_NO" property="reviewNo"/>
         <result column="MEMBER_ID" property="memberId"/>
@@ -27,8 +27,8 @@
         join product using(PRODUCT_NO)
         order by REVIEW_NO DESC
     </select>
-    <delete id="deleteReview" >
+    <delete id="deleteReview" parameterType="_int">
         delete from review
-        where review_no = ?
+        where review_no = #{reviewNo}
     </delete>
 </mapper>

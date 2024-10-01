@@ -2,7 +2,7 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="purchaseMapper">
+<mapper namespace="inquiryMapper">
     <resultMap id="InquiryListSet" type="InquiryList">
         <result column="INQUIRY_NO" property="inquiryNo"/>
         <result column="MEMBER_ID" property="memberId"/>
@@ -31,9 +31,9 @@
         join product using(PRODUCT_NO)
         order by INQUIRY_NO DESC
     </select>
-    <select id="selectInquiry" parameterType="_int">
-        select INQUIRY_TITLE,
-        INQUIRY_DETAIL
+    <select id="selectInquiry" parameterType="_int" resultType="Inquiry">
+        select INQUIRY_TITLE as inquiryTitle,
+        INQUIRY_DETAIL as inquiryDetail
         from inquiry
         where INQUIRY_NO = #{inquiryNo}
     </select>
