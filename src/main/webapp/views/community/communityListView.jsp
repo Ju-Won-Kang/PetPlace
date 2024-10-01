@@ -1,15 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8" %>
-<%@ page import="com.petplace.common.PageInfo, java.util.ArrayList, com.petplace.community.model.vo.Community" %>
-<%
-    PageInfo pi = (PageInfo)request.getAttribute("pi");
-    ArrayList<Community> list = (ArrayList<Community>)request.getAttribute("list");
-
-    int currentPage = pi.getCurrentPage();
-    int startPage = pi.getStartPage();
-    int endPage = pi.getEndPage();
-    int maxPage = pi.getMaxPage();
-%>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -24,20 +14,20 @@
 <title>커뮤니티</title>
 </head>
 <body>
-	<%@include file="../common/nav.jsp" %>
+	<jsp:include page="../common/nav.jsp" />
 	<br>
 	<div id="category" class="container mt-3" align="center">
 		<div>
-			<a href="">전체</a>
+			<a href="communityList.do?cpage=1&category=all">전체</a>
 		</div>
 		<div>
-			<a href="">개</a>
+			<a href="communityList.do?cpage=1&category=개">개</a>
 		</div>
 		<div>
-			<a href="">고양이</a>
+			<a href="communityList.do?cpage=1&category=고양이">고양이</a>
 		</div>
 		<div>
-			<a href="">기타</a>
+			<a href="communityList.do?cpage=1&category=기타">기타</a>
 		</div>
 	</div>
 	<br>
@@ -45,7 +35,6 @@
 		<a href="" class="list-btn">전체</a>&nbsp;&nbsp;
 		<a href="" class="list-btn">인기글</a>&nbsp;&nbsp;
 		<a href="" class="list-btn">공지글</a>&nbsp;&nbsp;
-		<a href="" class="list-btn">Q&A</a>
 		<input type="text" class="search-bar">
 		<br><br>
 		<table class="table" style="text-align: center;">
@@ -61,52 +50,60 @@
 				</tr>
 			</thead>
 			<tbody>
-				<% if(list.isEmpty()) { %>
-					<tr>
-						<td colspan="7">존재하는 게시글이 없습니다.</td>
-					</tr>
-				<% } else { %>
-					<% for(Community c : list) {%>
-						<tr onclick="clickDetailPage(<%=c.getCummunity_no() %>)">
-							<td><%=c.getCummunity_no() %></td>
-							<td><%=c.getCommunity_category() %></td>
-							<td><%=c.getCommunity_title() %></td>
-							<td><%=c.getNickname() %></td>
-							<td><%=c.getCommunity_date() %></td>
-							<td><%=c.getCommunity_views() %></td>
-							<td><%=c.getCommunity_good() %></td>
+				<c:choose>
+					<c:when test="${empty list }">
+						<tr>
+							<td colspan="7">존재하는 게시글이 없습니다.</td>
 						</tr>
-					<% } %>
-				<% } %>
+					</c:when>
+					<c:otherwise>
+						<c:forEach var="c" items="${list }">
+							<tr onclick="clickDetailPage(${c.communityNo})">
+								<td>${c.communityNo}</td>
+								<td>${c.communityCategory}</td>
+								<td>${c.communityTitle}</td>
+								<td>${c.nickname}</td>
+								<td>${c.communityDate}</td>
+								<td>${c.communityView}</td>
+								<td>${c.communityGood}</td>
+							</tr>
+						</c:forEach>
+					</c:otherwise>
+				</c:choose>
 			</tbody>
-			<script>
-	            function clickDetailPage(communityNo){
-	                location.href = "<%=contextPath%>/communityDetail.do?cno=" + communityNo;
-	            }
-        	</script>
 		</table>
+		<script>
+            function clickDetailPage(communityNo){
+                location.href = "communityDetail.do?cno=" + communityNo;
+            }
+       	</script>
 		<c:if test="${loginUser ne null }">
 			<div id="write" class="container mt-3" align="right">
-				<div><a href="<%=contextPath%>/communityWrite.do">글쓰기</a></div>
+				<div><a href="communityWrite.do">글쓰기</a></div>
 			</div>
 		</c:if>
 		<br>
         <div align="center">
-        	<%if(currentPage > 1) { %>
-            	<button onclick="location.href='<%=contextPath%>/communityList.do?cpage=<%=currentPage - 1%>'">&lt;</button>
-            <% } %>
-            <% for(int p = startPage; p <= endPage; p++) { %>
-                <% if(p == currentPage) { %>
-                    <button disabled><%=p%></button>
-                <% } else {%>
-                    <button onclick="location.href='<%=contextPath%>/communityList.do?cpage=<%=p%>'"><%=p%></button>
-                <% } %>
-            <% } %>
-            <%if(currentPage < maxPage) { %>
-            	<button onclick="location.href='<%=contextPath%>/communityList.do?cpage=<%=currentPage + 1%>'">&gt;</button>
-        	<% } %>
+        	<c:if test="${pi.currentPage ne 1}">
+                <a href="communityList.do?cpage=${pi.currentPage - 1}">[이전]</a>
+            </c:if>
+
+            <c:forEach var="i" begin="${pi.startPage}" end="${pi.endPage}">
+            	<c:choose>
+            		<c:when test="${empty condition }">
+            			<a href="communityList.do?cpage=${i}">${i}</a>
+            		</c:when>
+            		<c:otherwise>
+            			<a href="search.bo?cpage=${i}&condition=${condition}&keyword=${keyword}">${i}</a>
+            		</c:otherwise>
+            	</c:choose>
+            </c:forEach>
+
+            <c:if test="${pi.currentPage ne pi.maxPage}">
+                <a href="communityList.do?cpage=${pi.currentPage + 1}">[다음]</a>
+            </c:if>
         </div>
 	</div>
-	<%@include file="../common/footer.jsp" %>
+	<jsp:include page="../common/footer.jsp" />
 </body>
 </html>

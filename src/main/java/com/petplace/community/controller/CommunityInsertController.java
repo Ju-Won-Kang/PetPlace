@@ -12,7 +12,7 @@ import org.apache.commons.fileupload2.jakarta.JakartaServletFileUpload;
 
 import com.petplace.community.model.vo.Community;
 import com.petplace.community.model.vo.CommunityAttachment;
-import com.petplace.community.service.CommunityService;
+import com.petplace.community.service.CommunityServiceImple;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
@@ -62,23 +62,24 @@ public class CommunityInsertController extends HttpServlet {
 			
 			//추가할 데이터
 			Community c = new Community();
-			ArrayList<CommunityAttachment> list = new ArrayList<>();
+			//ArrayList<CommunityAttachment> list = new ArrayList<>();
+			CommunityAttachment atC = new CommunityAttachment();
 			
 			for(FileItem item : formItems) { //일반파라미터
 				System.out.println(item);
 				if(item.isFormField()) {
 					switch(item.getFieldName()) {
 					case "memberId":
-						c.setMember_id(item.getString(Charset.forName("utf-8")));
+						c.setMemberId(item.getString(Charset.forName("utf-8")));
 						break;
 					case "category":
-						c.setCommunity_category(item.getString(Charset.forName("utf-8")));
+						c.setCommunityCategory(item.getString(Charset.forName("utf-8")));
 						break;
 					case "title":
-						c.setCommunity_title(item.getString(Charset.forName("utf-8")));
+						c.setCommunityTitle(item.getString(Charset.forName("utf-8")));
 						break;
 					case "detail":
-						c.setCommunity_detail(item.getString(Charset.forName("utf-8")));
+						c.setCommunityDetail(item.getString(Charset.forName("utf-8")));
 						break;
 					}
 				} else {
@@ -92,26 +93,26 @@ public class CommunityInsertController extends HttpServlet {
 						File f = new File(savePath, changeName);
                         item.write(f.toPath());
                         
-						CommunityAttachment atC = new CommunityAttachment();
+						//CommunityAttachment atC = new CommunityAttachment();
 						atC.setOriginName(originName);
 						atC.setChangeName(changeName);
 						atC.setFilePath("/images/community_upfile/");
 						
-						list.add(atC);
+						//list.add(atC);
 					}
 				}
 			}
 			
-			int result = new CommunityService().insertCommunity(c, list);
+			int result = new CommunityServiceImple().insertCommunity(c, atC);
 			HttpSession session = request.getSession();
 			if(result > 0) {//성공
 				session.setAttribute("alertMsg", "커뮤니티 게시글 등록에 성공했습니다.");
 				response.sendRedirect(request.getContextPath() + "/communityList.do?cpage=1");
 			} else { //실패 -> 업로드된 파일 삭제해주고 에러페이지
 				 
-				 for(CommunityAttachment at : list) {
-					 new File(savePath + at.getChangeName()).delete();
-				 }
+				 //for(CommunityAttachment at : list) {
+					 new File(savePath + atC.getChangeName()).delete();
+				 //}
 				 session.setAttribute("alertMsg", "커뮤니티 게시글 등록에 실패하였습니다.");
 				 response.sendRedirect(request.getContextPath() + "/communityList.do?cpage=1");
 			}
