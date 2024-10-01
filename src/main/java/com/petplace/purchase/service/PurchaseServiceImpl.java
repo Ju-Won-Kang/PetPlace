@@ -38,9 +38,9 @@ public class PurchaseServiceImpl implements PurchaseService{
     }
 
     @Override
-    public int insertWayBill(String purchaseNo, String wayBill) {
+    public int insertWayBill(int purchaseNo, String wayBill) {
         SqlSession sqlSession = Template.getSqlSession();
-        HashMap<String, String> map = new HashMap<>();
+        HashMap<String, Object> map = new HashMap<>();
 
         map.put("purchaseNo", purchaseNo);
         map.put("wayBill", wayBill);

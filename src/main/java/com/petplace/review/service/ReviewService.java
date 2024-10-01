@@ -3,7 +3,6 @@ package com.petplace.review.service;
 import com.petplace.common.PageInfo;
 import com.petplace.review.model.dao.ReviewDao;
 import com.petplace.review.model.dto.ReviewList;
-import com.petplace.review.model.vo.Review;
 
 import static com.petplace.common.JDBCTemplate.*;
 
@@ -52,7 +51,7 @@ public class ReviewService {
      * @param reviewNo
      * @return
      */
-    public int deleteReview(String reviewNo){
+    public int deleteReview(int reviewNo){
         Connection conn = getConnection();
         int result = new ReviewDao().deleteReview(conn, reviewNo);
         close(conn);

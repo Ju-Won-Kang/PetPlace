@@ -44,7 +44,7 @@ public class InquiryService {
         return iList;
     }
 
-    public Inquiry selectInquiry(String inquiryNo) {
+    public Inquiry selectInquiry(int inquiryNo) {
         Connection conn = getConnection();
         Inquiry inquiry = new InquiryDao().selectInquiry(conn, inquiryNo);
 
@@ -52,7 +52,7 @@ public class InquiryService {
         return inquiry;
     }
 
-    public int insertInquiry(String inquiryNo, String answer) {
+    public int insertInquiry(int inquiryNo, String answer) {
         Connection conn = getConnection();
         int result = new InquiryDao().insertInquiry(conn, inquiryNo, answer);
         if (result > 0) {

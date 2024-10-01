@@ -4,7 +4,6 @@ import com.petplace.common.PageInfo;
 import com.petplace.inquiry.model.dto.InquiryList;
 import com.petplace.inquiry.model.vo.Inquiry;
 import com.petplace.review.model.dao.ReviewDao;
-import com.petplace.review.model.dto.ReviewList;
 
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -77,9 +76,9 @@ public class InquiryDao {
             rset = pstmt.executeQuery();
             while (rset.next()) {
                 iList.add(new InquiryList(
-                        rset.getString("INQUIRY_NO"),
+                        rset.getInt("INQUIRY_NO"),
                         rset.getString("MEMBER_ID"),
-                        rset.getString("PRODUCT_NO"),
+                        rset.getInt("PRODUCT_NO"),
                         rset.getString("PRODUCT_NAME"),
                         rset.getString("INQUIRY_TITLE"),
                         rset.getString("INQUIRY_DETAIL"),
@@ -96,7 +95,7 @@ public class InquiryDao {
         return iList;
     }
 
-    public Inquiry selectInquiry(Connection conn, String inquiryNo) {
+    public Inquiry selectInquiry(Connection conn, int inquiryNo) {
         Inquiry inquiry = null;
         ResultSet rset = null;
         PreparedStatement pstmt = null;
@@ -104,7 +103,7 @@ public class InquiryDao {
         try {
             pstmt = conn.prepareStatement(sql);
 
-            pstmt.setString(1, inquiryNo);
+            pstmt.setInt(1, inquiryNo);
 
             rset = pstmt.executeQuery();
             if (rset.next()) {
@@ -121,14 +120,14 @@ public class InquiryDao {
         return inquiry;
     }
 
-    public int insertInquiry(Connection conn, String inquiryNo, String answer) {
+    public int insertInquiry(Connection conn, int inquiryNo, String answer) {
         int result = 0;
         PreparedStatement pstmt = null;
         String sql = prop.getProperty("insertInquiry");
         try {
             pstmt = conn.prepareStatement(sql);
             pstmt.setString(1,answer);
-            pstmt.setString(2,inquiryNo);
+            pstmt.setInt(2,inquiryNo);
             result = pstmt.executeUpdate();
         } catch (SQLException e) {
             throw new RuntimeException(e);

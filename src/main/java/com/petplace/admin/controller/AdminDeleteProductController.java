@@ -21,7 +21,7 @@ import java.io.IOException;
 public class AdminDeleteProductController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String productNo = request.getParameter("productNo");
+        int productNo = Integer.parseInt(request.getParameter("productNo"));
         int result = new ProductService().deleteProduct(productNo);
         System.out.println("상품 삭제 result : " + result);
         HttpSession session = request.getSession();

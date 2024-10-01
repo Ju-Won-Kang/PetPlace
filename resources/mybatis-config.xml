@@ -13,6 +13,15 @@
 <typeAliases>
   <typeAlias type="com.petplace.purchase.model.dto.PurchaseList" alias="PurchaseList"/>
   <typeAlias type="com.petplace.shopping.model.vo.Shopping" alias="Shopping"/>
+  <typeAlias type="com.petplace.purchase.model.vo.Purchase" alias="Purchase"/>
+  <typeAlias type="com.petplace.review.model.dto.ReviewList" alias="ReviewList"/>
+  <typeAlias type="com.petplace.product.model.vo.Product" alias="Product"/>
+  <typeAlias type="com.petplace.product.model.vo.AttachmentProduct" alias="AttachmentProduct"/>
+  <typeAlias type="com.petplace.admin.model.dto.Category" alias="Category"/>
+  <typeAlias type="com.petplace.inquiry.model.dto.InquiryList" alias="InquiryList"/>
+  <typeAlias type="com.petplace.inquiry.model.vo.Inquiry" alias="Inquiry"/>
+  <!-- Common -->
+  <typeAlias type="java.util.HashMap" alias="HashMap"/>
 </typeAliases>
     <!-- environments : mybatis에서 연동할 db정보들을 등록하는 영역 -->
   <environments default="development">

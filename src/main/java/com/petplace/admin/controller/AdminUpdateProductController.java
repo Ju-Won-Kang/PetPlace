@@ -52,7 +52,7 @@ public class AdminUpdateProductController extends HttpServlet {
                 if (item.isFormField()) {
                     switch (item.getFieldName()) {
                         case "productNo":
-                            p.setProductNo(item.getString(Charset.forName("UTF-8")));
+                            p.setProductNo(Integer.parseInt(item.getString(Charset.forName("UTF-8"))));
                             break;
                         case "productCategory":
                             p.setProductCategory(item.getString(Charset.forName("UTF-8")));

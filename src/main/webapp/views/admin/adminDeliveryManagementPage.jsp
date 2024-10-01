@@ -53,7 +53,7 @@
                         <c:forEach var="purchase" items="${pList}">
                             <tr>
                                 <c:choose>
-                                    <c:when test="${purchase.wayBill != 0}">
+                                    <c:when test="${not empty purchase.wayBill}">
                                         <td class="blue">배송중</td>
                                     </c:when>
                                     <c:otherwise>
@@ -77,7 +77,7 @@
                                 <td>${purchase.purchaseDate}</td>
                                 <td>
                                     <c:choose>
-                                        <c:when test="${purchase.wayBill != 0}">
+                                        <c:when test="${not empty purchase.wayBill}">
                                             ${purchase.wayBill}
                                         </c:when>
                                         <c:otherwise>
