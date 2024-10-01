@@ -182,7 +182,7 @@ public class ProductDao {
 
             while (rset.next()) {
                 pList.add(new Product(
-                        rset.getString("PRODUCT_NO"),
+                        rset.getInt("PRODUCT_NO"),
                         rset.getString("PRODUCT_CATEGORY"),
                         rset.getString("COMPANY"),
                         rset.getString("PRODUCT_NAME"),
@@ -213,7 +213,7 @@ public class ProductDao {
      * @param productNo
      * @return
      */
-    public ArrayList<AttachmentProduct> selectAttachment(Connection conn, String productNo) {
+    public ArrayList<AttachmentProduct> selectAttachment(Connection conn, int productNo) {
         ArrayList<AttachmentProduct> atList = new ArrayList<>();
         PreparedStatement pstmt = null;
         ResultSet rset = null;
@@ -221,14 +221,14 @@ public class ProductDao {
 
         try {
             pstmt = conn.prepareStatement(sql);
-            pstmt.setString(1, productNo);
+            pstmt.setInt(1, productNo);
 
             rset = pstmt.executeQuery();
 
             while (rset.next()) {
                 atList.add(new AttachmentProduct(
-                        rset.getString("FILE_NO"),
-                        rset.getString("REF_PNO"),
+                        rset.getInt("FILE_NO"),
+                        rset.getInt("REF_PNO"),
                         rset.getString("ORIGIN_NAME"),
                         rset.getString("CHANGE_NAME"),
                         rset.getString("FILE_PATH"),
@@ -253,7 +253,7 @@ public class ProductDao {
      * @param productNo
      * @return
      */
-    public Product selectProduct(Connection conn, String productNo) {
+    public Product selectProduct(Connection conn, int productNo) {
         Product p = null;
         PreparedStatement pstmt = null;
         ResultSet rset = null;
@@ -261,12 +261,12 @@ public class ProductDao {
 
         try {
             pstmt = conn.prepareStatement(sql);
-            pstmt.setString(1, productNo);
+            pstmt.setInt(1, productNo);
             rset = pstmt.executeQuery();
 
             if (rset.next()) {
                 p = new Product(
-                        rset.getString("PRODUCT_NO"),
+                        rset.getInt("PRODUCT_NO"),
                         rset.getString("PRODUCT_CATEGORY"),
                         rset.getString("COMPANY"),
                         rset.getString("PRODUCT_NAME"),
@@ -310,7 +310,7 @@ public class ProductDao {
             pstmt.setString(5, p.getOrigin());
             pstmt.setInt(6, p.getProductWeight());
             pstmt.setInt(7, p.getKcal());
-            pstmt.setString(8, p.getProductNo());
+            pstmt.setInt(8, p.getProductNo());
 
             result = pstmt.executeUpdate();
         } catch (SQLException e) {
@@ -328,14 +328,14 @@ public class ProductDao {
      * @param productNo
      * @return
      */
-    public int deleteAttachmentProduct(Connection conn, String productNo) {
+    public int deleteAttachmentProduct(Connection conn, int productNo) {
         int result = 0;
         PreparedStatement pstmt = null;
         String sql = prop.getProperty("deleteAttachmentProduct");
 
         try {
             pstmt = conn.prepareStatement(sql);
-            pstmt.setString(1, productNo);
+            pstmt.setInt(1, productNo);
             result = pstmt.executeUpdate();
         } catch (SQLException e) {
             throw new RuntimeException(e);
@@ -353,7 +353,7 @@ public class ProductDao {
      * @param productNo 참조하는 상품번호
      * @return
      */
-    public int insertAttachmentList(Connection conn, ArrayList<AttachmentProduct> list, String productNo) {
+    public int insertAttachmentList(Connection conn, ArrayList<AttachmentProduct> list, int productNo) {
         int result = 1;
         PreparedStatement pstmt = null;
         String sql = prop.getProperty("insertAttachmentList");
@@ -361,7 +361,7 @@ public class ProductDao {
         try {
             for (AttachmentProduct atP : list) {
                 pstmt = conn.prepareStatement(sql);
-                pstmt.setString(1, productNo);
+                pstmt.setInt(1, productNo);
                 pstmt.setString(2, atP.getOriginName());
                 pstmt.setString(3, atP.getChangeName());
                 pstmt.setString(4, atP.getFilePath());
@@ -382,14 +382,14 @@ public class ProductDao {
      * @param productNo
      * @return
      */
-    public int deleteProduct(Connection conn, String productNo) {
+    public int deleteProduct(Connection conn, int productNo) {
         int result = 0;
         PreparedStatement pstmt = null;
         String sql = prop.getProperty("deleteProduct");
 
         try {
             pstmt = conn.prepareStatement(sql);
-            pstmt.setString(1,productNo);
+            pstmt.setInt(1,productNo);
 
             result = pstmt.executeUpdate();
         } catch (SQLException e) {
@@ -406,14 +406,14 @@ public class ProductDao {
      * @param productNo
      * @return
      */
-    public int disableAttachmentProduct(Connection conn, String productNo) {
+    public int disableAttachmentProduct(Connection conn, int productNo) {
         int result = 0;
         PreparedStatement pstmt = null;
         String sql = prop.getProperty("deleteAttachmentProduct");
 
         try {
             pstmt = conn.prepareStatement(sql);
-            pstmt.setString(1,productNo);
+            pstmt.setInt(1,productNo);
 
             result = pstmt.executeUpdate();
         } catch (SQLException e) {

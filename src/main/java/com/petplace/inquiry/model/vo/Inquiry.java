@@ -12,7 +12,7 @@ package com.petplace.inquiry.model.vo;
  * 2024. 9. 29.        jun       최초 생성
  */
 public class Inquiry {
-    private String inquiryNo;
+    private int inquiryNo;
     private String memberId;
     private String productNo;
     private String inquiryTitle;
@@ -23,7 +23,7 @@ public class Inquiry {
     public Inquiry() {
     }
 
-    public Inquiry(String inquiryNo, String memberId, String productNo, String inquiryTitle, String inquiryDetail, String inquiryDate, String answer) {
+    public Inquiry(int inquiryNo, String memberId, String productNo, String inquiryTitle, String inquiryDetail, String inquiryDate, String answer) {
         this.inquiryNo = inquiryNo;
         this.memberId = memberId;
         this.productNo = productNo;
@@ -38,7 +38,7 @@ public class Inquiry {
         this.inquiryDetail = inquiryDetail;
     }
 
-    public String getInquiryNo() {
+    public int getInquiryNo() {
         return inquiryNo;
     }
 
@@ -50,7 +50,7 @@ public class Inquiry {
         this.inquiryTitle = inquiryTitle;
     }
 
-    public void setInquiryNo(String inquiryNo) {
+    public void setInquiryNo(int inquiryNo) {
         this.inquiryNo = inquiryNo;
     }
 

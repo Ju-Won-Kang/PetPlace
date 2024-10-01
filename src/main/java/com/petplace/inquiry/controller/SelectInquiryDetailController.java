@@ -24,7 +24,7 @@ public class SelectInquiryDetailController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String inquiryNo = request.getParameter("inquiryNo");
-        Inquiry inquiry = new InquiryService().selectInquiry(inquiryNo);
+        Inquiry inquiry = new InquiryService().selectInquiry(Integer.parseInt(inquiryNo));
         System.out.println(inquiryNo);
         response.setContentType("application/json; charset=utf-8");
         if(inquiry !=null){
