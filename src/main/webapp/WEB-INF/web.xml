@@ -41,6 +41,8 @@
   <servlet-mapping>
     <servlet-name>shoppingSearch.do</servlet-name>
     <url-pattern>/shoppingSearch.do</url-pattern>
+  </servlet-mapping>
+  <servlet>
     <display-name>communityWrite.do</display-name>
     <servlet-name>communityWrite.do</servlet-name>
     <servlet-class>com.petplace.community.controller.CommunityEnrollController</servlet-class>
