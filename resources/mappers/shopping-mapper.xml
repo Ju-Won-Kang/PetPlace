@@ -20,6 +20,7 @@
 		<result column="STATUS" property="status"/>
 		<result column="PRODUCT_IMG" property="productImg"/>
 	</resultMap>
+	
 	<resultMap id="shoppingAllList" type="ShoppingList">
 		<result column="PRODUCT_NO" property="productNo"/>
 		<result column="PRODUCT_CATEGORY" property="productCategory"/>
@@ -30,6 +31,24 @@
 		<result column="REVIEW_COUNT" property="reviewCount"/>
 		<result column="PRODUCT_IMG" property="productImg"/>
 	</resultMap>
+	
+	<resultMap  id="selectDetailProductList" type="ShoppingDetailList">
+		<result column="PRODUCT_NO" property="productNo"/>
+		<result column="PRODUCT_NAME" property="productName"/>
+		<result column="PRICE" property="price"/>
+		<result column="FILE_NO" property="productImg"/>
+		<result column="FILE_PATH" property="detailImg"/>
+		<result column="REVIEW_COUNT" property="reviewCount"/> <!-- reviewCount -->
+		<result column="AVG_STAR" property="Star"/>
+		<result column="COMPANY" property="company"/>
+		<result column="INGREDIENT" property="ingredient"/>
+		<result column="ORIGIN" property="origin"/>
+		<result column="PRODUCT_WEIGHT" property="productWeight"/>
+		<result column="KCAL" property="kcal"/>
+		
+		
+	</resultMap>
+	
 	<select id="selectShoppingListCount" resultType="_int">
 		SELECT COUNT(*) AS "COUNT"
 		  FROM PRODUCT
@@ -57,6 +76,29 @@
 		       CHANGE_NAME
 		 ORDER BY PRODUCT_NO DESC
 	</select>
+	
+	<select id="selectDetailProductList" resultMap="selectDetailProductList">
+		SELECT P.PRODUCT_NO,
+		       P.PRODUCT_NAME,
+		       P.PRICE,
+		       A.FILE_NO,
+		       A.FILE_PATH,
+		       COUNT(R.REVIEW_NO) AS REVIEW_COUNT, -- 리뷰 개수를 집계
+		       AVG(R.STAR) AS AVG_STAR,            -- 평균 별점 (선택 사항)
+		       P.COMPANY,
+		       P.INGREDIENT,
+		       P.ORIGIN,
+		       P.PRODUCT_WEIGHT,
+		       P.KCAL
+		  FROM PRODUCT P
+		  LEFT JOIN REVIEW R ON P.PRODUCT_NO = R.PRODUCT_NO
+		  JOIN ATTACHMENT_PRODUCT A ON P.PRODUCT_NO = A.REF_PNO
+		 WHERE P.PRODUCT_NO = 1
+		   AND P.STATUS = 'Y'
+		   AND A.FILE_LEVEL = 1
+		 GROUP BY P.PRODUCT_NO, P.PRODUCT_NAME, P.PRICE, A.FILE_NO, A.FILE_PATH, P.COMPANY, P.INGREDIENT, P.ORIGIN, P.PRODUCT_WEIGHT, P.KCAL;
+	</select>
+	
 </mapper>
 
 

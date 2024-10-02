@@ -1,5 +1,9 @@
 <%@ page language="java" contentType="text/html;charset=UTF-8"
     pageEncoding="UTF-8"%>
+<!-- 여기에 무언가를 import해야해 -->    
+ <%@ page import="java.sql.*" %>
+ <%@ page import="java.util.ArrayList" %>
+
 <!DOCTYPE html>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html lang="en">
@@ -54,7 +58,6 @@
             </div>
             <hr>
 
-
             <div>
                 <div id="product-info-title"><h4><b>상품 정보</b></h4></div>
                 
@@ -78,32 +81,34 @@
                 </table>
                 <hr>
             </div>
-            <div>
-                <table>
-                    <h4><b>상품 중량</b></h4>
-                    <tr>
-                        <div id="product-btr">
-                            <button>1 kg</button>
-                            <button>3 kg</button>
-                            <button>5 kg</button>
-                        </div>
-                    </tr>
-                </table>
-            </div>
-            
-            <hr>
-
-            <div id="prouduct-count-wrap">
-                <h4><b>상품 수량</b></h4>
-                <div id="btn-wrap">
-                    <input type="number" id="product-count" value="1" width="50px" >
-                    <div>22,000원</div>
+            <form action="<%=contextPath%>/shopping.do">
+                <div>
+                    <table>
+                        <h4><b>상품 중량</b></h4>
+                        <tr>
+                            <div id="product-btr">
+                                <% for(int i=1; i < ) %> <!-- DB에서 중량 갯수 가져오기 -->
+                                <button name="productWeight" value="1">1 kg</button>
+                                <button name="productWeight" value="3">3 kg</button>
+                                <button name="productWeight" value="5">5 kg</button>
+                            </div>
+                        </tr>
+                    </table>
                 </div>
-            </div>
-            <div id="shopping-buttons">
-                <button id="shopping-cart">장바구니</button>
-                <button id="buy-btn">구매하기</button>
-            </div>
+                
+                <hr>
+
+                <div id="prouduct-count-wrap">
+                    <h4><b>상품 수량</b></h4>
+                    <div id="btn-wrap">
+                        <input type="number" id="product-count" name="product-count" value="1" width="50px" >
+                        <div>22,000원</div>
+                    </div>
+                </div>
+                <div id="shopping-buttons">
+                    <button id="buy-btn">구매하기</button>
+                </div>
+            </form>
         </div>
     </div>
 
@@ -115,17 +120,16 @@
                 <div>Q & A</div>
             </div>
         </div>
-        <div>
-            <img src="<%=contextPath %>/images/product_upfile/stars.jpg" alt="">
+        <div id="detailImg-wrap">
+            <div>
+
+            
+            <img id="detailImg" src="<%=contextPath %>/images/detailImg.jpg" alt="">
+            </div>
         </div>
-        <div></div>
-
     </div>
-    <div id="ddd"> <!-- 스티키헤더 만들기 -->
 
-    </div>
-    
-    <img id="stars" src="<%=contextPath %>/images/test.jpg" alt="">
+    <a href="<%=contextPath%>/shopping.do?cpage=1">기타</a>
     
 </body>
 </html>
