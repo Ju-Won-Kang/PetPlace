@@ -87,7 +87,7 @@
                         <h4><b>상품 중량</b></h4>
                         <tr>
                             <div id="product-btr">
-                                <% for(int i=1; i < ) %> <!-- DB에서 중량 갯수 가져오기 -->
+                             
                                 <button name="productWeight" value="1">1 kg</button>
                                 <button name="productWeight" value="3">3 kg</button>
                                 <button name="productWeight" value="5">5 kg</button>
