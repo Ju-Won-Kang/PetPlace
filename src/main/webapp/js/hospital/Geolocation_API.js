@@ -51,7 +51,7 @@ function mapLoad(latitude, longitude) {
     var options = {
         location: coordinate,
         radius: 10000,
-        size:10,
+        size:15,
         sort: kakao.maps.services.SortBy.DISTANCE,
     };
     ps.keywordSearch('동물병원', placesSearchCB, options);
