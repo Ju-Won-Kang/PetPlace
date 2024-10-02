@@ -1,0 +1,182 @@
+body{
+    width: 1400px;
+    min-width: 1400px; /* 최소 너비 설정 */
+    margin: auto;
+}
+
+div{
+    box-sizing: border-box;
+}
+
+body p{
+    margin: 0;
+    font-family: sans-serif;
+}
+
+/* 글 제목 및 내용 */
+.community-info-content{
+    width: 1400px;
+    margin: auto;
+    margin-top: 50px;
+}
+
+.community-info{
+    width: 75%;
+    height: 70px;
+    border-radius: 10px;
+    background-color: rgba(218, 224, 236, 1);
+    padding: 5px 15px 0px 15px;
+    margin: auto;
+    margin-bottom: 10px;
+}
+
+#community-info-title{
+    width: 100%;
+    height: 45%;
+    font-weight: 600;
+}
+
+#community-info-two{
+    display: flex;
+    padding-top: 10px;
+    font-weight: 600;
+}
+
+#community-info-nick{
+    width: 10%;
+}
+
+#community-info-date{
+    width: 65%;
+}
+
+#community-recommend-count{
+    width: 10%;
+}
+
+#community-select-count{
+    width: 10%;
+}
+
+#community-info-two > button{
+    border: none;
+    background-color: rgba(218, 224, 236, 1);
+    font-weight: 600;
+    width: 5%;
+}
+
+.community-content{
+    width: 65%;
+    height: 400px;
+    overflow: auto;
+    padding: 10px;
+    margin: auto;
+    display: flex;
+}
+
+/* 추천 비추천 */
+.community-recommend-type{
+    width: 170px;
+    height: 70px;
+    border: 1px solid black;
+    border-radius: 15px;
+    display: flex;
+    margin: auto;
+    justify-content: space-around;
+    padding: 5px 10px 3px 10px;
+}
+
+#community-recommend{
+    height: 100%;
+}
+
+#community-recommend > button{
+    height: 60%;
+    border: none;
+    background-color: rgb(189, 189, 189);
+    border-radius: 50px;
+    display: block;
+}
+
+#community-recommend > button > img{
+    width: 100%;
+    height: 100%;
+    border-radius: 50px;
+}
+
+#community-recommend > p{
+    width: 100%;
+}
+
+#community-none-recommend{
+    height: 100%;
+    align-items: center;
+}
+
+#community-none-recommend > button{
+    height: 60%;
+    border: none;
+    background-color: rgb(189, 189, 189);
+    border-radius: 50px;
+    display: block;
+    display: flex;
+    justify-content: center;
+    margin: auto;
+}
+
+#community-none-recommend > button > img{
+    width: 100%;
+    height: 100%;
+    border-radius: 50px;
+    text-align: center;
+}
+
+#community-none-recommend > p{
+    width: 100%;
+}
+
+.community-comment-area{
+    width: 1400px;
+    margin: auto;
+    margin-top: 20px;
+}
+
+#comment-area-etc{
+    width: 65%;
+    margin: auto;
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid black;
+    padding-bottom: 5px;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+#comment-area-etc > button{
+    border: none;
+    background-color: white;
+}
+
+.community-comment-list-insert{
+    width: 65%;
+    border: 1px solid black;
+    margin: auto;
+    padding: 10px 10px 10px 10px;
+}
+
+#community-comment-list{
+    width: 100%;
+    display: flex;
+}
+
+#community-comment-user-img{
+    width: 7%;
+}
+
+#community-comment-user-img > img{
+    width: 50px;
+    height: 50px;
+    border-radius: 50px 50px 50px 50px;
+    overflow: hidden;
+}
+

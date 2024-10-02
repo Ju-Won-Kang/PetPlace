@@ -71,4 +71,14 @@
     <servlet-name>communityDetail.do</servlet-name>
     <url-pattern>/communityDetail.do</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>communityBoardEnroll.do</display-name>
+    <servlet-name>communityBoardEnroll.do</servlet-name>
+    <servlet-class>com.petplace.shopping.controller.CommunityBoardEnrollController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>communityBoardEnroll.do</servlet-name>
+    <url-pattern>/communityBoardEnroll.do</url-pattern>
+  </servlet-mapping>
 </web-app>

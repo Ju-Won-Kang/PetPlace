@@ -81,6 +81,8 @@
             </div>
         </div>
 
+        <a href="<%=contextPath%>/communityBoardEnroll.do">글쓰기</a>
+
     <%@include file="../common/footer.jsp"%>
 </body>
 </html>
