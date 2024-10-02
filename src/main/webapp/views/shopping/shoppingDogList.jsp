@@ -65,19 +65,24 @@
     <br><br>
         <div>
             <div align="center">
-                <%if(currentPage > 1) { %>
-                    <button onclick="location.href='<%=contextPath%>/shopping.do?cpage=<%=currentPage - 1%>'">&lt;</button>
-                <% } %>
-                <% for(int p = startPage; p <= endPage; p++) { %>
-                    <% if(p == currentPage) { %>
-                        <button disabled><%=p%></button>
-                    <% } else {%>
-                        <button onclick="location.href='<%=contextPath%>/shopping.do?cpage=<%=p%>'"><%=p%></button>
-                    <% } %>
-                <% } %>
-                <%if(currentPage < maxPage) { %>
-                    <button onclick="location.href='<%=contextPath%>/shopping.do?cpage=<%=currentPage + 1%>'">&gt;</button>
-                <% } %>
+                <c:if test="${pi.currentPage ne 1}">
+	                <a href="shopping.do?cpage=${pi.currentPage - 1}">&lt;</a>
+	            </c:if>
+	
+	            <c:forEach var="i" begin="${pi.startPage}" end="${pi.endPage}">	
+	            	<c:choose>
+	            		<c:when test="${empty category}">
+	            			<a href="/shopping.do?cpage=${i}">${i}</a>
+	            		</c:when>
+	            		<c:otherwise>
+	            			<a href="shoppingSearch.do?cpage=${i}&category=${category}&keyword=${keyword}">${i}</a>
+	            		</c:otherwise>
+	            	</c:choose>
+	            </c:forEach>
+	
+	            <c:if test="${pi.currentPage ne pi.maxPage}">
+	                <a href="/shopping.do?cpage=${pi.currentPage + 1}">&gt;</a>
+	            </c:if>
             </div>
         </div>
 

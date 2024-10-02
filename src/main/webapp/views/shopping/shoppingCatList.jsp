@@ -5,7 +5,7 @@
 <%
     PageInfo pi = (PageInfo)request.getAttribute("pi");
     ArrayList<ShoppingList> list = (ArrayList<ShoppingList>)request.getAttribute("list");
-
+    
     int currentPage = pi.getCurrentPage();
     int startPage = pi.getStartPage();
     int endPage = pi.getEndPage();
@@ -66,17 +66,17 @@
         <div>
             <div align="center">
                 <%if(currentPage > 1) { %>
-                    <button onclick="location.href='<%=contextPath%>/shopping.do?cpage=<%=currentPage - 1%>'">&lt;</button>
+                    <button onclick="location.href='<%=contextPath%>/shopping.do?cpage=<%=currentPage - 1%>">&lt;</button>
                 <% } %>
                 <% for(int p = startPage; p <= endPage; p++) { %>
                     <% if(p == currentPage) { %>
                         <button disabled><%=p%></button>
                     <% } else {%>
-                        <button onclick="location.href='<%=contextPath%>/shopping.do?cpage=<%=p%>'"><%=p%></button>
+                        <button onclick="location.href='<%=contextPath%>/shopping.do?cpage=<%=p%>&category=${category}'"><%=p%></button>
                     <% } %>
                 <% } %>
                 <%if(currentPage < maxPage) { %>
-                    <button onclick="location.href='<%=contextPath%>/shopping.do?cpage=<%=currentPage + 1%>'">&gt;</button>
+                    <button onclick="location.href='<%=contextPath%>/shopping.do?cpage=<%=currentPage + 1%>&category=${category}'">&gt;</button>
                 <% } %>
             </div>
         </div>

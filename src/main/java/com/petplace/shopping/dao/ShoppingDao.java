@@ -11,16 +11,16 @@ import com.petplace.shopping.model.dto.ShoppingList;
 
 public class ShoppingDao {
 
-	public int selectShoppingListCount(SqlSession sqlSession) {
-		return sqlSession.selectOne("shoppingMapper.selectShoppingListCount");
+	public int selectShoppingListCount(SqlSession sqlSession, String category) {
+		return sqlSession.selectOne("shoppingMapper.selectShoppingListCount", category);
 	}
 	
-	public ArrayList<ShoppingList> selectShoppingList(SqlSession sqlSession, PageInfo pi, String categoryName){
+	public ArrayList<ShoppingList> selectShoppingList(SqlSession sqlSession, PageInfo pi, String category){
 		int offset = (pi.getCurrentPage() - 1) * pi.getBoardLimit();
 		int limit = pi.getBoardLimit();
 		RowBounds rowBounds = new RowBounds(offset, limit);
 		
-		return (ArrayList)sqlSession.selectList("shoppingMapper.selectShoppingList", categoryName, rowBounds);
+		return (ArrayList)sqlSession.selectList("shoppingMapper.selectShoppingList", category, rowBounds);
 		
 	}
 	

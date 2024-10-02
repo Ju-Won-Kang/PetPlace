@@ -23,22 +23,21 @@ public class shoppingServlet extends HttpServlet {
 		//------------------------ 페이징 처리 ------------------------
 		
 		int currentPage = Integer.parseInt(request.getParameter("cpage"));
-		String categoryName = (String)(request.getParameter("category")); 
-		System.err.println(categoryName);
-		int listCount = sService.selectShoppingListCount(); //총 게시글 수
+		String category = (String)(request.getParameter("category")); 
+		int listCount = sService.selectShoppingListCount(category); //총 게시글 수
 		
 		PageInfo pi = Template.getPageInfo(listCount, currentPage, 10, 8);
 		
-		ArrayList<ShoppingList> list = sService.selectShoppingList(pi, categoryName);
+		ArrayList<ShoppingList> list = sService.selectShoppingList(pi, category);
 		System.out.println(list);
 		request.setAttribute("list", list);
 		request.setAttribute("pi", pi);
-		if(categoryName != null) {
-			if(categoryName.equals("강아지")) {
+		if(category != null) {
+			if(category.equals("강아지")) {
 				request.getRequestDispatcher("views/shopping/shoppingDogList.jsp").forward(request, response);
-			} else if(categoryName.equals("고양이")) {
+			} else if(category.equals("고양이")) {
 				request.getRequestDispatcher("views/shopping/shoppingCatList.jsp").forward(request, response);
-			} else if(categoryName.equals("기타")) {
+			} else if(category.equals("기타")) {
 				request.getRequestDispatcher("views/shopping/shoppingEtcList.jsp").forward(request, response);
 			}
 		} else {

@@ -34,6 +34,15 @@
 		SELECT COUNT(*) AS "COUNT"
 		  FROM PRODUCT
 		 WHERE STATUS = 'Y'
+		 <if test="category == '강아지'">
+  		 	AND PRODUCT_CATEGORY = #{category}
+  		 </if>
+  		 <if test="category == '고양이'">
+  		 	AND PRODUCT_CATEGORY = #{category}
+  		 </if>
+  		 <if test="category == '기타'">
+  		 	AND PRODUCT_CATEGORY = #{category}
+  		 </if>
 	</select>
 	<select id="selectShoppingList" resultMap="shoppingAllList">
 		SELECT PRODUCT_NO,
@@ -48,14 +57,14 @@
 		  LEFT JOIN REVIEW R USING(PRODUCT_NO)
 		 WHERE P.STATUS = 'Y'
 		   AND FILE_LEVEL = 1
-		 <if test="categoryName == '강아지'">
-  		 	AND PRODUCT_CATEGORY = #{categoryName}
+		 <if test="category == '강아지'">
+  		 	AND PRODUCT_CATEGORY = #{category}
   		 </if>
-  		 <if test="categoryName == '고양이'">
-  		 	AND PRODUCT_CATEGORY = #{categoryName}
+  		 <if test="category == '고양이'">
+  		 	AND PRODUCT_CATEGORY = #{category}
   		 </if>
-  		 <if test="categoryName == '기타'">
-  		 	AND PRODUCT_CATEGORY = #{categoryName}
+  		 <if test="category == '기타'">
+  		 	AND PRODUCT_CATEGORY = #{category}
   		 </if>
 		 GROUP BY PRODUCT_NO, 
 		       PRODUCT_NAME, 
@@ -70,13 +79,13 @@
 		SELECT COUNT(*)
   		  FROM PRODUCT
   		 WHERE STATUS = 'Y'
-  		 <if test="categoryName == '강아지'">
+  		 <if test="category == '강아지'">
   		 	AND PRODUCT_CATEGORY = "강아지"
   		 </if>
-  		 <if test="categoryName == '고양이'">
+  		 <if test="category == '고양이'">
   		 	AND PRODUCT_CATEGORY = "고양이"
   		 </if>
-  		 <if test="categoryName == '기타'">
+  		 <if test="category == '기타'">
   		 	AND PRODUCT_CATEGORY = "기타"
   		 </if>
   		    AND PRODUCT_NAME LIKE '%' || #{keyword} || '%'
@@ -94,14 +103,14 @@
 		  LEFT JOIN REVIEW R USING(PRODUCT_NO)
 		 WHERE P.STATUS = 'Y'
 		   AND FILE_LEVEL = 1
-		 <if test="categoryName == '강아지'">
-  		 	AND PRODUCT_CATEGORY = #{categoryName}
+		 <if test="category == '강아지'">
+  		 	AND PRODUCT_CATEGORY = #{category}
   		 </if>
-  		 <if test="categoryName == '고양이'">
-  		 	AND PRODUCT_CATEGORY = #{categoryName}
+  		 <if test="category == '고양이'">
+  		 	AND PRODUCT_CATEGORY = #{category}
   		 </if>
-  		 <if test="categoryName == '기타'">
-  		 	AND PRODUCT_CATEGORY = #{categoryName}
+  		 <if test="category == '기타'">
+  		 	AND PRODUCT_CATEGORY = #{category}
   		 </if>
   		    AND PRODUCT_NAME LIKE '%' || #{keyword} || '%'
 		 GROUP BY PRODUCT_NO, 

@@ -33,11 +33,11 @@ public class ShoppingSearchController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String categoryName = request.getParameter("category");
+		String category = request.getParameter("category");
 		String keyword = request.getParameter("keyword");
 		
 		HashMap<String, String> map = new HashMap<>();
-		map.put("categoryName", categoryName);
+		map.put("categoryName", category);
 		map.put("keyword", keyword);
 		
 		ShoppingService sService = new ShoppingServiceImpl();
@@ -50,15 +50,15 @@ public class ShoppingSearchController extends HttpServlet {
 		
 		request.setAttribute("list", list);
 		request.setAttribute("pi", pi);
-		request.setAttribute("categoryName", categoryName);
+		request.setAttribute("category", category);
 		request.setAttribute("keyword", keyword);
 		
-		if(categoryName != null) {
-			if(categoryName.equals("강아지")) {
+		if(category != null) {
+			if(category.equals("강아지")) {
 				request.getRequestDispatcher("views/shopping/shoppingDogList.jsp").forward(request, response);
-			} else if(categoryName.equals("고양이")) {
+			} else if(category.equals("고양이")) {
 				request.getRequestDispatcher("views/shopping/shoppingCatList.jsp").forward(request, response);
-			} else if(categoryName.equals("기타")) {
+			} else if(category.equals("기타")) {
 				request.getRequestDispatcher("views/shopping/shoppingEtcList.jsp").forward(request, response);
 			}
 		} else {

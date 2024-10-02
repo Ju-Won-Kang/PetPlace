@@ -13,10 +13,10 @@ import com.petplace.shopping.model.dto.ShoppingList;
 public class ShoppingServiceImpl implements ShoppingService {
 	ShoppingDao sDao = new ShoppingDao();
 	
-	public int selectShoppingListCount() {
+	public int selectShoppingListCount(String category) {
 		SqlSession sqlSession = Template.getSqlSession();
 		
-		int listCount = sDao.selectShoppingListCount(sqlSession);
+		int listCount = sDao.selectShoppingListCount(sqlSession, category);
 		
 		sqlSession.close();
 		
@@ -24,10 +24,10 @@ public class ShoppingServiceImpl implements ShoppingService {
 	}
 	
 	@Override
-	public ArrayList<ShoppingList> selectShoppingList(PageInfo pi, String categoryName) {
+	public ArrayList<ShoppingList> selectShoppingList(PageInfo pi, String category) {
 		SqlSession sqlSession = Template.getSqlSession();
 		
-		ArrayList<ShoppingList> list = sDao.selectShoppingList(sqlSession, pi, categoryName);
+		ArrayList<ShoppingList> list = sDao.selectShoppingList(sqlSession, pi, category);
 		
 		sqlSession.close();
 		
