@@ -45,9 +45,11 @@
                 <ul id="placesList"></ul>
                 <div id="pagination"></div>
             </div>
+<%--            <button onclick="panTo()">지도 중심좌표 부드럽게 이동시키기</button>--%>
         </div>
-        <div id="map"></div>
-        <div class="spinner-border"></div>
+        <div id="map">
+            <div class="spinner-border"></div>
+        </div>
     <%-- 카카오맵 API 키 pageScope에 저장 --%>
 <%--            <button onclick="getLocation()">위치 찾기</button>--%>
         <p id="status"></p>
