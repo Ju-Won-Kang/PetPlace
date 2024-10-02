@@ -39,6 +39,9 @@ section{
 ul, li {
     list-style: none;
 }
+li{
+    cursor: pointer;
+}
 .item{
     padding: 10px 0px;
 }
