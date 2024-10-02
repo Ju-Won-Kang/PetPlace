@@ -1,10 +1,7 @@
 package com.petplace.community.controller;
 
 import java.io.IOException;
-import java.util.ArrayList;
 
-import com.petplace.common.PageInfo;
-import com.petplace.common.Template;
 import com.petplace.community.model.vo.Community;
 import com.petplace.community.service.CommunityService;
 import com.petplace.community.service.CommunityServiceImple;
@@ -15,15 +12,15 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
 /**
- * Servlet implementation class CommunityListController
+ * Servlet implementation class CommunityDetailController
  */
-public class CommunityListController extends HttpServlet {
+public class CommunityDetailController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public CommunityListController() {
+    public CommunityDetailController() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -32,20 +29,22 @@ public class CommunityListController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		int communityNo = Integer.parseInt(request.getParameter("cno"));
+		
 		CommunityService cService = new CommunityServiceImple();
 		
-		String category = request.getParameter("category");
-		int currentPage = Integer.parseInt(request.getParameter("cpage"));
-		int listCount = cService.selectListCount(); //총 게시글 수
+		Community c = cService.increaseCount(communityNo);
 		
-		PageInfo pi = Template.getPageInfo(listCount, currentPage, 10, 10);
-		
-		ArrayList<Community> list = cService.selectList(pi);
-		
-		request.setAttribute("list", list);
-		request.setAttribute("pi", pi);
-		
-		request.getRequestDispatcher("views/community/communityListView.jsp").forward(request, response);
+		if(c != null) {
+			//ArrayList<Reply> list = bService.selectReplyList(boardNo);
+			
+			//request.setAttribute("list", list);
+			request.setAttribute("c", c);
+			request.getRequestDispatcher("views/community/communityDetail.jsp").forward(request, response);
+		} else {
+			request.setAttribute("alert", "상세조회 실패");
+			response.sendRedirect(request.getContextPath());
+		}
 	}
 
 	/**
