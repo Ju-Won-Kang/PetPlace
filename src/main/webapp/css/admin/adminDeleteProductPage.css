@@ -9,23 +9,111 @@ body * {
 
 #wrap > table {
     margin: auto;
+    border-collapse: separate;
     border-spacing: 0 15px; /* 15px 간격을 위아래로 줍니다 */
 }
-#wrap > table >thead{
-    border-bottom:1px solid #c4c4c4;
+
+#wrap > table > thead {
+    border-radius: 12px;
 }
-#wrap > table th{
-    padding-bottom: 10px;
+
+#wrap > table th {
+    background-color: #7A97CC;
+    border-bottom: 1px solid #c4c4c4;
+    /*padding-bottom: 10px;*/
+    padding: 10px 0;
+    color: white;
 }
-#wrap > table + tbody > tr:nth-child(1){
+
+#wrap > table th:nth-child(1) {
+    border-top-left-radius: 12px;
+}
+
+#wrap > table th:nth-child(8) {
+    border-top-right-radius: 12px;
+}
+
+tbody tr {
+    border-bottom: 1px solid #c4c4c4;
+}
+
+#wrap > table + tbody > tr:nth-child(1) {
     padding-top: 15px;
 }
-#wrap > table th:nth-child(1){ width: 80px;}
-#wrap > table th:nth-child(2){width: 300px;}
-#wrap > table th:nth-child(3){width: 120px;}
-#wrap > table th:nth-child(4){width: 80px;}
-#wrap > table th:nth-child(5){width: 150px}
-#wrap > table th:nth-child(6){width: 80px}
+
+#wrap > table th:nth-child(1) {
+    width: 80px;
+}
+
+#wrap > table th:nth-child(2) {
+    width: 120px;
+}
+
+#wrap > table th:nth-child(3) {
+    width: 200px;
+}
+
+#wrap > table th:nth-child(4) {
+    width: 80px;
+}
+
+#wrap > table th:nth-child(5) {
+    width: 120px;
+}
+
+#wrap > table th:nth-child(6) {
+    width: 80px;
+}
+
+#wrap > table th:nth-child(7) {
+    width: 150px
+}
+
+#wrap > table th:nth-child(8) {
+    width: 150px
+}
+
+#wrap > table th:nth-child(9) {
+    width: 80px
+}
+
 .btn-secondary {
     background-color: #7A97CC !important;
+}
+button[type=button]{
+    border-color: white;
+}
+
+
+tbody tr {
+    margin-bottom: 8px;
+}
+
+
+/*-------------------- PageNation --------------------*/
+#pagenation {
+    width: 100%;
+    margin: auto;
+    /*text-align: center;*/
+    margin-top: 50px;
+}
+
+#pagenation nav {
+    margin: auto;
+}
+
+.page-item * {
+    color: #7A97CC !important;
+}
+.hide{
+    display: none !important;
+}
+.disabled{
+    /*$pagination-disabled-border-color:  $gray-100;*/
+}
+.pagination > .active > a
+{
+    color: white !important;
+    background-color: #7A97CC !Important;
+    border: solid 1px #7A97CC !Important;
 }

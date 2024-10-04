@@ -32,4 +32,44 @@
     <servlet-name>login.me</servlet-name>
     <url-pattern>/login.me</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>communityWrite.do</display-name>
+    <servlet-name>communityWrite.do</servlet-name>
+    <servlet-class>com.petplace.community.controller.CommunityEnrollController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>communityWrite.do</servlet-name>
+    <url-pattern>/communityWrite.do</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>communityInsert.do</display-name>
+    <servlet-name>communityInsert.do</servlet-name>
+    <servlet-class>com.petplace.community.controller.CommunityInsertController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>communityInsert.do</servlet-name>
+    <url-pattern>/communityInsert.do</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>communityDetail.do</display-name>
+    <servlet-name>communityDetail.do</servlet-name>
+    <servlet-class>com.petplace.community.controller.CommunityDetailController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>communityDetail.do</servlet-name>
+    <url-pattern>/communityDetail.do</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>communitySearchList.do</display-name>
+    <servlet-name>communitySearchList.do</servlet-name>
+    <servlet-class>com.petplace.community.controller.CommunitySearchListController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>communitySearchList.do</servlet-name>
+    <url-pattern>/communitySearchList.do</url-pattern>
+  </servlet-mapping>
 </web-app>

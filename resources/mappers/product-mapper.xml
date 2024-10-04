@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="productMapper">
+
+    <resultMap id="categoryListSet" type="Category">
+        <result column="PRODUCT_CATEGORY" property="productCategory"/>
+    </resultMap>
+
+    <resultMap id="ProductListSet" type="Product">
+        <result column="PRODUCT_NO" property="productNo"/>
+        <result column="PRODUCT_CATEGORY" property="productCategory"/>
+        <result column="COMPANY" property="company"/>
+        <result column="PRODUCT_NAME" property="productName"/>
+        <result column="PRICE" property="price"/>
+        <result column="INVENTORY" property="inventory"/>
+        <result column="INGREDIENT" property="ingredient"/>
+        <result column="ORIGIN" property="origin"/>
+        <result column="PRODUCT_WEIGHT" property="productWeight"/>
+        <result column="KCAL" property="kcal"/>
+        <result column="ENROLL_DATE" property="enrollDate"/>
+        <result column="MODIFY_DATE" property="modifyDate"/>
+    </resultMap>
+    <resultMap id="attachmentListSet" type="AttachmentProduct">
+        <result column="FILE_NO" property="fileNo"/>
+        <result column="REF_PNO" property="refPNo"/>
+        <result column="ORIGIN_NAME" property="originName"/>
+        <result column="CHANGE_NAME" property="changeName"/>
+        <result column="FILE_PATH" property="filePath"/>
+        <result column="UPLOAD_DATE" property="uploadDate"/>
+        <result column="FILE_LEVEL" property="fileLevel"/>
+        <result column="STATUS" property="status"/>
+    </resultMap>
+    <select id="selectCategoryList" resultMap="categoryListSet">
+        SELECT PRODUCT_CATEGORY
+        from product
+        group by PRODUCT_CATEGORY
+    </select>
+    <select id="selectListCount" resultType="_int">
+        SELECT COUNT(*) as "COUNT"
+        from product
+        where status = 'Y'
+    </select>
+    <select id="selectProduct" parameterType="_int" resultType="Product">
+        select PRODUCT_NO as productNo,
+            PRODUCT_CATEGORY as productCategory,
+            COMPANY,
+            PRODUCT_NAME as productName,
+            PRICE,
+            INVENTORY,
+            INGREDIENT,
+            ORIGIN,
+            PRODUCT_WEIGHT as productWeight,
+            KCAL,
+            TO_CHAR(ENROLL_DATE,'YYYY/MM/DD') AS "enrollDate",
+            TO_CHAR(MODIFY_DATE,'YYYY/MM/DD') AS "modifyDate"
+        from product p
+        where PRODUCT_NO = #{productNo}
+    </select>
+    <select id="selectProductList" resultMap="ProductListSet">
+        select PRODUCT_NO,
+            PRODUCT_CATEGORY,
+            COMPANY,
+            PRODUCT_NAME,
+            PRICE,
+            INVENTORY,
+            INGREDIENT,
+            ORIGIN,
+            PRODUCT_WEIGHT,
+            KCAL,
+            TO_CHAR(ENROLL_DATE,'YYYY/MM/DD') AS "ENROLL_DATE",
+            TO_CHAR(MODIFY_DATE,'YYYY/MM/DD') AS "MODIFY_DATE"
+        from product p
+        where status ='Y'
+        order by PRODUCT_NO
+    </select>
+    <select id="selectAttachment" parameterType="_int" resultMap="attachmentListSet">
+        SELECT FILE_NO,
+            REF_PNO,
+            ORIGIN_NAME,
+            CHANGE_NAME,
+            FILE_PATH,
+            TO_CHAR(UPLOAD_DATE,'YYYY/MM/DD') AS "UPLOAD_DATE",
+            FILE_LEVEL
+        from Attachment_product
+        where REF_PNO = #{productNo}
+            and status = 'Y'
+    </select>
+    <insert id="insertProduct" parameterType="Product">
+        INSERT INTO PRODUCT(
+        PRODUCT_NO,
+        PRODUCT_CATEGORY,
+        COMPANY,
+        PRODUCT_NAME,
+        PRICE,
+        INVENTORY,
+        INGREDIENT,
+        ORIGIN,
+        PRODUCT_WEIGHT,
+        KCAL
+        )
+        values(
+        SEQ_PNO.NEXTVAL,
+        #{productCategory},
+        #{company},
+        #{productName},
+        #{price},
+        #{inventory},
+        #{ingredient},
+        #{origin},
+        #{productWeight},
+        #{kcal})
+    </insert><insert id="enrollAttachmentList" parameterType="AttachmentProduct">
+        INSERT INTO ATTACHMENT_PRODUCT(
+            FILE_NO,
+            REF_PNO,
+            ORIGIN_NAME,
+            CHANGE_NAME,
+            FILE_PATH,
+            FILE_LEVEL
+            )
+            values(
+            SEQ_APNO.NEXTVAL,
+            SEQ_PNO.CURRVAL,
+            #{originName},
+            #{changeName},
+            #{filePath},
+            #{fileLevel}
+            )
+</insert>
+
+    <insert id="insertAttachmentList" parameterType="HashMap">
+        INSERT INTO ATTACHMENT_PRODUCT(
+        FILE_NO,
+        REF_PNO,
+        ORIGIN_NAME,
+        CHANGE_NAME,
+        FILE_PATH,
+        FILE_LEVEL
+        )
+        values(
+        SEQ_APNO.NEXTVAL,
+        #{refPNo},
+        #{originName},
+        #{changeName},
+        #{filePath},
+        #{fileLevel}
+        )
+    </insert>
+
+    <update id="updateProduct" parameterType="Product">
+        update product
+        set COMPANY = #{company},
+        PRICE = #{price},
+        INVENTORY = #{inventory},
+        INGREDIENT = #{ingredient},
+        ORIGIN = #{origin},
+        PRODUCT_WEIGHT = #{productWeight},
+        KCAL = #{kcal},
+        MODIFY_DATE = SYSDATE,
+        STATUS = 'Y'
+        where PRODUCT_NO = #{productNo}
+    </update>
+    <update id="deleteProduct" parameterType="_int">
+        update product
+        set status = 'N'
+        where product_no = #{productNo}
+    </update>
+    <update id="disableAttachmentProduct" parameterType="_int">
+        update ATTACHMENT_PRODUCT
+        set status = 'N'
+        where REF_PNO = #{productNo}
+    </update>
+    <delete id="deleteAttachmentProduct" parameterType="_int">
+        delete from ATTACHMENT_PRODUCT
+        where REF_PNO = #{productNo}
+    </delete>
+</mapper>

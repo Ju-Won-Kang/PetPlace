@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+        
+<mapper namespace="communityMapper">
+	<resultMap id="communityResultSet" type="Community">
+		<result column="COMMUNITY_NO" property="communityNo"/>
+		<result column="MEMBER_ID" property="memberId"/>
+		<result column="COMMUNITY_CATEGORY" property="communityCategory"/>
+		<result column="COMMUNITY_TITLE" property="communityTitle"/>
+		<result column="COMMUNITY_DETAIL" property="communityDetail"/>
+		<result column="COMMUNITY_DATE" property="communityDate"/>
+		<result column="COMMUNITY_VIEWS" property="communityView"/>
+		<result column="COMMUNITY_GOOD" property="communityGood"/>
+		<result column="COMMUNITY_BAD" property="communityBad"/>
+		<result column="NICKNAME" property="nickname"/>
+	</resultMap>
+	<resultMap id="communityAtResultSet" type="CommunityAttachment">
+		<result column="FILE_NO" property="fileNo"/>
+		<result column="REF_CNO" property="refCno"/>
+		<result column="ORIGIN_NAME" property="originName"/>
+		<result column="CHANGE_NAME" property="changeName"/>
+		<result column="FILE_PATH" property="filePath"/>
+		<result column="UPLOAD_DATE" property="uploadDate"/>
+	</resultMap>
+	
+	<select id="selectListAllCount" resultType="_int">
+		SELECT COUNT(*) AS COUNT
+		  FROM COMMUNITY
+		WHERE COMMUNITY_STATUS = 'Y'
+	</select>
+	<select id="selectListCount" resultType="_int">
+		SELECT COUNT(*) AS COUNT
+		  FROM COMMUNITY
+		 WHERE COMMUNITY_CATEGORY = #{communityCategory}
+		   AND COMMUNITY_STATUS = 'Y'
+	</select>
+	<select id="selectSearchAllCount" resultType="_int">
+		SELECT COUNT(*) AS COUNT
+		  FROM COMMUNITY
+		 WHERE COMMUNITY_TITLE LIKE '%' || #{keyword} || '%'
+		   AND COMMUNITY_STATUS = 'Y'
+	</select>
+	<select id="selectSearchCount" resultType="_int">
+		SELECT COUNT(*) AS COUNT
+		  FROM COMMUNITY
+		 WHERE COMMUNITY_CATEGORY = #{category}
+  		   AND COMMUNITY_TITLE LIKE '%' || #{keyword} || '%'
+  		   AND COMMUNITY_STATUS = 'Y'
+	</select>
+	<select id="selectListAll" resultMap="communityResultSet">
+		SELECT COMMUNITY_NO,
+			   NICKNAME,
+			   COMMUNITY_CATEGORY,
+			   COMMUNITY_TITLE,
+			   COMMUNITY_DATE,
+			   COMMUNITY_VIEWS,
+			   COMMUNITY_GOOD
+		  FROM COMMUNITY C
+		  JOIN MEMBER USING(MEMBER_ID)
+		 WHERE C.COMMUNITY_STATUS = 'Y'
+		 ORDER BY COMMUNITY_NO DESC
+	</select>
+	<select id="selectList" resultMap="communityResultSet">
+		SELECT COMMUNITY_NO,
+			   NICKNAME,
+			   COMMUNITY_CATEGORY,
+			   COMMUNITY_TITLE,
+			   COMMUNITY_DATE,
+			   COMMUNITY_VIEWS,
+			   COMMUNITY_GOOD
+		  FROM COMMUNITY C
+		  JOIN MEMBER USING(MEMBER_ID)
+		 WHERE COMMUNITY_CATEGORY = #{communityCategory}
+		   AND COMMUNITY_STATUS = 'Y'
+		 ORDER BY COMMUNITY_NO DESC
+	</select>
+	<select id="selectSearchListAll" resultMap="communityResultSet">
+		SELECT COMMUNITY_NO,
+			   NICKNAME,
+			   COMMUNITY_CATEGORY,
+			   COMMUNITY_TITLE,
+			   COMMUNITY_DATE,
+			   COMMUNITY_VIEWS,
+			   COMMUNITY_GOOD
+		  FROM COMMUNITY C
+		  JOIN MEMBER USING(MEMBER_ID)
+		 WHERE COMMUNITY_TITLE LIKE '%' || #{keyword} || '%'
+		   AND COMMUNITY_STATUS = 'Y'
+		 ORDER BY COMMUNITY_NO DESC
+	</select>
+	<select id="selectSearchList" resultMap="communityResultSet">
+		SELECT COMMUNITY_NO,
+			   NICKNAME,
+			   COMMUNITY_CATEGORY,
+			   COMMUNITY_TITLE,
+			   COMMUNITY_DATE,
+			   COMMUNITY_VIEWS,
+			   COMMUNITY_GOOD
+		  FROM COMMUNITY C
+		  JOIN MEMBER USING(MEMBER_ID)
+		 WHERE COMMUNITY_CATEGORY = #{category}
+  		   AND COMMUNITY_TITLE LIKE '%' || #{keyword} || '%'
+  		   AND COMMUNITY_STATUS = 'Y'
+		 ORDER BY COMMUNITY_NO DESC
+	</select>
+	<insert id="insertCommunity" parameterType="Community">
+		INSERT
+		INTO COMMUNITY(
+						COMMUNITY_NO,
+						MEMBER_ID,
+						COMMUNITY_CATEGORY,
+						COMMUNITY_TITLE,
+						COMMUNITY_DETAIL,
+						COMMUNITY_DATE,
+						COMMUNITY_VIEWS,
+						COMMUNITY_GOOD,
+						COMMUNITY_BAD
+						)
+				VALUES(
+						SEQ_CNO.NEXTVAL,
+						#{memberId},
+						#{communityCategory},
+						#{communityTitle},
+						#{communityDetail},
+						SYSDATE,
+						0,
+						0,
+						0
+						)
+	</insert>
+	<insert id="insertCommunityAttachmentList" parameterType="CommunityAttachment">
+		INSERT
+		INTO ATTACHMENT_COMMUNITY(
+								  FILE_NO,
+								  REF_CNO,
+								  ORIGIN_NAME,
+								  CHANGE_NAME,
+								  FILE_PATH,
+								  UPLOAD_DATE
+								  )
+						   VALUES(
+								  SEQ_ACNO.NEXTVAL,
+								  SEQ_CNO.CURRVAL,
+								  #{originName},
+								  #{changeName},
+								  #{filePath},
+								  SYSDATE
+								 )
+	</insert>
+	<update id="increaseCount" parameterType="_int">
+		UPDATE COMMUNITY
+		   SET COMMUNITY_VIEWS = COMMUNITY_VIEWS + 1
+		 WHERE COMMUNITY_NO = #{communityNo}
+	</update>
+	<select id="selectCommunity" resultMap="communityResultSet">
+		SELECT COMMUNITY_NO,
+			   MEMBER_ID,
+			   NICKNAME,
+			   COMMUNITY_CATEGORY,
+			   COMMUNITY_TITLE,
+			   COMMUNITY_DETAIL,
+			   COMMUNITY_DATE,
+			   COMMUNITY_VIEWS,
+			   COMMUNITY_GOOD,
+			   COMMUNITY_BAD
+		  FROM COMMUNITY C
+		  JOIN MEMBER USING(MEMBER_ID)
+		 WHERE COMMUNITY_NO = #{communityNo}
+		 ORDER BY COMMUNITY_NO DESC
+	</select>
+	<select id="selectCommunityAt" resultMap="communityAtResultSet">
+		SELECT FILE_PATH,
+			   CHANGE_NAME,
+			   ORIGIN_NAME
+		  FROM ATTACHMENT_COMMUNITY
+		 WHERE REF_CNO = #{communityNo}
+	</select>
+	<update id="deleteCommunity">
+		UPDATE COMMUNITY
+		   SET COMMUNITY_STATUS = 'N'
+		 WHERE COMMUNITY_NO = #{communityNo}
+	</update>
+	<update id="deleteCommunityAt">
+		UPDATE ATTACHMENT_COMMUNITY
+		   SET STATUS = 'N'
+		 WHERE REF_CNO = #{communityNo}
+	</update>
+</mapper>
