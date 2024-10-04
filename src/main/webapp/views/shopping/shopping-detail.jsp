@@ -3,10 +3,13 @@
   
  <%@ page import="java.sql.*" %>
  <%@ page import="java.util.ArrayList, com.petplace.shopping.model.dto.ShoppingDetailList" %>
- <%
-    ShoppingDetailList product = (ShoppingDetailList)request.getAttribute("product");
+<%
+    ArrayList<ShoppingDetailList> list = (ArrayList<ShoppingDetailList>) request.getAttribute("product");
+    for(ShoppingDetailList item : list){
+        System.out.println(item.getFileLevel());
+    }
+    int fileL = list.get(0).getFileLevel();
 %>
-
 <!DOCTYPE html>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html lang="en">
@@ -20,9 +23,13 @@
 
     <div id="body-wrap">
         <div id="left-body">
-            <div id="mainFood"> <!-- 이미지 넣기 ()-->  
-                <img src="<%=contextPath %>/${product.productImg}" alt="상품 이미지">
-            </div>  
+            <div id="mainFood"> <!-- 이미지 넣기 ()-->
+                <c:forEach var="i" begin="0" end="${product.size()}" step="1">
+                    <c:if test="${product[i].fileLevel == 1}">
+                        <img src="${product[i].productImg}" alt="">
+                    </c:if>
+                </c:forEach>
+            </div>
             <div id="subFoods">
                 <div class="subFood-img"></div>
                 <div class="subFood-img"></div>
@@ -34,19 +41,18 @@
         <div id="right-body">
             <div id="main-info">
                 <div id="main-info-top">
-                    <div id="main-info-top-title"><b>${product.productName}</b></div>
+                    <div id="main-info-top-title"><b>${product[0].productName}</b></div>
                     <div><img id="jjim" src="<%=contextPath %>/images/jjim.png" alt="찜"></div>
-
                 </div>
-                <div id="main-info-bottom">         <!-- 별점  -->
-                    <img id="stars" src="<%=contextPath %>/images/stars.jpg" alt=""><p id="review">${product.reviewCount}개 상품평</p>
+                <div id="main-info-bottom">
+                    <img id="stars" src="<%=contextPath %>/images/stars.jpg" alt=""><p id="review">${product[0].reviewCount}개 상품평</p>
                 </div>
             </div>
             <hr>
             <div id="priceInfo">
                 <div id="price">
-                    <div id="bigPrice">${product.price}원</div>
-                    <div id="smallPrice">(100g 220원)</div>         <!--계산해서 값 입력 (script)-->
+                    <div id="bigPrice">${product[0].price}원</div>
+                    <div id="smallPrice">(100g 220원)</div>
                 </div>
                 <div id="delivery-info">
                     <div id="delivery-company">
@@ -123,8 +129,11 @@
         <div id="detailImg-wrap">
             <div>
 
-            
-            <img id="detailImg" src="<%=contextPath %>/images/detailImg.jpg" alt="">
+                <c:forEach var="i" begin="0" end="${product.size()}" step="1">
+                    <c:if test="${product[i].fileLevel == 2}">
+                        <img src="${product[i].productImg}" alt="">
+                    </c:if>
+                </c:forEach>
             </div>
         </div>
     </div>

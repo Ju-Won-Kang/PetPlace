@@ -31,9 +31,9 @@ public class ShoppingDao {
 	
 	
 	
-	public ShoppingDetailList selectDetailProduct(SqlSession sqlSession, int boardNo) {
+	public ArrayList<ShoppingDetailList> selectDetailProduct(SqlSession sqlSession, int productNo) {
 		
-	    return sqlSession.selectOne("shoppingMapper.selectDetailProduct", boardNo);
+	    return (ArrayList)sqlSession.selectList("shoppingMapper.selectDetailProduct", productNo);
 	}
 
 

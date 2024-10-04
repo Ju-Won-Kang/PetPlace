@@ -22,11 +22,13 @@ public class shoppingdetailServlet extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		int productNo = Integer.parseInt(request.getParameter("productNo")); // 상품번호 가져옴
-		
+
 		ShoppingService sService = new ShoppingServiceImpl();
-		
-		ShoppingDetailList product = sService.selectDetailProduct(productNo);
-		
+
+		ArrayList<ShoppingDetailList> product = sService.selectDetailProduct(productNo);
+		System.out.println("Controller : " + product);
+		System.out.println(product.get(0).getFileLevel());
+
 		request.setAttribute("product", product);
 		request.getRequestDispatcher("views/shopping/shopping-detail.jsp").forward(request, response);
 	}
