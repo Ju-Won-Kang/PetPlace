@@ -32,7 +32,7 @@ public class CommunityServiceImple implements CommunityService {
 		sqlSession.close();
 		return listCount;
 	}
-	
+
 	@Override
 	public ArrayList<Community> selectList(PageInfo pi) {
 		SqlSession sqlSession = Template.getSqlSession();

@@ -33,5 +33,4 @@ public interface CommunityService {
 	//delete
 	public int deleteCommunity(int communityNo);
 	public int deleteCommunityAt(int communityNo);
-	
 }
