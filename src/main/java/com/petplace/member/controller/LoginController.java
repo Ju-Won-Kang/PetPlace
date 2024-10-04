@@ -2,6 +2,7 @@ package com.petplace.member.controller;
 
 import java.io.IOException;
 
+import com.petplace.member.model.dto.HashedMember;
 import com.petplace.member.model.vo.Member;
 import com.petplace.member.service.MemberService;
 
@@ -35,7 +36,7 @@ public class LoginController extends HttpServlet {
 		String userId = request.getParameter("userId");
 		String userPwd = request.getParameter("userPwd");
 		
-		Member loginUser = new MemberService().loginMember(userId, userPwd);
+		HashedMember loginUser = new MemberService().loginMember(userId, userPwd);
 		
 		if(loginUser == null) { //로그인 실패
 			response.sendRedirect(request.getContextPath());
