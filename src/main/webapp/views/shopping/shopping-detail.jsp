@@ -103,7 +103,7 @@
             </div>
             <div id="shopping-buttons">
                 <button id="shopping-cart">장바구니</button>
-                <button id="buy-btn">구매하기</button>
+                <button id="buy-btn" onclick="location.href='<%=contextPath%>/shoppingPurchase.do'">구매하기</button>
             </div>
         </div>
     </div>

@@ -7,6 +7,7 @@ import org.apache.ibatis.session.RowBounds;
 import org.apache.ibatis.session.SqlSession;
 
 import com.petplace.common.PageInfo;
+import com.petplace.shopping.model.dto.ShoppingDetailList;
 import com.petplace.shopping.model.dto.ShoppingList;
 
 public class ShoppingDao {
@@ -57,5 +58,9 @@ public class ShoppingDao {
 		return (ArrayList)sqlSession.selectList("shoppingMapper.selectSearchPetList", map, rowBounds);
 	}
 	
+	public ShoppingDetailList selectDetailProduct(SqlSession sqlSession, int boardNo) {
+		
+	    return sqlSession.selectOne("shoppingMapper.selectDetailProduct", boardNo);
+	}
 	
 }

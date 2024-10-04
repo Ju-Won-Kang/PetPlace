@@ -17,6 +17,19 @@
     <meta charset="UTF-8"> 
     <title>상품 목록</title>
     <link rel="stylesheet" href="css/shopping/shopping-list.css">
+    <!-- bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- jQuery -->
+    <script
+            src="https://code.jquery.com/jquery-3.7.1.min.js"
+            integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
+            crossorigin="anonymous"></script>
+    <script
+            src="https://code.jquery.com/ui/1.14.0/jquery-ui.min.js"
+            integrity="sha256-Fb0zP4jE3JHqu+IBB9YktLcSjI1Zc6J2b6gTjB0LpoM="
+            crossorigin="anonymous"></script>
+    <script src="js/admin/adminModifyProductPage.js"></script>
 </head>
 <body>
     <%@include file="../common/nav.jsp"%>
@@ -47,7 +60,7 @@
                 <% for(ShoppingList s : list) { %>
                     <div class="dogFood">
                         
-                        <div onclick="location.href='<%=contextPath%>/shoppingdetail.do'" class="dogFood-img">
+                        <div onclick="location.href='<%=contextPath%>/shoppingdetail.do?productNo=<%=s.getProductNo() %>'" class="dogFood-img">
                             <img class="product_1-img" src="<%=contextPath%>/<%=s.getProductImg()%>" alt="프로베스트 사료">
                         </div>
                         <!-- 별점은 리뷰를 아직 만들지 않아 추후에 추가할 예정 -->
@@ -100,9 +113,7 @@
 			                </c:otherwise>
 						</c:choose>
 		            </c:if>
-	            </c:if>
-	            
-	            
+	            </c:if> 
 	            
                 <c:if test="${keyword != null}">
 	                <c:if test="${pi.currentPage ne 1}">
@@ -138,6 +149,95 @@
 						</c:choose>
 		            </c:if>
 	            </c:if>
+	            
+	            
+		        <div id="pagenation">
+	                <nav>
+	                    <ul class="pagination">
+	                        <c:choose>
+	                            <c:when test="${pi.startPage != 1 || (pi.startPage / pi.boardLimit)  > 1}">
+	                                <li class="page-item">
+	                                    <a href="shoppingSearch.do?cpage=${pi.startPage - pi.boardLimit}&category=${category}"
+	                                       class="page-link">
+	                                        <span aria-hidden="true">&laquo;</span>
+	                                    </a>
+	                                </li>
+	                            </c:when>
+	                            <c:otherwise>
+	                                <li class="page-item disabled">
+	                                    <a href="shoppingSearch.do?cpage=${pi.startPage - pi.boardLimit}&category=${category}" class="page-link">
+	                                        <span aria-hidden="true">&laquo;</span>
+	                                    </a>
+	                                </li>
+	                            </c:otherwise>
+	                        </c:choose>
+	                        <c:choose>
+	                            <c:when test="${pi.currentPage > 1}">
+	                                <li class="page-item">
+	                                    <a href="shoppingSearch.do?cpage=${pi.currentPage - 1}&category=${category}"
+	                                       class="page-link">
+	                                        <span aria-hidden="true">&lt;</span>
+	                                    </a>
+	                                </li>
+	                            </c:when>
+	                            <c:otherwise>
+	                                <li class="page-item disabled">
+	                                    <a href="shoppingSearch.do?cpage=${pi.currentPage - 1}&category=${category}" class="page-link">
+	                                        <span aria-hidden="true">&lt;</span>
+	                                    </a>
+	                                </li>
+	                            </c:otherwise>
+	                        </c:choose>
+	
+	                        <c:forEach var="page" begin="${pi.startPage}" end="${pi.endPage}" step="1">
+	                            <c:choose>
+	                                <c:when test="${page == pi.currentPage}">
+	                                    <li class="page-item active"><a class="page-link" href="shoppingSearch.do?cpage=${i}&category=${category}">${page}</a></li>
+	                                </c:when>
+	                                <c:otherwise>
+	                                    <li class="page-item">
+	                                    	<a class="page-link" href="shoppingSearch.do?cpage=${i}&category=${category}">${page}</a>
+	                                    </li>
+	                                </c:otherwise>
+	                            </c:choose>
+	                        </c:forEach>
+	                        <c:choose>
+	                            <c:when test="${pi.currentPage < pi.maxPage}">
+	                                <li class="page-item">
+	                                    <a href="shoppingSearch.do?cpage=${pi.currentPage + 1}&category=${category}"
+	                                       class="page-link">
+	                                        <span aria-hidden="true">&gt;</span>
+	                                    </a>
+	                                </li>
+	                            </c:when>
+	                            <c:otherwise>
+	                                <li class="page-item disabled">
+	                                    <a href="shoppingSearch.do?cpage=${pi.currentPage + 1}&category=${category}" class="page-link">
+	                                        <span aria-hidden="true">&gt;</span>
+	                                    </a>
+	                                </li>
+	                            </c:otherwise>
+	                        </c:choose>
+	                        <c:choose>
+	                            <c:when test="${(pi.endPage / boardLimit)  < pi.maxPage}">
+	                                <li class="page-item">
+	                                    <a href="shoppingSearch.do?cpage=${pi.endPage + 1}&category=${category}"
+	                                       class="page-link">
+	                                        <span aria-hidden="true">&raquo;</span>
+	                                    </a>
+	                                </li>
+	                            </c:when>
+	                            <c:otherwise>
+	                                <li class="page-item disabled">
+	                                    <a href="shoppingSearch.do?cpage=${pi.endPage + 1}&category=${category}" class="page-link">
+	                                        <span aria-hidden="true">&raquo;</span>
+	                                    </a>
+	                                </li>
+	                            </c:otherwise>
+	                        </c:choose>
+	                    </ul>
+	                </nav>
+	            </div>
             </div>
         </div>
 
