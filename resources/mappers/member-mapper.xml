@@ -2,41 +2,39 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="purchaseMapper">
-    <resultMap id="purchaseListSet" type="PurchaseList">
-        <result column="PURCHASE_NO" property="purchaseNo"/>
-        <result column="PRODUCT_NAME" property="productName"/>
-        <result column="QUANTITY" property="quantity"/>
-        <result column="MEMBER_ID" property="memberId"/>
-        <result column="PAY_TYPE" property="payType"/>
-        <result column="AMOUNT_PRICE" property="amountPrice"/>
-        <result column="REQUEST" property="request"/>
-        <result column="PURCHASE_DATE" property="purchaseDate"/>
-        <result column="WAYBILL" property="wayBill"/>
-        <result column="MULTI_DETAIL" property="multiDetail"/>
-    </resultMap>
-    <select id="selectPurchaseListCount" resultType="_int">
-        select count(*)
-        from PURCHASE
+<mapper namespace="memberMapper">
+    <insert id="enrollMember" parameterType="HashedMember">
+    Insert into member(
+        MEMBER_ID,
+        MEMBER_PWD,
+        MEMBER_NAME,
+        NICKNAME,
+        PHONE,
+        MEMBER_NUMBER,
+        MEMBER_ADDRESS,
+        SALT
+        )
+        values(
+        #{memberId},
+        #{memberPwd},
+        #{memberName},
+        #{nickname},
+        #{phone},
+        #{memberNo},
+        #{address},
+        #{salt},
+        )
+    </insert>
+    <select id="selectHashedMember" parameterType="String" resultType="HashedMember">
+        select MEMBER_ID,
+        MEMBER_PWD,
+        MEMBER_NAME,
+        NICKNAME,
+        PHONE,
+        MEMBER_NUMBER,
+        MEMBER_ADDRESS,
+        SALT
+        from member
+        where MEMBER_ID = #{userId}
     </select>
-    <select id="selectPurchaseList" resultMap="purchaseListSet">
-        select PURCHASE_NO,
-                PRODUCT_NAME,
-                QUANTITY,
-                MEMBER_ID,
-                PAY_TYPE,
-                AMOUNT_PRICE,
-                REQUEST,
-                TO_CHAR(PURCHASE_DATE,'YYYY/MM/DD') as "PURCHASE_DATE",
-                WAYBILL,
-                MULTI_DETAIL
-        from purchase p
-        join product USING(product_NO)
-        order by MULTI_DETAIL
-    </select>
-    <update id="insertWayBill" >
-        update purchase
-        set waybill = #{wayBill}
-        where purchase_no = #{purchaseNo}
-    </update>
 </mapper>
