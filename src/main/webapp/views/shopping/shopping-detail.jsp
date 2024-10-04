@@ -1,5 +1,12 @@
 <%@ page language="java" contentType="text/html;charset=UTF-8"
     pageEncoding="UTF-8"%>
+  
+ <%@ page import="java.sql.*" %>
+ <%@ page import="java.util.ArrayList, com.petplace.shopping.model.dto.ShoppingDetailList" %>
+ <%
+    ShoppingDetailList product = (ShoppingDetailList)request.getAttribute("product");
+%>
+
 <!DOCTYPE html>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html lang="en">
@@ -13,9 +20,8 @@
 
     <div id="body-wrap">
         <div id="left-body">
-            <div id="mainFood">
-                <img src="<%=contextPath%>/images/dogproduct1.jpg" alt="상품 이미지">
-
+            <div id="mainFood"> <!-- 이미지 넣기 ()-->  
+                <img src="/${product.productImg}" alt="상품 이미지">
             </div>
             <div id="subFoods">
                 <div class="subFood-img"></div>
@@ -28,18 +34,18 @@
         <div id="right-body">
             <div id="main-info">
                 <div id="main-info-top">
-                    <div id="main-info-top-title"><b>Soft밥(소고기3kg)</b></div>
+                    <div id="main-info-top-title"><b>${product.productName}</b></div>
                     <div><img id="jjim" src="<%=contextPath %>/images/jjim.png" alt="찜"></div>
 
                 </div>
                 <div id="main-info-bottom">
-                    <img id="stars" src="<%=contextPath %>/images/stars.jpg" alt=""><p id="review">1000개 상품평</p>
+                    <img id="stars" src="<%=contextPath %>/images/stars.jpg" alt=""><p id="review">${product.reviewCount}개 상품평</p>
                 </div>
             </div>
             <hr>
             <div id="priceInfo">
                 <div id="price">
-                    <div id="bigPrice">22,000원</div>
+                    <div id="bigPrice">${product.price}원</div>
                     <div id="smallPrice">(100g 220원)</div>
                 </div>
                 <div id="delivery-info">
@@ -54,7 +60,6 @@
                 </div>
             </div>
             <hr>
-
 
             <div>
                 <div id="product-info-title"><h4><b>상품 정보</b></h4></div>
@@ -79,32 +84,34 @@
                 </table>
                 <hr>
             </div>
-            <div>
-                <table>
-                    <h4><b>상품 중량</b></h4>
-                    <tr>
-                        <div id="product-btr">
-                            <button>1 kg</button>
-                            <button>3 kg</button>
-                            <button>5 kg</button>
-                        </div>
-                    </tr>
-                </table>
-            </div>
-            
-            <hr>
-
-            <div id="prouduct-count-wrap">
-                <h4><b>상품 수량</b></h4>
-                <div id="btn-wrap">
-                    <input type="number" id="product-count" value="1" width="50px" >
-                    <div>22,000원</div>
+            <form action="<%=contextPath%>/shopping.do">
+                <div>
+                    <table>
+                        <h4><b>상품 중량</b></h4>
+                        <tr>
+                            <div id="product-btr">
+                             
+                                <button name="productWeight" value="1">1 kg</button>
+                                <button name="productWeight" value="3">3 kg</button>
+                                <button name="productWeight" value="5">5 kg</button>
+                            </div>
+                        </tr>
+                    </table>
                 </div>
-            </div>
-            <div id="shopping-buttons">
-                <button id="shopping-cart">장바구니</button>
-                <button id="buy-btn">구매하기</button>
-            </div>
+                
+                <hr>
+
+                <div id="prouduct-count-wrap">
+                    <h4><b>상품 수량</b></h4>
+                    <div id="btn-wrap">
+                        <input type="number" id="product-count" name="product-count" value="1" width="50px" >
+                        <div>22,000원</div>
+                    </div>
+                </div>
+                <div id="shopping-buttons">
+                    <button id="buy-btn">구매하기</button>
+                </div>
+            </form>
         </div>
     </div>
 
@@ -116,15 +123,16 @@
                 <div>Q & A</div>
             </div>
         </div>
-        <div></div>
-        <div></div>
+        <div id="detailImg-wrap">
+            <div>
 
+            
+            <img id="detailImg" src="<%=contextPath %>/images/detailImg.jpg" alt="">
+            </div>
+        </div>
     </div>
-    <div id="ddd"> <!-- 스티키헤더 만들기 -->
 
-    </div>
-    
-    <img id="stars" src="<%=contextPath %>/images/test.jpg" alt="">
+    <a href="<%=contextPath%>/shopping.do?cpage=1">기타</a>
     
 </body>
 </html>

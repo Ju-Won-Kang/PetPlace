@@ -12,7 +12,7 @@ body {
 
 #body-wrap{
     display: flex;
-    width: 80%;
+    width: 70%;
     margin: auto; /* 가운데로  */
 }
 
@@ -235,7 +235,7 @@ table{
 
 #bottom-body{
     border: 1px solid rgb(205, 205, 205);
-    width:77.5%;
+    width:67.5%;
     margin: auto;
 }
 
@@ -249,9 +249,29 @@ table{
     align-items: center;
     font-weight: 600;
     height: 70px;
+}
+
+#detailImg-wrap{
+    width: 100%;
+    display: flex;
+    /* justify-content: center; */
+    height: 500px;
+    overflow: auto;
+    height: auto;
+    padding: 200px;
+    padding-top: 0px;
+}
+
+#detailImg-wrap > div{
+    display: flex;
+    justify-content: center;
 
 }
 
-#ddd{
-    height: 1000px;
+#detailImg{
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* 이미지가 div 크기에 맞춰 꽉 참 */
+    display: block;
 }
+

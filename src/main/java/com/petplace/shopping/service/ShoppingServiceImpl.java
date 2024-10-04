@@ -7,6 +7,7 @@ import org.apache.ibatis.session.SqlSession;
 import com.petplace.common.PageInfo;
 import com.petplace.common.Template;
 import com.petplace.shopping.dao.ShoppingDao;
+import com.petplace.shopping.model.dto.ShoppingDetailList;
 import com.petplace.shopping.model.dto.ShoppingList;
 
 public class ShoppingServiceImpl implements ShoppingService {
@@ -31,6 +32,19 @@ public class ShoppingServiceImpl implements ShoppingService {
 		sqlSession.close();
 		
 		return list;
+	}
+
+
+
+	@Override
+	public ShoppingDetailList selectDetailProduct(int productNo) {
+		SqlSession sqlSession = Template.getSqlSession();
+		
+		ShoppingDetailList product = sDao.selectDetailProduct(sqlSession, productNo);
+		
+		sqlSession.close();
+		
+		return product;
 	}
 	
 	

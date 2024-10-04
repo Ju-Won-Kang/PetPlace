@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+
+    <link rel="stylesheet" href="css/shopping/shopping-purchase.css"> <!-- css연결 -->
+
+    <style>
+        body * {
+    box-sizing: border-box;
+}
+
+body {
+    border: solid black;
+    height: 100vh;
+    width: 1000px;
+    min-width: 1000px; /* 최소 너비 설정 */
+    box-sizing: border-box;
+}
+
+#body-wrap{
+    display: flex;
+    flex-direction: column;
+    width: 70%;
+    margin: auto; /* 가운데로  */
+}
+
+/* -------- detail css 잠시 가져옴 ---------*/
+table {
+    border-collapse: collapse;
+}
+
+table tr{
+    border: 1px solid rgb(203, 202, 202);
+}
+
+table tr td{
+    border:none;
+    padding: 7px;
+
+}
+
+table tr td:first-child{
+    background-color: rgba(232, 228, 228, 0.661);
+    width: 100px;
+    text-align: right;
+}
+
+#purchaser-table tr td:first-child{ /* 구매자 정보의 first td */
+    background-color: rgba(232, 228, 228, 0.661);
+    width: 100px;
+    text-align: right;
+}
+
+#payInfo-table tr td:first-child{ /* 결제 정보의 first td */
+    background-color: rgba(232, 228, 228, 0.661);
+    width: 100px;
+    text-align: right;
+}
+
+#pay-method{
+    width: 100%;
+}
+
+form{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#payment-btn{
+    width: 200px;
+    height: 30px;
+    border: 1px solid black;
+    background-color: rgb(168, 181, 223);
+    border-radius: 5px 5px 5px 5px;
+    font-weight: 600;
+}
+
+    </style>
+
+</head>
+
+<body>
+    <%@include file="../common/nav.jsp"%>
+    <div id="body-wrap">
+        <h1>주문/결제</h1>
+        <hr>
+        <h2>구매자 정보</h2>
+        <table id="purchaser-table">
+            <tr>
+                <td>이름</td>
+                <td>김철수</td>
+            </tr>
+            <tr>
+                <td>이메일</td>
+                <td>asdasd@naver.com</td>
+            </tr>
+            <tr>
+                <td>연락처</td>
+                <td>010-1234-5678</td>
+            </tr>
+            <tr>
+                <td>배송주소</td>
+                <td>서울시 강남구 구구구</td>
+            </tr>
+            <tr>
+                <td>배송 요청사항</td>
+                <td>배송 전 문자 바랍니다</td>
+            </tr>
+        </table>
+        <br>
+        
+        <h3>결제 정보</h3>
+        <table id="payInfo-table">
+            <tr>
+                <td>총 상품가격</td>
+                <td>21500원</td>
+            </tr>
+            <tr>
+                <td>배송비</td>
+                <td>3000원</td>
+            </tr>
+            <tr>
+                <td>총 결제금액</td>
+                <td>24500원</td>
+            </tr>
+            <tr>
+                <td>결제수단</td>
+                <td>
+                    <input type="radio" name="pay-how">카드결제 
+                    <input type="radio" name="pay-how">카카오페이
+                </td>
+            </tr>
+        </table>
+
+        <br>
+        <h3>결제수단</h3>
+        <form action="">
+            <table id="pay-method">
+                <tr>
+                    <td>카드 결제</td>
+                    <td>
+                        <select>
+                            <option value="국민">국민</option>
+                            <option value="신한">신한</option>
+                            <option value="하나">하나</option>
+                            <option value="우리">우리</option>
+                            <option value="농협">농협</option>
+                            <option value="기업">기업</option> 
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>카드번호</td>
+                    <td><input type="text" placeholder="카드번호 입력"></td>
+                </tr>
+                <tr>
+                    <td>카드 비밀번호</td>
+                    <td><input type="text" placeholder="비밀번호 입력"></td>
+                </tr>
+            </table>
+            <br><br>
+            <input id="payment-btn" type="submit" value="결제하기">
+        </form>
+    </div>
+</body>
+</html>
