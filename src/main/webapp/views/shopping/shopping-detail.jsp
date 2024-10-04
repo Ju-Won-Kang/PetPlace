@@ -21,8 +21,8 @@
     <div id="body-wrap">
         <div id="left-body">
             <div id="mainFood"> <!-- 이미지 넣기 ()-->  
-                <img src="/${product.productImg}" alt="상품 이미지">
-            </div>
+                <img src="<%=contextPath %>/${product.productImg}" alt="상품 이미지">
+            </div>  
             <div id="subFoods">
                 <div class="subFood-img"></div>
                 <div class="subFood-img"></div>
@@ -38,7 +38,7 @@
                     <div><img id="jjim" src="<%=contextPath %>/images/jjim.png" alt="찜"></div>
 
                 </div>
-                <div id="main-info-bottom">
+                <div id="main-info-bottom">         <!-- 별점  -->
                     <img id="stars" src="<%=contextPath %>/images/stars.jpg" alt=""><p id="review">${product.reviewCount}개 상품평</p>
                 </div>
             </div>
@@ -46,12 +46,12 @@
             <div id="priceInfo">
                 <div id="price">
                     <div id="bigPrice">${product.price}원</div>
-                    <div id="smallPrice">(100g 220원)</div>
+                    <div id="smallPrice">(100g 220원)</div>         <!--계산해서 값 입력 (script)-->
                 </div>
                 <div id="delivery-info">
                     <div id="delivery-company">
                         <div>택배사</div>
-                        <div>택배사 명</div>
+                        <div>대한통운</div>
                     </div>
                     <div id="delivery-price">
                         <div>배송비</div>
@@ -67,19 +67,19 @@
                 <table id="product-table">
                     <tr class="product-info">
                         <td>주 원료</td>
-                        <td>소고기</td>
+                        <td>${product.ingredient}</td>
                     </tr>
                     <tr class="product-info">
                         <td>원산지</td>
-                        <td>호주</td>
+                        <td>${product.origin}</td>
                     </tr>
                     <tr class="product-info">
                         <td>중량</td>
-                        <td>3kg</td>
+                        <td>${product.productWeight}kg  </td>
                     </tr>
                     <tr class="product-info">
                         <td>칼로리</td>
-                        <td>xx kcal</td>
+                        <td>${product.kcal}kcal</td>
                     </tr>
                 </table>
                 <hr>
@@ -90,10 +90,7 @@
                         <h4><b>상품 중량</b></h4>
                         <tr>
                             <div id="product-btr">
-                             
-                                <button name="productWeight" value="1">1 kg</button>
-                                <button name="productWeight" value="3">3 kg</button>
-                                <button name="productWeight" value="5">5 kg</button>
+                                <button name="productWeight">${product.productWeight}kg</button> <!-- div로 다시 만들어야할듯 -->
                             </div>
                         </tr>
                     </table>

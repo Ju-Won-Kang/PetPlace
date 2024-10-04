@@ -18,7 +18,7 @@ public class ShoppingDetailList {
 	public ShoppingDetailList() {
 		super();
 	}
-
+	
 
 	public ShoppingDetailList(String productNo, String productName, int price, String productImg, String detailImg,
 			int reviewCount, int star, String company, String ingredient, String origin, int productWeight, int kcal) {
