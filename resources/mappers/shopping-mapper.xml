@@ -32,12 +32,13 @@
 		<result column="PRODUCT_IMG" property="productImg"/>
 	</resultMap>
 	
-	<resultMap  id="selectDetailProduct" type="selectDetailProduct">
+	<resultMap  id="selectDetailResultSet" type="ShoppingDetailList">
 		<result column="PRODUCT_NO" property="productNo"/>
 		<result column="PRODUCT_NAME" property="productName"/>
 		<result column="PRICE" property="price"/>
-		<result column="FILE_NO" property="productImg"/>
+		<result column="PRODUCT_IMG" property="productImg"/>
 		<result column="FILE_PATH" property="detailImg"/>
+		<result column="FILE_LEVEL" property="fileLevel" javaType="int"/>
 		<result column="REVIEW_COUNT" property="reviewCount"/> <!-- reviewCount -->
 		<result column="AVG_STAR" property="Star"/>
 		<result column="COMPANY" property="company"/>
@@ -45,8 +46,6 @@
 		<result column="ORIGIN" property="origin"/>
 		<result column="PRODUCT_WEIGHT" property="productWeight"/>
 		<result column="KCAL" property="kcal"/>
-		
-		
 	</resultMap>
 	
 	<select id="selectShoppingListCount" resultType="_int">
@@ -76,26 +75,26 @@
 			 GROUP BY P.PRODUCT_NO, P.PRODUCT_NAME, P.PRICE, A.FILE_NO, A.FILE_PATH || A.CHANGE_NAME, P.COMPANY, P.INGREDIENT, P.ORIGIN, P.PRODUCT_WEIGHT, P.KCAL
 </select>
 	
-	<select id="selectDetailProduct" resultMap="selectDetailProduct">
+	<select id="selectDetailProduct" resultMap="selectDetailResultSet" parameterType="_int">
 		SELECT P.PRODUCT_NO,
-		       P.PRODUCT_NAME,
-		       P.PRICE,
-		       A.FILE_NO,
-		       A.FILE_PATH || A.CHANGE_NAME AS PRODUCT_IMG,
-		       COUNT(R.REVIEW_NO) AS REVIEW_COUNT,
-		       AVG(R.STAR) AS AVG_STAR,
-		       P.COMPANY,
-		       P.INGREDIENT,
-		       P.ORIGIN,
-		       P.PRODUCT_WEIGHT,
-		       P.KCAL
-		  FROM PRODUCT P
-		  LEFT JOIN REVIEW R ON P.PRODUCT_NO = R.PRODUCT_NO
-		  JOIN ATTACHMENT_PRODUCT A ON P.PRODUCT_NO = A.REF_PNO
-		 WHERE P.PRODUCT_NO = 1
-		   AND P.STATUS = 'Y'
-		   AND A.FILE_LEVEL = 1
-		 GROUP BY P.PRODUCT_NO, P.PRODUCT_NAME, P.PRICE, A.FILE_NO, A.FILE_PATH, A.CHANGE_NAME, P.COMPANY, P.INGREDIENT, P.ORIGIN, P.PRODUCT_WEIGHT, P.KCAL
+		P.PRODUCT_NAME,
+		P.PRICE,
+		A.FILE_NO,
+		A.FILE_PATH || A.CHANGE_NAME AS PRODUCT_IMG,
+		A.FILE_LEVEL,
+		COUNT(R.REVIEW_NO) AS REVIEW_COUNT,
+		AVG(R.STAR) AS AVG_STAR,
+		P.COMPANY,
+		P.INGREDIENT,
+		P.ORIGIN,
+		P.PRODUCT_WEIGHT,
+		P.KCAL
+		FROM PRODUCT P
+		LEFT JOIN REVIEW R ON P.PRODUCT_NO = R.PRODUCT_NO
+		JOIN ATTACHMENT_PRODUCT A ON P.PRODUCT_NO = A.REF_PNO
+		WHERE P.PRODUCT_NO = #{productNo}
+		AND P.STATUS = 'Y'
+		GROUP BY P.PRODUCT_NO, P.PRODUCT_NAME, P.PRICE, A.FILE_NO, A.FILE_PATH, A.CHANGE_NAME, A.FILE_LEVEL, P.COMPANY, P.INGREDIENT, P.ORIGIN, P.PRODUCT_WEIGHT, P.KCAL
 </select>
 	
 </mapper>
