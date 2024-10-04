@@ -20,7 +20,7 @@
 		<result column="STATUS" property="status"/>
 		<result column="PRODUCT_IMG" property="productImg"/>
 	</resultMap>
-	<resultMap id="shoppingAllList" type="ShoppingList">
+	<resultMap id="selectShoppingList" type="ShoppingList">
 		<result column="PRODUCT_NO" property="productNo"/>
 		<result column="PRODUCT_CATEGORY" property="productCategory"/>
 		<result column="PRODUCT_NAME" property="productName"/>
@@ -34,17 +34,11 @@
 		SELECT COUNT(*) AS "COUNT"
 		  FROM PRODUCT
 		 WHERE STATUS = 'Y'
-		 <if test="category == '강아지'">
-  		 	AND PRODUCT_CATEGORY = #{category}
-  		 </if>
-  		 <if test="category == '고양이'">
-  		 	AND PRODUCT_CATEGORY = #{category}
-  		 </if>
-  		 <if test="category == '기타'">
+		 <if test="category != null">
   		 	AND PRODUCT_CATEGORY = #{category}
   		 </if>
 	</select>
-	<select id="selectShoppingList" resultMap="shoppingAllList">
+	<select id="selectShoppingAllList" resultMap="selectShoppingList">
 		SELECT PRODUCT_NO,
 		       PRODUCT_NAME,
 		       PRICE,
@@ -57,13 +51,29 @@
 		  LEFT JOIN REVIEW R USING(PRODUCT_NO)
 		 WHERE P.STATUS = 'Y'
 		   AND FILE_LEVEL = 1
-		 <if test="category == '강아지'">
-  		 	AND PRODUCT_CATEGORY = #{category}
-  		 </if>
-  		 <if test="category == '고양이'">
-  		 	AND PRODUCT_CATEGORY = #{category}
-  		 </if>
-  		 <if test="category == '기타'">
+		 GROUP BY PRODUCT_NO, 
+		       PRODUCT_NAME, 
+		       PRICE, 
+		       PRODUCT_CATEGORY, 
+		       STAR, 
+		       FILE_PATH, 
+		       CHANGE_NAME
+		 ORDER BY PRODUCT_NO DESC
+	</select>
+	<select id="selectShoppingPetList" resultMap="selectShoppingList">
+		SELECT PRODUCT_NO,
+		       PRODUCT_NAME,
+		       PRICE,
+		       PRODUCT_CATEGORY,
+		       STAR,
+		       COUNT(REVIEW_NO) AS "REVIEW_COUNT",
+		       FILE_PATH || CHANGE_NAME AS "PRODUCT_IMG"
+		  FROM PRODUCT P
+		  JOIN ATTACHMENT_PRODUCT ON (PRODUCT_NO = REF_PNO)
+		  LEFT JOIN REVIEW R USING(PRODUCT_NO)
+		 WHERE P.STATUS = 'Y'
+		   AND FILE_LEVEL = 1
+		 <if test="category != null">
   		 	AND PRODUCT_CATEGORY = #{category}
   		 </if>
 		 GROUP BY PRODUCT_NO, 
@@ -75,22 +85,22 @@
 		       CHANGE_NAME
 		 ORDER BY PRODUCT_NO DESC
 	</select>
-	<select id="selectSearchCount" resultType="_int">
+	<select id="selectSearchPetCount" resultType="_int">
 		SELECT COUNT(*)
   		  FROM PRODUCT
   		 WHERE STATUS = 'Y'
-  		 <if test="category == '강아지'">
-  		 	AND PRODUCT_CATEGORY = "강아지"
-  		 </if>
-  		 <if test="category == '고양이'">
-  		 	AND PRODUCT_CATEGORY = "고양이"
-  		 </if>
-  		 <if test="category == '기타'">
-  		 	AND PRODUCT_CATEGORY = "기타"
+		 <if test="category != null">
+  		 	AND PRODUCT_CATEGORY = #{category}
   		 </if>
   		    AND PRODUCT_NAME LIKE '%' || #{keyword} || '%'
 	</select>
-	<select id="selectSearchList" resultMap="shoppingAllList">
+	<select id="selectSearchAllCount" resultType="_int">
+		SELECT COUNT(*)
+  		  FROM PRODUCT
+  		 WHERE STATUS = 'Y'
+  		   AND PRODUCT_NAME LIKE '%' || #{keyword} || '%'
+	</select>
+	<select id="selectSearchAllList" resultMap="selectShoppingList">
 		SELECT PRODUCT_NO,
 		       PRODUCT_NAME,
 		       PRICE,
@@ -103,13 +113,30 @@
 		  LEFT JOIN REVIEW R USING(PRODUCT_NO)
 		 WHERE P.STATUS = 'Y'
 		   AND FILE_LEVEL = 1
-		 <if test="category == '강아지'">
-  		 	AND PRODUCT_CATEGORY = #{category}
-  		 </if>
-  		 <if test="category == '고양이'">
-  		 	AND PRODUCT_CATEGORY = #{category}
-  		 </if>
-  		 <if test="category == '기타'">
+		   AND PRODUCT_NAME LIKE '%' || #{keyword} || '%'
+		 GROUP BY PRODUCT_NO, 
+		       PRODUCT_NAME, 
+		       PRICE, 
+		       PRODUCT_CATEGORY, 
+		       STAR,
+		       FILE_PATH, 
+		       CHANGE_NAME
+		 ORDER BY PRODUCT_NO DESC
+	</select>
+	<select id="selectSearchPetList" resultMap="selectShoppingList">
+		SELECT PRODUCT_NO,
+		       PRODUCT_NAME,
+		       PRICE,
+		       PRODUCT_CATEGORY,
+		       STAR,
+		       COUNT(REVIEW_NO) AS "REVIEW_COUNT",
+		       FILE_PATH || CHANGE_NAME AS "PRODUCT_IMG"
+		  FROM PRODUCT P
+		  JOIN ATTACHMENT_PRODUCT ON (PRODUCT_NO = REF_PNO)
+		  LEFT JOIN REVIEW R USING(PRODUCT_NO)
+		 WHERE P.STATUS = 'Y'
+		   AND FILE_LEVEL = 1
+		 <if test="category != null">
   		 	AND PRODUCT_CATEGORY = #{category}
   		 </if>
   		    AND PRODUCT_NAME LIKE '%' || #{keyword} || '%'

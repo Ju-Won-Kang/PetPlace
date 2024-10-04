@@ -1,24 +1,15 @@
 package com.petplace.inquiry.service;
 
-import com.petplace.common.JDBCTemplate;
+import java.util.ArrayList;
+import java.util.HashMap;
 
-import static com.petplace.common.JDBCTemplate.*;
+import org.apache.ibatis.session.SqlSession;
 
 import com.petplace.common.PageInfo;
 import com.petplace.common.Template;
 import com.petplace.inquiry.model.dao.InquiryDao;
 import com.petplace.inquiry.model.dto.InquiryList;
 import com.petplace.inquiry.model.vo.Inquiry;
-import com.petplace.review.model.dao.ReviewDao;
-import com.petplace.review.model.dto.ReviewList;
-import org.apache.ibatis.session.SqlSession;
-
-import java.sql.Connection;
-import java.util.ArrayList;
-import java.util.HashMap;
-
-import static com.petplace.common.JDBCTemplate.close;
-import static com.petplace.common.JDBCTemplate.getConnection;
 
 /**
  * packageName    : com.petplace.inquiry.service

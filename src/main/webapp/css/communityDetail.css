@@ -96,6 +96,7 @@ body p{
     background-color: rgb(189, 189, 189);
     border-radius: 50px;
     display: block;
+    margin: auto;
 }
 
 #community-recommend > button > img{
@@ -119,8 +120,6 @@ body p{
     background-color: rgb(189, 189, 189);
     border-radius: 50px;
     display: block;
-    display: flex;
-    justify-content: center;
     margin: auto;
 }
 
@@ -135,13 +134,14 @@ body p{
     width: 100%;
 }
 
-.community-comment-area{
+.community-reply-area{
     width: 1400px;
     margin: auto;
     margin-top: 20px;
 }
 
-#comment-area-etc{
+/* 댓글 목록 및 입력 */
+#reply-area-etc{
     width: 65%;
     margin: auto;
     display: flex;
@@ -152,31 +152,92 @@ body p{
     padding-right: 10px;
 }
 
-#comment-area-etc > button{
+#reply-area-etc > button{
     border: none;
     background-color: white;
 }
 
-.community-comment-list-insert{
+.community-reply-list-insert{
     width: 65%;
-    border: 1px solid black;
     margin: auto;
-    padding: 10px 10px 10px 10px;
+    padding: 10px 10px 0px 10px;
 }
 
-#community-comment-list{
+#community-reply-list{
     width: 100%;
     display: flex;
+    border-bottom: 1px solid rgb(190, 190, 190);
 }
 
-#community-comment-user-img{
+#community-reply-user-img{
     width: 7%;
 }
 
-#community-comment-user-img > img{
+#community-reply-user-img > img{
     width: 50px;
     height: 50px;
     border-radius: 50px 50px 50px 50px;
     overflow: hidden;
 }
 
+#nick-content-etc{
+    width: 93%
+}
+
+#reply-nick{
+    font-weight: 600;
+    padding-bottom: 10px;
+}
+
+#reply-content{
+    width: 100%;
+    height: 70px;
+    padding-bottom: 10px;
+}
+
+#date-modify-delete{
+    display: flex;
+}
+
+#date-modify-delete > p{
+    width: 90%;
+    font-size: 12px;
+}
+
+#date-modify-delete > button{
+    border: none;
+    width: 5%;
+    background-color: white;
+}
+
+#community-reply-insert{
+    border: 1px solid black;
+    border-radius: 10px;
+    padding: 10px 15px 10px 15px;
+    margin-top: 10px;
+}
+
+#community-reply-insert > p{
+    font-weight: 600;
+    padding-bottom: 5px;
+}
+
+#community-reply-insert > textarea{
+    border: none;
+    padding: 0;
+}
+
+#community-reply-insert > div{
+    display: flex;
+    justify-content: space-between;
+}
+
+#community-reply-insert > div > button{
+    border: none;
+    background-color: white;
+}
+
+#reply-content-insert{
+    font-weight: 600;
+    opacity: 0.3;
+}

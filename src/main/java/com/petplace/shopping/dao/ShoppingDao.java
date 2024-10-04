@@ -15,24 +15,47 @@ public class ShoppingDao {
 		return sqlSession.selectOne("shoppingMapper.selectShoppingListCount", category);
 	}
 	
-	public ArrayList<ShoppingList> selectShoppingList(SqlSession sqlSession, PageInfo pi, String category){
+	public ArrayList<ShoppingList> selectShoppingAllList(SqlSession sqlSession, PageInfo pi, String category){
 		int offset = (pi.getCurrentPage() - 1) * pi.getBoardLimit();
 		int limit = pi.getBoardLimit();
 		RowBounds rowBounds = new RowBounds(offset, limit);
 		
-		return (ArrayList)sqlSession.selectList("shoppingMapper.selectShoppingList", category, rowBounds);
+		return (ArrayList)sqlSession.selectList("shoppingMapper.selectShoppingAllList", category, rowBounds);
+		
+	}
+	
+	public ArrayList<ShoppingList> selectShoppingPetList(SqlSession sqlSession, PageInfo pi, String category){
+		int offset = (pi.getCurrentPage() - 1) * pi.getBoardLimit();
+		int limit = pi.getBoardLimit();
+		RowBounds rowBounds = new RowBounds(offset, limit);
+		
+		return (ArrayList)sqlSession.selectList("shoppingMapper.selectShoppingPetList", category, rowBounds);
 		
 	}
 	
 	public int selectSearchCount(SqlSession sqlSession, HashMap<String, String> map ) {
-		return sqlSession.selectOne("shoppingMapper.selectSearchCount", map);
+		return sqlSession.selectOne("shoppingMapper.selectSearchPetCount", map);
 	}
 	
-	public ArrayList<ShoppingList> selectSearchList(SqlSession sqlSession, HashMap<String, String> map, PageInfo pi){
+	public int selectSearchCount(SqlSession sqlSession, String keyword ) {
+		return sqlSession.selectOne("shoppingMapper.selectSearchAllCount", keyword);
+	}
+	
+	public ArrayList<ShoppingList> selectSearchAllList(SqlSession sqlSession, String keyword, PageInfo pi){
 		int offset = (pi.getCurrentPage() - 1) * pi.getBoardLimit();
 		int limit = pi.getBoardLimit();
 		RowBounds rowBounds = new RowBounds(offset, limit);
 		
-		return (ArrayList)sqlSession.selectList("shoppingMapper.selectSearchList", map, rowBounds);
+		return (ArrayList)sqlSession.selectList("shoppingMapper.selectSearchAllList", keyword, rowBounds);
 	}
+	
+	public ArrayList<ShoppingList> selectSearchPetList(SqlSession sqlSession, HashMap<String, String> map, PageInfo pi){
+		int offset = (pi.getCurrentPage() - 1) * pi.getBoardLimit();
+		int limit = pi.getBoardLimit();
+		RowBounds rowBounds = new RowBounds(offset, limit);
+		
+		return (ArrayList)sqlSession.selectList("shoppingMapper.selectSearchPetList", map, rowBounds);
+	}
+	
+	
 }

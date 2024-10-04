@@ -24,10 +24,21 @@ public class ShoppingServiceImpl implements ShoppingService {
 	}
 	
 	@Override
-	public ArrayList<ShoppingList> selectShoppingList(PageInfo pi, String category) {
+	public ArrayList<ShoppingList> selectShoppingAllList(PageInfo pi, String category) {
 		SqlSession sqlSession = Template.getSqlSession();
 		
-		ArrayList<ShoppingList> list = sDao.selectShoppingList(sqlSession, pi, category);
+		ArrayList<ShoppingList> list = sDao.selectShoppingAllList(sqlSession, pi, category);
+		
+		sqlSession.close();
+		
+		return list;
+	}
+	
+	@Override
+	public ArrayList<ShoppingList> selectShoppingPetList(PageInfo pi, String category) {
+		SqlSession sqlSession = Template.getSqlSession();
+		
+		ArrayList<ShoppingList> list = sDao.selectShoppingPetList(sqlSession, pi, category);
 		
 		sqlSession.close();
 		
@@ -44,12 +55,34 @@ public class ShoppingServiceImpl implements ShoppingService {
 		
 		return result;
 	}
-
+	
 	@Override
-	public ArrayList<ShoppingList> selectSearchList(HashMap<String, String> map, PageInfo pi) {
+	public int selectSearchCount(String keyword) {
 		SqlSession sqlSession = Template.getSqlSession();
 		
-		ArrayList<ShoppingList> list = sDao.selectSearchList(sqlSession, map, pi);
+		int result = sDao.selectSearchCount(sqlSession, keyword);
+		
+		sqlSession.close();
+		
+		return result;
+	}
+
+	@Override
+	public ArrayList<ShoppingList> selectSearchAllList(String keyword, PageInfo pi) {
+		SqlSession sqlSession = Template.getSqlSession();
+		
+		ArrayList<ShoppingList> list = sDao.selectSearchAllList(sqlSession, keyword, pi);
+		
+		sqlSession.close();
+		
+		return list;
+	}
+	
+	@Override
+	public ArrayList<ShoppingList> selectSearchPetList(HashMap<String, String> map, PageInfo pi) {
+		SqlSession sqlSession = Template.getSqlSession();
+		
+		ArrayList<ShoppingList> list = sDao.selectSearchPetList(sqlSession, map, pi);
 		
 		sqlSession.close();
 		

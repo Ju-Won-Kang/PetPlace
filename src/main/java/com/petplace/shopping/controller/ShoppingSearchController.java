@@ -37,34 +37,36 @@ public class ShoppingSearchController extends HttpServlet {
 		String keyword = request.getParameter("keyword");
 		
 		HashMap<String, String> map = new HashMap<>();
-		map.put("categoryName", category);
-		map.put("keyword", keyword);
-		
 		ShoppingService sService = new ShoppingServiceImpl();
 		
+		int searchCount = 0;
+		
+		if(category != null) {
+			map.put("category", category);
+			map.put("keyword", keyword);
+			searchCount = sService.selectSearchCount(map);
+		} else {
+			searchCount = sService.selectSearchCount(keyword);
+		}
+
 		int currentPage = Integer.parseInt(request.getParameter("cpage"));
-		int searchCount = sService.selectSearchCount(map);
 		
 		PageInfo pi = Template.getPageInfo(searchCount, currentPage, 10, 8);
-		ArrayList<ShoppingList> list = sService.selectSearchList(map, pi);
+		
+		ArrayList<ShoppingList> list = new ArrayList<>();
+		
+		if(category != null) {
+			list = sService.selectSearchPetList(map, pi);
+		} else {
+			list = sService.selectSearchAllList(keyword, pi);
+		}
 		
 		request.setAttribute("list", list);
 		request.setAttribute("pi", pi);
 		request.setAttribute("category", category);
 		request.setAttribute("keyword", keyword);
 		
-		if(category != null) {
-			if(category.equals("강아지")) {
-				request.getRequestDispatcher("views/shopping/shoppingDogList.jsp").forward(request, response);
-			} else if(category.equals("고양이")) {
-				request.getRequestDispatcher("views/shopping/shoppingCatList.jsp").forward(request, response);
-			} else if(category.equals("기타")) {
-				request.getRequestDispatcher("views/shopping/shoppingEtcList.jsp").forward(request, response);
-			}
-		} else {
-			request.getRequestDispatcher("views/shopping/shopping.jsp").forward(request, response);
-		}
-
+		request.getRequestDispatcher("views/shopping/shopping.jsp").forward(request, response);
 	}
 
 	/**

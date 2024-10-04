@@ -29,12 +29,14 @@
         </div>
         <form action="shoppingSearch.do">
 	        <div id="search-area">
+	        	<c:if test="${category != null}">
+				    <input type="hidden" name="category" value="${category}">
+				</c:if>
 	        	<input type="hidden" name="cpage" value="1">
 	            <input type="search" name="keyword" value="${keyword}">
 	            <input type="submit" src="<%=contextPath%>/images/Search.png">
 	        </div>
         </form>
-       
     </div>
 
     <div id="products">
@@ -65,23 +67,79 @@
     <br><br>
         <div>
             <div align="center">
-                <%if(currentPage > 1) { %>
-                    <button onclick="location.href='<%=contextPath%>/shopping.do?cpage=<%=currentPage - 1%>'">&lt;</button>
-                <% } %>
-                <% for(int p = startPage; p <= endPage; p++) { %>
-                    <% if(p == currentPage) { %>
-                        <button disabled><%=p%></button>
-                    <% } else {%>
-                        <button onclick="location.href='<%=contextPath%>/shopping.do?cpage=<%=p%>'"><%=p%></button>
-                    <% } %>
-                <% } %>
-                <%if(currentPage < maxPage) { %>
-                    <button onclick="location.href='<%=contextPath%>/shopping.do?cpage=<%=currentPage + 1%>'">&gt;</button>
-                <% } %>
+            	<c:if test="${keyword == null}">
+	                <c:if test="${pi.currentPage ne 1}">
+	                	<c:choose>
+			                <c:when test="${category ne null}" >
+			                	<a href="shoppingSearch.do?cpage=${pi.currentPage - 1}&category=${category}">&lt;</a>
+			                </c:when>
+			                <c:otherwise>
+			                	<a href="shoppingSearch.do?cpage=${pi.currentPage - 1}">&lt;</a>
+			                </c:otherwise>
+			            </c:choose>
+		            </c:if>
+		
+		            <c:forEach var="i" begin="${pi.startPage}" end="${pi.endPage}">	
+		            	<c:choose>
+		            		<c:when test="${category eq null}">
+		            			<a href="shoppingSearch.do?cpage=${i}">${i}</a>
+		            		</c:when>
+		            		<c:otherwise>
+		            			<a href="shoppingSearch.do?cpage=${i}&category=${category}">${i}</a>
+		            		</c:otherwise>
+		            	</c:choose>
+		            </c:forEach>
+		
+		            <c:if test="${pi.currentPage ne pi.maxPage}">
+		            	<c:choose>
+			            	<c:when test="${category ne null}" >
+			                	<a href="shoppingSearch.do?cpage=${pi.currentPage + 1}&category=${category}">&gt;</a>
+			                </c:when>
+			                <c:otherwise>
+			                	<a href="shoppingSearch.do?cpage=${pi.currentPage + 1}">&gt;</a>
+			                </c:otherwise>
+						</c:choose>
+		            </c:if>
+	            </c:if>
+	            
+	            
+	            
+                <c:if test="${keyword != null}">
+	                <c:if test="${pi.currentPage ne 1}">
+	                	<c:choose>
+			                <c:when test="${category ne null}" >
+			                	<a href="shoppingSearch.do?cpage=${pi.currentPage - 1}&category=${category}&keyword=${keyword}">&lt;</a>
+			                </c:when>
+			                <c:otherwise>
+			                	<a href="shoppingSearch.do?cpage=${pi.currentPage - 1}&keyword=${keyword}">&lt;</a>
+			                </c:otherwise>
+			            </c:choose>
+		            </c:if>
+		
+		            <c:forEach var="i" begin="${pi.startPage}" end="${pi.endPage}">	
+		            	<c:choose>
+		            		<c:when test="${category eq null}">
+		            			<a href="shoppingSearch.do?cpage=${i}&keyword=${keyword}">${i}</a>
+		            		</c:when>
+		            		<c:otherwise>
+		            			<a href="shoppingSearch.do?cpage=${i}&category=${category}&keyword=${keyword}">${i}</a>
+		            		</c:otherwise>
+		            	</c:choose>
+		            </c:forEach>
+		
+		            <c:if test="${pi.currentPage ne pi.maxPage}">
+		            	<c:choose>
+			            	<c:when test="${category ne null}" >
+			                	<a href="shoppingSearch.do?cpage=${pi.currentPage + 1}&category=${category}&keyword=${keyword}">&gt;</a>
+			                </c:when>
+			                <c:otherwise>
+			                	<a href="shoppingSearch.do?cpage=${pi.currentPage + 1}&keyword=${keyword}">&gt;</a>
+			                </c:otherwise>
+						</c:choose>
+		            </c:if>
+	            </c:if>
             </div>
         </div>
-
-        <a href="<%=contextPath%>/communityBoardEnroll.do">글쓰기</a>
 
     <%@include file="../common/footer.jsp"%>
 </body>

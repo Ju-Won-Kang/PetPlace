@@ -28,21 +28,21 @@ public class shoppingServlet extends HttpServlet {
 		
 		PageInfo pi = Template.getPageInfo(listCount, currentPage, 10, 8);
 		
-		ArrayList<ShoppingList> list = sService.selectShoppingList(pi, category);
+		ArrayList<ShoppingList> list = new ArrayList<>();
+		System.out.println(category);
+		if(category != null) {
+			list = sService.selectShoppingPetList(pi, category);
+		} else {
+			list = sService.selectShoppingAllList(pi, category);
+			
+		}
+		
 		System.out.println(list);
+		request.setAttribute("category", category);
 		request.setAttribute("list", list);
 		request.setAttribute("pi", pi);
-		if(category != null) {
-			if(category.equals("강아지")) {
-				request.getRequestDispatcher("views/shopping/shoppingDogList.jsp").forward(request, response);
-			} else if(category.equals("고양이")) {
-				request.getRequestDispatcher("views/shopping/shoppingCatList.jsp").forward(request, response);
-			} else if(category.equals("기타")) {
-				request.getRequestDispatcher("views/shopping/shoppingEtcList.jsp").forward(request, response);
-			}
-		} else {
-			request.getRequestDispatcher("views/shopping/shopping.jsp").forward(request, response);
-		}
+		
+		request.getRequestDispatcher("views/shopping/shopping.jsp").forward(request, response);
 	}
 
 	@Override

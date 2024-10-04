@@ -8,8 +8,11 @@ import com.petplace.shopping.model.dto.ShoppingList;
 
 public interface ShoppingService {
 	public abstract int selectShoppingListCount(String category);
-	public abstract ArrayList<ShoppingList> selectShoppingList(PageInfo pi, String categoryName);
+	public abstract ArrayList<ShoppingList> selectShoppingAllList(PageInfo pi, String categoryName);
+	public abstract ArrayList<ShoppingList> selectShoppingPetList(PageInfo pi, String categoryName);
 	
 	public abstract int selectSearchCount(HashMap<String, String> map);
-	public abstract ArrayList<ShoppingList> selectSearchList(HashMap<String, String> map, PageInfo pi);
+	public abstract int selectSearchCount(String keyword);
+	public abstract ArrayList<ShoppingList> selectSearchAllList(String keyword, PageInfo pi);
+	public abstract ArrayList<ShoppingList> selectSearchPetList(HashMap<String, String> map, PageInfo pi);
 }
