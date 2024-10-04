@@ -37,14 +37,14 @@ public class ShoppingServiceImpl implements ShoppingService {
 
 
 	@Override
-	public ArrayList<ShoppingDetailList> selectDetailProductList(int productNo) {
+	public ShoppingDetailList selectDetailProduct(int productNo) {
 		SqlSession sqlSession = Template.getSqlSession();
 		
-		ArrayList<ShoppingDetailList> list = sDao.selectDetailProductList(sqlSession, productNo);
+		ShoppingDetailList product = sDao.selectDetailProduct(sqlSession, productNo);
 		
 		sqlSession.close();
 		
-		return list;
+		return product;
 	}
 	
 	

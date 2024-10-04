@@ -35,7 +35,7 @@
 		   AND FILE_LEVEL = 1   
 	</entry>
 	
-	<entry key="selectDetailProductList">   
+	<entry key="selectDetailProduct">
 		SELECT PRODUCT_NO,
 		       PRODUCT_NAME,
 		       PRICE,

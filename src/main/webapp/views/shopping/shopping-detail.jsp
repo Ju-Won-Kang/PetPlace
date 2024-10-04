@@ -1,8 +1,11 @@
 <%@ page language="java" contentType="text/html;charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!-- 여기에 무언가를 import해야해 -->    
+  
  <%@ page import="java.sql.*" %>
- <%@ page import="java.util.ArrayList" %>
+ <%@ page import="java.util.ArrayList, com.petplace.shopping.model.dto.ShoppingDetailList" %>
+ <%
+    ShoppingDetailList product = (ShoppingDetailList)request.getAttribute("product");
+%>
 
 <!DOCTYPE html>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -17,8 +20,8 @@
 
     <div id="body-wrap">
         <div id="left-body">
-            <div id="mainFood">
-                <img src="<%=contextPath%>/images/dogproduct1.jpg" alt="상품 이미지">
+            <div id="mainFood"> <!-- 이미지 넣기 ()-->  
+                <img src="/${product.productImg}" alt="상품 이미지">
             </div>
             <div id="subFoods">
                 <div class="subFood-img"></div>
@@ -31,18 +34,18 @@
         <div id="right-body">
             <div id="main-info">
                 <div id="main-info-top">
-                    <div id="main-info-top-title"><b>Soft밥(소고기3kg)</b></div>
+                    <div id="main-info-top-title"><b>${product.productName}</b></div>
                     <div><img id="jjim" src="<%=contextPath %>/images/jjim.png" alt="찜"></div>
 
                 </div>
                 <div id="main-info-bottom">
-                    <img id="stars" src="<%=contextPath %>/images/stars.jpg" alt=""><p id="review">1000개 상품평</p>
+                    <img id="stars" src="<%=contextPath %>/images/stars.jpg" alt=""><p id="review">${product.reviewCount}개 상품평</p>
                 </div>
             </div>
             <hr>
             <div id="priceInfo">
                 <div id="price">
-                    <div id="bigPrice">22,000원</div>
+                    <div id="bigPrice">${product.price}원</div>
                     <div id="smallPrice">(100g 220원)</div>
                 </div>
                 <div id="delivery-info">

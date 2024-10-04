@@ -30,11 +30,12 @@ public class ShoppingDao {
 	}
 	
 	
-	// 상품상세 목록
-	public ArrayList<ShoppingDetailList> selectDetailProductList(SqlSession sqlsession, int boardNo){
+	
+	public ShoppingDetailList selectDetailProduct(SqlSession sqlSession, int boardNo) {
 		
-		return (ArrayList)sqlsession.selectList("shoppingMapper.selectDetailProductList");
+	    return sqlSession.selectOne("shoppingMapper.selectDetailProduct", boardNo);
 	}
+
 
 
 

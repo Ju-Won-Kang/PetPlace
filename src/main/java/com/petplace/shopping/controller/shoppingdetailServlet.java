@@ -25,9 +25,9 @@ public class shoppingdetailServlet extends HttpServlet {
 		
 		ShoppingService sService = new ShoppingServiceImpl();
 		
-		ArrayList<ShoppingDetailList> list = sService.selectDetailProductList(productNo);
+		ShoppingDetailList product = sService.selectDetailProduct(productNo);
 		
-		request.setAttribute("list", list);
+		request.setAttribute("product", product);
 		request.getRequestDispatcher("views/shopping/shopping-detail.jsp").forward(request, response);
 	}
 

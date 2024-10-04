@@ -9,5 +9,5 @@ import com.petplace.shopping.model.dto.ShoppingList;
 public interface ShoppingService {
 	public abstract int selectShoppingListCount();
 	public abstract ArrayList<ShoppingList> selectShoppingList(PageInfo pi);
-	public abstract ArrayList<ShoppingDetailList> selectDetailProductList(int productNo);
+	public abstract ShoppingDetailList selectDetailProduct(int productNo);
 }
