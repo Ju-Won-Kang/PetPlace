@@ -5,8 +5,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="${pageContext.request.contextPath}/images/Logo.png"/>
     <title>PetPlace - 펫플레이스(반려동물 종합 플랫폼)</title>
-    <link rel="stylesheet" href="css/index.css">
+    <link rel="stylesheet" href="css/common/index.css">
     <!-- Link Swiper's CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
 </head>

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="inquiryMapper">
+    <resultMap id="InquiryListSet" type="InquiryList">
+        <result column="INQUIRY_NO" property="inquiryNo"/>
+        <result column="MEMBER_ID" property="memberId"/>
+        <result column="PRODUCT_NO" property="productNo"/>
+        <result column="PRODUCT_NAME" property="productName"/>
+        <result column="INQUIRY_TITLE" property="inquiryTitle"/>
+        <result column="INQUIRY_DETAIL" property="inquiryDetail"/>
+        <result column="INQUIRY_DATE" property="inquiryDate"/>
+        <result column="ANSWER" property="answer"/>
+    </resultMap>
+
+    <select id="selectListCount" resultType="_int">
+        select count(*) as "count"
+        from inquiry
+    </select>
+    <select id="selectInquiryList" resultMap="InquiryListSet">
+        select INQUIRY_NO,
+            MEMBER_ID,
+            PRODUCT_NO,
+            PRODUCT_NAME,
+            INQUIRY_TITLE,
+            INQUIRY_DETAIL,
+            TO_CHAR(INQUIRY_DATE,'YYYY/MM/DD') AS "INQUIRY_DATE",
+            ANSWER
+        from INQUIRY I
+        join product using(PRODUCT_NO)
+        order by INQUIRY_NO DESC
+    </select>
+    <select id="selectInquiry" parameterType="_int" resultType="Inquiry">
+        select INQUIRY_TITLE as inquiryTitle,
+        INQUIRY_DETAIL as inquiryDetail
+        from inquiry
+        where INQUIRY_NO = #{inquiryNo}
+    </select>
+    <update id="insertInquiry" parameterType="HashMap">
+        update INQUIRY
+        set answer = #{answer}
+        where INQUIRY_NO = #{inquiryNo}
+    </update>
+</mapper>
