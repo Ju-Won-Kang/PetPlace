@@ -50,7 +50,7 @@
                             <p class="dogFood-name"><%=s.getProductName() %></p>
                             <p class="dogFood-price"><%=s.getPrice() %> 원</p>
                             <p class="dogFood-etc" id="stars"></p>
-                            <p class="dogFood-etc" id="star-after"> 16,610개 상품평</p>
+                            <p class="dogFood-etc" id="star-after"> <%=s.getReviewCount() %>개 상품평</p>
                         </div>
                     </div>
                 <% } %>

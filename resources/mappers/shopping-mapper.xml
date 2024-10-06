@@ -76,7 +76,6 @@
 	
 	<select id="selectDetailProduct" resultMap="selectDetailResultSet" parameterType="_int">
 		SELECT P.PRODUCT_NO,
-
 		P.PRODUCT_NAME,
 		P.PRICE,
 		A.FILE_NO,

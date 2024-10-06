@@ -28,7 +28,7 @@ public class ShoppingDetailList {
 		this.productImg = productImg;
 		this.fileLevel = fileLevel;
 		this.reviewCount = reviewCount;
-		Star = star;
+		this.Star = star;
 		this.company = company;
 		this.ingredient = ingredient;
 		this.origin = origin;
