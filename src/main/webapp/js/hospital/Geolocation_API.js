@@ -44,6 +44,9 @@ function mapLoad(latitude, longitude) {
     // 지도 생성
     map = new kakao.maps.Map(container, options);
     shPageValue.map = map;
+
+    var spinner = document.querySelector(".spinner-border");
+    spinner.style.display = 'none';
     // 장소 검색 객체 생성
     var ps = new kakao.maps.services.Places();
     const coordinate = new kakao.maps.LatLng(latitude,longitude)
@@ -51,7 +54,7 @@ function mapLoad(latitude, longitude) {
     var options = {
         location: coordinate,
         radius: 10000,
-        size:10,
+        size:15,
         sort: kakao.maps.services.SortBy.DISTANCE,
     };
     ps.keywordSearch('동물병원', placesSearchCB, options);
