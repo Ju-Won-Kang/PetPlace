@@ -68,7 +68,7 @@
                         <div class="dogFood-info">
                             <p class="dogFood-name"><%=s.getProductName() %></p>
                             <p class="dogFood-price"><%=s.getPrice() %> 원</p>
-                            <p class="dogFood-etc" id="stars"><%=s.getStar() %></p>
+                            <p class="dogFood-etc" id="stars" onload="starCount()"><%=s.getStar() %></p>
                             <p class="dogFood-etc" id="star-after"><%=s.getReviewCount() %>개 상품평</p>
                         </div>
                     </div>
@@ -76,6 +76,19 @@
             </div>
         <% } %>
     </div>
+
+	<script>
+		function starCount(){
+			const starArea = document.querySelector("#stars");
+			const sta
+
+			for(let i = 0; i < 6; i++){
+				if(i < ${list.get(0).star}){
+					starArea
+				}
+			}
+		}
+	</script>
 
     <br><br>
         <div>

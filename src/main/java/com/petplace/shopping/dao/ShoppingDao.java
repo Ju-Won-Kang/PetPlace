@@ -7,6 +7,7 @@ import org.apache.ibatis.session.RowBounds;
 import org.apache.ibatis.session.SqlSession;
 
 import com.petplace.common.PageInfo;
+import com.petplace.shopping.model.dto.ShoppingComplete;
 import com.petplace.shopping.model.dto.ShoppingDetailList;
 import com.petplace.shopping.model.dto.ShoppingList;
 
@@ -61,6 +62,10 @@ public class ShoppingDao {
 	public ShoppingDetailList selectDetailProduct(SqlSession sqlSession, int boardNo) {
 		
 	    return sqlSession.selectOne("shoppingMapper.selectDetailProduct", boardNo);
+	}
+	
+	public ArrayList<ShoppingComplete> selectShoppingCompleteList(SqlSession sqlSession, int productNo){
+		return (ArrayList)sqlSession.selectList("shoppingMapper.selectShoppingCompleteList", productNo);
 	}
 	
 }

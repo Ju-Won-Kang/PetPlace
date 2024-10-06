@@ -1,11 +1,17 @@
 package com.petplace.shopping.controller;
 
+import java.io.IOException;
+import java.util.ArrayList;
+
+import com.petplace.shopping.model.dto.ShoppingComplete;
+import com.petplace.shopping.service.ShoppingService;
+import com.petplace.shopping.service.ShoppingServiceImpl;
+
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import java.io.IOException;
 
 /**
  * Servlet implementation class ShoppingCompleteController
@@ -26,6 +32,15 @@ public class ShoppingCompleteController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		int productNo = Integer.parseInt(request.getParameter("pno"));
+		ArrayList<ShoppingComplete> list = null;
+		
+		ShoppingService sService = new ShoppingServiceImpl();
+		
+		list = sService.selectShoppingCompleteList(productNo);
+		
+		request.setAttribute("list", list);
+		
 		request.getRequestDispatcher("views/shopping/shoppingComplete.jsp").forward(request, response);
 	}
 

@@ -63,7 +63,7 @@
 
         <br>
         <h3>결제수단</h3>
-        <form action="shoppingComplete.do">
+        <form action="shoppingComplete.do?pno=${productNo}">
             <table id="pay-method">
                 <tr>
                     <td>카드 결제</td>
