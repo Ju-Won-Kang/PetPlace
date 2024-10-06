@@ -52,7 +52,7 @@
                 </div>
                 <div id="main-info-bottom-star">
                     <!-------------- 별점 출력  ----------->
-                    <div id="starDiv"></div><p id="review">${product[0].reviewCount}개 상품평</p>
+                    <div id="starDiv"></div><p id="review">&nbsp${product[0].reviewCount}개 상품평</p>
                 </div>
 
             </div>
@@ -101,7 +101,7 @@
                     <h4><b>상품 수량</b></h4>
                     <div id="btn-wrap">
                         <input type="number" id="product-count" name="product-count" value="1" min="1" width="50px" >
-                        <div id="totalPrice" class="price">  22000원  </div> <!-- 스크립트로 상품수량(btn) x 개수 + 3000원-->
+                        <div id="totalPrice" class="price">${product[0].price}원</div> <!-- 스크립트로 상품수량(btn) x 개수 + 3000원-->
                     </div>
                 </div>
                 <div id="shopping-buttons">
@@ -136,12 +136,17 @@
     <script> 
     // <!-----------------------별 출력 ------------------------>
         let contextPath = '<%= request.getContextPath() %>';
+        let review_Count = parseInt(document.getElementById("review").textContent);
 
-        // let starRating = <%= starRating %>;
 
         let starRating = 3; // 임시로 별점3점 넣어둠
+        if(review_Count==0){    //리뷰가 0개면 빈 별
+            starRating = 0;
+        }
+
         const maxRating = 5;
         const starRatingDiv = document.getElementById("starDiv");
+        starRatingDiv.innerHTML = ''; // 이전에 추가된 별 이미지가 있으면 삭제
 
         for (let i = 0; i < starRating; i++) {
            // 별 이미지를 위한 img 요소 생성
@@ -176,7 +181,7 @@
         function updatePrice() {
             const productCount = parseInt(productCountInput.value); 
             const totalProductPrice = productPrice * productCount;
-            let finalPrice = totalProductPrice+shippingCost;
+            let finalPrice = totalProductPrice;
             totalPriceElement.textContent = finalPrice.toLocaleString() + "원";
         }
 
@@ -211,9 +216,6 @@
 
         document.getElementById("100gPrice").innerHTML = "&nbsp;100당 " + pricePer100g.toLocaleString() + "원";
 }
-
-
-
     </script>
 </body>
 </html>
