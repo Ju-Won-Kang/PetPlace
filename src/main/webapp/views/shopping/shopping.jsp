@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html;charset=UTF-8"
+		<%@ page language="java" contentType="text/html;charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ page import="com.petplace.common.PageInfo, java.util.ArrayList, com.petplace.shopping.model.dto.ShoppingList, com.petplace.review.model.vo.Review" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>

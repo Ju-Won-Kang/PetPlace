@@ -1,0 +1,143 @@
+
+#register-page {
+    display: flex;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0;
+}
+
+
+#register-page aside {
+    width: 200px;
+    background-color: white;
+    padding: 20px;
+    border-right: 1px solid #ccc;
+    height: 100vh;
+    position: sticky;
+    top: 0;
+}
+
+#register-page aside ul {
+    list-style: none;
+    font-family: 'Noto Sans KR', sans-serif;
+    font-size: 18px;
+    padding-left: 0;
+}
+
+#register-page aside ul li {
+    margin-bottom: 20px;
+}
+
+#register-page aside ul li a {
+    text-decoration: none;
+    font-size: 18px;
+    color: black;
+    display: block;	
+    padding: 10px;
+    border-radius: 5px;
+}
+
+#register-page aside ul li a.active {
+    font-weight: bold;
+    color: #D4E1FA;
+}
+
+
+#register-page main {
+	width: calc(100% - 200px);
+    flex-grow: 1;
+    padding: 20px;
+    background-color: white;
+    margin-left: 20px;
+}
+
+#register-page main h2 {
+    font-size: 32px;
+    margin-bottom: 20px;
+    border-bottom: 3px solid black;
+    padding-bottom: 10px;
+}
+
+
+#register-page .form-group {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+#register-page .form-group label {
+    width: 150px;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+
+#register-page .form-group input,
+#register-page .form-group select {
+    width: 400px;
+    padding: 10px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+
+#register-page .form-group.phone-group {
+    align-items: center;
+}
+
+#register-page .form-group.phone-group select {
+    width: 100px !important;
+    margin-right: 10px;
+    display: inline-block;
+}
+
+#register-page .form-group.phone-group input {
+    width: 400px !important; /* 다른 입력 필드와 동일하게 400px로 고정 */
+    padding: 10px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    display: inline-block;
+    box-sizing: border-box;
+}
+
+
+#register-page .form-group button#checkDuplicate {
+    margin-left: 10px;
+    padding: 8px 15px;
+    font-size: 14px;
+    background-color: #0044CC; 
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#register-page .form-group button#checkDuplicate:hover {
+    background-color: #003399;
+}
+/* 회원가입 버튼 */
+#register-page #submitRegister {
+    display: block;
+    width: 200px;
+    padding: 15px;
+    font-size: 18px;
+    background-color: #0044CC; 
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin: 20px auto 0;
+}
+
+#register-page button:hover {
+    background-color: #003399;
+}
+
+
+#register-page .register-container .form-group input,
+#register-page .register-container .form-group select {
+    max-width: 400px;
+}

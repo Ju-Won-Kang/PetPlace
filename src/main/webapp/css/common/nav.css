@@ -1,82 +1,156 @@
+/* 모든 요소에 기본 박스 모델 설정 */
 body * {
-    box-sizing: border-box;
+	box-sizing: border-box;
 }
 
 body {
-    width: 100%;
-    height: 100%;
-    min-width: 1143px;
+	width: 100%;
+	height: 100%;
+	min-width: 1143px;
 }
 
 header {
-    width: 1400px;
-    margin: auto;
+	width: 1400px;
+	margin: auto;
 }
 
-header > #header-wrap {
-    display: flex;
-    width: 100%;
-    flex-direction: row;
-    justify-content: space-around;
-    align-items: center;
-    gap: 100px;
-    border-bottom: 1px solid #c4c4c4;
-
+header>#header-wrap {
+	display: flex;
+	width: 100%;
+	flex-direction: row;
+	justify-content: space-around;
+	align-items: center;
+	gap: 100px;
+	border-bottom: 1px solid #c4c4c4;
 }
 
 header a {
-    text-decoration: none;
-    color: black;
+	text-decoration: none;
+	color: black;
 }
 
 #user {
-    cursor: pointer;
-    border: none;
+	cursor: pointer;
+	border: none;
 }
 
 header {
-    position: relative;
+	position: relative;
 }
 
 #user-info {
-    position: absolute;
-    top: 100%;
-    right: 10px;
-    border: 1px solid black;
-    width: 250px;
-    height: 280px;
-    background: rgb(239, 244, 255);
-    z-index: 10;
-    border-radius: 10px;
-    box-shadow: 2px 2px 8px;
+	position: absolute;
+	top: 100%;
+	right: 10px;
+	border: 1px solid black;
+	width: 250px;
+	background: rgb(239, 244, 255);
+	z-index: 10;
+	border-radius: 10px;
+	box-shadow: 2px 2px 8px;
+	padding: 15px;
 }
 
-#user-info > p {
-    text-align: center;
-    width: 100%;
-    height: 15%;
-    padding: 15px 0;
-    font-size: 16px;
-    font-weight: 600;
+#user-info p {
+	text-align: center;
+	width: 100%;
+	padding: 10px 0;
+	font-size: 16px;
+	font-weight: 600;
 }
 
-#user-img {
-    width: 100%;
-    height: 20%;
-    background: url(../../images/user.png) no-repeat center/contain;
-    margin-top: 15px;
+#user-info .profile-image img {
+	width: 60px; /* 이미지 크기 조정 */
+	height: 60px;
+	border-radius: 50%;
+	margin: 10px auto; /* 중앙 정렬 */
+	display: block;
 }
 
 #login-form {
-    text-align: center;
+	text-align: center;
+	margin-top: 15px; /* 로그인 폼과 이미지 사이 간격 */
 }
 
-#user > img {
-    background-color: white;
+#login-form input {
+	width: 100%;
+	padding: 8px;
+	margin-bottom: 10px;
+	border-radius: 5px;
+	border: 1px solid #ccc;
 }
-.hide{
-    display: none ;
+
+#user>img {
+	background-color: white;
 }
-.expose{
-    display: block ;
+
+.hide {
+	display: none;
+}
+
+.expose {
+	display: block;
+}
+
+/* 프로필 카드 스타일 */
+.profile-card {
+	width: 250px;
+	background-color: white;
+	border-radius: 10px;
+	box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+	padding: 20px;
+	margin: 20px auto;
+	text-align: center;
+	font-size: 16px;
+}
+
+.profile-card .nickname {
+	font-size: 24px;
+	margin-bottom: 10px;
+	font-weight: bold;
+	color: #333;
+}
+
+.profile-card .profile-image img {
+	width: 60px; /* 프로필 이미지 크기 */
+	height: 60px;
+	border-radius: 50%;
+	background-color: #ccc;
+}
+
+.profile-card .link {
+	font-size: 16px;
+	color: #666;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 10px 0;
+}
+
+.profile-card .link a {
+	color: red;
+	font-weight: bold;
+	text-decoration: none;
+}
+
+.profile-card .link a:hover {
+	text-decoration: underline;
+}
+
+.profile-card .menu-list {
+	list-style: none;
+	padding: 0;
+	margin: 20px 0;
+	text-align: left;
+}
+
+.profile-card .menu-list li {
+	padding: 10px;
+	border-bottom: 1px solid #ccc;
+	font-size: 16px;
+	color: #333;
+}
+
+.profile-card .menu-list li:last-child {
+	border-bottom: none;
 }
