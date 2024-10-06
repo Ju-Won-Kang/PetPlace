@@ -39,7 +39,6 @@ header {
 }
 
 #user-info {
-    display: none;
     position: absolute;
     top: 100%;
     right: 10px;
@@ -74,4 +73,10 @@ header {
 
 #user > img {
     background-color: white;
+}
+.hide{
+    display: none ;
+}
+.expose{
+    display: block ;
 }

@@ -22,17 +22,17 @@
         #{phone},
         #{memberNo},
         #{address},
-        #{salt},
+        #{salt}
         )
     </insert>
     <select id="selectHashedMember" parameterType="String" resultType="HashedMember">
-        select MEMBER_ID,
-        MEMBER_PWD,
-        MEMBER_NAME,
+        select MEMBER_ID as memberId,
+        MEMBER_PWD as memberPwd,
+        MEMBER_NAME as memberName,
         NICKNAME,
         PHONE,
-        MEMBER_NUMBER,
-        MEMBER_ADDRESS,
+        MEMBER_NUMBER as memberNo,
+        MEMBER_ADDRESS as address,
         SALT
         from member
         where MEMBER_ID = #{userId}

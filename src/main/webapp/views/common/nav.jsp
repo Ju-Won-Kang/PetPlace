@@ -60,7 +60,7 @@
                     <button type="button" id="user" onclick="userBtn()">
                         <img src="images/user.png">
                     </button>
-                    <div id="user-info">
+                    <div id="user-info" class="hide">
                         <p>USER</p>
                         <div id="user-img"></div>
                         <div id="login-form">
@@ -68,7 +68,7 @@
                                 <input type="text" name="userId" placeholder="아이디" required>
                                 <input type="password" name="userPwd" placeholder="비밀번호" required> <br> <br>
                                 <button type="submit">로그인</button>
-                                <button type="button">회원가입</button>
+                                <button type="button" onclick="location.href = '${pageContext.request.contextPath}/views/common/signUp.jsp'">회원가입</button>
                             </form>
                         </div>
                     </div>

@@ -16,19 +16,15 @@ import org.apache.ibatis.session.SqlSession;
 public class MemberService {
 
 	public HashedMember loginMember(String userId, String userPwd) {
-//		Connection conn = getConnection();
-//		Member m = new MemberDao().loginMember(conn, userId, userPwd);
-//		System.out.println("sv" + m);
-//
-//		close(conn);
-//		return m;
 		SqlSession sqlSession = Template.getSqlSession();
-		// 비밀번호 salt값과 해싱처리된 비밀번호 가져오기
+		// DB에서 user 정보 가져오기
 		HashedMember m = new MemberDao().loginMember(sqlSession, userId);
+		// 요청으로 들어온 비밀번호 해싱처리
 		String hashedUserPwd = ShaUtil.sha256WithSaltEncode(userPwd, m.getSalt());
-
 		sqlSession.close();
-		if(userId == m.getMemberId() && hashedUserPwd == m.getMemberPwd()){
+
+		// DB에서 가져온 user 정보와 요청으로 들어온 정보 비교
+		if(userId.equals(m.getMemberId()) && hashedUserPwd.equals(m.getMemberPwd())){
 			return m;
 		}
 
@@ -45,6 +41,7 @@ public class MemberService {
 		String memberNo = beforeHashingMember.getSSN1() + "-" + gender + hashedSSN2;
 		HashedMember hashedMember = new HashedMember(beforeHashingMember.getMemberId(), hashedMemberPwd, salt, beforeHashingMember.getMemberName(),
 				memberNo, beforeHashingMember.getPhone(), beforeHashingMember.getNickname(), beforeHashingMember.getAddress());
+		System.out.println(hashedMember);
 		int result = new MemberDao().enrollMember(sqlSession,hashedMember);
 		if (result > 0) {
 			sqlSession.commit();

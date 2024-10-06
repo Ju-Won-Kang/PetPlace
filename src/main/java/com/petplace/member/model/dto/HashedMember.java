@@ -18,7 +18,7 @@ public class HashedMember {
     private String memberName;
     private String memberNo;
     private String phone;
-    private String nickname;
+    private String nickName;
     private String address;
 
     public HashedMember() {
@@ -31,7 +31,7 @@ public class HashedMember {
         this.memberName = memberName;
         this.memberNo = memberNo;
         this.phone = phone;
-        this.nickname = nickname;
+        this.nickName = nickname;
         this.address = address;
     }
 
@@ -83,12 +83,12 @@ public class HashedMember {
         this.phone = phone;
     }
 
-    public String getNickname() {
-        return nickname;
+    public String getNickName() {
+        return nickName;
     }
 
-    public void setNickname(String nickname) {
-        this.nickname = nickname;
+    public void setNickName(String nickName) {
+        this.nickName = nickName;
     }
 
     public String getAddress() {
@@ -108,7 +108,7 @@ public class HashedMember {
                 ", memberName='" + memberName + '\'' +
                 ", memberNo='" + memberNo + '\'' +
                 ", phone='" + phone + '\'' +
-                ", nickname='" + nickname + '\'' +
+                ", nickname='" + nickName + '\'' +
                 ", address='" + address + '\'' +
                 '}';
     }
