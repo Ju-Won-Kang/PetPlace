@@ -60,7 +60,7 @@ public class ShoppingSearchController extends HttpServlet {
 		} else {
 			list = sService.selectSearchAllList(keyword, pi);
 		}
-		
+		System.out.println(pi);
 		request.setAttribute("list", list);
 		request.setAttribute("pi", pi);
 		request.setAttribute("category", category);

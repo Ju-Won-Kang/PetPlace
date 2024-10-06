@@ -68,8 +68,15 @@
                         <div class="dogFood-info">
                             <p class="dogFood-name"><%=s.getProductName() %></p>
                             <p class="dogFood-price"><%=s.getPrice() %> 원</p>
-                            <p class="dogFood-etc" id="stars" onload="starCount()"><%=s.getStar() %></p>
-                            <p class="dogFood-etc" id="star-after"><%=s.getReviewCount() %>개 상품평</p>
+							<div id="dogFood-star">
+								<c:forEach var="i" begin="1" end="<%=s.getStar() %>" step="1">
+									<img class="dogFood-etc" id="stars" src="<%=contextPath%>/images/star.png">
+								</c:forEach>
+								<c:forEach var="i" begin="<%=s.getStar() + 1 %>" end="5" step="1">
+									<img class="dogFood-etc" id="stars" src="<%=contextPath%>/images/PoorStar.png">
+								</c:forEach>
+								<p class="dogFood-etc" id="star-after"><%=s.getReviewCount() %>개 상품평</p>
+							</div>
                         </div>
                     </div>
                 <% } %>
@@ -77,182 +84,360 @@
         <% } %>
     </div>
 
-	<script>
-		function starCount(){
-			const starArea = document.querySelector("#stars");
-			const sta
-
-			for(let i = 0; i < 6; i++){
-				if(i < ${list.get(0).star}){
-					starArea
-				}
-			}
-		}
-	</script>
-
     <br><br>
-        <div>
-            <div align="center">
-            	<c:if test="${keyword == null}">
-	                <c:if test="${pi.currentPage ne 1}">
-	                	<c:choose>
-			                <c:when test="${category ne null}" >
-			                	<a href="shoppingSearch.do?cpage=${pi.currentPage - 1}&category=${category}">&lt;</a>
-			                </c:when>
-			                <c:otherwise>
-			                	<a href="shoppingSearch.do?cpage=${pi.currentPage - 1}">&lt;</a>
-			                </c:otherwise>
-			            </c:choose>
-		            </c:if>
-		
-		            <c:forEach var="i" begin="${pi.startPage}" end="${pi.endPage}">	
-		            	<c:choose>
-		            		<c:when test="${category eq null}">
-		            			<a href="shoppingSearch.do?cpage=${i}">${i}</a>
-		            		</c:when>
-		            		<c:otherwise>
-		            			<a href="shoppingSearch.do?cpage=${i}&category=${category}">${i}</a>
-		            		</c:otherwise>
-		            	</c:choose>
-		            </c:forEach>
-		
-		            <c:if test="${pi.currentPage ne pi.maxPage}">
-		            	<c:choose>
-			            	<c:when test="${category ne null}" >
-			                	<a href="shoppingSearch.do?cpage=${pi.currentPage + 1}&category=${category}">&gt;</a>
-			                </c:when>
-			                <c:otherwise>
-			                	<a href="shoppingSearch.do?cpage=${pi.currentPage + 1}">&gt;</a>
-			                </c:otherwise>
-						</c:choose>
-		            </c:if>
-	            </c:if> 
-	            
-                <c:if test="${keyword != null}">
-	                <c:if test="${pi.currentPage ne 1}">
-	                	<c:choose>
-			                <c:when test="${category ne null}" >
-			                	<a href="shoppingSearch.do?cpage=${pi.currentPage - 1}&category=${category}&keyword=${keyword}">&lt;</a>
-			                </c:when>
-			                <c:otherwise>
-			                	<a href="shoppingSearch.do?cpage=${pi.currentPage - 1}&keyword=${keyword}">&lt;</a>
-			                </c:otherwise>
-			            </c:choose>
-		            </c:if>
-		
-		            <c:forEach var="i" begin="${pi.startPage}" end="${pi.endPage}">	
-		            	<c:choose>
-		            		<c:when test="${category eq null}">
-		            			<a href="shoppingSearch.do?cpage=${i}&keyword=${keyword}">${i}</a>
-		            		</c:when>
-		            		<c:otherwise>
-		            			<a href="shoppingSearch.do?cpage=${i}&category=${category}&keyword=${keyword}">${i}</a>
-		            		</c:otherwise>
-		            	</c:choose>
-		            </c:forEach>
-		
-		            <c:if test="${pi.currentPage ne pi.maxPage}">
-		            	<c:choose>
-			            	<c:when test="${category ne null}" >
-			                	<a href="shoppingSearch.do?cpage=${pi.currentPage + 1}&category=${category}&keyword=${keyword}">&gt;</a>
-			                </c:when>
-			                <c:otherwise>
-			                	<a href="shoppingSearch.do?cpage=${pi.currentPage + 1}&keyword=${keyword}">&gt;</a>
-			                </c:otherwise>
-						</c:choose>
-		            </c:if>
-	            </c:if>
-	            
-	            
-		        <div id="pagenation">
-	                <nav>
-	                    <ul class="pagination">
-	                        <c:choose>
-	                            <c:when test="${pi.startPage != 1 || (pi.startPage / pi.boardLimit)  > 1}">
-	                                <li class="page-item">
-	                                    <a href="shoppingSearch.do?cpage=${pi.startPage - pi.boardLimit}&category=${category}"
-	                                       class="page-link">
-	                                        <span aria-hidden="true">&laquo;</span>
-	                                    </a>
-	                                </li>
-	                            </c:when>
-	                            <c:otherwise>
-	                                <li class="page-item disabled">
-	                                    <a href="shoppingSearch.do?cpage=${pi.startPage - pi.boardLimit}&category=${category}" class="page-link">
-	                                        <span aria-hidden="true">&laquo;</span>
-	                                    </a>
-	                                </li>
-	                            </c:otherwise>
-	                        </c:choose>
-	                        <c:choose>
-	                            <c:when test="${pi.currentPage > 1}">
-	                                <li class="page-item">
-	                                    <a href="shoppingSearch.do?cpage=${pi.currentPage - 1}&category=${category}"
-	                                       class="page-link">
-	                                        <span aria-hidden="true">&lt;</span>
-	                                    </a>
-	                                </li>
-	                            </c:when>
-	                            <c:otherwise>
-	                                <li class="page-item disabled">
-	                                    <a href="shoppingSearch.do?cpage=${pi.currentPage - 1}&category=${category}" class="page-link">
-	                                        <span aria-hidden="true">&lt;</span>
-	                                    </a>
-	                                </li>
-	                            </c:otherwise>
-	                        </c:choose>
-	
-	                        <c:forEach var="page" begin="${pi.startPage}" end="${pi.endPage}" step="1">
-	                            <c:choose>
-	                                <c:when test="${page == pi.currentPage}">
-	                                    <li class="page-item active"><a class="page-link" href="shoppingSearch.do?cpage=${i}&category=${category}">${page}</a></li>
-	                                </c:when>
-	                                <c:otherwise>
-	                                    <li class="page-item">
-	                                    	<a class="page-link" href="shoppingSearch.do?cpage=${i}&category=${category}">${page}</a>
-	                                    </li>
-	                                </c:otherwise>
-	                            </c:choose>
-	                        </c:forEach>
-	                        <c:choose>
-	                            <c:when test="${pi.currentPage < pi.maxPage}">
-	                                <li class="page-item">
-	                                    <a href="shoppingSearch.do?cpage=${pi.currentPage + 1}&category=${category}"
-	                                       class="page-link">
-	                                        <span aria-hidden="true">&gt;</span>
-	                                    </a>
-	                                </li>
-	                            </c:when>
-	                            <c:otherwise>
-	                                <li class="page-item disabled">
-	                                    <a href="shoppingSearch.do?cpage=${pi.currentPage + 1}&category=${category}" class="page-link">
-	                                        <span aria-hidden="true">&gt;</span>
-	                                    </a>
-	                                </li>
-	                            </c:otherwise>
-	                        </c:choose>
-	                        <c:choose>
-	                            <c:when test="${(pi.endPage / boardLimit)  < pi.maxPage}">
-	                                <li class="page-item">
-	                                    <a href="shoppingSearch.do?cpage=${pi.endPage + 1}&category=${category}"
-	                                       class="page-link">
-	                                        <span aria-hidden="true">&raquo;</span>
-	                                    </a>
-	                                </li>
-	                            </c:when>
-	                            <c:otherwise>
-	                                <li class="page-item disabled">
-	                                    <a href="shoppingSearch.do?cpage=${pi.endPage + 1}&category=${category}" class="page-link">
-	                                        <span aria-hidden="true">&raquo;</span>
-	                                    </a>
-	                                </li>
-	                            </c:otherwise>
-	                        </c:choose>
-	                    </ul>
-	                </nav>
-	            </div>
-            </div>
-        </div>
+    <div id="pagenation">
+            <nav>
+            <c:if test="${keyword == null}">
+                <ul class="pagination">
+                    <c:choose>
+                        <c:when test="${pi.startPage != 1 || (pi.startPage / pi.boardLimit)  > 1}">
+                            <li class="page-item">
+                           	<c:choose>
+             				<c:when test="${category ne null}" >
+                                 <a href="shoppingSearch.do?cpage=${pi.startPage - pi.boardLimit}&category=${category}" class="page-link">
+                                     <span aria-hidden="true">&laquo;</span>
+                                 </a>
+                             </c:when>
+                             <c:otherwise>
+                             	<a href="shoppingSearch.do?cpage=${pi.startPage - pi.boardLimit}" class="page-link">
+                                     <span aria-hidden="true">&laquo;</span>
+                                 </a>
+                             </c:otherwise>
+                         </c:choose>
+                            </li>
+                        </c:when>
+                        <c:otherwise>
+                            <li class="page-item disabled">
+                            <c:choose>
+             				<c:when test="${category ne null}" >
+                                 <a href="shoppingSearch.do?cpage=${pi.startPage - pi.boardLimit}&category=${category}" class="page-link">
+                                     <span aria-hidden="true">&laquo;</span>
+                                 </a>
+                             </c:when>
+                             <c:otherwise>
+                             	<a href="shoppingSearch.do?cpage=${pi.startPage - pi.boardLimit}" class="page-link">
+                                     <span aria-hidden="true">&laquo;</span>
+                                 </a>
+                             </c:otherwise>
+                         </c:choose>
+                            </li>
+                        </c:otherwise>
+                    </c:choose>
+                    <c:choose>
+                        <c:when test="${pi.currentPage > 1}">
+                            <li class="page-item">
+                            <c:choose>
+             				<c:when test="${category ne null}" >
+                                 <a href="shoppingSearch.do?cpage=${pi.currentPage - 1}&category=${category}" class="page-link">
+                                     <span aria-hidden="true">&lt;</span>
+                                 </a>
+					</c:when>
+					<c:otherwise>
+						<a href="shoppingSearch.do?cpage=${pi.currentPage - 1}" class="page-link">
+                                     <span aria-hidden="true">&lt;</span>
+                                 </a>
+					</c:otherwise>
+				</c:choose>
+                            </li>
+                        </c:when>
+                        <c:otherwise>
+                            <li class="page-item disabled">
+                            <c:choose>
+             				<c:when test="${category ne null}" >
+                                 <a href="shoppingSearch.do?cpage=${pi.currentPage - 1}&category=${category}" class="page-link">
+                                     <span aria-hidden="true">&lt;</span>
+                                 </a>
+                                </c:when>
+					<c:otherwise>
+						<a href="shoppingSearch.do?cpage=${pi.currentPage - 1}" class="page-link">
+                                     <span aria-hidden="true">&lt;</span>
+                                 </a>
+					</c:otherwise>
+				</c:choose>
+                            </li>
+                        </c:otherwise>
+                    </c:choose>
+
+
+
+                    <c:forEach var="page" begin="${pi.startPage}" end="${pi.endPage}" step="1">
+                        <c:choose>
+                            <c:when test="${page == pi.currentPage}">
+                                <li class="page-item active">
+                                <c:choose>
+         						<c:when test="${category ne null}">
+                                		<a class="page-link" href="shoppingSearch.do?cpage=${page}&category=${category}">${page}</a>
+                                	</c:when>
+                                	<c:otherwise>
+                                		<a class="page-link" href="shoppingSearch.do?cpage=${page}">${page}</a>
+                                	</c:otherwise>
+                               	</c:choose>
+                                </li>
+                            </c:when>
+                            <c:otherwise>
+                                <li class="page-item">
+                                <c:choose>
+         						<c:when test="${category ne null}">
+                                		<a class="page-link" href="shoppingSearch.do?cpage=${page}&category=${category}">${page}</a>
+                                	</c:when>
+                                	<c:otherwise>
+                                		<a class="page-link" href="shoppingSearch.do?cpage=${page}">${page}</a>
+                                	</c:otherwise>
+                                </c:choose>
+                                </li>
+                            </c:otherwise>
+                        </c:choose>
+                    </c:forEach>
+                    
+                    
+                    
+                    <c:choose>
+                        <c:when test="${pi.currentPage < pi.maxPage}">
+                            <li class="page-item">
+                            <c:choose>
+             				<c:when test="${category ne null}" >
+                                 <a href="shoppingSearch.do?cpage=${pi.currentPage + 1}&category=${category}" class="page-link">
+                                     <span aria-hidden="true">&gt;</span>
+                                 </a>
+                             </c:when>
+                             <c:otherwise>
+                             	<a href="shoppingSearch.do?cpage=${pi.currentPage + 1}" class="page-link">
+                                     <span aria-hidden="true">&gt;</span>
+                                 </a>
+                             </c:otherwise>
+                         </c:choose>
+                            </li>
+                        </c:when>
+                        <c:otherwise>
+                            <li class="page-item disabled">
+                            <c:choose>
+             				<c:when test="${category ne null}" >
+                                 <a href="shoppingSearch.do?cpage=${pi.currentPage + 1}&category=${category}" class="page-link">
+                                     <span aria-hidden="true">&gt;</span>
+                                 </a>
+                             </c:when>
+                             <c:otherwise>
+                             	<a href="shoppingSearch.do?cpage=${pi.currentPage + 1}" class="page-link">
+                                     <span aria-hidden="true">&gt;</span>
+                                 </a>
+                             </c:otherwise>
+                         </c:choose>
+                            </li>
+                        </c:otherwise>
+                    </c:choose>
+                    <c:choose>
+                        <c:when test="${(pi.endPage / boardLimit)  < pi.maxPage}">
+                            <li class="page-item">
+                            <c:choose>
+             				<c:when test="${category ne null}" >
+                                 <a href="shoppingSearch.do?cpage=${pi.endPage + 1}&category=${category}" class="page-link">
+                                     <span aria-hidden="true">&raquo;</span>
+                                 </a>
+                             </c:when>
+                             <c:otherwise>
+                             	<a href="shoppingSearch.do?cpage=${pi.endPage + 1}" class="page-link">
+                                     <span aria-hidden="true">&raquo;</span>
+                                 </a>
+                             </c:otherwise>
+                         </c:choose>
+                            </li>
+                        </c:when>
+                        <c:otherwise>
+                            <li class="page-item disabled">
+                            <c:choose>
+             				<c:when test="${category ne null}" >
+                                 <a href="shoppingSearch.do?cpage=${pi.endPage + 1}&category=${category}" class="page-link">
+                                     <span aria-hidden="true">&raquo;</span>
+                                 </a>
+                             </c:when>
+                             <c:otherwise>
+                             	<a href="shoppingSearch.do?cpage=${pi.endPage + 1}" class="page-link">
+                                     <span aria-hidden="true">&raquo;</span>
+                                 </a>
+                             </c:otherwise>
+                         </c:choose>
+                            </li>
+                        </c:otherwise>
+                    </c:choose>
+                </ul>
+            </c:if>
+            
+            <c:if test="${keyword != null}">
+                <ul class="pagination">
+                    <c:choose>
+                        <c:when test="${pi.startPage != 1 || (pi.startPage / pi.boardLimit)  > 1}">
+                            <li class="page-item">
+                           	<c:choose>
+             				<c:when test="${category ne null}" >
+                                 <a href="shoppingSearch.do?cpage=${pi.startPage - pi.boardLimit}&category=${category}&keyword=${keyword}" class="page-link">
+                                     <span aria-hidden="true">&laquo;</span>
+                                 </a>
+                             </c:when>
+                             <c:otherwise>
+                             	<a href="shoppingSearch.do?cpage=${pi.startPage - pi.boardLimit}&keyword=${keyword}" class="page-link">
+                                     <span aria-hidden="true">&laquo;</span>
+                                 </a>
+                             </c:otherwise>
+                         </c:choose>
+                            </li>
+                        </c:when>
+                        <c:otherwise>
+                            <li class="page-item disabled">
+                            <c:choose>
+             				<c:when test="${category ne null}" >
+                                 <a href="shoppingSearch.do?cpage=${pi.startPage - pi.boardLimit}&category=${category}&keyword=${keyword}" class="page-link">
+                                     <span aria-hidden="true">&laquo;</span>
+                                 </a>
+                             </c:when>
+                             <c:otherwise>
+                             	<a href="shoppingSearch.do?cpage=${pi.startPage - pi.boardLimit}&keyword=${keyword}" class="page-link">
+                                     <span aria-hidden="true">&laquo;</span>
+                                 </a>
+                             </c:otherwise>
+                         </c:choose>
+                            </li>
+                        </c:otherwise>
+                    </c:choose>
+                    <c:choose>
+                        <c:when test="${pi.currentPage > 1}">
+                            <li class="page-item">
+                            <c:choose>
+             				<c:when test="${category ne null}" >
+                                 <a href="shoppingSearch.do?cpage=${pi.currentPage - 1}&category=${category}&keyword=${keyword}" class="page-link">
+                                     <span aria-hidden="true">&lt;</span>
+                                 </a>
+					</c:when>
+					<c:otherwise>
+						<a href="shoppingSearch.do?cpage=${pi.currentPage - 1}&keyword=${keyword}" class="page-link">
+                                     <span aria-hidden="true">&lt;</span>
+                                 </a>
+					</c:otherwise>
+				</c:choose>
+                            </li>
+                        </c:when>
+                        <c:otherwise>
+                            <li class="page-item disabled">
+                            <c:choose>
+             				<c:when test="${category ne null}" >
+                                 <a href="shoppingSearch.do?cpage=${pi.currentPage - 1}&category=${category}&keyword=${keyword}" class="page-link">
+                                     <span aria-hidden="true">&lt;</span>
+                                 </a>
+                                </c:when>
+					<c:otherwise>
+						<a href="shoppingSearch.do?cpage=${pi.currentPage - 1}&keyword=${keyword}" class="page-link">
+                                     <span aria-hidden="true">&lt;</span>
+                                 </a>
+					</c:otherwise>
+				</c:choose>
+                            </li>
+                        </c:otherwise>
+                    </c:choose>
+
+
+
+                    <c:forEach var="page" begin="${pi.startPage}" end="${pi.endPage}" step="1">
+                        <c:choose>
+                            <c:when test="${page == pi.currentPage}">
+                                <li class="page-item active">
+                                <c:choose>
+         						<c:when test="${category ne null}">
+                                		<a class="page-link" href="shoppingSearch.do?cpage=${page}&category=${category}&keyword=${keyword}">${page}</a>
+                                	</c:when>
+                                	<c:otherwise>
+                                		<a class="page-link" href="shoppingSearch.do?cpage=${page}&keyword=${keyword}">${page}</a>
+                                	</c:otherwise>
+                               	</c:choose>
+                                </li>
+                            </c:when>
+                            <c:otherwise>
+                                <li class="page-item">
+                                <c:choose>
+         						<c:when test="${category ne null}">
+                                		<a class="page-link" href="shoppingSearch.do?cpage=${page}&category=${category}&keyword=${keyword}">${page}</a>
+                                	</c:when>
+                                	<c:otherwise>
+                                		<a class="page-link" href="shoppingSearch.do?cpage=${page}&keyword=${keyword}">${page}</a>
+                                	</c:otherwise>
+                                </c:choose>
+                                </li>
+                            </c:otherwise>
+                        </c:choose>
+                    </c:forEach>
+                    
+                    
+                    
+                    <c:choose>
+                        <c:when test="${pi.currentPage < pi.maxPage}">
+                            <li class="page-item">
+                            <c:choose>
+             				<c:when test="${category ne null}" >
+                                 <a href="shoppingSearch.do?cpage=${pi.currentPage + 1}&category=${category}&keyword=${keyword}" class="page-link">
+                                     <span aria-hidden="true">&gt;</span>
+                                 </a>
+                             </c:when>
+                             <c:otherwise>
+                             	<a href="shoppingSearch.do?cpage=${pi.currentPage + 1}&keyword=${keyword}" class="page-link">
+                                     <span aria-hidden="true">&gt;</span>
+                                 </a>
+                             </c:otherwise>
+                         </c:choose>
+                            </li>
+                        </c:when>
+                        <c:otherwise>
+                            <li class="page-item disabled">
+                            <c:choose>
+             				<c:when test="${category ne null}" >
+                                 <a href="shoppingSearch.do?cpage=${pi.currentPage + 1}&category=${category}&keyword=${keyword}" class="page-link">
+                                     <span aria-hidden="true">&gt;</span>
+                                 </a>
+                             </c:when>
+                             <c:otherwise>
+                             	<a href="shoppingSearch.do?cpage=${pi.currentPage + 1}&keyword=${keyword}" class="page-link">
+                                     <span aria-hidden="true">&gt;</span>
+                                 </a>
+                             </c:otherwise>
+                         </c:choose>
+                            </li>
+                        </c:otherwise>
+                    </c:choose>
+                    <c:choose>
+                        <c:when test="${(pi.endPage / boardLimit)  < pi.maxPage}">
+                            <li class="page-item">
+                            <c:choose>
+								<c:when test="${category ne null}" >
+									<a href="shoppingSearch.do?cpage=${pi.endPage + 1}&category=${category}&keyword=${keyword}" class="page-link">
+										<span aria-hidden="true">&raquo;</span>
+									</a>
+								</c:when>
+								<c:otherwise>
+									<a href="shoppingSearch.do?cpage=${pi.endPage + 1}&keyword=${keyword}" class="page-link">
+										<span aria-hidden="true">&raquo;</span>
+									</a>
+								</c:otherwise>
+                         	</c:choose>
+                            </li>
+                        </c:when>
+                        <c:otherwise>
+                            <li class="page-item disabled">
+                            <c:choose>
+								<c:when test="${category ne null}" >
+									<a href="shoppingSearch.do?cpage=${pi.endPage + 1}&category=${category}&keyword=${keyword}" class="page-link">
+										<span aria-hidden="true">&raquo;</span>
+									</a>
+								</c:when>
+								<c:otherwise>
+									<a href="shoppingSearch.do?cpage=${pi.endPage + 1}&keyword=${keyword}" class="page-link">
+										<span aria-hidden="true">&raquo;</span>
+									</a>
+								</c:otherwise>
+                         	</c:choose>
+                            </li>
+                        </c:otherwise>
+                    </c:choose>
+                </ul>
+            </c:if>
+            </nav>
+       </div>
 
     <%@include file="../common/footer.jsp"%>
 </body>
