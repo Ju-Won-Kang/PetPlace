@@ -52,4 +52,9 @@ public class MemberService {
 		return result;
 
 	}
+	public int checkId(String checkId){
+		SqlSession sqlSession = Template.getSqlSession();
+		int checkIdCount = new MemberDao().checkId(sqlSession, checkId);
+		return checkIdCount;
+	}
 }

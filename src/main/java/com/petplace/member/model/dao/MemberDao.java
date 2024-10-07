@@ -33,4 +33,8 @@ public class MemberDao {
 	public int enrollMember(SqlSession sqlSession, HashedMember hashedMember){
 		return sqlSession.insert("memberMapper.enrollMember", hashedMember);
 	}
+	public int checkId(SqlSession sqlSession, String checkId){
+		return sqlSession.selectOne("memberMapper.checkId", checkId);
+	}
+
 }

@@ -52,6 +52,7 @@
     display: flex;
     align-items: center;
     margin-bottom: 15px;
+    /*width: 300px;*/
 }
 #register-page .form-group label {
     width: 150px;
@@ -71,11 +72,11 @@
 }
 #register-page .form-group.phone-group select {
     width: 100px !important;
-    margin-right: 10px;
+    /*margin-right: 10px;*/
     display: inline-block;
 }
 #register-page .form-group.phone-group input {
-    width: 400px !important; /* 다른 입력 필드와 동일하게 400px로 고정 */
+    width: 400px; /* 다른 입력 필드와 동일하게 400px로 고정 */
     padding: 10px;
     font-size: 14px;
     border: 1px solid #ccc;
@@ -115,4 +116,63 @@
 #register-page .register-container .form-group input,
 #register-page .register-container .form-group select {
     max-width: 400px;
+}
+
+/* 중복확인 쪽 CSS 추가 */
+#checkResult{
+    margin-bottom: 15px;
+    margin-left: 160px;
+}
+.check-red{
+    border-color: red !important;
+}
+.check-red:focus{
+    border-color: red !important;
+    outline: none;
+}
+.check-green{
+    border-color: green !important;
+}
+.check-green:focus{
+    border-color: green !important;
+    outline: none;
+}
+#checkPwdResult{
+    margin-bottom: 15px;
+    margin-left: 160px;
+}
+#checkPwdCondition{
+    margin-bottom: 15px;
+    margin-left: 160px;
+}
+/* input 태그들 너비 고정 */
+#userId{
+    width: 180px !important;
+}
+#name{
+    width: 180px !important;
+}
+#ssn1{
+    width: 180px !important;
+}
+#ssn2{
+    width: 180px !important;
+}
+#password{
+    width: 230px !important;
+}
+#passwordConfirm{
+    width: 230px !important;
+}
+#phone1{
+    width: 70px !important;
+}
+#phone2{
+    width: 90px !important;
+}
+#phone3{
+    width: 90px !important;
+}
+span{
+    margin: 0px 5px;
 }

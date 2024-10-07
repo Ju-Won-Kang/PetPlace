@@ -18,7 +18,7 @@
         #{memberId},
         #{memberPwd},
         #{memberName},
-        #{nickname},
+        #{nickName},
         #{phone},
         #{memberNo},
         #{address},
@@ -36,5 +36,10 @@
         SALT
         from member
         where MEMBER_ID = #{userId}
+    </select>
+    <select id="checkId" parameterType="String" resultType="_int">
+        select count(*)
+        from member
+        where MEMBER_ID = #{checkId}
     </select>
 </mapper>
