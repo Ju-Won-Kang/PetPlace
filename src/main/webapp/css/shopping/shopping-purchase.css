@@ -13,11 +13,21 @@ body {
 #body-wrap{
     display: flex;
     flex-direction: column;
-    width: 70%;
+    width: 50%;
     margin: auto; /* 가운데로  */
 }
 
 /* -------- detail css 잠시 가져옴 ---------*/
+#headTitle{
+    margin: 2px;
+}
+
+#headHr{
+    margin: 0px;
+    border: none;       
+    border-top: 3px solid rgb(3, 3, 3); 
+}
+
 table {
     border-collapse: collapse;
 }
@@ -32,21 +42,31 @@ table tr td{
 
 }
 
-table tr td:first-child{
+ table tr td:first-child{ /* 테이블의 첫번째 td */
     background-color: rgba(232, 228, 228, 0.661);
-    width: 100px;
+    width: 150px;
     text-align: right;
+    font-weight: 600;
+    padding-right: 10px;
+    /* padding-right: ; */
 }
+
+table tr td:nth-child(2) {
+    padding-left: 10px;
+}
+
+
+
 
 #purchaser-table tr td:first-child{ /* 구매자 정보의 first td */
     background-color: rgba(232, 228, 228, 0.661);
-    width: 100px;
+    width: 150px;
     text-align: right;
 }
 
 #payInfo-table tr td:first-child{ /* 결제 정보의 first td */
     background-color: rgba(232, 228, 228, 0.661);
-    width: 100px;
+    width: 150px;
     text-align: right;
 }
 

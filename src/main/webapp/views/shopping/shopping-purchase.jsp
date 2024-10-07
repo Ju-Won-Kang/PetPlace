@@ -11,9 +11,10 @@
 <body>
     <%@include file="../common/nav.jsp"%>
     <div id="body-wrap">
-        <h1>주문/결제</h1>
-        <hr>
-        <h2>구매자 정보</h2>
+        <br><br>
+        <h1 id="headTitle">주문/결제</h1>
+        <hr id="headHr"> <br>
+        <h4>구매자 정보</h4>
         <table id="purchaser-table">
             <tr>
                 <td>이름</td>
@@ -38,7 +39,7 @@
         </table>
         <br>
         
-        <h3>결제 정보</h3>
+        <h4>결제 정보</h4>
         <table id="payInfo-table">
             <tr>
                 <td>총 상품가격</td>
@@ -52,23 +53,18 @@
                 <td>총 결제금액</td>
                 <td>24500원</td>
             </tr>
-            <tr>
-                <td>결제수단</td>
-                <td>
-                    <input type="radio" name="pay-how">카드결제 
-                    <input type="radio" name="pay-how">카카오페이
-                </td>
-            </tr>
         </table>
 
         <br>
-        <h3>결제수단</h3>
+        <h4>결제 수단</h4>
         <form action="shoppingComplete.do?pno=${productNo}">
+            <input type="hidden" name="productCount" value="${productCount}">  <!--변수명 체크필요-->
             <table id="pay-method">
                 <tr>
-                    <td>카드 결제</td>
+                    <td>은행사</td>
                     <td>
                         <select>
+                            <option value="카카오">카카오</option>
                             <option value="국민">국민</option>
                             <option value="신한">신한</option>
                             <option value="하나">하나</option>
