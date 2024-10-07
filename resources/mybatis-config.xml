@@ -25,6 +25,7 @@
   <typeAlias type="com.petplace.admin.model.dto.Category" alias="Category"/>
   <typeAlias type="com.petplace.inquiry.model.dto.InquiryList" alias="InquiryList"/>
   <typeAlias type="com.petplace.inquiry.model.vo.Inquiry" alias="Inquiry"/>
+  <typeAlias type="com.petplace.member.model.dto.HashedMember" alias="HashedMember"/>
   <!-- Common -->
   <typeAlias type="java.util.HashMap" alias="HashMap"/>
   <typeAlias type="java.util.List" alias="List"/>
@@ -60,5 +61,6 @@
     <mapper resource="/mappers/review-mapper.xml"/>
     <mapper resource="/mappers/inquiry-mapper.xml"/>
     <mapper resource="/mappers/shopping-mapper.xml"/>
+    <mapper resource="/mappers/member-mapper.xml"/>
   </mappers>
 </configuration>
