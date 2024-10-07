@@ -2,6 +2,7 @@ package com.petplace.member.controller;
 
 import java.io.IOException;
 
+import com.petplace.member.model.dto.HashedMember;
 import com.petplace.member.model.vo.Member;
 import com.petplace.member.service.MemberService;
 
@@ -35,15 +36,16 @@ public class LoginController extends HttpServlet {
 		String userId = request.getParameter("userId");
 		String userPwd = request.getParameter("userPwd");
 		
-		Member loginUser = new MemberService().loginMember(userId, userPwd);
-		
+		HashedMember loginUser = new MemberService().loginMember(userId, userPwd);
+		HttpSession session = request.getSession();
+
 		if(loginUser == null) { //로그인 실패
+			session.setAttribute("alertMsg","로그인에 실패하였습니다.");
 			response.sendRedirect(request.getContextPath());
 			System.out.println("실패");
 		} else { //로그인 성공
-			HttpSession session = request.getSession();
 			session.setAttribute("loginUser", loginUser);
-			
+			session.setAttribute("alertMsg","로그인에 성공했습니다.");
 			response.sendRedirect(request.getContextPath());
 			System.out.println("성공");
 		}
