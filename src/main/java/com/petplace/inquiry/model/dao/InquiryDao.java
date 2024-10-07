@@ -1,23 +1,18 @@
 package com.petplace.inquiry.model.dao;
 
-import com.petplace.common.PageInfo;
-import com.petplace.inquiry.model.dto.InquiryList;
-import com.petplace.inquiry.model.vo.Inquiry;
-import com.petplace.review.model.dao.ReviewDao;
-import org.apache.ibatis.session.RowBounds;
-import org.apache.ibatis.session.SqlSession;
-
 import java.io.FileInputStream;
 import java.io.IOException;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Properties;
 
-import static com.petplace.common.JDBCTemplate.close;
+import org.apache.ibatis.session.RowBounds;
+import org.apache.ibatis.session.SqlSession;
+
+import com.petplace.common.PageInfo;
+import com.petplace.inquiry.model.dto.InquiryList;
+import com.petplace.inquiry.model.vo.Inquiry;
+import com.petplace.review.model.dao.ReviewDao;
 
 /**
  * packageName    : com.petplace.inquiry.model.dao

@@ -1,8 +1,10 @@
+<%@ page language="java" contentType="text/html;charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8"> 
     <title>Document</title>
     <link rel="stylesheet" href="css/shopping/shopping-purchase.css">
 </head>
@@ -61,7 +63,7 @@
 
         <br>
         <h3>결제수단</h3>
-        <form action="">
+        <form action="shoppingComplete.do?pno=${productNo}">
             <table id="pay-method">
                 <tr>
                     <td>카드 결제</td>

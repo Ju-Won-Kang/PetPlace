@@ -34,6 +34,15 @@
   </servlet-mapping>
   <servlet>
     <description></description>
+    <display-name>shoppingSearch.do</display-name>
+    <servlet-name>shoppingSearch.do</servlet-name>
+    <servlet-class>com.petplace.shopping.controller.ShoppingSearchController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>shoppingSearch.do</servlet-name>
+    <url-pattern>/shoppingSearch.do</url-pattern>
+  </servlet-mapping>
+  <servlet>
     <display-name>communityWrite.do</display-name>
     <servlet-name>communityWrite.do</servlet-name>
     <servlet-class>com.petplace.community.controller.CommunityEnrollController</servlet-class>
@@ -61,5 +70,15 @@
   <servlet-mapping>
     <servlet-name>communityDetail.do</servlet-name>
     <url-pattern>/communityDetail.do</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>communityBoardEnroll.do</display-name>
+    <servlet-name>communityBoardEnroll.do</servlet-name>
+    <servlet-class>com.petplace.shopping.controller.CommunityBoardEnrollController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>communityBoardEnroll.do</servlet-name>
+    <url-pattern>/communityBoardEnroll.do</url-pattern>
   </servlet-mapping>
 </web-app>

@@ -19,6 +19,9 @@ import jakarta.servlet.http.HttpServletResponse;
 @WebServlet(name = "shoppingdetail.do", urlPatterns = { "/shoppingdetail.do" })
 public class shoppingdetailServlet extends HttpServlet {
 	
+
+	private static final long serialVersionUID = 1L;
+
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		int productNo = Integer.parseInt(request.getParameter("productNo")); // 상품번호 가져옴
