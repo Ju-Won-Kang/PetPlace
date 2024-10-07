@@ -12,7 +12,7 @@ body {
 
 #body-wrap{
     display: flex;
-    width: 80%;
+    width: 70%;
     margin: auto; /* 가운데로  */
 }
 
@@ -83,17 +83,22 @@ body {
     padding-top: 10px;
 }
 
-#main-info-bottom{
+#main-info-bottom-star{
     display: flex;
     justify-content: start;
+}
+
+#starDiv img{
+    width: 30px;
+    object-fit: contain;
 }
 
 hr{
     margin: 5px;
 }
 
-#stars{ /* 이미지로 임시대체(좌측정렬 안맞음) */
-    width: 150px;
+#stars{ 
+    width: 30px;
     object-fit: contain;
 }
 
@@ -103,6 +108,7 @@ hr{
     height: 100%;
     display: flex;
     align-items: center;
+    margin-top: 5px;
 }
 
 #price{
@@ -133,7 +139,7 @@ hr{
 
 #delivery-info div{ 
     font-size: 20px;
-
+    width: 100%;
 }
 
 #delivery-company {
@@ -142,7 +148,7 @@ hr{
 }
 
 #delivery-company > div {
-    width: 50%;
+    width: 45%;
 }
 
 #delivery-price {
@@ -150,15 +156,17 @@ hr{
     width: 100%;
 }
 
-#delivery-price > div {
-    width: 50%;
+#delivery-price  div {
+    width: 45%;
     display: flex;
+    box-sizing: border-box;
 }
 
 #delivery-price > div >div {
-    font-size: 12px;
+    font-size: 11px;
     padding-top: 10px;
 }
+
 
 #free-del-price{
     padding-left: 10px;
@@ -191,9 +199,10 @@ table{
     border: 1px black;
 }
 
-#product-count{
+#productCount{
     width: 75px;
     text-align: center;
+    cursor: pointer;
 }
 
 #btn-wrap > input::-webkit-inner-spin-button, ::-webkit-outer-spin-button{
@@ -235,7 +244,7 @@ table{
 
 #bottom-body{
     border: 1px solid rgb(205, 205, 205);
-    width:77.5%;
+    width:67.5%;
     margin: auto;
 }
 
@@ -249,9 +258,23 @@ table{
     align-items: center;
     font-weight: 600;
     height: 70px;
+}
+
+#detailImg-wrap{
+    width: 100%;
+    display: flex;
+    /* justify-content: center; */
+    height: 500px;
+    overflow: auto;
+    height: auto;
+    padding: 200px;
+    padding-top: 0px;
+}
+
+#detailInfoImg{
+    display: flex;
+    justify-content: center;
 
 }
 
-#ddd{
-    height: 1000px;
-}
+

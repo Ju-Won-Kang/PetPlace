@@ -1,21 +1,15 @@
 package com.petplace.inquiry.service;
 
-import com.petplace.common.JDBCTemplate;
+import java.util.ArrayList;
+import java.util.HashMap;
 
-import static com.petplace.common.JDBCTemplate.*;
+import org.apache.ibatis.session.SqlSession;
 
 import com.petplace.common.PageInfo;
+import com.petplace.common.Template;
 import com.petplace.inquiry.model.dao.InquiryDao;
 import com.petplace.inquiry.model.dto.InquiryList;
 import com.petplace.inquiry.model.vo.Inquiry;
-import com.petplace.review.model.dao.ReviewDao;
-import com.petplace.review.model.dto.ReviewList;
-
-import java.sql.Connection;
-import java.util.ArrayList;
-
-import static com.petplace.common.JDBCTemplate.close;
-import static com.petplace.common.JDBCTemplate.getConnection;
 
 /**
  * packageName    : com.petplace.inquiry.service
@@ -30,38 +24,49 @@ import static com.petplace.common.JDBCTemplate.getConnection;
  */
 public class InquiryService {
     public int selectListCount() {
-        Connection conn = getConnection();
-        int result = new InquiryDao().selectListCount(conn);
-        close(conn);
+        SqlSession sqlSession = Template.getSqlSession();
+        int result = new InquiryDao().selectListCount(sqlSession);
+        sqlSession.close();
         return result;
     }
 
     public ArrayList<InquiryList> selectInquiryList(PageInfo pi) {
-        Connection conn = getConnection();
-        ArrayList<InquiryList> iList = new InquiryDao().selectInquiryList(conn, pi);
+        SqlSession sqlSession = Template.getSqlSession();
+//        Connection conn = getConnection();
+        ArrayList<InquiryList> iList = new InquiryDao().selectInquiryList(sqlSession, pi);
 
-        close(conn);
+        sqlSession.close();
+//        close(conn);
         return iList;
     }
 
     public Inquiry selectInquiry(int inquiryNo) {
-        Connection conn = getConnection();
-        Inquiry inquiry = new InquiryDao().selectInquiry(conn, inquiryNo);
+        SqlSession sqlSession = Template.getSqlSession();
+//        Connection conn = getConnection();
+        Inquiry inquiry = new InquiryDao().selectInquiry(sqlSession, inquiryNo);
 
-        close(conn);
+//        close(conn);
+        sqlSession.close();
         return inquiry;
     }
 
     public int insertInquiry(int inquiryNo, String answer) {
-        Connection conn = getConnection();
-        int result = new InquiryDao().insertInquiry(conn, inquiryNo, answer);
+//        Connection conn = getConnection();
+        SqlSession sqlSession = Template.getSqlSession();
+        HashMap<String, Object> map = new HashMap<>();
+        map.put("inquiryNo", inquiryNo);
+        map.put("answer", answer);
+        int result = new InquiryDao().insertInquiry(sqlSession,map);
         if (result > 0) {
-            commit(conn);
+//            commit(conn);
+            sqlSession.commit();
         } else {
-            rollback(conn);
+//            rollback(conn);
+            sqlSession.rollback();
         }
 
-        close(conn);
+//        close(conn);
+        sqlSession.close();
         return result;
     }
 }
