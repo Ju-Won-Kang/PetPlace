@@ -7,6 +7,9 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
+import com.petplace.shopping.service.ShoppingService;
+import com.petplace.shopping.service.ShoppingServiceImpl;
+
 /**
  * Servlet implementation class ShoppingPurchaseServlet
  */
@@ -16,8 +19,13 @@ public class ShoppingPurchaseServlet extends HttpServlet {
       
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		int productCount = Integer.parseInt(request.getParameter("product-count"));
+		int productNo =Integer.parseInt(request.getParameter("productNo"));
+		String productName = request.getParameter("productName"); //string
+		int productPrice = Integer.parseInt(request.getParameter("productPrice"));
+		int productCount = Integer.parseInt(request.getParameter("productCount"));
 		
+		ShoppingService sService = new ShoppingServiceImpl();
+//		sService. 여기까지 (dto작성중)
 		
 	}
 

@@ -29,8 +29,6 @@ public class shoppingdetailServlet extends HttpServlet {
 		System.out.println("Controller : " + product);
 		System.out.println(product.get(0).getFileLevel());
 		
-
-
 		request.setAttribute("product", product);
 		request.getRequestDispatcher("views/shopping/shopping-detail.jsp").forward(request, response);
 	}

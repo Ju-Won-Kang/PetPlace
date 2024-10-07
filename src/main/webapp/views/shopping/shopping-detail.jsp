@@ -96,14 +96,19 @@
                 </table>
                 <hr>
             </div>
-            <form action="<%=contextPath%>/shopping.do">
+            <form action="<%=contextPath%>/shoppingPurchase.do">
                 <div id="prouduct-count-wrap">
                     <h4><b>상품 수량</b></h4>
                     <div id="btn-wrap">
-                        <input type="number" id="product-count" name="product-count" value="1" min="1" width="50px" >
-                        <div id="totalPrice" class="price">${product[0].price}원</div> <!-- 스크립트로 상품수량(btn) x 개수 + 3000원-->
+                        <input type="number" id="productCount" name="productCount" value="1" min="1" max="10" width="50px" >
+                        <div id="totalPrice" class="price" >${product[0].price}원</div>  <!--"원"까지 들어갈 것 같아서 hidden으로 전송-->
                     </div>
                 </div>
+                <!-- 숨겨진 필드로 상품정보 전송 -->
+                <input type="hidden" name="productNo" value="${product[0].productNo}">
+                <input type="hidden" name="productName" value="${product[0].productName}">
+                <input type="hidden" name="productPrice" value="${product[0].price}">
+
                 <div id="shopping-buttons">
                     <button id="buy-btn">구매하기</button>
                 </div>
@@ -175,7 +180,7 @@
         const shippingCost = 3000; // 기본 배송비
         const freeShippingThreshold = 20000; // 무료 배송 기준 금액
 
-        const productCountInput = document.getElementById("product-count");
+        const productCountInput = document.getElementById("productCount");
         const totalPriceElement = document.getElementById("totalPrice");
 
         function updatePrice() {
