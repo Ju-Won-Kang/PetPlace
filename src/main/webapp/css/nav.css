@@ -1,0 +1,340 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Noto Sans KR', sans-serif;
+    background-color: #F7F7F7;
+    width: 100%;
+    height: 100%;
+    min-width: 1143px;
+}
+
+.container {
+    width: 100%; 
+    max-width: 1200px; 
+    margin: 0 auto; 
+    padding: 20px; 
+    
+}
+
+.profile-img {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background-color: #ccc;
+    display: inline-block;
+    margin-bottom: 30px;
+}
+
+.nickname {
+    font-size: 30px;
+    margin-bottom: 30px;
+}
+
+.link {
+    font-size: 16px;
+    margin-bottom: 30px;
+    color: #666;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 50%;                
+    margin: 0 auto;             
+}
+
+.link a {
+    color: red;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.menu-list {
+    list-style: none;
+    padding: 0;
+    margin: 20px 0;
+}
+
+
+.menu-list li:last-child {
+    border-bottom: none;
+}
+
+.menu-list li {
+    padding: 10px;
+    border-bottom: 1px solid #ccc;
+    font-size: 16px;
+    color: #333;
+}
+
+.link a:hover {
+    text-decoration: underline;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 40px; 
+    background-color: white;
+    border-bottom: 1px solid #ccc;
+}
+
+header > #header-wrap {
+    display: flex;
+    width: 100%;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    gap: 100px;
+}
+
+header a {
+    text-decoration: none;
+    color: black;
+}
+
+.logo h1 {
+    font-size: 24px;
+    color: #D4E1FA;
+    font-weight: bold;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    gap: 30px;
+}
+
+nav ul li a {
+    text-decoration: none;
+    font-size: 18px;
+    color: black;
+}
+
+#user {
+    cursor: pointer;
+    border: none;
+}
+
+#user-info {
+    display: none; /* 초기에는 숨김 */
+    position: absolute;
+    top: calc(100% + 10px); /* 유저 아이콘 아래로 위치 */
+    right: 10px;
+    border: 1px solid black;
+    width: 250px;
+    height: auto; /* 높이를 자동으로 조정 */
+    background: rgb(239, 244, 255);
+    z-index: 10;
+    border-radius: 10px;
+    box-shadow: 2px 2px 8px;
+}
+
+
+#user-info > p {
+    text-align: center;
+    width: 100%;
+    height: 15%;
+    padding: 15px 0;
+    font-size: 16px;
+    font-weight: 600;
+}
+
+#user-img {
+    width: 100%;
+    height: 20%;
+    background: url(../images/user.png) no-repeat center/contain;
+    margin-top: 15px;
+}
+
+#login-form {
+    text-align: center;
+}
+
+#user > img {
+    background-color: white;
+}
+
+.user-icon img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+}
+
+.content {
+    display: flex;
+    width: 100%;
+}
+
+aside {
+    width: 130px; 
+    background-color: white;
+    padding: 20px;
+    border-right: 1px solid #ccc;
+    height: 100vh; /* 화면 높이에 맞게 확장 */
+    position: sticky;
+    top: 0; /* 스크롤 시에도 고정 */
+}
+
+aside ul {
+    list-style: none;
+}
+
+aside ul li {
+    margin-bottom: 20px;
+}
+
+aside ul li a {
+    text-decoration: none;
+    font-size: 18px;
+    color: black;
+    display: block;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+aside ul li a.active {
+    font-weight: bold;
+    color: #D4E1FA;
+}
+
+main {
+    flex-grow: 1;
+    padding: 20px 40px; 
+    background-color: white;
+}
+
+main h2 {
+    font-size: 32px;
+    margin-bottom: 20px;
+    border-bottom: 3px solid black;
+    padding-bottom: 10px;
+}
+
+.agreement {
+    margin-bottom: 40px;
+}
+
+.checkbox {
+    display: flex;
+    align-items: center;
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.checkbox input {
+    margin-right: 10px;
+}
+
+.agreement textarea {
+    width: 100%;
+    max-width: 100%; 
+    height: 150px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    resize: none;
+    background-color: #F7F7F7;
+    font-size: 14px;
+}
+
+.details {
+    display: block;
+    margin-top: 10px;
+    font-size: 14px;
+    color: gray;
+}
+
+button {
+    display: block;
+    width: 200px; 
+    padding: 15px;
+    font-size: 18px;
+    background-color: #CBD7FB;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin: 20px auto 0; 
+}
+
+button:hover {
+    background-color: #D4E1FA;
+}
+
+/* 미디어 쿼리 */
+@media (max-width: 768px) {
+    .agreement textarea {
+        height: 120px; 
+    }
+}
+
+.profile-card {
+    width: 250px; 
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    margin: 20px auto; /* Center the profile card */
+    text-align: center;
+    font-size: 16px;
+}
+
+.profile-card .nickname {
+    font-size: 24px;
+    margin-bottom: 10px;
+    font-weight: bold;
+    color: #333;
+}
+
+.profile-card .profile-image {
+    margin-bottom: 20px;
+}
+
+.profile-card .profile-image img {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background-color: #ccc;
+}
+
+.profile-card .link {
+    font-size: 16px;
+    color: #666;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 0;
+}
+
+.profile-card .link a {
+    color: red;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.profile-card .link a:hover {
+    text-decoration: underline;
+}
+
+.profile-card .menu-list {
+    list-style: none;
+    padding: 0;
+    margin: 20px 0;
+    text-align: left;
+}
+
+.profile-card .menu-list li {
+    padding: 10px;
+    border-bottom: 1px solid #ccc;
+    font-size: 16px;
+    color: #333;
+}
+
+.profile-card .menu-list li:last-child {
+    border-bottom: none;
+}
