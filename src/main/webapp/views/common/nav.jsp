@@ -54,30 +54,75 @@
             <a href="<%=contextPath%>/searchHospital.do">동물병원찾기</a>
             <a href="<%=contextPath%>/funcCalculator.do">기능</a>
 
+<%--            <c:choose>--%>
+<%--                &lt;%&ndash; 로그인 전 &ndash;%&gt;--%>
+<%--                <c:when test="${empty loginUser }">--%>
+<%--                    <button type="button" id="user" onclick="userBtn()">--%>
+<%--                        <img src="images/user.png">--%>
+<%--                    </button>--%>
+<%--                    <div id="user-info" class="hide">--%>
+<%--                        <p>USER</p>--%>
+<%--                        <div id="user-img"></div>--%>
+<%--                        <div id="login-form">--%>
+<%--                            <form action="<%=contextPath%>/login.me" method="post">--%>
+<%--                                <input type="text" name="userId" placeholder="아이디" required>--%>
+<%--                                <input type="password" name="userPwd" placeholder="비밀번호" required> <br> <br>--%>
+<%--                                <button type="submit">로그인</button>--%>
+<%--                                <button type="button" onclick="location.href = '${pageContext.request.contextPath}/views/common/signUp.jsp'">회원가입</button>--%>
+<%--                            </form>--%>
+<%--                        </div>--%>
+<%--                    </div>--%>
+<%--                </c:when>--%>
+<%--                &lt;%&ndash; 로그인 후 &ndash;%&gt;--%>
+<%--                <c:otherwise>--%>
+<%--                    <button type="button" id="user">--%>
+<%--                        <img src="images/user.png">--%>
+<%--                    </button>--%>
+<%--                </c:otherwise>--%>
+<%--            </c:choose>--%>
             <c:choose>
-                <%-- 로그인 전 --%>
                 <c:when test="${empty loginUser }">
                     <button type="button" id="user" onclick="userBtn()">
-                        <img src="images/user.png">
+                        <img src="images/user.png" alt="User">
                     </button>
                     <div id="user-info" class="hide">
                         <p>USER</p>
-                        <div id="user-img"></div>
+                        <div class="profile-image">
+                            <img src="images/usericon.png" alt="Profile Image">
+                        </div>
                         <div id="login-form">
-                            <form action="<%=contextPath%>/login.me" method="post">
+                            <form action="${pageContext.request.contextPath}/login.me" method="post">
                                 <input type="text" name="userId" placeholder="아이디" required>
-                                <input type="password" name="userPwd" placeholder="비밀번호" required> <br> <br>
+                                <input type="password" name="userPwd" placeholder="비밀번호"
+                                       required>
+                                <br><br>
                                 <button type="submit">로그인</button>
-                                <button type="button" onclick="location.href = '${pageContext.request.contextPath}/views/common/signUp.jsp'">회원가입</button>
+                                <button type="button"
+                                        onclick="location.href='${pageContext.request.contextPath}/termsForm.me'">회원가입</button>
                             </form>
                         </div>
                     </div>
                 </c:when>
-                <%-- 로그인 후 --%>
+                <%--  로그인 후  --%>
                 <c:otherwise>
-                    <button type="button" id="user">
-                        <img src="images/user.png">
+                    <button type="button" id="user" onclick="userBtn_2()">
+                        <img src="images/user.png" alt="User">
                     </button>
+                    <div id="profile-card" class="hide">
+                        <div class="nickname">닉네임</div>
+                        <div class="profile-image">
+                            <img src="images/usericon.png" alt="Profile Image">
+                        </div>
+                        <div class="link">
+                            <span>마이페이지</span> <a href="#">로그아웃</a>
+                        </div>
+                        <ul class="menu-list">
+                            <li>찜목록</li>
+                            <li>구매목록</li>
+                            <li>예약정보</li>
+                            <li>내가 쓴 글</li>
+                        </ul>
+                    </div>
                 </c:otherwise>
             </c:choose>
             <script>
