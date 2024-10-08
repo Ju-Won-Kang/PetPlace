@@ -19,7 +19,7 @@
     <select id="selectAdoptListCount" resultType="_int">
     	SELECT COUNT(*) AS "COUNT"
     	  FROM SALE_MISSING
-    	 WHERE TYPE = #{type}
+    	 WHERE TYPE = #{boardType}
     </select>
     <select id="selectAdoptList" resultMap="adoptListSet">
     	SELECT S.BOARD_NO,

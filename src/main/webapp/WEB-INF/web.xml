@@ -62,4 +62,14 @@
     <servlet-name>communityDetail.do</servlet-name>
     <url-pattern>/communityDetail.do</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>adoptEnrollForm.do</display-name>
+    <servlet-name>adoptEnrollForm.do</servlet-name>
+    <servlet-class>com.petplace.adopt.controller.AdoptEnrollFormController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>adoptEnrollForm.do</servlet-name>
+    <url-pattern>/adoptEnrollForm.do</url-pattern>
+  </servlet-mapping>
 </web-app>

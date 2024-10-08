@@ -14,10 +14,10 @@ public class AdoptServiceImpl implements AdoptService{
 	private AdoptDao aDao = new AdoptDao(); 
 	
 	@Override
-	public int selectAdoptListCount(String type) {
+	public int selectAdoptListCount(String boardType) {
 		SqlSession sqlSession = Template.getSqlSession();
 		
-		int listCount = aDao.selectAdoptListCount(sqlSession, type);
+		int listCount = aDao.selectAdoptListCount(sqlSession, boardType);
 		
 		sqlSession.close();
 		

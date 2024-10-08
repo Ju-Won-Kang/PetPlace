@@ -57,7 +57,7 @@
                 	<c:choose>
                 		<c:when test="${empty list}">
                 			<tr>
-                            	<td colspan="7">등록된 게시물이이 존재하지 않습니다.</td>
+                            	<td colspan="7">등록된 유기/실종 게시물이 존재하지 않습니다.</td>
                         	</tr>
                 		</c:when>
                 		<c:otherwise>
@@ -66,8 +66,8 @@
 			                        <td>${a.boardNo}</td>
 			                        <td><img src="<%=contextPath%>/images/image 10.png"></td>
 			                        <td class="table-title">
-			                            <p>${m.boardTitle}</p>
-			                            <span id="reply-content">{a.boardDetail}</span>
+			                            <p>${a.boardTitle}</p>
+			                            <span id="reply-content">${a.boardDetail}</span>
 			                        </td>                       
 			                        <td>${a.place}</td>
 			                        <td>${a.boardDate}</td>
@@ -100,7 +100,7 @@
                     <c:choose>
                         <c:when test="${empty list}">
                 			<tr>
-                            	<td colspan="6">등록된 게시물이이 존재하지 않습니다.</td>
+                            	<td colspan="6">등록된 분양 게시물이 존재하지 않습니다.</td>
                         	</tr>
                 		</c:when>
                 		<c:otherwise>
@@ -109,8 +109,8 @@
 			                        <td>${a.boardNo}</td>
 			                        <td><img src="<%=contextPath%>/images/image 10.png"></td>
 			                        <td class="table-title">
-			                            <p>${m.boardTitle}</p>
-			                            <span id="reply-content">{a.boardDetail}</span>
+			                            <p>${a.boardTitle}</p>
+			                            <span id="reply-content">${a.boardDetail}</span>
 			                        </td>                       
 			                        <td>${a.place}</td>
 			                        <td>${a.memberId}</td>
@@ -122,44 +122,44 @@
                 </tbody>
             </table>
             <div id="missing-write-btn-area">
-                <a href="">글쓰기</a>
+                <a href="<%=contextPath%>/adoptEnrollForm.do">글쓰기</a>
             </div>
         </div>
         <div id="search-img">
         
         <script>
-            function adoptMissingBtn(){
-                const missingBtn = document.getElementById("missing-btn");
-                const distributeBtn = document.getElementById("distribute-btn");
+		    // 페이지 로드 시 boardType 파라미터 확인 후 버튼 색상과 테이블 상태 설정
+		    window.onload = function() {
+		        const urlParams = new URLSearchParams(window.location.search);
+		        const boardType = urlParams.get('boardType');
+		
+		        const missingBtn = document.getElementById("missing-btn");
+		        const distributeBtn = document.getElementById("distribute-btn");
+		        const missingTable = document.getElementById("missing-pet-table");
+		        const distributeTable = document.getElementById("distribute-pet-table");
+		
+		        if (boardType === "A" || !boardType) { // 유기/실종 버튼 상태
+		            missingBtn.style.color = "rgb(152, 184, 219)";
+		            distributeBtn.style.color = "black";
+		            missingTable.style.display = "table";
+		            distributeTable.style.display = "none";
+		        } else if (boardType === "B") { // 분양 버튼 상태
+		            missingBtn.style.color = "black";
+		            distributeBtn.style.color = "rgb(152, 184, 219)";
+		            missingTable.style.display = "none";
+		            distributeTable.style.display = "table";
+		        }
+		    };
+		
+		    function adoptMissingBtn(){
+		        location.href="<%=contextPath%>/adoptList.do?cpage=1&boardType=A";
+		    }
+		
+		    function adoptDistributeBtn(){
+		        location.href="<%=contextPath%>/adoptList.do?cpage=1&boardType=B";
+		    }    
+		</script>
 
-                missingBtn.style.color = "rgb(152, 184, 219)";
-                distributeBtn.style.color = "black";
-
-                const missingTable = document.getElementById("missing-pet-table");
-                const distributeTable = document.getElementById("distribute-pet-table")
-
-                missingTable.style.display = "table";
-                distributeTable.style.display = "none";
-
-                location.href="<%=contextPath%>/adoptList.do?cpage=1&type=A";
-            }
-
-            function adoptDistributeBtn(){
-                const missingBtn = document.getElementById("missing-btn");
-                const distributeBtn = document.getElementById("distribute-btn");
-
-                missingBtn.style.color = "black";
-                distributeBtn.style.color = "rgb(152, 184, 219)";
-
-                const missingTable = document.getElementById("missing-pet-table");
-                const distributeTable = document.getElementById("distribute-pet-table")
-
-                missingTable.style.display = "none";
-                distributeTable.style.display = "table";
-                
-                location.href="<%=contextPath%>/adoptList.do?cpage=1&type=B";
-            }    
-        </script>
 
         </div>
         <div class="page-btn">

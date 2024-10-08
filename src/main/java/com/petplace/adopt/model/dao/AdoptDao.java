@@ -10,8 +10,8 @@ import com.petplace.common.PageInfo;
 
 public class AdoptDao {
 	
-	public int selectAdoptListCount(SqlSession sqlSession, String type) {
-		return sqlSession.selectOne("adoptMapper.selectAdoptListCount", type);
+	public int selectAdoptListCount(SqlSession sqlSession, String boardType) {
+		return sqlSession.selectOne("adoptMapper.selectAdoptListCount", boardType);
 	}
 	
 	public ArrayList<Adopt> selectAdoptList(SqlSession sqlSession, PageInfo pi, String boardType){
