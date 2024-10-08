@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="adoptMapper">
+    <resultMap id="adoptListSet" type="Adopt">
+        <result column="BOARD_NO" property="boardNo"/>
+        <result column="MEMBER_ID" property="memberId"/>
+        <result column="BOARD_TITLE" property="boardTitle"/>
+        <result column="BOARD_DETAIL" property="boardDetail"/>
+        <result column="BOARD_DATE" property="boardDate"/>
+        <result column="BOARD_VIEWS" property="boardViews"/>
+        <result column="PLACE" property="place"/>
+        <result column="FIND_DATE" property="findDate"/>
+    </resultMap>
+    
+    <select id="selectListCount" resultType="_int">
+    	SELECT COUNT(*) AS "COUNT"
+    	  FROM SALE_MISSING
+    </select>
+    <select id="selectAdoptMissingList" resultMap="adoptListSet">
+    	SELECT BOARD_NO,
+    		   MEMBER_ID,
+    		   BOARD_TITLE,
+    		   BOARD_DETAIL,
+    		   BOARD_DATE,
+    		   BOARD_VIEWS,
+    		   PLACE,
+    		   FIND_DATE
+    	  FROM SALE_MISSING
+    	  JOIN MEMBER USING (MEMBER_ID)
+    	 ORDER BY BOARD_NO DESC
+    </select>
+</mapper>

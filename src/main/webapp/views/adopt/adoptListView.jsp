@@ -1,5 +1,6 @@
+<%@ page language="java" contentType="text/html;charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page import="com.petplace.common.PageInfo, java.util.ArrayList, com.petplace.adopt.model.vo.Adopt" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -19,24 +20,26 @@
             <p>|</p>
             <button id="distribute-btn" onclick="adoptDistributeBtn()">&nbsp;&nbsp;분양</button>
         </div>
-        <div class="find-pet-option">
+        <form class="find-pet-option" action="">
             <div class="select-pet-place">
-                <select id="select-pet-type" name="pet-type">
-                    <option value="동물종류">동물종류</option>
-                    <option value="동물종류">고양이</option>
+                <select id="select-pet-type" name="type">
+                    <option value="all">동물종류</option>
+                    <option value="cat">고양이</option>
+                    <option value="dog">강아지</option>
+                    <option value="etc">기타</option>
                 </select>
 
+                <!-- 반복으로 위치 받아야함 -->
                 <select id="select-find-place" name="place">
-                    <option value="위치">위치</option>
-                    <option value="위치">수원시</option>
+                    <option value="all">위치</option>
+                    <option value="suwon">수원시</option>
                 </select>
             </div>
-            <form action="">
+            <div id="find-pet-area">
                 <input type="text" placeholder="검색">
                 <button type="submit"><img src="<%=contextPath%>/images/Search.png"></button>
-                <!-- <input type="submit" value=" " src="images/Search.png"> -->
-            </form>
-        </div>
+            </div>
+        </form>
         <div class="missing-distribute-pet-table">
             <table id="missing-pet-table" class="missing-pet-table">
                 <thead>
@@ -51,141 +54,34 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr class="table-line" onclick="detailMissingPage()">
-                        <td>1</td>
-                        <td><img src="<%=contextPath%>/images/image 10.png"></td>
-                        <td class="table-title">
-                            <p>고양이 잃어버리신 분 뱅갈 고양이</p>
-                            <span>고양이 잃어버리신 분 뱅갈 고양이</span>
-                        </td>                       
-                        <td>경기 김포시 양촌읍</td>
-                        <td>09 - 06</td>
-                        <td>서유라</td>
-                        <td>192</td>
-                    </tr>
-                    <tr class="table-line">
-                        <td>2</td>
-                        <td><img src="<%=contextPath%>/images/image 7.png"></td>
-                        <td class="table-title">
-                            <p>검정색 강아지 잃어버리신 분 찾아요</p>
-                            <span>검정색 강아지 잃어버리신 분 찾아요</span>
-                        </td>  
-                        <td>경기도 수원시 팔달구<br>
-                            xx동</td>
-                        <td>04 - 12</td>
-                        <td>김지석</td>
-                        <td>23</td>
-                    </tr>
-                    <tr class="table-line">
-                        <td>2</td>
-                        <td><img src="<%=contextPath%>/images/image 7.png"></td>
-                        <td class="table-title">
-                            <p>검정색 강아지 잃어버리신 분 찾아요</p>
-                            <span>검정색 강아지 잃어버리신 분 찾아요</span>
-                        </td>  
-                        <td>경기도 수원시 팔달구<br>
-                            xx동</td>
-                        <td>04 - 12</td>
-                        <td>김지석</td>
-                        <td>23</td>
-                    </tr>
-                    <tr class="table-line">
-                        <td>2</td>
-                        <td><img src="<%=contextPath%>/images/image 7.png"></td>
-                        <td class="table-title">
-                            <p>검정색 강아지 잃어버리신 분 찾아요</p>
-                            <span>검정색 강아지 잃어버리신 분 찾아요</span>
-                        </td>  
-                        <td>경기도 수원시 팔달구<br>
-                            xx동</td>
-                        <td>04 - 12</td>
-                        <td>김지석</td>
-                        <td>23</td>
-                    </tr>
-                    <tr class="table-line">
-                        <td>2</td>
-                        <td><img src="<%=contextPath%>/images/image 7.png"></td>
-                        <td class="table-title">
-                            <p>검정색 강아지 잃어버리신 분 찾아요</p>
-                            <span>검정색 강아지 잃어버리신 분 찾아요</span>
-                        </td>  
-                        <td>경기도 수원시 팔달구<br>
-                            xx동</td>
-                        <td>04 - 12</td>
-                        <td>김지석</td>
-                        <td>23</td>
-                    </tr>
-                    <tr class="table-line">
-                        <td>2</td>
-                        <td><img src="<%=contextPath%>/images/image 7.png"></td>
-                        <td class="table-title">
-                            <p>검정색 강아지 잃어버리신 분 찾아요</p>
-                            <span>검정색 강아지 잃어버리신 분 찾아요</span>
-                        </td>  
-                        <td>경기도 수원시 팔달구<br>
-                            xx동</td>
-                        <td>04 - 12</td>
-                        <td>김지석</td>
-                        <td>23</td>
-                    </tr>
-                    <tr class="table-line">
-                        <td>2</td>
-                        <td><img src="<%=contextPath%>/images/image 7.png"></td>
-                        <td class="table-title">
-                            <p>검정색 강아지 잃어버리신 분 찾아요</p>
-                            <span>검정색 강아지 잃어버리신 분 찾아요</span>
-                        </td>  
-                        <td>경기도 수원시 팔달구<br>
-                            xx동</td>
-                        <td>04 - 12</td>
-                        <td>김지석</td>
-                        <td>23</td>
-                    </tr>
-                    <tr class="table-line">
-                        <td>2</td>
-                        <td><img src="<%=contextPath%>/images/image 7.png"></td>
-                        <td class="table-title">
-                            <p>검정색 강아지 잃어버리신 분 찾아요</p>
-                            <span>검정색 강아지 잃어버리신 분 찾아요</span>
-                        </td>  
-                        <td>경기도 수원시 팔달구<br>
-                            xx동</td>
-                        <td>04 - 12</td>
-                        <td>김지석</td>
-                        <td>23</td>
-                    </tr>
-                    <tr class="table-line">
-                        <td>2</td>
-                        <td><img src="<%=contextPath%>/images/image 7.png"></td>
-                        <td class="table-title">
-                            <p>검정색 강아지 잃어버리신 분 찾아요</p>
-                            <span>검정색 강아지 잃어버리신 분 찾아요</span>
-                        </td>  
-                        <td>경기도 수원시 팔달구<br>
-                            xx동</td>
-                        <td>04 - 12</td>
-                        <td>김지석</td>
-                        <td>23</td>
-                    </tr>
-                    <tr class="table-line">
-                        <td>2</td>
-                        <td><img src="<%=contextPath%>/images/image 7.png"></td>
-                        <td class="table-title">
-                            <p>검정색 강아지 잃어버리신 분 찾아요</p>
-                            <span>검정색 강아지 잃어버리신 분 찾아요</span>
-                        </td>  
-                        <td>경기도 수원시 팔달구<br>
-                            xx동</td>
-                        <td>04 - 12</td>
-                        <td>김지석</td>
-                        <td>23</td>
-                    </tr>
+                	<c:choose>
+                		<c:when test="${empty list}">
+                			<tr>
+                            	<td colspan="7">등록된 게시물이이 존재하지 않습니다.</td>
+                        	</tr>
+                		</c:when>
+                		<c:otherwise>
+                			<c:forEach var="m" items="${mlist}">
+			                    <tr class="table-line" onclick="detailMissingPage()">
+			                        <td>${m.boardNo}</td>
+			                        <td><img src="<%=contextPath%>/images/image 10.png"></td>
+			                        <td class="table-title">
+			                            <p>${m.boardTitle}</p>
+			                            <textarea id="reply-content" style="resize: none;" rows="3">{m.boardDetail}</textarea>
+			                        </td>                       
+			                        <td>${m.place}</td>
+			                        <td>${m.boardDate}</td>
+			                        <td>${m.memberId}</td>
+			                        <td>${m.boardViews}</td>
+			                    </tr>
+			                </c:forEach>    
+		                </c:otherwise>
+	                </c:choose>
                 </tbody>
             </table>
             <script>
                 function detailMissingPage(){
-                    console.log("????")
-                    location.href="<%=contextPath%>/missingDetail.do";
+                    location.href="<%=contextPath%>/adoptDetail.do";
                 }
             </script>
 
@@ -201,124 +97,17 @@
                     </tr>
                 </thead>
                 <tbody>
+                    <!-- 반복해야됨 -->
                     <tr class="table-line" onclick="detailDistributePage()">
                         <td>1</td>
                         <td><img src="<%=contextPath%>/images/image 10.png"></td>
                         <td class="table-title">
                             <p>뱅갈 고양이 분양합니다~</p>
-                            <span>진짜 잘생겼어요~~ 수컷이고요. 생후 10개월 된 아이에요</span>
+                            <textarea id="reply-content" style="resize: none;" rows="3">진짜 잘생겼어요~~ 수컷이고요. 생후 10개월 된 아이에요</textarea>
                         </td>                       
                         <td>경기 김포시 양촌읍</td>
                         <td>서유라</td>
                         <td>192</td>
-                    </tr>
-                    <tr class="table-line">
-                        <td>2</td>
-                        <td><img src="<%=contextPath%>/images/image 7.png"></td>
-                        <td class="table-title">
-                            <p>검정색 강아지 분양 받아가세요~</p>
-                            <span>진짜 잘생겼어요~~ 수컷이고요. 생후 10개월 된 아이에요</span>
-                        </td>  
-                        <td>경기도 수원시 팔달구<br>
-                            xx동</td>
-                        <td>김지석</td>
-                        <td>23</td>
-                    </tr>
-                    <tr class="table-line">
-                        <td>2</td>
-                        <td><img src="<%=contextPath%>/images/image 7.png"></td>
-                        <td class="table-title">
-                            <p>검정색 강아지 분양 받아가세요~</p>
-                            <span>진짜 잘생겼어요~~ 수컷이고요. 생후 10개월 된 아이에요</span>
-                        </td>  
-                        <td>경기도 수원시 팔달구<br>
-                            xx동</td>
-                        <td>김지석</td>
-                        <td>23</td>
-                    </tr>
-                    <tr class="table-line">
-                        <td>2</td>
-                        <td><img src="<%=contextPath%>/images/image 7.png"></td>
-                        <td class="table-title">
-                            <p>검정색 강아지 분양 받아가세요~</p>
-                            <span>진짜 잘생겼어요~~ 수컷이고요. 생후 10개월 된 아이에요</span>
-                        </td>  
-                        <td>경기도 수원시 팔달구<br>
-                            xx동</td>
-                        <td>김지석</td>
-                        <td>23</td>
-                    </tr>
-                    <tr class="table-line">
-                        <td>2</td>
-                        <td><img src="<%=contextPath%>/images/image 7.png"></td>
-                        <td class="table-title">
-                            <p>검정색 강아지 분양 받아가세요~</p>
-                            <span>진짜 잘생겼어요~~ 수컷이고요. 생후 10개월 된 아이에요</span>
-                        </td>  
-                        <td>경기도 수원시 팔달구<br>
-                            xx동</td>
-                        <td>김지석</td>
-                        <td>23</td>
-                    </tr>
-                    <tr class="table-line">
-                        <td>2</td>
-                        <td><img src="<%=contextPath%>/images/image 7.png"></td>
-                        <td class="table-title">
-                            <p>검정색 강아지 분양 받아가세요~</p>
-                            <span>진짜 잘생겼어요~~ 수컷이고요. 생후 10개월 된 아이에요</span>
-                        </td>  
-                        <td>경기도 수원시 팔달구<br>
-                            xx동</td>
-                        <td>김지석</td>
-                        <td>23</td>
-                    </tr>
-                    <tr class="table-line">
-                        <td>2</td>
-                        <td><img src="<%=contextPath%>/images/image 7.png"></td>
-                        <td class="table-title">
-                            <p>검정색 강아지 분양 받아가세요~</p>
-                            <span>진짜 잘생겼어요~~ 수컷이고요. 생후 10개월 된 아이에요</span>
-                        </td>  
-                        <td>경기도 수원시 팔달구<br>
-                            xx동</td>
-                        <td>김지석</td>
-                        <td>23</td>
-                    </tr>
-                    <tr class="table-line">
-                        <td>2</td>
-                        <td><img src="<%=contextPath%>/images/image 7.png"></td>
-                        <td class="table-title">
-                            <p>검정색 강아지 분양 받아가세요~</p>
-                            <span>진짜 잘생겼어요~~ 수컷이고요. 생후 10개월 된 아이에요</span>
-                        </td>  
-                        <td>경기도 수원시 팔달구<br>
-                            xx동</td>
-                        <td>김지석</td>
-                        <td>23</td>
-                    </tr>
-                    <tr class="table-line">
-                        <td>2</td>
-                        <td><img src="<%=contextPath%>/images/image 7.png"></td>
-                        <td class="table-title">
-                            <p>검정색 강아지 분양 받아가세요~</p>
-                            <span>진짜 잘생겼어요~~ 수컷이고요. 생후 10개월 된 아이에요</span>
-                        </td>  
-                        <td>경기도 수원시 팔달구<br>
-                            xx동</td>
-                        <td>김지석</td>
-                        <td>23</td>
-                    </tr>
-                    <tr class="table-line">
-                        <td>2</td>
-                        <td><img src="<%=contextPath%>/images/image 7.png"></td>
-                        <td class="table-title">
-                            <p>검정색 강아지 분양 받아가세요~</p>
-                            <span>진짜 잘생겼어요~~ 수컷이고요. 생후 10개월 된 아이에요</span>
-                        </td>  
-                        <td>경기도 수원시 팔달구<br>
-                            xx동</td>
-                        <td>김지석</td>
-                        <td>23</td>
                     </tr>
                 </tbody>
             </table>
