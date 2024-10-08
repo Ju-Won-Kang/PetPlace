@@ -1,10 +1,8 @@
 package com.petplace.shopping.dao;
 
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.util.ArrayList;
-import java.util.Properties;
 import java.util.HashMap;
+import java.util.Properties;
 
 import org.apache.ibatis.session.RowBounds;
 import org.apache.ibatis.session.SqlSession;
@@ -13,6 +11,7 @@ import com.petplace.common.PageInfo;
 import com.petplace.shopping.model.dto.ShoppingComplete;
 import com.petplace.shopping.model.dto.ShoppingDetailList;
 import com.petplace.shopping.model.dto.ShoppingList;
+import com.petplace.shopping.model.dto.UserInfo;
 
 public class ShoppingDao {
 	
@@ -72,7 +71,10 @@ public class ShoppingDao {
 	public ArrayList<ShoppingComplete> selectShoppingCompleteList(SqlSession sqlSession, int productNo){
 		return (ArrayList)sqlSession.selectList("shoppingMapper.selectShoppingCompleteList", productNo);
 	}
-	
+
+	public UserInfo selectUserInfoList(SqlSession sqlSession, String userId){
+		return (UserInfo)sqlSession.selectOne("shoppingMapper.selectUserInfoList",userId);
+	}
 }
 
 

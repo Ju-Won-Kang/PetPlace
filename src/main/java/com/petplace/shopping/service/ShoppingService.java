@@ -7,6 +7,7 @@ import com.petplace.common.PageInfo;
 import com.petplace.shopping.model.dto.ShoppingComplete;
 import com.petplace.shopping.model.dto.ShoppingDetailList;
 import com.petplace.shopping.model.dto.ShoppingList;
+import com.petplace.shopping.model.dto.UserInfo;
 
 public interface ShoppingService {
 	public abstract int selectShoppingListCount(String category);
@@ -21,4 +22,6 @@ public interface ShoppingService {
 	public abstract ArrayList<ShoppingDetailList> selectDetailProduct(int productNo);
 	
 	public abstract ArrayList<ShoppingComplete> selectShoppingCompleteList(int productNo);
+	public abstract UserInfo selectUserInfoList(String userId);
+	
 }

@@ -59,6 +59,12 @@
 		<result column="PURCHASE_DATE" property="purchaseDate"/>
 	</resultMap>
 	
+	<resultMap id="selectUserInfoList" type="UserInfo">
+		<result column="MEMBER_NAME" property="userName"/>
+		<result column="PHONE" property="phone"/>
+		<result column="MEMBER_ADDRESS" property="address"/>
+	</resultMap>
+	
 	<select id="selectShoppingListCount" resultType="_int">
 		SELECT COUNT(*) AS "COUNT"
 		  FROM PRODUCT
@@ -216,5 +222,14 @@
 		  JOIN PURCHASE USING(MEMBER_ID)
 		  JOIN PRODUCT USING(PRODUCT_NO)
 		 WHERE PRODUCT_NO = #{productNo}
+	</select>
+	
+	<!-- 유저정보 가져오는 sql -->
+	<select id="selectUserInfoList" resultMap="UserInfo">
+		 SELECT	MEMBER_NAME,
+		 		PHONE,
+		 		MEMBER_ADDRESS
+		   FROM MEMBER
+		  WHERE	USER_ID = #{userId}
 	</select>
 </mapper>

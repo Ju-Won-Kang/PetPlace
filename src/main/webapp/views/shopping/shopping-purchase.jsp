@@ -1,10 +1,16 @@
 <%@ page language="java" contentType="text/html;charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+
+<%@ page import="com.petplace.shopping.model.dto.UserInfo" %>
+<% 
+    UserInfo userInfo = (UserInfo)(request.getAttribute("userInfo"));
+%>
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="UTF-8"> 
+    <meta charset="UTF-8">
     <title>Document</title>
     <link rel="stylesheet" href="css/shopping/shopping-purchase.css">
 </head>
@@ -18,23 +24,23 @@
         <table id="purchaser-table">
             <tr>
                 <td>이름</td>
-                <td>김철수</td>
+                <td>${userInfo.userName}</td>
             </tr>
             <tr>
                 <td>이메일</td>
-                <td>asdasd@naver.com</td>
+                <td></td>
             </tr>
             <tr>
                 <td>연락처</td>
-                <td>010-1234-5678</td>
+                <td>${userInfo.phone}</td>
             </tr>
             <tr>
                 <td>배송주소</td>
-                <td>서울시 강남구 구구구</td>
+                <td>${userInfo.address}</td>
             </tr>
             <tr>
                 <td>배송 요청사항</td>
-                <td>배송 전 문자 바랍니다</td>
+                <td><input type="text" name="request"></td>
             </tr>
         </table>
         <br>
@@ -43,15 +49,15 @@
         <table id="payInfo-table">
             <tr>
                 <td>총 상품가격</td>
-                <td>21500원</td>
+                <td><fmt:formatNumber value="${totalProductPrice}" pattern="#,###"/>원</td>
             </tr>
             <tr>
                 <td>배송비</td>
-                <td>3000원</td>
+                <td>3,000원</td>
             </tr>
             <tr>
                 <td>총 결제금액</td>
-                <td>24500원</td>
+                <td><fmt:formatNumber value="${amountPrice}" pattern="#,###"/>원</td>
             </tr>
         </table>
 

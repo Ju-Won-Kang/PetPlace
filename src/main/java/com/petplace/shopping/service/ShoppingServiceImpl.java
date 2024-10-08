@@ -7,10 +7,14 @@ import org.apache.ibatis.session.SqlSession;
 
 import com.petplace.common.PageInfo;
 import com.petplace.common.Template;
+import com.petplace.member.model.dto.HashedMember;
 import com.petplace.shopping.dao.ShoppingDao;
 import com.petplace.shopping.model.dto.ShoppingComplete;
 import com.petplace.shopping.model.dto.ShoppingDetailList;
 import com.petplace.shopping.model.dto.ShoppingList;
+import com.petplace.shopping.model.dto.UserInfo;
+
+import jakarta.servlet.http.HttpSession;
 
 public class ShoppingServiceImpl implements ShoppingService {
 	ShoppingDao sDao = new ShoppingDao();
@@ -110,6 +114,15 @@ public class ShoppingServiceImpl implements ShoppingService {
 		
 		ArrayList<ShoppingComplete> list = sDao.selectShoppingCompleteList(sqlSession, productNo);
 		
-		return null;
+		return list;
+	}
+
+	@Override
+	public UserInfo selectUserInfoList(String userId) {
+		SqlSession sqlSession = Template.getSqlSession();
+		
+		UserInfo list = sDao.selectUserInfoList(sqlSession, userId);
+		
+		return list;
 	}
 }
