@@ -12,23 +12,30 @@
         <result column="BOARD_VIEWS" property="boardViews"/>
         <result column="PLACE" property="place"/>
         <result column="FIND_DATE" property="findDate"/>
+        <result column="TYPE" property="type"/>
+        <result column="FILE_PATH" property="adoptImg"/>
     </resultMap>
     
-    <select id="selectListCount" resultType="_int">
+    <select id="selectAdoptListCount" resultType="_int">
     	SELECT COUNT(*) AS "COUNT"
     	  FROM SALE_MISSING
+    	 WHERE TYPE = #{type}
     </select>
-    <select id="selectAdoptMissingList" resultMap="adoptListSet">
-    	SELECT BOARD_NO,
+    <select id="selectAdoptList" resultMap="adoptListSet">
+    	SELECT S.BOARD_NO,
     		   MEMBER_ID,
     		   BOARD_TITLE,
     		   BOARD_DETAIL,
     		   BOARD_DATE,
     		   BOARD_VIEWS,
     		   PLACE,
-    		   FIND_DATE
-    	  FROM SALE_MISSING
+    		   FIND_DATE,
+    		   S.TYPE,
+    		   FILE_PATH || CHANGE_NAME AS "TITLE_IMG"
+    	  FROM SALE_MISSING S
     	  JOIN MEMBER USING (MEMBER_ID)
-    	 ORDER BY BOARD_NO DESC
+    	  JOIN ATTACHMENT_ADOPT ON (REF_ANO = BOARD_NO)
+    	 WHERE S.TYPE = #{boardType}
+    	 ORDER BY S.BOARD_NO DESC
     </select>
 </mapper>

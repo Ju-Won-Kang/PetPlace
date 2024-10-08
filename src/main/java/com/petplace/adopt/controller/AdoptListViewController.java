@@ -33,20 +33,22 @@ public class AdoptListViewController extends HttpServlet {
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		AdoptService aService = new AdoptServiceImpl();
-		
-		int currentPage = Integer.parseInt(request.getParameter("cpage"));
-		int listCount = aService.selectListCount(); //총 게시글 수
-		
-		PageInfo pi = Template.getPageInfo(listCount, currentPage, 10, 10);
-		
-		ArrayList<Adopt> mlist = aService.selectAdoptMissingList(pi);
-		
-		request.setAttribute("mlist", mlist);
-		request.setAttribute("pi", pi);
-		request.getRequestDispatcher("views/adopt/adoptListView.jsp").forward(request,response);
-	}
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        AdoptService aService = new AdoptServiceImpl();
+        
+        String boardType = request.getParameter("boardType");
+        
+        int currentPage = Integer.parseInt(request.getParameter("cpage"));
+        int listCount = aService.selectAdoptListCount(boardType); // 총 게시글 수
+        
+        PageInfo pi = Template.getPageInfo(listCount, currentPage, 10, 10);
+        
+        ArrayList<Adopt> list = aService.selectAdoptList(pi, boardType);
+        
+        request.setAttribute("list", list);
+        request.setAttribute("pi", pi);
+        request.getRequestDispatcher("views/adopt/adoptListView.jsp").forward(request, response);
+    }
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)

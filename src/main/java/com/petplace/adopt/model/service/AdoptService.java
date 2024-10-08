@@ -6,6 +6,6 @@ import com.petplace.adopt.model.vo.Adopt;
 import com.petplace.common.PageInfo;
 
 public interface AdoptService {
-	int selectListCount();
-	ArrayList<Adopt> selectAdoptMissingList(PageInfo pi);
+	int selectAdoptListCount(String type);
+	ArrayList<Adopt> selectAdoptList(PageInfo pi, String boardType);
 }

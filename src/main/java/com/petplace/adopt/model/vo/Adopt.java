@@ -11,13 +11,15 @@ public class Adopt {
 	private int boardViews;
 	private String place;
 	private Date findDate;
+	private String type;
+	private String adoptImg;
 	
 	public Adopt() {
 		super();
 	}
 
 	public Adopt(String boardNo, String memberId, String boardTitle, String boardDetail, Date boardDate, int boardViews,
-			String place, Date findDate) {
+			String place, Date findDate, String type, String adoptImg) {
 		super();
 		this.boardNo = boardNo;
 		this.memberId = memberId;
@@ -27,6 +29,8 @@ public class Adopt {
 		this.boardViews = boardViews;
 		this.place = place;
 		this.findDate = findDate;
+		this.type = type;
+		this.adoptImg = adoptImg;
 	}
 
 	public String getBoardNo() {
@@ -93,11 +97,27 @@ public class Adopt {
 		this.findDate = findDate;
 	}
 
+	public String getType() {
+		return type;
+	}
+
+	public void setType(String type) {
+		this.type = type;
+	}
+
+	public String getAdoptImg() {
+		return adoptImg;
+	}
+
+	public void setAdoptImg(String adoptImg) {
+		this.adoptImg = adoptImg;
+	}
+
 	@Override
 	public String toString() {
 		return "Adopt [boardNo=" + boardNo + ", memberId=" + memberId + ", boardTitle=" + boardTitle + ", boardDetail="
 				+ boardDetail + ", boardDate=" + boardDate + ", boardViews=" + boardViews + ", place=" + place
-				+ ", findDate=" + findDate + "]";
+				+ ", findDate=" + findDate + ", type=" + type + ", adoptImg=" + adoptImg + "]";
 	}
 	
 	

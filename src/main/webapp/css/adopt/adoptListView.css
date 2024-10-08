@@ -185,7 +185,7 @@ td, th{
     overflow: hidden;
 }
 
-.table-title textarea{
+.table-title span{
     width: 400px;
     height: 60%;
     resize: none;

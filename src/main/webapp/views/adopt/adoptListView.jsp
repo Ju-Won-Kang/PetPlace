@@ -61,18 +61,18 @@
                         	</tr>
                 		</c:when>
                 		<c:otherwise>
-                			<c:forEach var="m" items="${mlist}">
+                			<c:forEach var="a" items="${list}">
 			                    <tr class="table-line" onclick="detailMissingPage()">
-			                        <td>${m.boardNo}</td>
+			                        <td>${a.boardNo}</td>
 			                        <td><img src="<%=contextPath%>/images/image 10.png"></td>
 			                        <td class="table-title">
 			                            <p>${m.boardTitle}</p>
-			                            <textarea id="reply-content" style="resize: none;" rows="3">{m.boardDetail}</textarea>
+			                            <span id="reply-content">{a.boardDetail}</span>
 			                        </td>                       
-			                        <td>${m.place}</td>
-			                        <td>${m.boardDate}</td>
-			                        <td>${m.memberId}</td>
-			                        <td>${m.boardViews}</td>
+			                        <td>${a.place}</td>
+			                        <td>${a.boardDate}</td>
+			                        <td>${a.memberId}</td>
+			                        <td>${a.boardViews}</td>
 			                    </tr>
 			                </c:forEach>    
 		                </c:otherwise>
@@ -97,18 +97,28 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <!-- 반복해야됨 -->
-                    <tr class="table-line" onclick="detailDistributePage()">
-                        <td>1</td>
-                        <td><img src="<%=contextPath%>/images/image 10.png"></td>
-                        <td class="table-title">
-                            <p>뱅갈 고양이 분양합니다~</p>
-                            <textarea id="reply-content" style="resize: none;" rows="3">진짜 잘생겼어요~~ 수컷이고요. 생후 10개월 된 아이에요</textarea>
-                        </td>                       
-                        <td>경기 김포시 양촌읍</td>
-                        <td>서유라</td>
-                        <td>192</td>
-                    </tr>
+                    <c:choose>
+                        <c:when test="${empty list}">
+                			<tr>
+                            	<td colspan="6">등록된 게시물이이 존재하지 않습니다.</td>
+                        	</tr>
+                		</c:when>
+                		<c:otherwise>
+                		    <c:forEach var="a" items="${list}">
+			                    <tr class="table-line" onclick="detailDistributePage()">
+			                        <td>${a.boardNo}</td>
+			                        <td><img src="<%=contextPath%>/images/image 10.png"></td>
+			                        <td class="table-title">
+			                            <p>${m.boardTitle}</p>
+			                            <span id="reply-content">{a.boardDetail}</span>
+			                        </td>                       
+			                        <td>${a.place}</td>
+			                        <td>${a.memberId}</td>
+			                        <td>${a.boardViews}</td>
+			                    </tr>
+			                </c:forEach>
+		                </c:otherwise>
+                    </c:choose>
                 </tbody>
             </table>
             <div id="missing-write-btn-area">
@@ -116,6 +126,40 @@
             </div>
         </div>
         <div id="search-img">
+        
+        <script>
+            function adoptMissingBtn(){
+                const missingBtn = document.getElementById("missing-btn");
+                const distributeBtn = document.getElementById("distribute-btn");
+
+                missingBtn.style.color = "rgb(152, 184, 219)";
+                distributeBtn.style.color = "black";
+
+                const missingTable = document.getElementById("missing-pet-table");
+                const distributeTable = document.getElementById("distribute-pet-table")
+
+                missingTable.style.display = "table";
+                distributeTable.style.display = "none";
+
+                location.href="<%=contextPath%>/adoptList.do?cpage=1&type=A";
+            }
+
+            function adoptDistributeBtn(){
+                const missingBtn = document.getElementById("missing-btn");
+                const distributeBtn = document.getElementById("distribute-btn");
+
+                missingBtn.style.color = "black";
+                distributeBtn.style.color = "rgb(152, 184, 219)";
+
+                const missingTable = document.getElementById("missing-pet-table");
+                const distributeTable = document.getElementById("distribute-pet-table")
+
+                missingTable.style.display = "none";
+                distributeTable.style.display = "table";
+                
+                location.href="<%=contextPath%>/adoptList.do?cpage=1&type=B";
+            }    
+        </script>
 
         </div>
         <div class="page-btn">

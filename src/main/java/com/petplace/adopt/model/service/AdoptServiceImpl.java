@@ -14,10 +14,10 @@ public class AdoptServiceImpl implements AdoptService{
 	private AdoptDao aDao = new AdoptDao(); 
 	
 	@Override
-	public int selectListCount() {
+	public int selectAdoptListCount(String type) {
 		SqlSession sqlSession = Template.getSqlSession();
 		
-		int listCount = aDao.selectListCount(sqlSession);
+		int listCount = aDao.selectAdoptListCount(sqlSession, type);
 		
 		sqlSession.close();
 		
@@ -25,10 +25,10 @@ public class AdoptServiceImpl implements AdoptService{
 	}
 
 	@Override
-	public ArrayList<Adopt> selectAdoptMissingList(PageInfo pi) {
+	public ArrayList<Adopt> selectAdoptList(PageInfo pi, String boardType) {
 		SqlSession sqlSession = Template.getSqlSession();
 		
-		ArrayList<Adopt> list = aDao.selectAdoptMissingList(sqlSession, pi);
+		ArrayList<Adopt> list = aDao.selectAdoptList(sqlSession, pi, boardType);
 		return list;
 	}
 

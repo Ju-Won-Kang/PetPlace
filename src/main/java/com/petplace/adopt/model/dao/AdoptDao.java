@@ -10,15 +10,15 @@ import com.petplace.common.PageInfo;
 
 public class AdoptDao {
 	
-	public int selectListCount(SqlSession sqlSession) {
-		return sqlSession.selectOne("AdoptMapper.selectListCount");
+	public int selectAdoptListCount(SqlSession sqlSession, String type) {
+		return sqlSession.selectOne("adoptMapper.selectAdoptListCount", type);
 	}
 	
-	public ArrayList<Adopt> selectAdoptMissingList(SqlSession sqlSession, PageInfo pi){
+	public ArrayList<Adopt> selectAdoptList(SqlSession sqlSession, PageInfo pi, String boardType){
 		int offset = (pi.getCurrentPage() - 1) * pi.getBoardLimit();
 		int limit = pi.getBoardLimit();
 		RowBounds rowBounds = new RowBounds(offset, limit);
 		
-		return (ArrayList)sqlSession.selectList("AdoptMapper.selectAdoptMissingList", null, rowBounds);
+		return (ArrayList)sqlSession.selectList("adoptMapper.selectAdoptList", boardType, rowBounds);
 	}
 }
