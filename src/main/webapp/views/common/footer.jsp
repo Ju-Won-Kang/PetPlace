@@ -12,7 +12,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Title</title>
-    <link rel="stylesheet" href="css/footer.css">
+    <link rel="stylesheet" href="css/common/footer.css">
 </head>
 <body>
     <!-- footer -->
@@ -50,7 +50,7 @@
                 <a href="">문의하기</a>
             </div>
             <div id="adminPage">
-                <a href="">관리자 페이지</a>
+                <a href="<%=request.getContextPath()%>/adminCreateProduct.pd">관리자 페이지</a>
             </div>
         </div>
     </div>
