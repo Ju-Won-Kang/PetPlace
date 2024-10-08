@@ -10,6 +10,7 @@ package com.petplace.member.controller;/**
  * 2024. 10. 4.        jun       최초 생성
  */
 
+import com.petplace.common.ShaUtil;
 import com.petplace.member.model.dto.BeforeHashingMember;
 import com.petplace.member.model.dto.HashedMember;
 import com.petplace.member.model.vo.Member;
@@ -40,7 +41,17 @@ public class EnrollController extends HttpServlet {
         String address = request.getParameter("address");
         String nickName = request.getParameter("nickName");
 
-        int result = new MemberService().enrollMember(new BeforeHashingMember(memberId, memberPwd, memberName, SSN1, SSN2, phone, nickName, address));
+        // 해싱 처리
+        String salt = ShaUtil.getSalt();
+        String hashedMemberPwd = ShaUtil.sha256WithSaltEncode(memberPwd, salt);
+        String gender = SSN2.substring(0, 1);
+        String hashedSSN2 = ShaUtil.sha256WithSaltEncode(SSN2.substring(1), salt);
+        String memberNo = SSN1 + "-" + gender + hashedSSN2;
+        HashedMember hashedMember = new HashedMember(memberId, hashedMemberPwd, salt, memberName,
+                memberNo, phone, nickName, address);
+
+
+        int result = new MemberService().enrollMember(hashedMember);
 
         HttpSession session = request.getSession();
         if (result > 0) {
