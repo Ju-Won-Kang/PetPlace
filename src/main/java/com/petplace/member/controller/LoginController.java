@@ -37,7 +37,7 @@ public class LoginController extends HttpServlet {
 		String userId = request.getParameter("userId");
 		String userPwd = request.getParameter("userPwd");
 
-		HashedMember loginUser = new MemberService().loginMember(userId);
+		Member loginUser = new MemberService().loginMember(userId);
 		// 요청으로 들어온 비밀번호 해싱처리
 		String hashedUserPwd = ShaUtil.sha256WithSaltEncode(userPwd, loginUser.getSalt());
 		HttpSession session = request.getSession();

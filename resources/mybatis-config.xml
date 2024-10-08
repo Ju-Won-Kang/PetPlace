@@ -24,6 +24,8 @@
   <typeAlias type="com.petplace.inquiry.model.dto.InquiryList" alias="InquiryList"/>
   <typeAlias type="com.petplace.inquiry.model.vo.Inquiry" alias="Inquiry"/>
   <typeAlias type="com.petplace.member.model.dto.HashedMember" alias="HashedMember"/>
+  <typeAlias type="com.petplace.member.model.vo.Member" alias="Member"/>
+
   <!-- Common -->
   <typeAlias type="java.util.HashMap" alias="HashMap"/>
   <typeAlias type="java.util.List" alias="List"/>
