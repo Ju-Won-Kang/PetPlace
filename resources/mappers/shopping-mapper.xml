@@ -59,7 +59,7 @@
 		<result column="PURCHASE_DATE" property="purchaseDate"/>
 	</resultMap>
 	
-	<resultMap id="selectUserInfoList" type="UserInfo">
+	<resultMap id="UserInfoList" type="UserInfo">
 		<result column="MEMBER_NAME" property="userName"/>
 		<result column="PHONE" property="phone"/>
 		<result column="MEMBER_ADDRESS" property="address"/>
@@ -225,7 +225,7 @@
 	</select>
 	
 	<!-- 유저정보 가져오는 sql -->
-	<select id="selectUserInfoList" resultMap="UserInfo">
+	<select id="selectUserInfoList" resultMap="UserInfoList">
 		 SELECT	MEMBER_NAME,
 		 		PHONE,
 		 		MEMBER_ADDRESS
