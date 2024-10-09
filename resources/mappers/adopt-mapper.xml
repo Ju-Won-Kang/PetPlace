@@ -12,8 +12,9 @@
         <result column="BOARD_VIEWS" property="boardViews"/>
         <result column="PLACE" property="place"/>
         <result column="FIND_DATE" property="findDate"/>
-        <result column="TYPE" property="type"/>
-        <result column="FILE_PATH" property="adoptImg"/>
+        <result column="TYPE" property="boardType"/>
+        <result column="TITLE_IMG" property="adoptImg"/>
+        <result column="ADOPT_CATEGORY" property="adoptCategory"/>
     </resultMap>
     
     <select id="selectAdoptListCount" resultType="_int">
@@ -38,4 +39,8 @@
     	 WHERE S.TYPE = #{boardType}
     	 ORDER BY S.BOARD_NO DESC
     </select>
+    <insert id="adoptInsert" >
+    	INSERT INTO SALE_MISSING
+    
+    </insert>
 </mapper>

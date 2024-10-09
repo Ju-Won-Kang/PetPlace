@@ -22,7 +22,7 @@
         </div>
         <form class="find-pet-option" action="">
             <div class="select-pet-place">
-                <select id="select-pet-type" name="type">
+                <select id="select-pet-type" name="category">
                     <option value="all">동물종류</option>
                     <option value="cat">고양이</option>
                     <option value="dog">강아지</option>

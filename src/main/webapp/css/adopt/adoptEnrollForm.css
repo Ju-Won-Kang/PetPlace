@@ -1,11 +1,22 @@
 #title-form{
     padding: 5px;
     width: 1200px;
-    height: 40px;
+    height: 80px;
     margin: 0 auto;
     display: flex;
     justify-content: center;
-    
+}
+
+#title-form > select{
+    border-radius: 10px;
+    height: 35px;
+    margin: auto;
+    margin-right: 5px;
+}
+
+.place-title > label{
+    margin-bottom: 5px;
+    padding-top: 5px;
 }
 
 #content-form{
@@ -56,4 +67,9 @@
     border: 1px solid #b2b6b9;
     width: 80px;
     height: 35px;
+}
+
+#content-btn input{
+    border: none;
+    background-color: white;
 }

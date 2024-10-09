@@ -16,9 +16,14 @@
 <body>
 	<%@include file="../common/nav.jsp" %>
   <br>
-  <form action="<%=contextPath%>/adoptEnrollForm.do" method="post" enctype="multipart/form-data">
+  <form action="<%=contextPath%>/adoptInsert.do" method="post" enctype="multipart/form-data">
     <input type="hidden" name="memberId" value="${loginUser.memberId }">
     <div id="title-form">
+      <select name="boardType" required>
+        <option value="" selected disabled hidden>게시판 종류</option>
+        <option value="A">실종/유기</option>
+        <option value="B">분양</option>
+      </select>
       <select name="category" required>
         <option value="" selected disabled hidden>카테고리</option>
         <option value="개">개</option>
@@ -26,17 +31,27 @@
         <option value="기타">기타</option>
       </select>
       &nbsp;&nbsp;&nbsp;
-      <label>
-        <b>제목</b>&nbsp;
-        <input type="text" name="title" size="130">
-      </label>
+      <div class="place-title">
+        <label>
+          <b>제목</b>&nbsp;
+          <input type="text" name="title" size="110">
+        </label>
+        <label>
+          <b>위치</b>&nbsp;
+          <input type="text" name="place" size="48">
+        </label>
+        <label>
+          <b>발견날짜</b>&nbsp;
+          <input type="text" name="findDate" size="47">
+        </label>
+      </div>
     </div>
     <br>
     <div id="content-form">
       <div>
         <textarea name="detail" id=""></textarea>
         <br>
-        <input type="file" name="cimg">
+        <input type="file" name="aimg">
       </div>
       
     </div>

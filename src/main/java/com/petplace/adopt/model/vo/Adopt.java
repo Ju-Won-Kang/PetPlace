@@ -10,16 +10,17 @@ public class Adopt {
 	private Date boardDate;
 	private int boardViews;
 	private String place;
-	private Date findDate;
-	private String type;
+	private String findDate;
+	private String boardType;
 	private String adoptImg;
+	private String adoptCategory;
 	
 	public Adopt() {
 		super();
 	}
 
 	public Adopt(String boardNo, String memberId, String boardTitle, String boardDetail, Date boardDate, int boardViews,
-			String place, Date findDate, String type, String adoptImg) {
+			String place, String findDate, String boardType, String adoptImg, String adoptCategory) {
 		super();
 		this.boardNo = boardNo;
 		this.memberId = memberId;
@@ -29,8 +30,9 @@ public class Adopt {
 		this.boardViews = boardViews;
 		this.place = place;
 		this.findDate = findDate;
-		this.type = type;
+		this.boardType = boardType;
 		this.adoptImg = adoptImg;
+		this.adoptCategory = adoptCategory;
 	}
 
 	public String getBoardNo() {
@@ -89,20 +91,20 @@ public class Adopt {
 		this.place = place;
 	}
 
-	public Date getFindDate() {
+	public String getFindDate() {
 		return findDate;
 	}
 
-	public void setFindDate(Date findDate) {
+	public void setFindDate(String findDate) {
 		this.findDate = findDate;
 	}
 
-	public String getType() {
-		return type;
+	public String getBoardType() {
+		return boardType;
 	}
 
-	public void setType(String type) {
-		this.type = type;
+	public void setBoardType(String boardType) {
+		this.boardType = boardType;
 	}
 
 	public String getAdoptImg() {
@@ -113,12 +115,21 @@ public class Adopt {
 		this.adoptImg = adoptImg;
 	}
 
+	public String getAdoptCategory() {
+		return adoptCategory;
+	}
+
+	public void setAdoptCategory(String adoptCategory) {
+		this.adoptCategory = adoptCategory;
+	}
+
 	@Override
 	public String toString() {
 		return "Adopt [boardNo=" + boardNo + ", memberId=" + memberId + ", boardTitle=" + boardTitle + ", boardDetail="
 				+ boardDetail + ", boardDate=" + boardDate + ", boardViews=" + boardViews + ", place=" + place
-				+ ", findDate=" + findDate + ", type=" + type + ", adoptImg=" + adoptImg + "]";
+				+ ", findDate=" + findDate + ", boardType=" + boardType + ", adoptImg=" + adoptImg + ", adoptCategory="
+				+ adoptCategory + "]";
 	}
-	
+
 	
 }

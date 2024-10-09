@@ -6,6 +6,7 @@ import org.apache.ibatis.session.RowBounds;
 import org.apache.ibatis.session.SqlSession;
 
 import com.petplace.adopt.model.vo.Adopt;
+import com.petplace.adopt.model.vo.AdoptAttachment;
 import com.petplace.common.PageInfo;
 
 public class AdoptDao {
@@ -20,5 +21,10 @@ public class AdoptDao {
 		RowBounds rowBounds = new RowBounds(offset, limit);
 		
 		return (ArrayList)sqlSession.selectList("adoptMapper.selectAdoptList", boardType, rowBounds);
+	}
+	
+	// 입양 게시글 삽입
+	public int insertAdopt(SqlSession sqlSession, Adopt a) {
+		return sqlSession.insert("adoptMapper.insertAdopt", a);
 	}
 }
