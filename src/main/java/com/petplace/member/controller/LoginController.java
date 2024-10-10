@@ -42,7 +42,7 @@ public class LoginController extends HttpServlet {
 		String hashedUserPwd = ShaUtil.sha256WithSaltEncode(userPwd, loginUser.getSalt());
 		HttpSession session = request.getSession();
 
-
+		System.out.println(loginUser);
 		if(loginUser == null) { //로그인 실패
 			session.setAttribute("alertMsg","로그인에 실패하였습니다.");
 			response.sendRedirect(request.getContextPath());
