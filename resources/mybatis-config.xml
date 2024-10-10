@@ -23,6 +23,7 @@
   <typeAlias type="com.petplace.admin.model.dto.Category" alias="Category"/>
   <typeAlias type="com.petplace.inquiry.model.dto.InquiryList" alias="InquiryList"/>
   <typeAlias type="com.petplace.inquiry.model.vo.Inquiry" alias="Inquiry"/>
+  <typeAlias type="com.petplace.community.model.vo.BoardComment" alias="BoardComment"/>
   <!-- Common -->
   <typeAlias type="java.util.HashMap" alias="HashMap"/>
   <typeAlias type="java.util.List" alias="List"/>

@@ -1,5 +1,10 @@
 package com.petplace.community.controller;
 
+import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.WebServlet;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 import com.petplace.community.model.vo.Community;
@@ -7,21 +12,17 @@ import com.petplace.community.model.vo.CommunityAttachment;
 import com.petplace.community.service.CommunityService;
 import com.petplace.community.service.CommunityServiceImple;
 
-import jakarta.servlet.ServletException;
-import jakarta.servlet.http.HttpServlet;
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
-
 /**
- * Servlet implementation class CommunityDetailController
+ * Servlet implementation class CommunityDeleteController
  */
-public class CommunityDetailController extends HttpServlet {
+@WebServlet(name = "communityDelete.do", urlPatterns = { "/communityDelete.do" })
+public class CommunityDeleteController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public CommunityDetailController() {
+    public CommunityDeleteController() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -30,23 +31,26 @@ public class CommunityDetailController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		request.setCharacterEncoding("UTF-8");
+		
 		int communityNo = Integer.parseInt(request.getParameter("cno"));
 		
+
 		CommunityService cService = new CommunityServiceImple();
 		
-		Community c = cService.increaseCount(communityNo);
+		int result1 = cService.deleteCommunity(communityNo);
 		CommunityAttachment atC = cService.selectCommunityAt(communityNo);
+		int result2 = 1;
+		if(atC != null) {
+			result2 = cService.deleteCommunityAt(communityNo);
+		}
 		
-		if(c != null) {
-			if(atC != null) {
-				
-				request.setAttribute("atC", atC);
-			}
-			request.setAttribute("c", c);
-			request.getRequestDispatcher("views/community/communityDetail.jsp").forward(request, response);
+		if(result1 * result2 > 0) {
+			request.setAttribute("alertMsg", "게시글 삭제 성공");
+			response.sendRedirect(request.getContextPath() + "/communityList.do?cpage=1&category=all&array=1");
 		} else {
-			request.setAttribute("alert", "상세조회 실패");
-			response.sendRedirect(request.getContextPath());
+			request.setAttribute("alertMsg", "게시글 삭제 실패");
+			response.sendRedirect(request.getContextPath() + "/communityList.do?cpage=1&category=all&array=1");
 		}
 	}
 

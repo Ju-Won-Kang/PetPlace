@@ -2,6 +2,7 @@ package com.petplace.community.controller;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import com.petplace.common.PageInfo;
 import com.petplace.common.Template;
@@ -15,15 +16,15 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
 /**
- * Servlet implementation class CommunityListController
+ * Servlet implementation class CommunitySearchListController
  */
-public class CommunityListController extends HttpServlet {
+public class CommunitySearchListController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public CommunityListController() {
+    public CommunitySearchListController() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -35,15 +36,21 @@ public class CommunityListController extends HttpServlet {
 		CommunityService cService = new CommunityServiceImple();
 		
 		String category = request.getParameter("category");
+		String keyword = request.getParameter("keyword");
 		int currentPage = Integer.parseInt(request.getParameter("cpage"));
-		int arrayPage = Integer.parseInt(request.getParameter("array"));
+		
+		System.out.println(category);
+		System.out.println(keyword);
+		HashMap<String, String> map = new HashMap<>();
 		
 		int listCount = 0;
-		
+		//총 게시글 수
 		if(category.equals("all")) {
-			listCount = cService.selectListCount(); //총 게시글 수
+			listCount = cService.selectSearchCount(keyword); 
 		} else {
-			listCount = cService.selectListCount(category); //총 게시글 수
+			map.put("category", category);
+			map.put("keyword", keyword);
+			listCount = cService.selectSearchCount(map);
 		}
 		
 		System.out.println(listCount);
@@ -51,23 +58,17 @@ public class CommunityListController extends HttpServlet {
 		PageInfo pi = Template.getPageInfo(listCount, currentPage, 10, 10);
 		
 		ArrayList<Community> list = null;
-		if(arrayPage == 1) {
-			if(category.equals("all")) {
-				list = cService.selectList(pi);
-			} else {
-				list = cService.selectList(pi, category);
-			}
+		if(category.equals("all")) {
+			System.out.println("all");
+			list = cService.selectSearchList(pi, keyword);
 		} else {
-			if(category.equals("all")) {
-				list = cService.selectGoodList(pi);
-			} else {
-				list = cService.selectGoodList(pi, category);
-			}
+			list = cService.selectSearchList(pi, map);
 		}
-		
 		
 		request.setAttribute("list", list);
 		request.setAttribute("pi", pi);
+		
+		System.out.println(list);
 		
 		request.getRequestDispatcher("views/community/communityListView.jsp").forward(request, response);
 	}
