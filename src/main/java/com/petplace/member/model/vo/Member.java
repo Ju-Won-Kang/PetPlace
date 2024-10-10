@@ -12,14 +12,14 @@ public class Member {
 	private String memberNo;
 	private String address;
 	private Date memberDate;
-	private String staus;
+	private String status;
 	
 	public Member() {
 		super();
 	}
 
 	public Member(String memberId, String memberPwd, String memberName, String nickName, String phone, String memberNo,
-				  String address, Date memberDate, String staus) {
+				  String address, Date memberDate, String status) {
 		super();
 		this.memberId = memberId;
 		this.memberPwd = memberPwd;
@@ -29,10 +29,10 @@ public class Member {
 		this.memberNo = memberNo;
 		this.address = address;
 		this.memberDate = memberDate;
-		this.staus = staus;
+		this.status = status;
 	}
 
-	public Member(String memberId, String memberPwd, String salt, String memberName, String nickName, String phone, String memberNo, String address, Date memberDate, String staus) {
+	public Member(String memberId, String memberPwd, String salt, String memberName, String nickName, String phone, String memberNo, String address, Date memberDate, String status) {
 		this.memberId = memberId;
 		this.memberPwd = memberPwd;
 		this.salt = salt;
@@ -42,7 +42,7 @@ public class Member {
 		this.memberNo = memberNo;
 		this.address = address;
 		this.memberDate = memberDate;
-		this.staus = staus;
+		this.status = status;
 	}
 
 	public Member(String memberId, String memberPwd, String salt, String memberName, String nickName, String phone, String memberNo, String address) {
@@ -120,12 +120,12 @@ public class Member {
 		this.memberDate = memberDate;
 	}
 
-	public String getStaus() {
-		return staus;
+	public String getStatus() {
+		return status;
 	}
 
-	public void setStaus(String staus) {
-		this.staus = staus;
+	public void setStatus(String status) {
+		this.status = status;
 	}
 
 	public String getSalt() {
@@ -148,7 +148,7 @@ public class Member {
 				", memberNo='" + memberNo + '\'' +
 				", address='" + address + '\'' +
 				", memberDate=" + memberDate +
-				", staus='" + staus + '\'' +
+				", staus='" + status + '\'' +
 				'}';
 	}
 }

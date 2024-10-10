@@ -33,7 +33,8 @@
         PHONE,
         MEMBER_NUMBER as memberNo,
         MEMBER_ADDRESS as address,
-        SALT
+        SALT,
+        STATUS
         from member
         where MEMBER_ID = #{userId}
     </select>

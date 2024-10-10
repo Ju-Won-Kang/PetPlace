@@ -16,12 +16,11 @@ import jakarta.servlet.annotation.*;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
-import jdk.jfr.Frequency;
 
 import java.io.IOException;
 
-@WebFilter(filterName = "adminCreateProduct.pd", value = "/adminCreateProduct.pd")
-public class LoginFilter implements Filter {
+@WebFilter(value = {"/adminCreateProduct.pd","/adminModifyProduct.pd", "/adminDeleteProduct.pd", "/adminDeleteReview.re","/adminInquiry.in","/adminDeliveryManagement.pd"})
+public class AdminPageFilter implements Filter {
     public void init(FilterConfig config) throws ServletException {
     }
 
@@ -33,14 +32,14 @@ public class LoginFilter implements Filter {
         System.out.println("로그인 필터 통과");
         HttpServletRequest httpRequest = (HttpServletRequest) request;
         HttpServletResponse httpResponse = (HttpServletResponse) response;
+
         HttpSession session = httpRequest.getSession();
         Member loginUser = (Member) session.getAttribute("loginUser");
         if(loginUser == null){
-
             session.setAttribute("alertMsg","관리자만 접근이 가능합니다.");
             // 메인 페이지로 리다이렉트
             httpResponse.sendRedirect(httpRequest.getContextPath());
-        }else if(loginUser.getStaus().equals('A')){
+        }else if(loginUser.getStatus().equals("A")){
             chain.doFilter(request,response);
         }else{
             session.setAttribute("alertMsg","관리자만 접근이 가능합니다.");
