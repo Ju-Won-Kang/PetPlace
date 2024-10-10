@@ -13,7 +13,8 @@ a{
     height: 200px;
     margin: auto;
     margin-top: 50px;
-    background-color: #e5e9f0 !important;
+    background-color: #e7e7e7;
+    padding: 0px 30px;
 }
 
 #site-url{
@@ -48,28 +49,28 @@ a{
 #facebook{
     height: 100%;
     width: 25%;
-    background: url(../../images/github.png) no-repeat center/contain;
+    background: url(../images/github.png) no-repeat center/contain;
     background-size: 30px;
 }
 
 #instargram{
     height: 100%;
     width: 25%;
-    background: url(../../images/Instagram.png) no-repeat center/contain;
+    background: url(../images/Instagram.png) no-repeat center/contain;
     background-size: 25px;
 }
 
 #youtube{
     height: 100%;
     width: 25%;
-    background: url(../../images/Youtube.png) no-repeat center/contain;
+    background: url(../images/Youtube.png) no-repeat center/contain;
     background-size: 25px;
 }
 
 #twitter{
     height: 100%;
     width: 25%;
-    background: url(../../images/Twitter.png) no-repeat center/contain;
+    background: url(../images/Twitter.png) no-repeat center/contain;
     background-size: 25px;
 }
 
