@@ -19,10 +19,10 @@
   <form action="<%=contextPath%>/adoptInsert.do" method="post" enctype="multipart/form-data">
     <input type="hidden" name="memberId" value="${loginUser.memberId }">
     <div id="title-form">
-      <select name="boardType" required>
+      <select name="boardType" required onchange="handleOptionChange(this)">
         <option value="" selected disabled hidden>게시판 종류</option>
-        <option value="A">실종/유기</option>
-        <option value="B">분양</option>
+        <option value="A" onclick="missingOption()">실종/유기</option>
+        <option value="B" onclick="distributeOption()">분양</option>
       </select>
       <select name="category" required>
         <option value="" selected disabled hidden>카테고리</option>
@@ -34,15 +34,15 @@
       <div class="place-title">
         <label>
           <b>제목</b>&nbsp;
-          <input type="text" name="title" size="110">
+          <input type="text" name="title" size="110" required>
         </label>
         <label>
           <b>위치</b>&nbsp;
-          <input type="text" name="place" size="48">
+          <input type="text" name="place" size="48" placeholder="(도/시/구)" required>
         </label>
         <label>
           <b>발견날짜</b>&nbsp;
-          <input type="text" name="findDate" size="47">
+          <input type="text" name="findDate" size="47" disabled>
         </label>
       </div>
     </div>
@@ -61,6 +61,17 @@
       <div id="reset-btn"><input type="reset" value="취소"></div>
     </div>
     </form>
+    
+    <script>
+	    function handleOptionChange(selectElement) {
+	        const findDate = document.querySelector("input[name='findDate']");
+	        if (selectElement.value === "A") {
+	            findDate.disabled = false; // '실종/유기' 선택 시 활성화
+	        } else if (selectElement.value === "B") {
+	            findDate.disabled = true; // '분양' 선택 시 비활성화
+	        }
+	    }
+    </script>
     
 	<%@include file="../common/footer.jsp" %>
 </body>

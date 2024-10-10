@@ -31,6 +31,9 @@ public class AdoptServiceImpl implements AdoptService{
 		SqlSession sqlSession = Template.getSqlSession();
 		
 		ArrayList<Adopt> list = aDao.selectAdoptList(sqlSession, pi, boardType);
+		
+		sqlSession.close();
+		
 		return list;
 	}
 
@@ -40,9 +43,21 @@ public class AdoptServiceImpl implements AdoptService{
 		SqlSession sqlSession = Template.getSqlSession();
 		
 		int result1 = aDao.insertAdopt(sqlSession, a); 
+		System.out.println(a);
 		
-				
-		return 0;
+		int result2 = 1;
+		if(aAt.getOriginName() != null) {
+			result2 = aDao.insertAdoptAttachmentList(sqlSession, aAt);
+		}
+		
+		
+		if(result1 * result2 > 0) {
+			sqlSession.commit();
+		} else {
+			sqlSession.rollback();
+		}
+		
+		return result1 * result2;
 	}
 
 }

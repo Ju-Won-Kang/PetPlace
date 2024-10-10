@@ -25,6 +25,12 @@ public class AdoptDao {
 	
 	// 입양 게시글 삽입
 	public int insertAdopt(SqlSession sqlSession, Adopt a) {
+		System.out.println(a);
 		return sqlSession.insert("adoptMapper.insertAdopt", a);
+	}
+	
+	public int insertAdoptAttachmentList(SqlSession sqlSession, AdoptAttachment aAt) {
+		System.out.println(aAt);
+		return sqlSession.insert("adoptMapper.insertadoptAttachmentList", aAt);
 	}
 }

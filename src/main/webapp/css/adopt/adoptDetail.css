@@ -1,0 +1,86 @@
+body{
+    width: 1400px;
+    min-width: 1400px; /* 최소 너비 설정 */
+    margin: auto;
+}
+
+div{
+    box-sizing: border-box;
+}
+
+body p{
+    margin: 0;
+    font-family: sans-serif;
+}
+
+form > button{
+    border: none;
+    background-color: rgba(218, 224, 236, 1);
+    font-weight: 600;
+}
+
+/* 글 제목 및 내용 */
+.community-info-content{
+    width: 1400px;
+    margin: auto;
+    margin-top: 50px;
+}
+
+.community-info{
+    width: 75%;
+    height: 70px;
+    border-radius: 10px;
+    background-color: rgba(218, 224, 236, 1);
+    padding: 5px 15px 0px 15px;
+    margin: auto;
+    margin-bottom: 10px;
+}
+
+#community-info-title{
+    width: 100%;
+    height: 45%;
+    font-weight: 600;
+}
+
+#community-info-two{
+    display: flex;
+    padding-top: 10px;
+    font-weight: 600;
+}
+
+#modify-btn-form{
+    margin-right: 10px;
+}
+
+#community-info-nick{
+    width: 10%;
+}
+
+#community-info-date{
+    width: 72%;
+}
+
+#community-recommend-count{
+    width: 10%;
+}
+
+#community-select-count{
+    width: 10%;
+}
+
+#community-info-two > button{
+    border: none;
+    background-color: rgba(218, 224, 236, 1);
+    font-weight: 600;
+    width: 5%;
+}
+
+.community-content{
+    width: 65%;
+    height: 400px;
+    overflow: auto;
+    padding: 10px;
+    margin: auto;
+    display: flex;
+    border-bottom: 1px solid rgb(206, 206, 206);
+}

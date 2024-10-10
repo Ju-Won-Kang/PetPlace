@@ -64,13 +64,13 @@
                 			<c:forEach var="a" items="${list}">
 			                    <tr class="table-line" onclick="detailMissingPage()">
 			                        <td>${a.boardNo}</td>
-			                        <td><img src="<%=contextPath%>/images/image 10.png"></td>
+			                        <td><img src="<%= request.getContextPath() %>/${a.adoptImg}"></td>
 			                        <td class="table-title">
 			                            <p>${a.boardTitle}</p>
 			                            <span id="reply-content">${a.boardDetail}</span>
 			                        </td>                       
 			                        <td>${a.place}</td>
-			                        <td>${a.boardDate}</td>
+			                        <td>${a.findDate}</td>
 			                        <td>${a.memberId}</td>
 			                        <td>${a.boardViews}</td>
 			                    </tr>
@@ -107,7 +107,7 @@
                 		    <c:forEach var="a" items="${list}">
 			                    <tr class="table-line" onclick="detailDistributePage()">
 			                        <td>${a.boardNo}</td>
-			                        <td><img src="<%=contextPath%>/images/image 10.png"></td>
+			                        <td><img src="<%= request.getContextPath() %>/${a.adoptImg}"></td>
 			                        <td class="table-title">
 			                            <p>${a.boardTitle}</p>
 			                            <span id="reply-content">${a.boardDetail}</span>
@@ -149,7 +149,7 @@
 		            missingTable.style.display = "none";
 		            distributeTable.style.display = "table";
 		        }
-		    };
+		    }
 		
 		    function adoptMissingBtn(){
 		        location.href="<%=contextPath%>/adoptList.do?cpage=1&boardType=A";

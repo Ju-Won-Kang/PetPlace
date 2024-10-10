@@ -12,7 +12,7 @@
         <result column="BOARD_VIEWS" property="boardViews"/>
         <result column="PLACE" property="place"/>
         <result column="FIND_DATE" property="findDate"/>
-        <result column="TYPE" property="boardType"/>
+        <result column="BOARD_TYPE" property="boardType"/>
         <result column="TITLE_IMG" property="adoptImg"/>
         <result column="ADOPT_CATEGORY" property="adoptCategory"/>
     </resultMap>
@@ -20,7 +20,7 @@
     <select id="selectAdoptListCount" resultType="_int">
     	SELECT COUNT(*) AS "COUNT"
     	  FROM SALE_MISSING
-    	 WHERE TYPE = #{boardType}
+    	 WHERE BOARD_TYPE = #{boardType}
     </select>
     <select id="selectAdoptList" resultMap="adoptListSet">
     	SELECT S.BOARD_NO,
@@ -30,17 +30,61 @@
     		   BOARD_DATE,
     		   BOARD_VIEWS,
     		   PLACE,
-    		   FIND_DATE,
-    		   S.TYPE,
+    		   TO_CHAR(FIND_DATE, 'YYYY-MM-DD') AS "FIND_DATE",
+    		   S.BOARD_TYPE,
     		   FILE_PATH || CHANGE_NAME AS "TITLE_IMG"
     	  FROM SALE_MISSING S
     	  JOIN MEMBER USING (MEMBER_ID)
     	  JOIN ATTACHMENT_ADOPT ON (REF_ANO = BOARD_NO)
-    	 WHERE S.TYPE = #{boardType}
+    	 WHERE S.BOARD_TYPE = #{boardType}
     	 ORDER BY S.BOARD_NO DESC
     </select>
-    <insert id="adoptInsert" >
+    <insert id="insertAdopt" parameterType="Adopt">
     	INSERT INTO SALE_MISSING
-    
+    	(
+    		BOARD_NO,
+    		BOARD_TITLE,
+    		MEMBER_ID,
+    		BOARD_DETAIL,
+    		BOARD_DATE,
+    		BOARD_VIEWS,
+    		PLACE,
+    		FIND_DATE,
+    		BOARD_TYPE,
+    		ADOPT_CATEGORY
+    	)
+    	VALUES
+    	(
+    		SEQ_AANO.NEXTVAL,
+    		#{boardTitle},
+    		#{memberId},
+    		#{boardDetail},
+    		#{boardDate},
+    		#{boardViews},
+    		#{place},
+    		#{findDate},
+    		#{boardType},
+    		#{adoptCategory}
+    	)
+    </insert>
+    <insert id="insertadoptAttachmentList" parameterType="AdoptAttachment">
+    	INSERT INTO ATTACHMENT_ADOPT
+    	(
+    		FILE_NO,
+			REF_ANO,
+			ORIGIN_NAME,
+			CHANGE_NAME,
+			FILE_PATH,
+			BOARD_TYPE
+    	)
+    	VALUES
+    	(
+    		SEQ_AFNO.NEXTVAL,
+    		SEQ_AANO.CURRVAL,
+    		#{originName},
+    		#{changeName},
+    		#{filePath},
+    		#{boardType}
+    	)
     </insert>
 </mapper>
