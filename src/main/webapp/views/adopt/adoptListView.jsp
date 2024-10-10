@@ -81,7 +81,7 @@
             </table>
             <script>
                 function detailMissingPage(){
-                    location.href="<%=contextPath%>/adoptDetail.do";
+                    location.href="<%=contextPath%>/adoptDetail.do?bno=${list[0].boardNo}&bType=${list[0].boardType}";
                 }
             </script>
 

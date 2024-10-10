@@ -1,6 +1,7 @@
 package com.petplace.adopt.model.service;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import com.petplace.adopt.model.vo.Adopt;
 import com.petplace.adopt.model.vo.AdoptAttachment;
@@ -13,4 +14,7 @@ public interface AdoptService {
 	
 	// 입양 게시글 삽입
 	int insertAdopt(Adopt a, AdoptAttachment aAt);
+	
+	// 입양 게시글 상세 조회
+	Adopt selectDetailList(HashMap<String, Object> map);
 }

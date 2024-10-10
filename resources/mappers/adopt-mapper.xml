@@ -87,4 +87,16 @@
     		#{boardType}
     	)
     </insert>
+    <select id="selectDetailList" >
+    	SELECT BOARD_TITLE,
+    		   MEMBER_ID,
+    		   BOARD_DATE,
+    		   BOARD_VIEWS,
+    		   FILE_PATH || CHANGE_NAME AS "TITLE_IMG",
+    		   BOARD_DETAIL
+    	  FROM SALE_MISSING
+    	  JOIN ATTACHMENT_ADOPT ON (REF_ANO = BOARD_NO)
+    	 WHERE BOARD_NO = #{bno}
+    	   AND BOARD_TYPE = #{boardType}
+    </select>
 </mapper>

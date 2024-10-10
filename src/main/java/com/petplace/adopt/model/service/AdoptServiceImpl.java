@@ -1,6 +1,7 @@
 package com.petplace.adopt.model.service;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import org.apache.ibatis.session.SqlSession;
 
@@ -58,6 +59,15 @@ public class AdoptServiceImpl implements AdoptService{
 		}
 		
 		return result1 * result2;
+	}
+
+	@Override
+	public Adopt selectDetailList(HashMap<String, Object> map) {
+		SqlSession sqlSession = Template.getSqlSession();
+		
+		Adopt a = aDao.selectDetailList(sqlSession, map);
+		
+		return a;
 	}
 
 }

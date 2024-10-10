@@ -1,6 +1,7 @@
 package com.petplace.adopt.model.dao;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import org.apache.ibatis.session.RowBounds;
 import org.apache.ibatis.session.SqlSession;
@@ -32,5 +33,9 @@ public class AdoptDao {
 	public int insertAdoptAttachmentList(SqlSession sqlSession, AdoptAttachment aAt) {
 		System.out.println(aAt);
 		return sqlSession.insert("adoptMapper.insertadoptAttachmentList", aAt);
+	}
+	
+	public Adopt selectDetailList(SqlSession sqlSession, HashMap<String, Object> map) {
+		return sqlSession.selectOne("adoptMapper.selectDetailList", map);
 	}
 }
