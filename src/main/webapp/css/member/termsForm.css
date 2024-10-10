@@ -1,0 +1,101 @@
+/* 전체 컨테이너 */
+.container {
+    display: flex;
+    width: 100%;
+    max-width: 1200px; /* 최대 너비 설정 */
+    margin: 0; /* 왼쪽 여백을 없앰 */
+    padding: 0; /* 상하 여백 없앰 */
+}
+/* 사이드바 */
+aside {
+    width: 200px; /* 사이드바 너비 */
+    background-color: white;
+    padding: 20px;
+    border-right: 1px solid #ccc; /* 오른쪽 경계선 */
+    height: 100vh; /* 화면 높이에 맞춤 */
+    position: sticky; /* 스크롤 시에도 고정 */
+    top: 0;
+}
+/* 사이드바 리스트 */
+aside ul {
+    list-style: none;
+    font-family: 'Noto Sans KR', sans-serif; /* 헤더와 동일한 글꼴 적용 */
+    font-size: 18px;
+    padding-left: 0; /* 왼쪽 여백 없앰 */
+}
+aside ul li {
+    margin-bottom: 20px;
+}
+aside ul li a {
+    text-decoration: none;
+    font-size: 18px;
+    color: black;
+    display: block;
+    padding: 10px;
+    border-radius: 5px;
+}
+aside ul li a.active {
+    font-weight: bold;
+    color: #D4E1FA;
+}
+/* 메인 컨텐츠 */
+main {
+    flex-grow: 1; /* 사이드바 제외 남은 공간 채움 */
+    padding: 20px;
+    background-color: white;
+    margin-left: 20px; /* 사이드바와 메인 컨텐츠 사이 간격 */
+}
+main h2 {
+    font-size: 32px;
+    margin-bottom: 20px;
+    border-bottom: 3px solid black;
+    padding-bottom: 10px;
+}
+.agreement {
+    margin-bottom: 40px;
+}
+.checkbox {
+    display: flex;
+    align-items: center;
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+.checkbox input {
+    margin-right: 10px;
+}
+.agreement textarea {
+    width: 100%;
+    max-width: 100%;
+    height: 150px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    resize: none;
+    background-color: #F7F7F7;
+    font-size: 14px;
+}
+.details {
+    display: block;
+    margin-top: 10px;
+    font-size: 14px;
+    color: gray;
+}
+#nextPage-info {
+    display: block;
+    width: 200px;
+    padding: 15px;
+    font-size: 18px;
+    background-color: #7A97CC;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin: 20px auto 0;
+}
+button:hover {
+    background-color: #6484c0;
+}
+#user{
+    background-color: white;
+}

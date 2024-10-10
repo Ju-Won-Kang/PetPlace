@@ -1,11 +1,13 @@
 package com.petplace.community.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
-import com.petplace.community.model.vo.Community;
-import com.petplace.community.model.vo.CommunityAttachment;
+import com.google.gson.Gson;
+import com.petplace.community.model.vo.BoardComment;
 import com.petplace.community.service.CommunityService;
 import com.petplace.community.service.CommunityServiceImple;
+import com.petplace.member.model.vo.Member;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
@@ -13,15 +15,15 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
 /**
- * Servlet implementation class CommunityDetailController
+ * Servlet implementation class CommentInsertController
  */
-public class CommunityDetailController extends HttpServlet {
+public class CommentInsertController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public CommunityDetailController() {
+    public CommentInsertController() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -30,24 +32,21 @@ public class CommunityDetailController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		int communityNo = Integer.parseInt(request.getParameter("cno"));
-		
+		request.setCharacterEncoding("utf-8");
 		CommunityService cService = new CommunityServiceImple();
 		
-		Community c = cService.increaseCount(communityNo);
-		CommunityAttachment atC = cService.selectCommunityAt(communityNo);
+		int communityNo = Integer.parseInt(request.getParameter("cno"));
+		String memberId = ((Member)request.getSession().getAttribute("loginUser")).getMemberId();
+		String commentDetail = request.getParameter("content");
 		
-		if(c != null) {
-			if(atC != null) {
-				
-				request.setAttribute("atC", atC);
-			}
-			request.setAttribute("c", c);
-			request.getRequestDispatcher("views/community/communityDetail.jsp").forward(request, response);
-		} else {
-			request.setAttribute("alert", "상세조회 실패");
-			response.sendRedirect(request.getContextPath());
-		}
+		BoardComment bc = new BoardComment();
+		bc.setCommunityNo(communityNo);
+		bc.setMemberId(memberId);
+		bc.setCommentDetail(commentDetail);
+		
+		int result = cService.insertComment(bc);
+		
+		response.getWriter().print(result);
 	}
 
 	/**
