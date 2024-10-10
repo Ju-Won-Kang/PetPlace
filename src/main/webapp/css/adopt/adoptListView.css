@@ -192,6 +192,7 @@ td, th{
     border: none;
     display: block;
     text-overflow: ellipsis;
+    white-space: nowrap;
     overflow: hidden;
 }
 
