@@ -58,9 +58,13 @@
                                 <td>${review.reviewNo}</td>
                                 <td>${review.productName}</td>
                                 <td>
-                                <c:forEach var="i" begin="1" end="${review.star}" step="1">
-                                    <img src="images/star1.png">
-                                </c:forEach>
+                                    <c:set var="emptyStar" value="${5 - review.star}"/>
+                                    <c:forEach var="i" begin="1" end="${review.star}" step="1">
+                                        <img src="images/fullStar.png">
+                                    </c:forEach>
+                                    <c:forEach var="i" begin="1" end="${emptyStar}" step="1">
+                                        <img src="images/emptyStar.png">
+                                    </c:forEach>
                                 </td>
                                 <td>${review.reviewDetail}</td>
                                 <td>${review.memberId}</td>
@@ -178,7 +182,6 @@
                 <!-- Modal Header -->
                 <div class="modal-header">
                     <h4 class="modal-title">해당 리뷰를을 정말 삭제하시겠습니까?</h4>
-<%--                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>--%>
                 </div>
 
                 <form action="deleteReview.re">
