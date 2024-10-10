@@ -47,6 +47,5 @@ public class LoginFilter implements Filter {
             // 메인 페이지로 리다이렉트
             httpResponse.sendRedirect(httpRequest.getContextPath());
         }
-        chain.doFilter(request, response);
     }
 }
