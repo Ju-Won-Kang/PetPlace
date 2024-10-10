@@ -15,15 +15,15 @@ import org.apache.ibatis.session.SqlSession;
 
 public class MemberService {
 
-	public HashedMember loginMember(String userId) {
+	public Member loginMember(String userId) {
 		SqlSession sqlSession = Template.getSqlSession();
 		// DB에서 user 정보 가져오기
-		HashedMember m = new MemberDao().loginMember(sqlSession, userId);
+		Member m = new MemberDao().loginMember(sqlSession, userId);
 
 		sqlSession.close();
 		return m;
 	}
-	public int enrollMember(HashedMember hashedMember){
+	public int enrollMember(Member hashedMember){
 		SqlSession sqlSession = Template.getSqlSession();
 		// 해싱 처리
 

@@ -5,8 +5,9 @@ import java.sql.Date;
 public class Member {
 	private String memberId;
 	private String memberPwd;
+	private String salt;
 	private String memberName;
-	private String nickname;
+	private String nickName;
 	private String phone;
 	private String memberNo;
 	private String address;
@@ -17,18 +18,42 @@ public class Member {
 		super();
 	}
 
-	public Member(String memberId, String memberPwd, String memberName, String nickname, String phone, String memberNo,
-			String address, Date memberDate, String staus) {
+	public Member(String memberId, String memberPwd, String memberName, String nickName, String phone, String memberNo,
+				  String address, Date memberDate, String staus) {
 		super();
 		this.memberId = memberId;
 		this.memberPwd = memberPwd;
 		this.memberName = memberName;
-		this.nickname = nickname;
+		this.nickName = nickName;
 		this.phone = phone;
 		this.memberNo = memberNo;
 		this.address = address;
 		this.memberDate = memberDate;
 		this.staus = staus;
+	}
+
+	public Member(String memberId, String memberPwd, String salt, String memberName, String nickName, String phone, String memberNo, String address, Date memberDate, String staus) {
+		this.memberId = memberId;
+		this.memberPwd = memberPwd;
+		this.salt = salt;
+		this.memberName = memberName;
+		this.nickName = nickName;
+		this.phone = phone;
+		this.memberNo = memberNo;
+		this.address = address;
+		this.memberDate = memberDate;
+		this.staus = staus;
+	}
+
+	public Member(String memberId, String memberPwd, String salt, String memberName, String nickName, String phone, String memberNo, String address) {
+		this.memberId = memberId;
+		this.memberPwd = memberPwd;
+		this.salt = salt;
+		this.memberName = memberName;
+		this.nickName = nickName;
+		this.phone = phone;
+		this.memberNo = memberNo;
+		this.address = address;
 	}
 
 	public String getMemberId() {
@@ -55,12 +80,12 @@ public class Member {
 		this.memberName = memberName;
 	}
 
-	public String getNickname() {
-		return nickname;
+	public String getNickName() {
+		return nickName;
 	}
 
-	public void setNickname(String nickname) {
-		this.nickname = nickname;
+	public void setNickName(String nickName) {
+		this.nickName = nickName;
 	}
 
 	public String getPhone() {
@@ -103,10 +128,27 @@ public class Member {
 		this.staus = staus;
 	}
 
+	public String getSalt() {
+		return salt;
+	}
+
+	public void setSalt(String salt) {
+		this.salt = salt;
+	}
+
 	@Override
 	public String toString() {
-		return "Member [memberId=" + memberId + ", memberPwd=" + memberPwd + ", memberName=" + memberName
-				+ ", nickname=" + nickname + ", phone=" + phone + ", memberNo=" + memberNo + ", address=" + address
-				+ ", memberDate=" + memberDate + ", staus=" + staus + "]";
+		return "Member{" +
+				"memberId='" + memberId + '\'' +
+				", memberPwd='" + memberPwd + '\'' +
+				", salt='" + salt + '\'' +
+				", memberName='" + memberName + '\'' +
+				", nickname='" + nickName + '\'' +
+				", phone='" + phone + '\'' +
+				", memberNo='" + memberNo + '\'' +
+				", address='" + address + '\'' +
+				", memberDate=" + memberDate +
+				", staus='" + staus + '\'' +
+				'}';
 	}
 }
