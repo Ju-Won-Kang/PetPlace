@@ -69,7 +69,6 @@ public class CommunityServiceImple implements CommunityService {
 		sqlSession.close();
 		return list;
 	}
-
 	@Override
 	public int insertCommunity(Community c, CommunityAttachment atC) {
 		SqlSession sqlSession = Template.getSqlSession();
