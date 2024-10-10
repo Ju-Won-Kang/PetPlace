@@ -118,6 +118,10 @@ public class AdoptInsertController extends HttpServlet {
 			HttpSession session = request.getSession();
 			if(result > 0) {//성공
 				session.setAttribute("alertMsg", "입양 게시글 등록에 성공했습니다.");
+				
+				request.setAttribute("a", a);
+				request.getRequestDispatcher("views/adopt/adoptListView.jsp").forward(request, response);
+				
 				response.sendRedirect(request.getContextPath() + "/adoptList.do?cpage=1&boardType=A");
 			} else { //실패 -> 업로드된 파일 삭제해주고 에러페이지
 				 

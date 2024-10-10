@@ -44,8 +44,9 @@ public class AdoptListViewController extends HttpServlet {
         PageInfo pi = Template.getPageInfo(listCount, currentPage, 10, 10);
         
         ArrayList<Adopt> list = aService.selectAdoptList(pi, boardType);
-        
+        System.out.println(list);
         request.setAttribute("list", list);
+        
         request.setAttribute("pi", pi);
         request.getRequestDispatcher("views/adopt/adoptListView.jsp").forward(request, response);
     }
