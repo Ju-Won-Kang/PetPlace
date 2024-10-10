@@ -26,6 +26,8 @@
   <typeAlias type="com.petplace.adopt.model.vo.Adopt" alias="Adopt"/>
   <typeAlias type="com.petplace.adopt.model.vo.AdoptAttachment" alias="AdoptAttachment"/>
   <typeAlias type="com.petplace.member.model.dto.HashedMember" alias="HashedMember"/>
+  <typeAlias type="com.petplace.member.model.vo.Member" alias="Member"/>
+
   <!-- Common -->
   <typeAlias type="java.util.HashMap" alias="HashMap"/>
   <typeAlias type="java.util.List" alias="List"/>

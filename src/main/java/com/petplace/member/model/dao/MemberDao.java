@@ -27,10 +27,10 @@ public class MemberDao {
 		}
 	}
 	
-	public HashedMember loginMember(SqlSession sqlSession, String userId) {
+	public Member loginMember(SqlSession sqlSession, String userId) {
 		return sqlSession.selectOne("memberMapper.selectHashedMember", userId);
 	}
-	public int enrollMember(SqlSession sqlSession, HashedMember hashedMember){
+	public int enrollMember(SqlSession sqlSession, Member hashedMember){
 		return sqlSession.insert("memberMapper.enrollMember", hashedMember);
 	}
 	public int checkId(SqlSession sqlSession, String checkId){

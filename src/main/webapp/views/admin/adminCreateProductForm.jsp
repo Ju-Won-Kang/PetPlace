@@ -136,11 +136,11 @@
                     </div>
                     <div class="input-group input-group-lg mb-3 w-75">
                         <span class="input-group-text">썸네일 사진</span>
-                        <input type="file" class="form-control" name="thumbnail" required>
+                        <input type="file" class="form-control" name="thumbnail" multiple required>
                     </div>
                     <div class="input-group input-group-lg mb-3 w-75">
                         <span class="input-group-text">상품 상세페이지 사진</span>
-                        <input type="file" class="form-control" name="detail" required>
+                        <input type="file" class="form-control" name="detail" multiple required>
                     </div>
 
                     <button type="submit" class="btn btn-secondary">상품 등록</button>
