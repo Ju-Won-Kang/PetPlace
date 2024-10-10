@@ -90,6 +90,7 @@ public class AdoptInsertController extends HttpServlet {
 						break;
 					case "boardType":
 						a.setBoardType(item.getString(Charset.forName("utf-8")));
+						aAt.setBoardType(item.getString(Charset.forName("utf-8")));
 						break;
 					}
 				} else {

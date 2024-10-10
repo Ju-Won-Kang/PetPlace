@@ -38,11 +38,11 @@
         </label>
         <label>
           <b>위치</b>&nbsp;
-          <input type="text" name="place" size="48">
+          <input type="text" name="place" size="48" placeholder="(도/시/구)">
         </label>
         <label>
           <b>발견날짜</b>&nbsp;
-          <input type="text" name="findDate" size="47">
+          <input type="text" name="findDate" size="47" placeholder="특수문자('-', '/' 등등) 제외 숫자만">
         </label>
       </div>
     </div>

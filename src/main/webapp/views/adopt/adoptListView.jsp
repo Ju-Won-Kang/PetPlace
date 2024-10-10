@@ -70,7 +70,7 @@
 			                            <span id="reply-content">${a.boardDetail}</span>
 			                        </td>                       
 			                        <td>${a.place}</td>
-			                        <td>${a.boardDate}</td>
+			                        <td>${a.findDate}</td>
 			                        <td>${a.memberId}</td>
 			                        <td>${a.boardViews}</td>
 			                    </tr>
