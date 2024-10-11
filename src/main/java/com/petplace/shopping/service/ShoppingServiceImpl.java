@@ -2,19 +2,18 @@ package com.petplace.shopping.service;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 
 import com.petplace.common.PageInfo;
 import com.petplace.common.Template;
-import com.petplace.member.model.dto.HashedMember;
+import com.petplace.purchase.model.vo.Purchase;
 import com.petplace.shopping.dao.ShoppingDao;
 import com.petplace.shopping.model.dto.ShoppingComplete;
 import com.petplace.shopping.model.dto.ShoppingDetailList;
 import com.petplace.shopping.model.dto.ShoppingList;
 import com.petplace.shopping.model.dto.UserInfo;
-
-import jakarta.servlet.http.HttpSession;
 
 public class ShoppingServiceImpl implements ShoppingService {
 	ShoppingDao sDao = new ShoppingDao();
@@ -109,13 +108,15 @@ public class ShoppingServiceImpl implements ShoppingService {
 	}
 
 	@Override
-	public ArrayList<ShoppingComplete> selectShoppingCompleteList(int productNo) {
+	public ShoppingComplete selectShoppingCompleteList(int productNo, String memberId) {
 		SqlSession sqlSession = Template.getSqlSession();
-		
-		ArrayList<ShoppingComplete> list = sDao.selectShoppingCompleteList(sqlSession, productNo);
-		
-		return list;
+		Map<String, Object> params = new HashMap<>();
+	    params.put("productNo", productNo);
+	    params.put("memberId", memberId);
+
+	    return sDao.selectShoppingCompleteList(sqlSession, params);
 	}
+
 
 	@Override
 	public UserInfo selectUserInfoList(String userId) {
@@ -125,4 +126,21 @@ public class ShoppingServiceImpl implements ShoppingService {
 		
 		return list;
 	}
+
+	@Override
+	public int insertPurchase(Purchase purchase) {
+		SqlSession sqlSession = Template.getSqlSession();
+		
+		int result = sDao.insertPurchase(sqlSession, purchase);
+		if(result > 0) {
+			sqlSession.commit();
+			System.out.println("커밋성공!");
+		}else {
+			sqlSession.rollback();
+			System.out.println("커밋실패..");
+		}
+		return result;
+	}
+
+
 }

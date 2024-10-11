@@ -81,4 +81,16 @@
     <servlet-name>communityBoardEnroll.do</servlet-name>
     <url-pattern>/communityBoardEnroll.do</url-pattern>
   </servlet-mapping>
+ 
+  <!-- 카카오톡 api 서블릿-->
+	<servlet>
+	    <servlet-name>kakaoAPI.do</servlet-name>
+	    <servlet-class>com.petplace.purchase.model.controller.KakaoController</servlet-class>
+	</servlet>
+	
+	<servlet-mapping>
+	    <servlet-name>kakaoAPI.do</servlet-name>
+	    <url-pattern>/kakaoAPI.do</url-pattern>
+	</servlet-mapping>
+  
 </web-app>

@@ -31,23 +31,23 @@
 				<tbody>
 					<tr>
 						<td class="info-small-title">이름</td>
-						<td class="buy-user-info">${list.getMemberName()}</td>
+						<td class="buy-user-info">${list.memberName}</td>
 					</tr>
 					<tr>
 						<td class="info-small-title">전화번호</td>
-						<td class="buy-user-info">${list.getPhone()}</td>
+						<td class="buy-user-info">${list.phone}</td>
 					</tr>
 					<tr>
 						<td class="info-small-title">이메일</td>
-						<td class="buy-user-info">${list.getEmail()}</td>
+						<td class="buy-user-info">${list.email}</td>
 					</tr>
 					<tr>
 						<td class="info-small-title">배송주소</td>
-						<td class="buy-user-info">${list.getAddress()}</td>
+						<td class="buy-user-info">${list.address}</td>
 					</tr>
 					<tr>
 						<td class="info-small-title">배송 요청사항</td>
-						<td class="buy-user-info">${list.getRequest()}</td>
+						<td class="buy-user-info">${list.request}</td>
 					</tr>
 					<tr>
 						<td class="info-small-title"></td>
@@ -69,15 +69,15 @@
 				<tbody>
 					<tr>
 						<td class="info-small-title">운송장 번호</td>
-						<td class="buy-user-info">${list.getWayBill()}</td>
+						<td class="buy-user-info">${list.wayBill}</td>
 					</tr>
 					<tr>
 						<td class="info-small-title">상품명</td>
-						<td class="buy-user-info">${list.getProductName()}</td>
+						<td class="buy-user-info">${list.productName}</td>
 					</tr>
 					<tr>
 						<td class="info-small-title">주문 금액</td>
-						<td id="order-money" class="buy-user-info">${list.getAmountPrice()}</td>
+						<td id="order-money" class="buy-user-info">${totalProductPrice}원</td>
 					</tr>
 					<tr>
 						<td class="info-small-title">배송비</td>
@@ -85,11 +85,11 @@
 					</tr>
 					<tr>
 						<td class="info-small-title">총 결제 금액</td>
-						<td id="all-buy-money" class="buy-user-info" onload="calc()"></td>
+						<td id="all-buy-money" class="buy-user-info">${list.amountPrice}원</td>
 					</tr>
 					<tr>
 						<td class="info-small-title">결제일</td>
-						<td class="buy-user-info">${list.getPurchaseDate()}</td>
+						<td class="buy-user-info">${list.purchaseDate}</td>
 					</tr>
 					<tr>
 						<td class="info-small-title"></td>
@@ -100,16 +100,11 @@
 		</div>
 
 		<script>
-			function calc(){
-				const orderMoney = document.querySelector("#order-moeny").value;
-				const money = document.querySelector("#all-buy-money");
-
-				money.innerHTML = orderMoney + 3000 + "원";
-			}
+			
 		</script>
 
 		<div class="home-continue-button">
-			<a href=""><button id="home-button">홈으로</button></a>
+			<a href="<%=contextPath%>/"><button id="home-button">홈으로</button></a>
 			<a href="<%=contextPath%>/shopping.do?cpage=1"><button id="continue-button">쇼핑 계속하기</button></a>
 		</div>
 	</div>

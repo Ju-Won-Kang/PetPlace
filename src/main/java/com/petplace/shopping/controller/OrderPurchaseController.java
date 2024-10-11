@@ -36,16 +36,20 @@ public class OrderPurchaseController extends HttpServlet {
 		
 		//세션 로그인 정보로 db에서 정보가져오기
 		HttpSession session = request.getSession(); 
-		HashedMember loginUser = (HashedMember)session.getAttribute("loginUser");
+		HashedMember loginUser = (HashedMember)session.getAttribute("loginUser"); 
 		String userId = loginUser.getMemberId();
 		
 		ShoppingService sService = new ShoppingServiceImpl();
 		UserInfo userInfo = sService.selectUserInfoList(userId);
 		
+		request.setAttribute("productCount", productCount); 
+		request.setAttribute("userId", userId); 
 		request.setAttribute("userInfo", userInfo);
+		request.setAttribute("productName", productName);
 		request.setAttribute("totalProductPrice",totalProductPrice);
 		request.setAttribute("amountPrice", amountPrice);
-		request.getRequestDispatcher("views/shopping/shopping-purchase.jsp");
+		request.setAttribute("productNo", productNo);
+		request.getRequestDispatcher("views/shopping/shopping-purchase.jsp").forward(request, response);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

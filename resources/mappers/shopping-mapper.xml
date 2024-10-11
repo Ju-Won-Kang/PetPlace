@@ -65,6 +65,25 @@
 		<result column="MEMBER_ADDRESS" property="address"/>
 	</resultMap>
 	
+	
+	<resultMap id="insertPurchase" type="Purchase">
+		<result column="PURCHASE_NO" property="purchaseNo"/>
+		<result column="PRODUCT_NO" property="productName"/>
+		<result column="QUANTITY" property="quantity"/>
+		<result column="AMOUNT_PRICE" property="purchaseNo"/>
+		<result column="PURCHASE_DATE" property="purchaseNo"/>
+		<result column="PAY_TYPE" property="purchaseNo"/>
+		<result column="REQUEST" property="purchaseNo"/>
+		<result column="CARD_NO" property="purchaseNo"/>
+		<result column="WAYBILL" property="purchaseNo"/>
+		<result column="PURCHASE_NO" property="purchaseNo"/>
+		<result column="MULTI_DETAIL" property="purchaseNo"/>
+		
+	
+	</resultMap>
+	
+
+
 	<select id="selectShoppingListCount" resultType="_int">
 		SELECT COUNT(*) AS "COUNT"
 		  FROM PRODUCT
@@ -208,21 +227,30 @@
 		 ORDER BY PRODUCT_NO DESC
 	</select>
 	
-	<select id="selectShoppingCompleteList" resultMap="ShoppingCompleteList">
-		SELECT MEMBER_NAME,
-			   PHONE,
-			   MEMBER_ID,
-			   MEMBER_ADDRESS,
-			   REQUEST,
-			   WAYBILL,
-			   PRODUCT_NAME,
-			   AMOUNT_PRICE,
-			   PURCHASE_DATE
-		  FROM MEMBER
-		  JOIN PURCHASE USING(MEMBER_ID)
-		  JOIN PRODUCT USING(PRODUCT_NO)
-		 WHERE PRODUCT_NO = #{productNo}
-	</select>
+	<select id="selectShoppingCompleteList" resultMap="ShoppingCompleteList" parameterType="map">
+    SELECT MEMBER_NAME,
+           PHONE,
+           MEMBER_ID,
+           MEMBER_ADDRESS,
+           REQUEST,
+           WAYBILL,
+           PRODUCT_NAME,
+           AMOUNT_PRICE,
+           PURCHASE_DATE
+      FROM MEMBER
+      JOIN PURCHASE USING(MEMBER_ID)
+      JOIN PRODUCT USING(PRODUCT_NO)
+     WHERE PRODUCT_NO = #{productNo, jdbcType=INTEGER}
+       AND MEMBER_ID = #{memberId, jdbcType=VARCHAR}
+       AND PURCHASE_DATE = (
+           SELECT MAX(PURCHASE_DATE) 
+             FROM PURCHASE 
+            WHERE PRODUCT_NO = #{productNo, jdbcType=INTEGER} 
+              AND MEMBER_ID = #{memberId, jdbcType=VARCHAR}
+       )
+</select>
+
+
 	
 	<!-- 유저정보 가져오는 sql -->
 	<select id="selectUserInfoList" resultMap="UserInfoList">
@@ -230,6 +258,29 @@
 		 		PHONE,
 		 		MEMBER_ADDRESS
 		   FROM MEMBER
-		  WHERE	USER_ID = #{userId}
+		  WHERE	MEMBER_ID = #{userId}
 	</select>
+	
+	<!-- Purchase객체 Insert -->
+	<insert id="insertPurchase" parameterType="Purchase">
+		INSERT INTO PURCHASE(
+			PURCHASE_NO,
+			MEMBER_ID,
+			PRODUCT_NO,
+			QUANTITY,
+			AMOUNT_PRICE,
+			PAY_TYPE,
+			REQUEST
+			)
+			values(
+			SEQ_PCNO.NEXTVAL,
+			#{memberId},
+			#{productNo},
+			#{quantity},
+			#{amountPrice},
+			#{payType},
+			#{request}
+			)
+	</insert>
+	
 </mapper>

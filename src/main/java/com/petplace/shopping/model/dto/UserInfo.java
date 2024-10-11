@@ -3,7 +3,7 @@ package com.petplace.shopping.model.dto;
 public class UserInfo {
 	private String userName;
 //	private String email;
-	private int phone;
+	private String phone;
 	private String address;
 	
 	
@@ -12,7 +12,7 @@ public class UserInfo {
 	}
 
 
-	public UserInfo(String userName, int phone, String address) {
+	public UserInfo(String userName, String phone, String address) {
 		super();
 		this.userName = userName;
 		this.phone = phone;
@@ -30,12 +30,12 @@ public class UserInfo {
 	}
 
 
-	public int getPhone() {
+	public String getPhone() {
 		return phone;
 	}
 
 
-	public void setPhone(int phone) {
+	public void setPhone(String phone) {
 		this.phone = phone;
 	}
 
@@ -54,9 +54,7 @@ public class UserInfo {
 	public String toString() {
 		return "UserInfo [userName=" + userName + ", phone=" + phone + ", address=" + address + "]";
 	}
-	
-	
-	
-	
+
+
 
 }

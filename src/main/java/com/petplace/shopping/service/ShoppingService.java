@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 import com.petplace.common.PageInfo;
+import com.petplace.purchase.model.vo.Purchase;
 import com.petplace.shopping.model.dto.ShoppingComplete;
 import com.petplace.shopping.model.dto.ShoppingDetailList;
 import com.petplace.shopping.model.dto.ShoppingList;
@@ -21,7 +22,9 @@ public interface ShoppingService {
 	
 	public abstract ArrayList<ShoppingDetailList> selectDetailProduct(int productNo);
 	
-	public abstract ArrayList<ShoppingComplete> selectShoppingCompleteList(int productNo);
+	public abstract ShoppingComplete selectShoppingCompleteList(int productNo, String userId);
 	public abstract UserInfo selectUserInfoList(String userId);
+	public abstract int insertPurchase(Purchase purchase);
+	
 	
 }
