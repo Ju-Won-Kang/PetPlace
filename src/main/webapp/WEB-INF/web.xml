@@ -102,4 +102,24 @@
     <servlet-name>commentInsert.do</servlet-name>
     <url-pattern>/commentInsert.do</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>communityListDay.do</display-name>
+    <servlet-name>communityListDay.do</servlet-name>
+    <servlet-class>com.petplace.community.controller.CommunityListDayController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>communityListDay.do</servlet-name>
+    <url-pattern>/communityListDay.do</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>selectCommunityWeek.do</display-name>
+    <servlet-name>selectCommunityWeek.do</servlet-name>
+    <servlet-class>com.petplace.community.controller.CommunityListWeekController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>selectCommunityWeek.do</servlet-name>
+    <url-pattern>/selectCommunityWeek.do</url-pattern>
+  </servlet-mapping>
 </web-app>

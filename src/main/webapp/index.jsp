@@ -126,30 +126,73 @@
                         <div id="day-hot">
                             <div id="day-hot-info">
                                 <p>일간 인기글</p>
-                                <a href="">더보기+</a>
+                                <a href="communityList.do?cpage=1&category=all&array=2">더보기+</a>
                             </div>
                             <div id="day-hot-text">
-                                <p>1등글</p>
-                                <p>2등글</p>
-                                <p>3등글</p>
-                                <p>4등글</p>
-                                <p>5등글</p>
+                                
                             </div>
                         </div>
                         <div id="week-hot">
                             <div id="week-hot-info">
                                 <p>주간 인기글</p>
-                                <a href="">더보기+</a>
+                                <a href="communityList.do?cpage=1&category=all&array=2">더보기+</a>
                             </div>
                             <div id="week-hot-text">
-                                <p>1등글</p>
-                                <p>2등글</p>
-                                <p>3등글</p>
-                                <p>4등글</p>
-                                <p>5등글</p>
                             </div>
                         </div>
                     </div>
+                    <script>
+                        window.onload = function(){
+                            selectCommunityDay();
+                            selectCommunityWeek();
+                        }
+
+                        function selectCommunityDay(){
+                            $.ajax({
+                                url : "communityListDay.do",
+                                contentType: "application/json",
+                                data : {
+                                },
+                                success : function(res){
+                                    console.log(res)
+                                    const dayCommu = document.querySelector('#day-hot-text');
+                                    let str = "";
+                                    for(let d of res){
+                                        console.log(d.communityNo);
+                                        console.log(d.communityTitle);
+                                        str += "<p><a href=\"communityDetail.do?cno=" + d.communityNo + "\">" + d.communityTitle + "</a></p>";
+                                    }
+                                    dayCommu.innerHTML = str;
+                                },
+                                error : function(){
+                                    console.log('실패')
+                                }
+                                
+                            })
+                        }
+
+                        function selectCommunityWeek(){
+                            $.ajax({
+                                url : "selectCommunityWeek.do",
+                                contentType: "application/json",
+                                data : {
+                                },
+                                success : function(res){
+                                    console.log(res)
+                                    const weekCommu = document.querySelector('#week-hot-text');
+                                    let str = "";
+                                    for(let w of res){
+                                        str += "<p><a href=\"communityDetail.do?cno=" + w.communityNo + "\">" + w.communityTitle + "</a></p>";
+                                    }
+                                    weekCommu.innerHTML = str;
+                                },
+                                error : function(){
+                                    console.log('실패')
+                                }
+                                
+                            })
+                        }
+                    </script>
                 </div>
             </div>
 
@@ -190,7 +233,7 @@
                             <div class="swiper-pagination"></div>
                         </div>
                         <!-- Swiper JS -->
-                        <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+                        <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></scrip>
 
                         <!-- Initialize Swiper -->
                         <script>

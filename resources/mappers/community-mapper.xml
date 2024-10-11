@@ -290,4 +290,18 @@
 		 WHERE COMMUNITY_NO = #{communityNo}
 		 ORDER BY COMMENT_NO DESC
 	</select>
+	<select id="selectCommunityDay" resultMap="communityResultSet">
+		SELECT COMMUNITY_NO,
+			   COMMUNITY_TITLE
+		  FROM COMMUNITY
+	  	 WHERE COMMUNITY_DATE BETWEEN SYSDATE - 1 AND SYSDATE
+	  ORDER BY COMMUNITY_GOOD DESC
+	</select>
+	<select id="selectCommunityWeek" resultMap="communityResultSet">
+		SELECT COMMUNITY_NO,
+			   COMMUNITY_TITLE
+		  FROM COMMUNITY
+	  	 WHERE COMMUNITY_DATE BETWEEN SYSDATE - 7 AND SYSDATE
+	  ORDER BY COMMUNITY_GOOD DESC
+	</select>
 </mapper>

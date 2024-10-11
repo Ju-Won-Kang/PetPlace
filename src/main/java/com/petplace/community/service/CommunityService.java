@@ -46,4 +46,8 @@ public interface CommunityService {
 	//댓글
 	public int insertComment(BoardComment bc);
 	public ArrayList<BoardComment> selectCommentList(int communityNo);
+	
+	//일간 주간 인기글
+	public ArrayList<Community> selectCommunityDay();
+	public ArrayList<Community> selectCommunityWeek();
 }
