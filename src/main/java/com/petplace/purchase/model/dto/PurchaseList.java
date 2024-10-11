@@ -1,7 +1,5 @@
 package com.petplace.purchase.model.dto;
 
-import java.sql.Date;
-
 /**
  * packageName    : com.petplace.purchase.model.dto
  * fileName       : PurchaseList
@@ -21,7 +19,7 @@ public class PurchaseList {
     private String payType;         // 결제수단
     private int amountPrice;        // 결제금액
     private String request;         // 요청사항
-    private Date purchaseDate;    // 결제일
+    private String purchaseDate;    // 결제일
     private String wayBill;            // 운송장 번호
     private String multiDetail;     // 다중 구매 내용
 
@@ -29,7 +27,7 @@ public class PurchaseList {
     }
 
 	public PurchaseList(int purchaseNo, String productName, int quantity, String memberId, String payType,
-			int amountPrice, String request, Date purchaseDate, String wayBill, String multiDetail) {
+						int amountPrice, String request, String purchaseDate, String wayBill, String multiDetail) {
 		super();
 		this.purchaseNo = purchaseNo;
 		this.productName = productName;
@@ -99,11 +97,11 @@ public class PurchaseList {
 		this.request = request;
 	}
 
-	public Date getPurchaseDate() {
+	public String getPurchaseDate() {
 		return purchaseDate;
 	}
 
-	public void setPurchaseDate(Date purchaseDate) {
+	public void setPurchaseDate(String purchaseDate) {
 		this.purchaseDate = purchaseDate;
 	}
 
