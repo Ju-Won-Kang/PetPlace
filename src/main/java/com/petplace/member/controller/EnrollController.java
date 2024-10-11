@@ -47,8 +47,8 @@ public class EnrollController extends HttpServlet {
         String gender = SSN2.substring(0, 1);
         String hashedSSN2 = ShaUtil.sha256WithSaltEncode(SSN2.substring(1), salt);
         String memberNo = SSN1 + "-" + gender + hashedSSN2;
-        HashedMember hashedMember = new HashedMember(memberId, hashedMemberPwd, salt, memberName,
-                memberNo, phone, nickName, address);
+        Member hashedMember = new Member(memberId, hashedMemberPwd, salt, memberName,
+                nickName, phone,memberNo , address);
 
 
         int result = new MemberService().enrollMember(hashedMember);

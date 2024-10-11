@@ -88,7 +88,7 @@
                             <img src="images/usericon.png" alt="Profile Image">
                         </div>
                         <div class="link">
-                            <span>마이페이지</span> <a href="#">로그아웃</a>
+                            <span>마이페이지</span> <a href="logout.me">로그아웃</a>
                         </div>
                         <ul class="menu-list">
                             <li>찜목록</li>
