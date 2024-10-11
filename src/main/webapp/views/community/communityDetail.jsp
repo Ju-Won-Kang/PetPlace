@@ -6,7 +6,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="css/communityDetail.css">
+    <link rel="stylesheet" href="css/community/communityDetail.css">
 </head>
 <body>
     <%@include file="../common/nav.jsp" %>
@@ -93,6 +93,8 @@
                 </c:choose>
             </div>
             <script>
+
+
                 const comno = ${c.communityNo};
                 const contentArea = document.querySelector('.content-detail');
 
