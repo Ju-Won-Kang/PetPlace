@@ -24,7 +24,7 @@ public class ReviewService {
     /**
      * listCount 요청 메서드
      *
-     * @return
+     * @return 리뷰 개수
      */
     public int selectListCount() {
         SqlSession sqlSession = Template.getSqlSession();
@@ -35,8 +35,8 @@ public class ReviewService {
 
     /**
      * 리뷰 리스트 페이지만큼 요청
-     * @param pi
-     * @return
+     * @param pi PageInfo 객체
+     * @return 리뷰 목록 리스트 객체
      */
     public ArrayList<ReviewList> selectReviewList(PageInfo pi) {
         SqlSession sqlSession = Template.getSqlSession();
@@ -48,8 +48,8 @@ public class ReviewService {
 
     /**
      * 리뷰 삭제
-     * @param reviewNo
-     * @return
+     * @param reviewNo 삭제할 리뷰 번호
+     * @return 결과값
      */
     public int deleteReview(int reviewNo){
         SqlSession sqlSession = Template.getSqlSession();
