@@ -28,16 +28,6 @@ import java.util.Properties;
  * 2024. 9. 29.        jun       최초 생성
  */
 public class ReviewDao {
-    private Properties prop = new Properties();
-
-    public ReviewDao() {
-        String filePath = ReviewDao.class.getResource("/db/sql/review-mapper.xml").getPath();
-        try {
-            prop.loadFromXML(new FileInputStream(filePath));
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-    }
 
     /**
      * 리뷰 listCount 조회

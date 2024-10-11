@@ -1,4 +1,4 @@
-package com.petplace.shopping.dao;
+package com.petplace.shopping.model.dao;
 
 import java.util.ArrayList;
 import java.util.HashMap;

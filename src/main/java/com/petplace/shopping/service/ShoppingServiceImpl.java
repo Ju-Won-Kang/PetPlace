@@ -9,7 +9,7 @@ import org.apache.ibatis.session.SqlSession;
 import com.petplace.common.PageInfo;
 import com.petplace.common.Template;
 import com.petplace.purchase.model.vo.Purchase;
-import com.petplace.shopping.dao.ShoppingDao;
+import com.petplace.shopping.model.dao.ShoppingDao;
 import com.petplace.shopping.model.dto.ShoppingComplete;
 import com.petplace.shopping.model.dto.ShoppingDetailList;
 import com.petplace.shopping.model.dto.ShoppingList;
