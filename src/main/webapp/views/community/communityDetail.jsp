@@ -6,7 +6,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="css/communityDetail.css">
+    <link rel="stylesheet" href="css/community/communityDetail.css">
 </head>
 <body>
     <%@include file="../common/nav.jsp" %>
@@ -21,14 +21,8 @@
                 <p id="community-recommend-count">추천수 ${c.communityGood}</p>
                 <p id="community-select-count">조회수 ${c.communityView}</p>
                 <c:if test="${loginUser.memberId eq c.memberId }">
-                <form action="communityUpdate.do">
-                	<input type="hidden" name="cno" value="${c.communityNo }">
-                	<button>수정</button>
-                </form>
-                <form action="communityDelete.do">
-                	<input type="hidden" name="cno" value="${c.communityNo }">
-                	<button>삭제</button>
-                </form>
+                	<button onclick="location.href='communityUpdate.do?cno=${c.communityNo }'">수정</button>
+                	<button onclick="location.href='communityDelete.do?cno=${c.communityNo }'">삭제</button>
                 </c:if>
             </div>
         </div>
@@ -37,15 +31,18 @@
             <div id="community-content-img">
                 <img src="<%=contextPath%>/${atC.filePath}${atC.changeName}">
             </div>
+            <br><br>
             <div id="community-content-write">
                 <p>${c.communityDetail}</p>
             </div>
         </div>
+        <br><br>
         <div class="community-recommend-type">
             <div id="community-recommend">
                 <form action="communityGood.do">
                     <input type="hidden" name="cno" value="${c.communityNo }">
                     <button><img src="<%=contextPath%>/images/catnails1.png"></button>
+                    <br>
                     <p>추천 ${c.communityGood}</p>
                 </form>
                 
@@ -54,11 +51,13 @@
                 <form action="communityBad.do">
                     <input type="hidden" name="cno" value="${c.communityNo }">
                     <button><img src="<%=contextPath%>/images/catnails2.png"></button>
+                    <br>
                     <p>비추천 ${c.communityBad}</p>
                 </form>
             </div>
         </div>
     </div>
+    <br><br>
     <div class="community-reply-area">
         <div id="reply-area-etc">
             <div id="reply-count">
@@ -76,14 +75,26 @@
             <div id="comment-list">
             </div>
             <div id="community-reply-insert">
-                <p>닉네임</p>
+                <p>${loginUser.nickName}</p>
                 <input type="hidden" name="cno" value="${c.communityNo}">
-                <textarea id="reply-content" class="content-detail" style="resize: none;" name="detail" cols="50" rows="3" placeholder="댓글을 남겨보세요"></textarea>
-                <div id="comment-insert">
-                    <button id="reply-content-insert" onclick="insertReply()">등록</button>
-                </div>
+                <c:choose>
+                    <c:when test="${not empty loginUser}">
+                        <textarea id="reply-content" class="content-detail" style="resize: none;" name="detail" cols="50" rows="3" placeholder="댓글을 남겨보세요"></textarea>
+                        <div id="comment-insert">
+                            <button id="reply-content-insert" onclick="insertReply()">등록</button>
+                        </div>
+                    </c:when>
+                    <c:otherwise>
+                        <textarea id="reply-content" class="content-detail" style="resize: none;" name="detail" cols="50" rows="3" placeholder="로그인 후 이용해주세요" disabled></textarea>
+                        <div id="comment-insert">
+                            <button id="reply-content-insert" onclick="insertReply()" disabled>등록</button>
+                        </div>
+                    </c:otherwise>
+                </c:choose>
             </div>
             <script>
+
+
                 const comno = ${c.communityNo};
                 const contentArea = document.querySelector('.content-detail');
 

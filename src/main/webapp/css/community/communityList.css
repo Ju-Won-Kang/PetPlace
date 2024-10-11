@@ -28,9 +28,14 @@ div{
     align-items: center;
     justify-content: center;
     border-radius: 30px;
+    background-color: #dae0ec;
     border: 1px solid #b2b6b9;
     width: 80px;
-    height: 35px;
+    height: 35px;  
+}
+
+#category div a{
+    color: rgb(66, 66, 66);
 }
 
 .search-bar{
@@ -94,4 +99,5 @@ div{
     color: white !important;
     background-color: #7A97CC !Important;
     border: solid 1px #7A97CC !Important;
+    
 }
