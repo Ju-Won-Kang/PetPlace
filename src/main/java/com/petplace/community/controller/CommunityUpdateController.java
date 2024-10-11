@@ -1,9 +1,15 @@
 package com.petplace.community.controller;
 
+import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.WebServlet;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
+
 import java.io.File;
 import java.io.IOException;
 import java.nio.charset.Charset;
-import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.commons.fileupload2.core.DiskFileItemFactory;
@@ -12,24 +18,19 @@ import org.apache.commons.fileupload2.jakarta.JakartaServletFileUpload;
 
 import com.petplace.community.model.vo.Community;
 import com.petplace.community.model.vo.CommunityAttachment;
+import com.petplace.community.service.CommunityService;
 import com.petplace.community.service.CommunityServiceImple;
 
-import jakarta.servlet.ServletException;
-import jakarta.servlet.http.HttpServlet;
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
-import jakarta.servlet.http.HttpSession;
-
 /**
- * Servlet implementation class CommunityInsertController
+ * Servlet implementation class CommunityUpdateController
  */
-public class CommunityInsertController extends HttpServlet {
+public class CommunityUpdateController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public CommunityInsertController() {
+    public CommunityUpdateController() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -39,6 +40,8 @@ public class CommunityInsertController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
+		CommunityService cService = new CommunityServiceImple();
+		
 		
 		if(JakartaServletFileUpload.isMultipartContent(request)) {
 			//1.파일용량제한
@@ -64,11 +67,17 @@ public class CommunityInsertController extends HttpServlet {
 			Community c = new Community();
 			//ArrayList<CommunityAttachment> list = new ArrayList<>();
 			CommunityAttachment atC = new CommunityAttachment();
-			
 			for(FileItem item : formItems) { //일반파라미터
 				System.out.println(item);
 				if(item.isFormField()) {
 					switch(item.getFieldName()) {
+					case "cno":
+						c.setCommunityNo(Integer.parseInt(item.getString(Charset.forName("utf-8"))));
+						System.out.println("cno=" + c.getCommunityNo());
+						CommunityAttachment resultAt = cService.selectCommunityAt(c.getCommunityNo());
+						atC.setRefCno(resultAt.getRefCno());
+						System.out.println(resultAt.getRefCno());
+						break;
 					case "memberId":
 						c.setMemberId(item.getString(Charset.forName("utf-8")));
 						break;
@@ -86,6 +95,7 @@ public class CommunityInsertController extends HttpServlet {
 					String originName = item.getName();
 					if(originName.length() > 0) { //파일 업로드시
 						//고유한 파일명 생성
+						cService.deleteCommunityAt(c.getCommunityNo());
 						String tmpName = "CommunityFile_" + System.currentTimeMillis();
 						String type = originName.substring(originName.lastIndexOf("."));
 						String changeName = tmpName + type; //서버에 저장할 파일명
@@ -103,17 +113,17 @@ public class CommunityInsertController extends HttpServlet {
 				}
 			}
 			
-			int result = new CommunityServiceImple().insertCommunity(c, atC);
+			int result = cService.updateCommunity(c, atC);
 			HttpSession session = request.getSession();
 			if(result > 0) {//성공
-				session.setAttribute("alertMsg", "커뮤니티 게시글 등록에 성공했습니다.");
+				session.setAttribute("alertMsg", "커뮤니티 게시글 수정에 성공했습니다.");
 				response.sendRedirect(request.getContextPath() + "/communityList.do?cpage=1&category=all&array=1");
 			} else { //실패 -> 업로드된 파일 삭제해주고 에러페이지
 				 
 				 //for(CommunityAttachment at : list) {
 					 new File(savePath + atC.getChangeName()).delete();
 				 //}
-				 session.setAttribute("alertMsg", "커뮤니티 게시글 등록에 실패하였습니다.");
+				 session.setAttribute("alertMsg", "커뮤니티 게시글 수정에 실패하였습니다.");
 				 response.sendRedirect(request.getContextPath() + "/communityList.do?cpage=1&category=all&array=1");
 			}
 		}

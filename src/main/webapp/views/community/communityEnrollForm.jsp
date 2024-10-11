@@ -42,8 +42,8 @@
     </div>
     <br>
     <div id="content-btn">
-      <div id="submit-btn"><input type="submit" value="작성"></div>
-      <div id="reset-btn"><input type="reset" value="취소"></div>
+      <div id="submit-btn"><input type="submit" value="작성" style="border: none; background-color: white;"></div>
+      <div id="reset-btn"><input type="reset" value="취소" style="border: none; background-color: white;"></div>
     </div>
     </form>
     

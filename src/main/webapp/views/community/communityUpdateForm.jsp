@@ -16,8 +16,8 @@
 <body>
 	<%@include file="../common/nav.jsp" %>
   <br>
-  <form action="<%=contextPath%>/communityUpdate.do" method="post" enctype="multipart/form-data">
-    <input type="hidden" name="memberId" value="${loginUser.memberId }">
+  <form action="<%=contextPath%>/cUpdate.do" method="post" enctype="multipart/form-data">
+    <input type="hidden" name="cno" value="${c.communityNo }">
     <div id="title-form">
       <select name="category" required>
         <option value="" selected disabled hidden>카테고리</option>
@@ -37,15 +37,15 @@
         <textarea name="detail" id="">${c.communityDetail}</textarea>
         <br>
         <c:if test="${not empty atC }">
-        	<input type="file" name="cimg" value="${atC.originName }">
+        	<input type="file" name="cimg">
         </c:if>
       </div>
       
     </div>
     <br>
     <div id="content-btn">
-      <div id="submit-btn"><input type="submit" value="작성"></div>
-      <div id="reset-btn"><input type="reset" value="취소"></div>
+      <div id="submit-btn"><input type="submit" value="작성" style="border: none; background-color: white;"></div>
+      <div id="reset-btn"><input type="reset" value="취소" style="border: none; background-color: white;"></div>
     </div>
     </form>
     

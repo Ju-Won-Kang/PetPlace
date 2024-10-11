@@ -35,7 +35,7 @@ public class ProductDao {
     private Properties prop = new Properties();
 
     public ProductDao() {
-        String filePath = ProductDao.class.getResource("/db/sql/product-mapper.xml").getPath();
+        String filePath = ProductDao.class.getResource("/mappers/product-mapper.xml").getPath();
         try {
             prop.loadFromXML(new FileInputStream(filePath));
         } catch (IOException e) {

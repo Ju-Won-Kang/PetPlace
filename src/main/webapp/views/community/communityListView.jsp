@@ -126,8 +126,8 @@
 			</div>
 		</c:if>
 		<br>
-        <div id="pagenation" align="center">
-			<nav>
+        <div id="pagenation" class="container mt-3">
+			<nav class="pagination d-flex justify-content-center">
 				<ul class="pagination">
 					<c:choose>
 						<c:when test="${pi.startPage != 1 || (pi.startPage / pi.boardLimit)  > 1}">
