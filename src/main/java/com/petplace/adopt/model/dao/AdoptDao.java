@@ -51,4 +51,9 @@ public class AdoptDao {
 	public ArrayList<Adopt> selectMissingMainList(SqlSession sqlSession){
 		return (ArrayList)sqlSession.selectList("adoptMapper.selectMissingMainList");
 	}
+	
+	// 메인페이지 분양
+	public ArrayList<Adopt> selectDistributeMainList(SqlSession sqlSession){
+		return (ArrayList)sqlSession.selectList("adoptMapper.selectDistributeMainList");
+	}
 }

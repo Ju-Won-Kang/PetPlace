@@ -23,4 +23,7 @@ public interface AdoptService {
 	
 	// 메인페이지 유기/실종 조회
 	ArrayList<Adopt> selectMissingMainList();
+	
+	// 메인페이지 분양 조회
+	ArrayList<Adopt> selectDistributeMainList();
 }

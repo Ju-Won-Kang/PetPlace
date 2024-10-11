@@ -123,6 +123,17 @@
     		   BOARD_DETAIL
     	  FROM SALE_MISSING SM
           JOIN ATTACHMENT_ADOPT ON (REF_ANO = BOARD_NO)
-    	 WHERE SM.BOARD_TYPE = 'A';
+    	 WHERE SM.BOARD_TYPE = 'A'
+    </select>
+    
+    <!-- 메인페이지 유기/실종 -->
+    <select id="selectDistributeMainList" resultMap="adoptListSet">
+    	SELECT BOARD_NO,
+    		   SM.BOARD_TYPE,
+    		   FILE_PATH || CHANGE_NAME AS "TITLE_IMG",
+    		   BOARD_DETAIL
+    	  FROM SALE_MISSING SM
+          JOIN ATTACHMENT_ADOPT ON (REF_ANO = BOARD_NO)
+    	 WHERE SM.BOARD_TYPE = 'B'
     </select>
 </mapper>

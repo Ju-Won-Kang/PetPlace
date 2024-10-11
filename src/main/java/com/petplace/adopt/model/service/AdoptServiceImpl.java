@@ -97,4 +97,14 @@ public class AdoptServiceImpl implements AdoptService{
 		return list;
 	}
 
+	@Override
+	public ArrayList<Adopt> selectDistributeMainList() {
+		SqlSession sqlSession = Template.getSqlSession();
+		
+		ArrayList<Adopt> list = aDao.selectDistributeMainList(sqlSession);
+		
+		sqlSession.close();
+		return list;
+	}
+
 }

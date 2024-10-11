@@ -504,3 +504,20 @@ a {
     height: 100%;
     margin: auto;
 }
+
+.test{
+    width: 200px;
+    height: 190px;
+    margin-top: 20px;
+}
+
+#distribute-area a{
+    display: flex;
+}
+
+#distribute-area p{
+    width: 250px;
+    height: 190px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}

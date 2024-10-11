@@ -28,8 +28,8 @@
                     <div id="adopt-img">
                         <!-- swiper js -->
                         <div class="swiper adoption-swiper">
-                            <div class="swiper-wrapper">
-
+                            <div class="swiper-wrapper" id="missing-area">
+								<div class="spinner-border"></div>
                             </div>
                             <div class="swiper-pagination"></div>
                         </div>
@@ -38,19 +38,6 @@
 
                         <!-- Initialize Swiper -->
                         <script>
-                            var swiper = new Swiper(".adoption-swiper", {
-                                slidesPerView: 3,
-                                spaceBetween: 30,
-                                pagination: {
-                                    el: ".swiper-pagination",
-                                    clickable: true,
-                                },
-                            });
-                            
-                            window.onload = function(){
-                            	selectMissingList();
-                            }
-
                             function selectMissingList(){
                                 $.ajax({
                                     url : "adoptMissingMainList.do",
@@ -60,25 +47,35 @@
                                     success : function(res){
                                     	console.log("성공!");
                                         console.log(res);
-                                        const missingList = document.querySelector('.swiper-wrapper');
+                                        const missingList = document.querySelector('#missing-area');
                                         const contextPath = '<%= request.getContextPath() %>';
                                         let str = "";
-                                        for(let a of res){
+                                        for (let a of res) {
+                                        	console.log(a);
                                             str += "<div class='swiper-slide'>"
-                                            		+ "<a href=\"adoptDetail.do?bno=" + a.boardNo + "&bType=" + a.boardType + "\">"
-                                            			+ "<div class='test3'>"
-                                            				+ "<img src=\"contextPath/" + a.adoptImg + "\">"
-                                            			+ "</div>"
-                                            			+ "<div class='test3-text'>"
-                                            				+ "<p>"
-                                            					+ a.boardDetail 
-                                            				+ "</p>"
-                                            			+ "</div>"
-                                            		+ "</a>"
-                                            	+ "</div>";
+                                                + "<a href=\"" + contextPath + "/adoptDetail.do?bno=" + a.boardNo + "&bType=" + a.boardType + "\">"
+                                                + "<div class='test3'>"
+                                                + "<img src=\"" + contextPath + "/" + a.adoptImg + "\">" // contextPath 사용
+                                                + "</div>"
+                                                + "<div class='test3-text'>"
+                                                + "<p>"
+                                                + a.boardDetail 
+                                                + "</p>"
+                                                + "</div>"
+                                                + "</a>"
+                                                + "</div>";
                                         }
                                         
                                         missingList.innerHTML = str;
+                                        
+                                        var adoptSwiper = new Swiper(".adoption-swiper", {
+                                            slidesPerView: 3,
+                                            spaceBetween: 30,
+                                            pagination: {
+                                                el: ".swiper-pagination",
+                                                clickable: true,
+                                            },
+                                        });
                                     },
                                     error : function(){
                                         console.log('실패')
@@ -126,6 +123,8 @@
                             selectCommunityDay();
                             selectCommunityWeek();
                             selectProduct();
+                            selectMissingList();
+                            selectDistributeList();
                         }
 
                         function selectCommunityDay(){
@@ -236,46 +235,61 @@
                     <div id="missing-img-text">
                         <!-- swiper js -->
                         <div class="swiper missing-swiper">
-                            <div class="swiper-wrapper">
-                                <div class="swiper-slide">
-                                    <div id="test">
-                                        <a href=""><img src="images/image%207.png"></a>
-                                    </div>
-                                    <div id="test-text">
-                                        <p>
-                                            이름 : 세바스찬<br>
-                                            나이 : 7살<br>
-                                            성별 : 수컷<br>
-                                            특징 1. 목도리 사용중<br>
-                                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2. 사람을 잘 피함<br>
-                                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3. 머리 중간에 땜빵있음
-                                        </p>
-                                    </div>
-                                </div>
-                                <div class="swiper-slide"><img src="images/image%208.png"></div>
-                                <div class="swiper-slide"><img src="images/image%209.png"></div>
-                                <div class="swiper-slide"><img src="images/image%2010.png"></div>
-                                <div class="swiper-slide">Slide 5</div>
-                                <div class="swiper-slide">Slide 6</div>
-                                <div class="swiper-slide">Slide 7</div>
-                                <div class="swiper-slide">Slide 8</div>
-                                <div class="swiper-slide">Slide 9</div>
+                            <div class="swiper-wrapper" id="distribute-area">
+								<div class="spinner-border"></div>
                             </div>
                             <div class="swiper-pagination"></div>
                         </div>
                         <!-- Swiper JS -->
-                        <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></scrip>
+                        <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 
                         <!-- Initialize Swiper -->
                         <script>
-                            var swiper = new Swiper(".missing-swiper", {
-                                slidesPerView: 1,
-                                spaceBetween: 30,
-                                pagination: {
-                                    el: ".swiper-pagination",
-                                    clickable: true,
-                                },
-                            });
+                            function selectDistributeList(){
+                                $.ajax({
+                                    url : "adoptDistributeMainList.do",
+                                    contentType: "application/json",
+                                    data : {
+                                    },
+                                    success : function(res){
+                                    	console.log("성공!");
+                                        console.log(res);
+                                        const distributeList = document.querySelector('#distribute-area');
+                                        const contextPath = '<%= request.getContextPath() %>';
+                                        let str = "";
+                                        for (let a of res) {
+                                        	console.log(a);
+                                            str += "<div class='swiper-slide'>"
+                                                + "<a href=\"" + contextPath + "/adoptDetail.do?bno=" + a.boardNo + "&bType=" + a.boardType + "\">"
+                                                + "<div class='test3'>"
+                                                + "<img src=\"" + contextPath + "/" + a.adoptImg + "\">" // contextPath 사용
+                                                + "</div>"
+                                                + "<div class='test3-text'>"
+                                                + "<p>"
+                                                + a.boardDetail 
+                                                + "</p>"
+                                                + "</div>"
+                                                + "</a>"
+                                                + "</div>";
+                                        }
+                                        
+                                        distributeList.innerHTML = str;
+                                        
+                                        var adoptdistributeSwiper = new Swiper(".missing-swiper", {
+                                            slidesPerView: 1,
+                                            spaceBetween: 30,
+                                            pagination: {
+                                                el: ".swiper-pagination",
+                                                clickable: true,
+                                            },
+                                        });
+                                    },
+                                    error : function(){
+                                        console.log('실패')
+                                    }
+                                    
+                                })
+                            }
                         </script>
                     </div>
                 </div>
