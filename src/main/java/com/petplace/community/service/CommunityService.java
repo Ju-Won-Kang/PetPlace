@@ -34,6 +34,7 @@ public interface CommunityService {
 	
 	//update
 	public Community selectCommunity(int communityNo);
+	public int updateCommunity(Community c, CommunityAttachment atC);
 	
 	//delete
 	public int deleteCommunity(int communityNo);

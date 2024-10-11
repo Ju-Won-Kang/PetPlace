@@ -159,5 +159,12 @@
   <servlet-mapping>
     <servlet-name>adoptDistributeMainList.do</servlet-name>
     <url-pattern>/adoptDistributeMainList.do</url-pattern>
+    <display-name>cUpdate.do</display-name>
+    <servlet-name>cUpdate.do</servlet-name>
+    <servlet-class>com.petplace.community.controller.CommunityUpdateController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>cUpdate.do</servlet-name>
+    <url-pattern>/cUpdate.do</url-pattern>
   </servlet-mapping>
 </web-app>
