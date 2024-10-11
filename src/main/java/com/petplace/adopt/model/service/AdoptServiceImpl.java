@@ -86,4 +86,15 @@ public class AdoptServiceImpl implements AdoptService{
 		return result;
 	}
 
+	// 메인페이지 유기/실종
+	@Override
+	public ArrayList<Adopt> selectMissingMainList() {
+		SqlSession sqlSession = Template.getSqlSession();
+		
+		ArrayList<Adopt> list = aDao.selectMissingMainList(sqlSession);
+		
+		sqlSession.close();
+		return list;
+	}
+
 }

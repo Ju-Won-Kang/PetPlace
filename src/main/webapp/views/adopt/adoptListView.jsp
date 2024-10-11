@@ -62,7 +62,7 @@
                 		</c:when>
                 		<c:otherwise>
                 			<c:forEach var="a" items="${list}">
-			                    <tr class="table-line" onclick="detailPage()">
+			                    <tr class="table-line" onclick="detailPage(${a.boardNo}, '${a.boardType}')">
 			                        <td>${a.boardNo}</td>
 			                        <td><img src="<%= request.getContextPath() %>/${a.adoptImg}"></td>
 			                        <td class="table-title">
@@ -101,7 +101,7 @@
                 		</c:when>
                 		<c:otherwise>
                 		    <c:forEach var="a" items="${list}">
-			                    <tr class="table-line"  onclick="detailPage()">
+			                    <tr class="table-line"  onclick="detailPage(${a.boardNo}, '${a.boardType}')">
 			                        <td>${a.boardNo}</td>
 			                        <td><img src="<%= request.getContextPath() %>/${a.adoptImg}"></td>
 			                        <td class="table-title">
@@ -118,13 +118,15 @@
                 </tbody>
             </table>
             <div id="missing-write-btn-area">
-                <a href="<%=contextPath%>/adoptEnrollForm.do">글쓰기</a>
+               	<a href="<%=contextPath%>/adoptEnrollForm.do">글쓰기</a>
             </div>
         </div>
         <div id="search-img">
         <script>
-            function detailPage(){
-                location.href="<%=contextPath%>/adoptDetail.do?bno=${list[0].boardNo}&bType=${list[0].boardType}";
+            function detailPage(boardNo, boardType){
+            	console.log(boardNo);
+            	console.log(boardType);
+                location.href="<%=contextPath%>/adoptDetail.do?bno="  +boardNo + "&bType=" + boardType;
             }
         </script>
         

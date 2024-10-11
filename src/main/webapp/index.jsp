@@ -23,73 +23,13 @@
                 <div id="adopt">
                     <div id="adopt-info">
                         <p>입양 정보</p>
-                        <a href="">더보기+</a>
+                        <a href="<%=contextPath%>/adoptList.do?cpage=1&boardType=B">더보기+</a>
                     </div>
                     <div id="adopt-img">
                         <!-- swiper js -->
                         <div class="swiper adoption-swiper">
                             <div class="swiper-wrapper">
-                                <div class="swiper-slide">
-                                    <a href="">
-                                        <div class="test3">
-                                            <img src="images/image%207.png">
-                                        </div>
-                                        <div class="test3-text">
-                                            <p>
-                                                품종 : 푸들 <br>
-                                                나이 : 7살 <br>
-                                                성별 : 수컷
-                                            </p>
-                                        </div>
-                                    </a>
-                                </div>
-                                <div class="swiper-slide">
-                                    <a href="">
-                                        <div class="test3">
-                                            <img src="images/image%208.png">
-                                        </div>
-                                        <div class="test3-text">
-                                            <p>
-                                                품종 : 푸들 <br>
-                                                나이 : 7살 <br>
-                                                성별 : 수컷
-                                            </p>
-                                        </div>
-                                    </a>
-                                </div>
-                                <div class="swiper-slide">
-                                    <a href="">
-                                        <div class="test3">
-                                            <img src="images/image%209.png">
-                                        </div>
-                                        <div class="test3-text">
-                                            <p>
-                                                품종 : 턱시도 <br>
-                                                나이 : 7살 <br>
-                                                성별 : 수컷
-                                            </p>
-                                        </div>
-                                    </a>
-                                </div>
-                                <div class="swiper-slide">
-                                    <a href="">
-                                        <div class="test3">
-                                            <img src="images/image%2010.png">
-                                        </div>
-                                        <div class="test3-text">
-                                            <p>
-                                                품종 : 고등어 <br>
-                                                나이 : 7살 <br>
-                                                성별 : 수컷
-                                            </p>
-                                        </div>
-                                    </a>
-                                </div>
-                                <div class="swiper-slide">Slide 5</div>
-                                <div class="swiper-slide">Slide 6</div>
-                                <div class="swiper-slide">Slide 7</div>
-                                <div class="swiper-slide">Slide 8</div>
-                                <div class="swiper-slide">Slide 9</div>
+
                             </div>
                             <div class="swiper-pagination"></div>
                         </div>
@@ -106,10 +46,50 @@
                                     clickable: true,
                                 },
                             });
+                            
+                            window.onload = function(){
+                            	selectMissingList();
+                            }
+
+                            function selectMissingList(){
+                                $.ajax({
+                                    url : "adoptMissingMainList.do",
+                                    contentType: "application/json",
+                                    data : {
+                                    },
+                                    success : function(res){
+                                    	console.log("성공!");
+                                        console.log(res);
+                                        const missingList = document.querySelector('.swiper-wrapper');
+                                        const contextPath = '<%= request.getContextPath() %>';
+                                        let str = "";
+                                        for(let a of res){
+                                            str += "<div class='swiper-slide'>"
+                                            		+ "<a href=\"adoptDetail.do?bno=" + a.boardNo + "&bType=" + a.boardType + "\">"
+                                            			+ "<div class='test3'>"
+                                            				+ "<img src=\"contextPath/" + a.adoptImg + "\">"
+                                            			+ "</div>"
+                                            			+ "<div class='test3-text'>"
+                                            				+ "<p>"
+                                            					+ a.boardDetail 
+                                            				+ "</p>"
+                                            			+ "</div>"
+                                            		+ "</a>"
+                                            	+ "</div>";
+                                        }
+                                        
+                                        missingList.innerHTML = str;
+                                    },
+                                    error : function(){
+                                        console.log('실패')
+                                    }
+                                    
+                                })
+                            }
                         </script>
                     </div>
                 </div>
-
+				
                 <div id="community">
                     <div id="notice">
                         <div id="notice-info">
@@ -200,7 +180,7 @@
                 <div class="missing">
                     <div id="missing-info">
                         <p>실종 정보</p>
-                        <a href="">더보기+</a>
+                        <a href="<%=contextPath%>/adoptList.do?cpage=1&boardType=A">더보기+</a>
                     </div>
                     <div id="missing-img-text">
                         <!-- swiper js -->

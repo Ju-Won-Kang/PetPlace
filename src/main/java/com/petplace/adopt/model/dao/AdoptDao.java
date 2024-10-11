@@ -44,7 +44,11 @@ public class AdoptDao {
 	public Adopt selectDetailList(SqlSession sqlSession, HashMap<String, Object> map) {
 		Adopt a = sqlSession.selectOne("adoptMapper.selectDetailList", map);
 
-		System.out.println(a);
 		return a;
+	}
+	
+	// 메인페이지 유기/실종
+	public ArrayList<Adopt> selectMissingMainList(SqlSession sqlSession){
+		return (ArrayList)sqlSession.selectList("adoptMapper.selectMissingMainList");
 	}
 }

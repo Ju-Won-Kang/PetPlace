@@ -114,4 +114,15 @@
     	 WHERE BOARD_NO = #{boardNo}
     	   AND SM.BOARD_TYPE = #{boardType}
     </select>
+    
+    <!-- 메인페이지 유기/실종 -->
+    <select id="selectMissingMainList" resultMap="adoptListSet">
+    	SELECT BOARD_NO,
+    		   SM.BOARD_TYPE,
+    		   FILE_PATH || CHANGE_NAME AS "TITLE_IMG",
+    		   BOARD_DETAIL
+    	  FROM SALE_MISSING SM
+          JOIN ATTACHMENT_ADOPT ON (REF_ANO = BOARD_NO)
+    	 WHERE SM.BOARD_TYPE = 'A';
+    </select>
 </mapper>
