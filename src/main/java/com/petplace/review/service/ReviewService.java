@@ -1,15 +1,13 @@
 package com.petplace.review.service;
 
+import java.util.ArrayList;
+
+import org.apache.ibatis.session.SqlSession;
+
 import com.petplace.common.PageInfo;
 import com.petplace.common.Template;
 import com.petplace.review.model.dao.ReviewDao;
 import com.petplace.review.model.dto.ReviewList;
-import org.apache.ibatis.session.SqlSession;
-
-import static com.petplace.common.JDBCTemplate.*;
-
-import java.sql.Connection;
-import java.util.ArrayList;
 
 /**
  * packageName    : com.petplace.review.service

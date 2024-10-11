@@ -39,4 +39,6 @@
         set waybill = #{wayBill}
         where purchase_no = #{purchaseNo}
     </update>
+
+    
 </mapper>
