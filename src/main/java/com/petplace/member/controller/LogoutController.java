@@ -1,34 +1,27 @@
 package com.petplace.member.controller;/**
  * packageName    : com.petplace.member.controller
- * fileName       : MemberIdCheckController
+ * fileName       : LogoutController
  * author         : jun
- * date           : 2024. 10. 7.
+ * date           : 2024. 10. 10.
  * description    :
  * ===========================================================
  * DATE              AUTHOR             NOTE
  * -----------------------------------------------------------
- * 2024. 10. 7.        jun       최초 생성
+ * 2024. 10. 10.        jun       최초 생성
  */
 
-import com.petplace.member.service.MemberService;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
 
 import java.io.IOException;
 
-@WebServlet(name = "idCheck.me", value = "/idCheck.me")
-public class MemberIdCheckController extends HttpServlet {
+@WebServlet(name = "logout.me", value = "/logout.me")
+public class LogoutController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String checkId = request.getParameter("checkId");
-        System.out.println(checkId);
-        int checkIdCount = new MemberService().checkId(checkId);
-        if(checkIdCount > 0){
-            response.getWriter().print("NNNNN");
-        }else{
-            response.getWriter().print("NNNNY");
-        }
+        request.getSession().invalidate();
+        response.sendRedirect(request.getContextPath());
     }
 
     @Override

@@ -18,7 +18,7 @@ public class MemberDao {
 	private Properties prop = new Properties();
 	
 	public MemberDao() {
-		String filePath = MemberDao.class.getResource("/db/sql/member-mapper.xml").getPath();
+		String filePath = MemberDao.class.getResource("/mappers/member-mapper.xml").getPath();
 
 		try {
 			prop.loadFromXML(new FileInputStream(filePath));
@@ -34,6 +34,7 @@ public class MemberDao {
 		return sqlSession.insert("memberMapper.enrollMember", hashedMember);
 	}
 	public int checkId(SqlSession sqlSession, String checkId){
+		System.out.println(checkId);
 		return sqlSession.selectOne("memberMapper.checkId", checkId);
 	}
 

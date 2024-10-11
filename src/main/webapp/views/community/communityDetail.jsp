@@ -102,20 +102,36 @@
                             console.log(res)
                             let str = "";
                             for (let comment of res) {
-                                str += "<div id=\"community-reply-list\">\n" +
-                                       "<div id=\"community-reply-user-img\">\n" +
-                                       "<img src=\"\">\n" +
-                                       "</div>\n" +
-                                       "<div id=\"nick-content-etc\">\n" +
-                                       "<p id=\"reply-nick\">" + comment.nickname + "</p>\n" +
-                                       "<p id=\"reply-content\">" + comment.commentDetail + "</p>" +
-                                       "<div id=\"date-modify-delete\">" +
-                                       "<p>" + comment.commentDate + "</p>" +
-                                       "<button onclick=\"editComment(" + comment.memberId + ")\">수정</button>" +
-                                       "<button onclick=\"deleteComment(" + comment.memberId + ")\">삭제</button>" +
-                                       "</div>" +
-                                       "</div>" +
-                                       "</div>";
+                            	if(comment.memberId == '${loginUser.memberId}'){
+                            		str += "<div id=\"community-reply-list\">\n" +
+                                    "<div id=\"community-reply-user-img\">\n" +
+                                    "<img src=\"\">\n" +
+                                    "</div>\n" +
+                                    "<div id=\"nick-content-etc\">\n" +
+                                    "<p id=\"reply-nick\">" + comment.nickname + "</p>\n" +
+                                    "<p id=\"reply-content\">" + comment.commentDetail + "</p>" +
+                                    "<div id=\"date-modify-delete\">" +
+                                    "<p>" + comment.commentDate + "</p>" +
+                                    "<button onclick=\"editComment(" + comment.memberNo + ")\">수정</button>" +
+                                    "<button onclick=\"deleteComment(" + comment.memberNo + ")\">삭제</button>" +
+                                    "</div>" +
+                                    "</div>" +
+                                    "</div>";
+                            	} else{
+                            		str += "<div id=\"community-reply-list\">\n" +
+                                    "<div id=\"community-reply-user-img\">\n" +
+                                    "<img src=\"\">\n" +
+                                    "</div>\n" +
+                                    "<div id=\"nick-content-etc\">\n" +
+                                    "<p id=\"reply-nick\">" + comment.nickname + "</p>\n" +
+                                    "<p id=\"reply-content\">" + comment.commentDetail + "</p>" +
+                                    "<div id=\"date-modify-delete\">" +
+                                    "<p>" + comment.commentDate + "</p>" +
+                                    "</div>" +
+                                    "</div>" +
+                                    "</div>";
+                            	}
+                                
                             }
                             const contentBody = document.querySelector("#comment-list");
                             contentBody.innerHTML = str;

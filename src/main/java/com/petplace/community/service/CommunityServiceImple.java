@@ -251,4 +251,24 @@ public class CommunityServiceImple implements CommunityService {
 		
 		return list;
 	}
+
+	@Override
+	public ArrayList<Community> selectCommunityDay() {
+		SqlSession sqlSession = Template.getSqlSession();
+		ArrayList<Community> list = cDao.selectCommunityDay(sqlSession);
+		
+		sqlSession.close();
+		
+		return list;
+	}
+	
+	@Override
+	public ArrayList<Community> selectCommunityWeek() {
+		SqlSession sqlSession = Template.getSqlSession();
+		ArrayList<Community> list = cDao.selectCommunityWeek(sqlSession);
+		
+		sqlSession.close();
+		
+		return list;
+	}
 }

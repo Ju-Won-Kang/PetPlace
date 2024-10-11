@@ -136,6 +136,18 @@ public class CommunityDao {
 	public ArrayList<BoardComment> selectCommentList(SqlSession sqlSession, int communityNo){
 		return (ArrayList)sqlSession.selectList("communityMapper.selectCommentList", communityNo);
 	}
+	
+	public ArrayList<Community> selectCommunityDay(SqlSession sqlSession) {
+		RowBounds rowBounds = new RowBounds(0, 5);
+		
+		return (ArrayList)sqlSession.selectList("communityMapper.selectCommunityDay", null, rowBounds);
+	}
+	
+	public ArrayList<Community> selectCommunityWeek(SqlSession sqlSession) {
+		RowBounds rowBounds = new RowBounds(0, 5);
+		
+		return (ArrayList)sqlSession.selectList("communityMapper.selectCommunityWeek", null, rowBounds);
+	}
 //	public int insertCommunity(Connection conn, Community c) {
 //		int result = 0;
 //		
