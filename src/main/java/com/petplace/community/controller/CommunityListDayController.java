@@ -1,9 +1,10 @@
 package com.petplace.community.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
+import com.google.gson.Gson;
 import com.petplace.community.model.vo.Community;
-import com.petplace.community.model.vo.CommunityAttachment;
 import com.petplace.community.service.CommunityService;
 import com.petplace.community.service.CommunityServiceImple;
 
@@ -13,15 +14,15 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
 /**
- * Servlet implementation class CommunityDetailController
+ * Servlet implementation class CommunityListDayController
  */
-public class CommunityDetailController extends HttpServlet {
+public class CommunityListDayController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public CommunityDetailController() {
+    public CommunityListDayController() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -30,24 +31,12 @@ public class CommunityDetailController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		int communityNo = Integer.parseInt(request.getParameter("cno"));
-		
 		CommunityService cService = new CommunityServiceImple();
 		
-		Community c = cService.increaseCount(communityNo);
-		CommunityAttachment atC = cService.selectCommunityAt(communityNo);
-		
-		if(c != null) {
-			if(atC != null) {
-				
-				request.setAttribute("atC", atC);
-			}
-			request.setAttribute("c", c);
-			request.getRequestDispatcher("views/community/communityDetail.jsp").forward(request, response);
-		} else {
-			request.setAttribute("alert", "상세조회 실패");
-			response.sendRedirect(request.getContextPath());
-		}
+		ArrayList<Community> list = cService.selectCommunityDay();
+		System.out.println(list);
+		response.setContentType("application/json; charset=utf-8");
+		new Gson().toJson(list, response.getWriter());
 	}
 
 	/**
