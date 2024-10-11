@@ -43,7 +43,7 @@ body p{
 }
 
 #community-info-nick{
-    width: 10%;
+    width: 15%;
 }
 
 #community-info-date{
@@ -64,6 +64,7 @@ body p{
     font-weight: 600;
     writing-mode: horizontal-tb;
     width: 5%;
+    height: 20px;
 }
 
 .community-content{

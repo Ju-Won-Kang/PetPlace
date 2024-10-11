@@ -32,6 +32,7 @@
   <typeAlias type="com.petplace.member.model.dto.HashedMember" alias="HashedMember"/>
   <typeAlias type="com.petplace.shopping.model.dto.UserInfo" alias="UserInfo"/>
   <typeAlias type="com.petplace.member.model.vo.Member" alias="Member"/>
+  <typeAlias type="com.petplace.mypage.model.dto.Petinfo" alias="Petinfo"/>
   <!-- Common -->
   <typeAlias type="java.util.HashMap" alias="HashMap"/>
   <typeAlias type="java.util.List" alias="List"/>
@@ -69,5 +70,6 @@
     <mapper resource="/mappers/shopping-mapper.xml"/>
     <mapper resource="/mappers/adopt-mapper.xml"/>
     <mapper resource="/mappers/member-mapper.xml"/>
+    <mapper resource="/mappers/mypage-mapper.xml"/>
   </mappers>
 </configuration>
