@@ -6,6 +6,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
 import com.petplace.member.model.dto.HashedMember;
+import com.petplace.member.model.vo.Member;
 import com.petplace.purchase.model.vo.Purchase;
 import com.petplace.shopping.model.dto.ShoppingComplete;
 import com.petplace.shopping.service.ShoppingService;
@@ -50,7 +51,7 @@ public class ShoppingCompleteController extends HttpServlet {
 		int totalProductPrice = Integer.parseInt(request.getParameter("totalProductPrice"));
 		
 		//회원 아이디 session에서 꺼내기
-		HashedMember loginUser = (HashedMember)request.getSession().getAttribute("loginUser");
+		Member loginUser = (Member) request.getSession().getAttribute("loginUser");
 		String userId = loginUser.getMemberId();
 		
 		

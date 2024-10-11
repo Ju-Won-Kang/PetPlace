@@ -38,6 +38,13 @@ public class Inquiry {
         this.inquiryDetail = inquiryDetail;
     }
 
+    public Inquiry(String memberId, int productNo, String inquiryTitle, String inquiryDetail) {
+        this.memberId = memberId;
+        this.productNo = productNo;
+        this.inquiryTitle = inquiryTitle;
+        this.inquiryDetail = inquiryDetail;
+    }
+
     public int getInquiryNo() {
         return inquiryNo;
     }

@@ -1,5 +1,6 @@
 package com.petplace.shopping.controller;
 
+import com.petplace.member.model.vo.Member;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -36,7 +37,7 @@ public class OrderPurchaseController extends HttpServlet {
 		
 		//세션 로그인 정보로 db에서 정보가져오기
 		HttpSession session = request.getSession(); 
-		HashedMember loginUser = (HashedMember)session.getAttribute("loginUser"); 
+		Member loginUser = (Member)session.getAttribute("loginUser");
 		String userId = loginUser.getMemberId();
 		
 		ShoppingService sService = new ShoppingServiceImpl();

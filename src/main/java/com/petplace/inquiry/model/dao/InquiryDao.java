@@ -144,4 +144,7 @@ public class InquiryDao {
 //        return result;
         return sqlSession.update("inquiryMapper.insertInquiry", map);
     }
+    public int createInquiry(SqlSession sqlSession, Inquiry inquiry){
+        return sqlSession.insert("inquiryMapper.createInquiry", inquiry);
+    }
 }
