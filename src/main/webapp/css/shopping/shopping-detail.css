@@ -277,4 +277,20 @@ table{
 
 }
 
+#review-btn{
+    border: none;
+    background: white;
+    font-weight: 600;
+    width: 60px;
+    height: 30px;
+}
+
+#review-wrap{
+    width: 100%;
+    height: 600px;
+    padding: 20px;
+    border: 5px rgb(225, 72, 48);
+
+}
+
 

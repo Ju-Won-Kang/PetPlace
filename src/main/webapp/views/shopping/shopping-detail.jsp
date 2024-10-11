@@ -125,6 +125,21 @@
             </div>
         </div>
 
+
+        <div id="review-wrap">
+            <div id="all-review">
+                <div><h1>전체리뷰</h1> 192건</div>
+                <hr>
+                <div></div>
+                
+            </div>
+
+            
+
+
+
+        </div>
+
         <div id="detailInfoImg">
             <c:forEach var="i" begin="0" end="${product.size()}" step="1">
                 <c:if test="${product[i].fileLevel == 2}">
