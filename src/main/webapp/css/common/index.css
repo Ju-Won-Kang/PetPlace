@@ -245,6 +245,7 @@ a {
     justify-content: space-around;
     padding-left: 10px;
     padding-right: 10px;
+    overflow: auto;
 }
 
 #day-hot-text > p {
@@ -299,6 +300,7 @@ a {
     justify-content: space-around;
     padding-left: 10px;
     padding-right: 10px;
+    overflow: auto;
 }
 
 #week-hot-text > p {
