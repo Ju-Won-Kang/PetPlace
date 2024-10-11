@@ -60,7 +60,7 @@
                         <img src="images/user.png" alt="User">
                     </button>
                     <div id="user-info" class="hide">
-                        <p>USER</p>
+                        <p>로그인/회원가입</p>
                         <div class="profile-image">
                             <img src="images/usericon.png" alt="Profile Image">
                         </div>
@@ -83,19 +83,24 @@
                         <img src="images/user.png" alt="User">
                     </button>
                     <div id="profile-card" class="hide">
-                        <div class="nickname">닉네임</div>
-                        <div class="profile-image">
-                            <img src="images/usericon.png" alt="Profile Image">
+                        <p>프로필</p>
+                        <div class="profile-image" style="text-align: center;">
+                            <img src="images/usericon.png" alt="Profile Image"
+                                 style="display: block; margin: 0 auto;">
                         </div>
-                        <div class="link">
-                            <span>마이페이지</span> <a href="logout.me">로그아웃</a>
+                        <div class="nickname"
+                             style="text-align: center; margin-top: 10px;">${loginUser.nickName}</div>
+                        <div id="profile-links"
+                             style="text-align: center; margin-top: 10px;">
+                            <!-- 마이페이지와 로그아웃 링크 -->
+                            <span><a href="${pageContext.request.contextPath}/mypage.me">마이페이지</a></span> | <span><a
+                                href="${pageContext.request.contextPath}/logout.me"
+                                style="color: red;">로그아웃</a></span>
                         </div>
-                        <ul class="menu-list">
-                            <li>찜목록</li>
-                            <li>구매목록</li>
-                            <li>예약정보</li>
-                            <li>내가 쓴 글</li>
-                        </ul>
+                        <div class="menu-list"
+                             style="text-align: center; margin-top: 20px;">
+
+                        </div>
                     </div>
                 </c:otherwise>
             </c:choose>
