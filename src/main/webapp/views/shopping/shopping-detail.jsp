@@ -168,7 +168,7 @@
         for (let i = 0; i < starRating; i++) {
            // 별 이미지를 위한 img 요소 생성
            const starImg = document.createElement("img");
-            starImg.src = contextPath + "/images/star.png";
+            starImg.src = contextPath + "/images/fullStar.png";
             starImg.alt = "star";
             starImg.classList.add("star");
 
@@ -179,7 +179,7 @@
         // 빈 별 출력
         for (let i = Math.floor(starRating); i < maxRating; i++) {
             const emptyStarImg = document.createElement("img");
-            emptyStarImg.src = contextPath + "/images/star_empty.png"; // 빈 별 이미지 경로
+            emptyStarImg.src = contextPath + "/images/emptyStar.png"; // 빈 별 이미지 경로
             emptyStarImg.alt = "빈 별";
             emptyStarImg.classList.add("star");
             starRatingDiv.appendChild(emptyStarImg);
