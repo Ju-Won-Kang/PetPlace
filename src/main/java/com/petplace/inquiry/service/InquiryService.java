@@ -69,4 +69,15 @@ public class InquiryService {
         sqlSession.close();
         return result;
     }
+    public int createInquiry(Inquiry inquiry){
+        SqlSession sqlSession = Template.getSqlSession();
+        int result = new InquiryDao().createInquiry(sqlSession, inquiry);
+        if (result > 0) {
+            sqlSession.commit();
+        } else {
+            sqlSession.rollback();
+        }
+        sqlSession.close();
+        return result;
+    }
 }

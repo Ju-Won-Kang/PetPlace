@@ -34,6 +34,7 @@ public class MemberDao {
 		return sqlSession.insert("memberMapper.enrollMember", hashedMember);
 	}
 	public int checkId(SqlSession sqlSession, String checkId){
+		System.out.println(checkId);
 		return sqlSession.selectOne("memberMapper.checkId", checkId);
 	}
 

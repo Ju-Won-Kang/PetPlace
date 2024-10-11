@@ -96,7 +96,7 @@
                 </tr>
                 <tr>
                     <td>카드 비밀번호</td>
-                    <td><input name="cardPwd" type="text" placeholder="비밀번호 입력"></td>
+                    <td><input name="cardPwd" type="password" placeholder="비밀번호 입력"></td>
                 </tr>
             </table>
             <br><br>

@@ -31,7 +31,7 @@
 		<result column="PRODUCT_IMG" property="productImg"/>
 	</resultMap>
 	
-	<resultMap  id="selectDetailResultSet" type="selectDetailProduct">
+	<resultMap  id="selectDetailResultSet" type="ShoppingDetailList">
 		<result column="PRODUCT_NO" property="productNo"/>
 		<result column="PRODUCT_NAME" property="productName"/>
 		<result column="PRICE" property="price"/>
@@ -270,7 +270,8 @@
 			QUANTITY,
 			AMOUNT_PRICE,
 			PAY_TYPE,
-			REQUEST
+			REQUEST,
+			CARD_NO
 			)
 			values(
 			SEQ_PCNO.NEXTVAL,
@@ -279,7 +280,8 @@
 			#{quantity},
 			#{amountPrice},
 			#{payType},
-			#{request}
+			#{request},
+			#{cardNo}
 			)
 	</insert>
 	

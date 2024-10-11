@@ -121,7 +121,19 @@
             <div id="pro-detail-review-QNA">
                 <div>상품상세</div>
                 <div>리뷰</div>
-                <div>Q & A</div>
+<%--                <div onclick="">Q & A</div>--%>
+                <c:choose>
+                    <c:when test="${empty loginUser}">
+                        <button type="button" class="btn btn-secondary btn-sm" data-bs-toggle="modal"
+                                data-bs-target="#inquiryModal" disabled>Q & A
+                        </button>
+                    </c:when>
+                    <c:otherwise>
+                        <button type="button" class="btn btn-secondary btn-sm" data-bs-toggle="modal"
+                                data-bs-target="#inquiryModal">Q & A
+                        </button>
+                    </c:otherwise>
+                </c:choose>
             </div>
         </div>
 
@@ -237,5 +249,41 @@
         document.getElementById("100gPrice").innerHTML = "&nbsp;100당 " + pricePer100g.toLocaleString() + "원";
 }
     </script>
+
+    <div class="modal fade" id="inquiryModal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <h4 class="modal-title">상품 문의</h4>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+
+                <form action="insertInquiry.in" method="post">
+                    <!-- Modal body -->
+                    <div class="modal-body">
+                        <input type="hidden" name="productNo" value="${product[0].productNo}">
+                        <input type="hidden" name="memberId" value="${loginUser.memberId}">
+                        <h4>상품명 : ${product[0].productName}</h4>
+                        <div class="input-group input-group-sm mb-3 w-75">
+                            <span class="input-group-text">문의 제목</span>
+                            <input type="text" class="form-control" name="inquiryTitle">
+                        </div>
+                        <div class="input-group input-group-sm mb-3 w-75">
+                            <span class="input-group-text">문의 내용</span>
+<%--                            <input type="text" class="form-control" name="inquiryTitle">--%>
+                            <textarea name="inquiryDetail" class="form-control" cols="50" rows="6"></textarea>
+                        </div>
+                    </div>
+
+                    <!-- Modal footer -->
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-secondary">상품 수정</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
 </body>
 </html>

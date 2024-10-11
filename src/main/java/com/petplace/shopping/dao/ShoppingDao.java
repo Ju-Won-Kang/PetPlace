@@ -80,6 +80,7 @@ public class ShoppingDao {
 	}
 
 	public int insertPurchase(SqlSession sqlSession, Purchase purchase) {
+		System.out.println(purchase);
 		return sqlSession.insert("shoppingMapper.insertPurchase", purchase);
 	}
 	
