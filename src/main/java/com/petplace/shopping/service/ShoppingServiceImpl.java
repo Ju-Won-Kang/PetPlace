@@ -142,5 +142,11 @@ public class ShoppingServiceImpl implements ShoppingService {
 		return result;
 	}
 
-
+	@Override
+	public ArrayList<ShoppingList> selectShoppingTopList() {
+		SqlSession sqlSession = Template.getSqlSession();
+		ArrayList<ShoppingList> list = new ShoppingDao().selectShoppingTopList(sqlSession);
+		System.out.println(list);
+		return list;
+	}
 }

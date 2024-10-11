@@ -25,6 +25,7 @@ public interface ShoppingService {
 	public abstract ShoppingComplete selectShoppingCompleteList(int productNo, String userId);
 	public abstract UserInfo selectUserInfoList(String userId);
 	public abstract int insertPurchase(Purchase purchase);
-	
+
+	ArrayList<ShoppingList> selectShoppingTopList();
 	
 }
