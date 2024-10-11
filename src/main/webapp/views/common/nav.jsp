@@ -48,7 +48,7 @@
                 <img src="images/Logo.png">
                 <%System.out.println();%>
             </a>
-            <a href="<%=contextPath%>/communityList.do?cpage=1">커뮤니티</a>
+            <a href="<%=contextPath%>/communityList.do?cpage=1&category=all&array=1">커뮤니티</a>
             <a href="<%=contextPath%>/shopping.do?cpage=1">쇼핑</a>
             <a href="<%=contextPath%>/adoptList.do?cpage=1&boardType=A">입양</a>
             <a href="<%=contextPath%>/searchHospital.do">동물병원찾기</a>

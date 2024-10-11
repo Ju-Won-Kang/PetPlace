@@ -32,17 +32,6 @@ import java.util.Properties;
  * 2024. 9. 24.        jun       최초 생성
  */
 public class ProductDao {
-    private Properties prop = new Properties();
-
-    public ProductDao() {
-        String filePath = ProductDao.class.getResource("/db/sql/product-mapper.xml").getPath();
-        try {
-            prop.loadFromXML(new FileInputStream(filePath));
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-    }
-
     /**
      * Product 테이블의 전체 상품에서 카테고리명을 가져오는 메서드
      *

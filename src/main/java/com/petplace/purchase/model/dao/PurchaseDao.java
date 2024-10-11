@@ -34,4 +34,6 @@ public class PurchaseDao {
     public int insertWayBill(SqlSession sqlSession, HashMap<String, Object> map){
         return sqlSession.update("purchaseMapper.insertWayBill", map);
     }
+   
+    
 }

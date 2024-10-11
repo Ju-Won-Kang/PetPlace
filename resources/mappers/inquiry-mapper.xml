@@ -42,4 +42,20 @@
         set answer = #{answer}
         where INQUIRY_NO = #{inquiryNo}
     </update>
+    <insert id="createInquiry" parameterType="Inquiry">
+        insert into INQUIRY(
+        INQUIRY_NO,
+        MEMBER_ID,
+        PRODUCT_NO,
+        INQUIRY_TITLE,
+        INQUIRY_DETAIL
+        )
+        values(
+        SEQ_INO.nextval,
+        #{memberId},
+        #{productNo},
+        #{inquiryTitle},
+        #{inquiryDetail}
+        )
+    </insert>
 </mapper>

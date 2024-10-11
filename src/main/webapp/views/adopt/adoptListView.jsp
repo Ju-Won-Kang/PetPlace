@@ -62,7 +62,7 @@
                 		</c:when>
                 		<c:otherwise>
                 			<c:forEach var="a" items="${list}">
-			                    <tr class="table-line" onclick="detailMissingPage()">
+			                    <tr class="table-line" onclick="detailPage()">
 			                        <td>${a.boardNo}</td>
 			                        <td><img src="<%= request.getContextPath() %>/${a.adoptImg}"></td>
 			                        <td class="table-title">
@@ -79,11 +79,7 @@
 	                </c:choose>
                 </tbody>
             </table>
-            <script>
-                function detailMissingPage(){
-                    location.href="<%=contextPath%>/adoptDetail.do?bno=${list[0].boardNo}&bType=${list[0].boardType}";
-                }
-            </script>
+            
 
             <table id="distribute-pet-table" class="distribute-pet-table">
                 <thead>
@@ -105,7 +101,7 @@
                 		</c:when>
                 		<c:otherwise>
                 		    <c:forEach var="a" items="${list}">
-			                    <tr class="table-line" onclick="detailDistributePage()">
+			                    <tr class="table-line"  onclick="detailPage()">
 			                        <td>${a.boardNo}</td>
 			                        <td><img src="<%= request.getContextPath() %>/${a.adoptImg}"></td>
 			                        <td class="table-title">
@@ -126,6 +122,12 @@
             </div>
         </div>
         <div id="search-img">
+        <script>
+            function detailPage(){
+                location.href="<%=contextPath%>/adoptDetail.do?bno=${list[0].boardNo}&bType=${list[0].boardType}";
+            }
+        </script>
+        
         
         <script>
 		    // 페이지 로드 시 boardType 파라미터 확인 후 버튼 색상과 테이블 상태 설정

@@ -26,16 +26,25 @@ public class AdoptDao {
 	
 	// 입양 게시글 삽입
 	public int insertAdopt(SqlSession sqlSession, Adopt a) {
-		System.out.println(a);
 		return sqlSession.insert("adoptMapper.insertAdopt", a);
 	}
 	
+	// 첨부파일 삽입
 	public int insertAdoptAttachmentList(SqlSession sqlSession, AdoptAttachment aAt) {
-		System.out.println(aAt);
 		return sqlSession.insert("adoptMapper.insertadoptAttachmentList", aAt);
 	}
 	
+	// 게시글 조회수 증가
+	public int increaseCount(SqlSession sqlSession, HashMap<String, Object> map) {
+		System.out.println(map);
+		return sqlSession.update("adoptMapper.increaseCount", map);
+	}
+	
+	// 게시글 상세 조회
 	public Adopt selectDetailList(SqlSession sqlSession, HashMap<String, Object> map) {
-		return sqlSession.selectOne("adoptMapper.selectDetailList", map);
+		Adopt a = sqlSession.selectOne("adoptMapper.selectDetailList", map);
+
+		System.out.println(a);
+		return a;
 	}
 }

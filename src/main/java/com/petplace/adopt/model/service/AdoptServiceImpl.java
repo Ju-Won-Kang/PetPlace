@@ -42,9 +42,7 @@ public class AdoptServiceImpl implements AdoptService{
 	@Override
 	public int insertAdopt(Adopt a, AdoptAttachment aAt) {
 		SqlSession sqlSession = Template.getSqlSession();
-		
 		int result1 = aDao.insertAdopt(sqlSession, a); 
-		System.out.println(a);
 		
 		int result2 = 1;
 		if(aAt.getOriginName() != null) {
@@ -58,16 +56,34 @@ public class AdoptServiceImpl implements AdoptService{
 			sqlSession.rollback();
 		}
 		
+		sqlSession.close();
+		
 		return result1 * result2;
 	}
 
 	@Override
 	public Adopt selectDetailList(HashMap<String, Object> map) {
 		SqlSession sqlSession = Template.getSqlSession();
-		
 		Adopt a = aDao.selectDetailList(sqlSession, map);
 		
+		sqlSession.close();
 		return a;
+	}
+
+	@Override
+	public int increaseCount(HashMap<String, Object> map) {
+		SqlSession sqlSession = Template.getSqlSession();
+		System.out.println("aDao");
+		int result = aDao.increaseCount(sqlSession, map);
+		System.out.println("aDao end");
+		if(result > 0) {
+			sqlSession.commit();
+		} else {
+			sqlSession.rollback();
+		}
+		
+		sqlSession.close();
+		return result;
 	}
 
 }

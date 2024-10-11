@@ -17,11 +17,14 @@
         <result column="ADOPT_CATEGORY" property="adoptCategory"/>
     </resultMap>
     
+    <!-- 총 게시글 개수 -->
     <select id="selectAdoptListCount" resultType="_int">
     	SELECT COUNT(*) AS "COUNT"
     	  FROM SALE_MISSING
     	 WHERE BOARD_TYPE = #{boardType}
     </select>
+    
+    <!-- 게시글 조회 -->
     <select id="selectAdoptList" resultMap="adoptListSet">
     	SELECT S.BOARD_NO,
     		   MEMBER_ID,
@@ -39,6 +42,8 @@
     	 WHERE S.BOARD_TYPE = #{boardType}
     	 ORDER BY S.BOARD_NO DESC
     </select>
+    
+    <!-- 게시글 글 삽입 -->
     <insert id="insertAdopt" parameterType="Adopt">
     	INSERT INTO SALE_MISSING
     	(
@@ -46,7 +51,6 @@
     		BOARD_TITLE,
     		MEMBER_ID,
     		BOARD_DETAIL,
-    		BOARD_DATE,
     		BOARD_VIEWS,
     		PLACE,
     		FIND_DATE,
@@ -59,7 +63,6 @@
     		#{boardTitle},
     		#{memberId},
     		#{boardDetail},
-    		#{boardDate},
     		#{boardViews},
     		#{place},
     		#{findDate},
@@ -67,6 +70,8 @@
     		#{adoptCategory}
     	)
     </insert>
+    
+    <!-- 게시글 첨부파일 삽입 -->
     <insert id="insertadoptAttachmentList" parameterType="AdoptAttachment">
     	INSERT INTO ATTACHMENT_ADOPT
     	(
@@ -87,16 +92,26 @@
     		#{boardType}
     	)
     </insert>
-    <select id="selectDetailList" >
+    
+    <!-- 게시글 조회수 증가 -->
+    <update id="increaseCount">
+    	UPDATE SALE_MISSING
+    	   SET BOARD_VIEWS = BOARD_VIEWS + 1
+    	 WHERE BOARD_NO = #{boardNo}
+    	   AND BOARD_TYPE = #{boardType}
+    </update>
+    
+    <!-- 게시글 상세 조회 -->
+    <select id="selectDetailList" resultMap="adoptListSet">
     	SELECT BOARD_TITLE,
     		   MEMBER_ID,
     		   BOARD_DATE,
     		   BOARD_VIEWS,
     		   FILE_PATH || CHANGE_NAME AS "TITLE_IMG",
     		   BOARD_DETAIL
-    	  FROM SALE_MISSING
+    	  FROM SALE_MISSING SM
     	  JOIN ATTACHMENT_ADOPT ON (REF_ANO = BOARD_NO)
-    	 WHERE BOARD_NO = #{bno}
-    	   AND BOARD_TYPE = #{boardType}
+    	 WHERE BOARD_NO = #{boardNo}
+    	   AND SM.BOARD_TYPE = #{boardType}
     </select>
 </mapper>
