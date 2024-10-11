@@ -1,0 +1,105 @@
+body * {
+    box-sizing: border-box;
+}
+
+body {
+    
+    height: 100vh;
+    width: 1000px;
+    min-width: 1000px; /* 최소 너비 설정 */
+    box-sizing: border-box;
+}
+
+#body-wrap{
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    margin: auto; /* 가운데로  */
+}
+
+/* -------- detail css 잠시 가져옴 ---------*/
+#headTitle{
+    margin: 2px;
+}
+
+#headHr{
+    margin: 0px;
+    border: none;       
+    border-top: 3px solid rgb(3, 3, 3); 
+}
+
+table {
+    border-collapse: collapse;
+}
+
+table tr{
+    border: 1px solid rgb(203, 202, 202);
+}
+
+table tr td{
+    border:none;
+    padding: 7px;
+
+}
+
+ table tr td:first-child{ /* 테이블의 첫번째 td */
+    background-color: rgba(232, 228, 228, 0.661);
+    width: 150px;
+    text-align: right;
+    font-weight: 600;
+    padding-right: 10px;
+    /* padding-right: ; */
+}
+
+table tr td:nth-child(2) {
+    padding-left: 10px;
+    width: 568px;
+}
+
+
+
+#purchaser-table tr td:first-child{ /* 구매자 정보의 first td */
+    background-color: rgba(232, 228, 228, 0.661);
+    width: 150px;
+    text-align: right;
+}
+
+#payInfo-table tr td:first-child{ /* 결제 정보의 first td */
+    background-color: rgba(232, 228, 228, 0.661);
+    width: 150px;
+    text-align: right;
+}
+
+#pay-method{
+    width: 100%;
+}
+
+form{
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    /* align-self: self-start; */
+}
+
+#kaobtn{
+    height: 25px;
+    width: 100px;
+    background: #fee500;
+    color: #000; 
+    border: 1px solid black;
+    border-radius: 10px; 
+}
+
+#payment-btn{
+    width: 200px;
+    height: 30px;
+    border: none;
+    background-color: rgb(215, 215, 215);
+    border-radius: 5px 5px 5px 5px;
+    font-weight: 600;
+    align-self: center;
+}
+
+h4{
+    text-align: start;
+}

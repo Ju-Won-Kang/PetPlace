@@ -34,6 +34,15 @@
   </servlet-mapping>
   <servlet>
     <description></description>
+    <display-name>shoppingSearch.do</display-name>
+    <servlet-name>shoppingSearch.do</servlet-name>
+    <servlet-class>com.petplace.shopping.controller.ShoppingSearchController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>shoppingSearch.do</servlet-name>
+    <url-pattern>/shoppingSearch.do</url-pattern>
+  </servlet-mapping>
+  <servlet>
     <display-name>communityWrite.do</display-name>
     <servlet-name>communityWrite.do</servlet-name>
     <servlet-class>com.petplace.community.controller.CommunityEnrollController</servlet-class>
@@ -61,5 +70,65 @@
   <servlet-mapping>
     <servlet-name>communityDetail.do</servlet-name>
     <url-pattern>/communityDetail.do</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>communitySearchList.do</display-name>
+    <servlet-name>communitySearchList.do</servlet-name>
+    <servlet-class>com.petplace.community.controller.CommunitySearchListController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>communitySearchList.do</servlet-name>
+    <url-pattern>/communitySearchList.do</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>communityGood.do</display-name>
+    <servlet-name>communityGood.do</servlet-name>
+    <servlet-class>com.petplace.community.controller.CommunityGoodController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>communityGood.do</servlet-name>
+    <url-pattern>/communityGood.do</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>communityBad.do</display-name>
+    <servlet-name>communityBad.do</servlet-name>
+    <servlet-class>com.petplace.community.controller.CommunityBadController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>communityBad.do</servlet-name>
+    <url-pattern>/communityBad.do</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>commentInsert.do</display-name>
+    <servlet-name>commentInsert.do</servlet-name>
+    <servlet-class>com.petplace.community.controller.CommentInsertController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>commentInsert.do</servlet-name>
+    <url-pattern>/commentInsert.do</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>communityListDay.do</display-name>
+    <servlet-name>communityListDay.do</servlet-name>
+    <servlet-class>com.petplace.community.controller.CommunityListDayController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>communityListDay.do</servlet-name>
+    <url-pattern>/communityListDay.do</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>selectCommunityWeek.do</display-name>
+    <servlet-name>selectCommunityWeek.do</servlet-name>
+    <servlet-class>com.petplace.community.controller.CommunityListWeekController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>selectCommunityWeek.do</servlet-name>
+    <url-pattern>/selectCommunityWeek.do</url-pattern>
   </servlet-mapping>
 </web-app>

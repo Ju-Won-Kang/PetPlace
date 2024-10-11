@@ -1,23 +1,24 @@
 package com.petplace.community.model.dao;
 
-import static com.petplace.common.JDBCTemplate.close;
-
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import org.apache.ibatis.session.RowBounds;
 import org.apache.ibatis.session.SqlSession;
 
 import com.petplace.common.PageInfo;
+import com.petplace.community.model.vo.BoardComment;
 import com.petplace.community.model.vo.Community;
 import com.petplace.community.model.vo.CommunityAttachment;
 
 public class CommunityDao {
 	
 	public int selectListCount(SqlSession sqlSession) {
-		return sqlSession.selectOne("communityMapper.selectListCount");
+		return sqlSession.selectOne("communityMapper.selectListAllCount");
+	}
+	
+	public int selectListCount(SqlSession sqlSession, String communityCategory) {
+		return sqlSession.selectOne("communityMapper.selectListCount", communityCategory);
 	}
 	
 	public ArrayList<Community> selectList(SqlSession sqlSession, PageInfo pi) {
@@ -25,7 +26,31 @@ public class CommunityDao {
 		int limit = pi.getBoardLimit();
 		RowBounds rowBounds = new RowBounds(offset, limit);
 		
-		return (ArrayList)sqlSession.selectList("communityMapper.selectList", null, rowBounds);
+		return (ArrayList)sqlSession.selectList("communityMapper.selectListAll", null, rowBounds);
+	}
+	
+	public ArrayList<Community> selectList(SqlSession sqlSession, PageInfo pi, String communityCategory) {
+		int offset = (pi.getCurrentPage() - 1) * pi.getBoardLimit();
+		int limit = pi.getBoardLimit();
+		RowBounds rowBounds = new RowBounds(offset, limit);
+		
+		return (ArrayList)sqlSession.selectList("communityMapper.selectList", communityCategory, rowBounds);
+	}
+	
+	public ArrayList<Community> selectGoodList(SqlSession sqlSession, PageInfo pi) {
+		int offset = (pi.getCurrentPage() - 1) * pi.getBoardLimit();
+		int limit = pi.getBoardLimit();
+		RowBounds rowBounds = new RowBounds(offset, limit);
+		
+		return (ArrayList)sqlSession.selectList("communityMapper.selectGoodListAll", null, rowBounds);
+	}
+	
+	public ArrayList<Community> selectGoodList(SqlSession sqlSession, PageInfo pi, String communityCategory) {
+		int offset = (pi.getCurrentPage() - 1) * pi.getBoardLimit();
+		int limit = pi.getBoardLimit();
+		RowBounds rowBounds = new RowBounds(offset, limit);
+		
+		return (ArrayList)sqlSession.selectList("communityMapper.selectGoodList", communityCategory, rowBounds);
 	}
 	
 	public int insertCommunity(SqlSession sqlSession, Community c) {
@@ -44,7 +69,85 @@ public class CommunityDao {
 		return (Community)sqlSession.selectOne("communityMapper.selectCommunity", communityNo);
 	}
 	
+	public int selectSearchCount(SqlSession sqlSession, String keyword) {
+		return sqlSession.selectOne("communityMapper.selectSearchAllCount", keyword);
+	}
 	
+	public int selectSearchCount(SqlSession sqlSession, HashMap<String, String> map) {
+		return sqlSession.selectOne("communityMapper.selectSearchCount", map);
+	}
+	
+	public ArrayList<Community> selectSearchList(SqlSession sqlSession, PageInfo pi, String keyword) {
+		int offset = (pi.getCurrentPage() - 1) * pi.getBoardLimit();
+		int limit = pi.getBoardLimit();
+		RowBounds rowBounds = new RowBounds(offset, limit);
+
+		return (ArrayList)sqlSession.selectList("communityMapper.selectSearchListAll", keyword, rowBounds);
+	}
+
+	public ArrayList<Community> selectSearchList(SqlSession sqlSession, PageInfo pi, HashMap<String, String> map) {
+		int offset = (pi.getCurrentPage() - 1) * pi.getBoardLimit();
+		int limit = pi.getBoardLimit();
+		RowBounds rowBounds = new RowBounds(offset, limit);
+		
+		return (ArrayList)sqlSession.selectList("communityMapper.selectSearchList", map, rowBounds);
+	}
+	
+	public ArrayList<Community> selectSearchGoodList(SqlSession sqlSession, PageInfo pi, String keyword) {
+		int offset = (pi.getCurrentPage() - 1) * pi.getBoardLimit();
+		int limit = pi.getBoardLimit();
+		RowBounds rowBounds = new RowBounds(offset, limit);
+
+		return (ArrayList)sqlSession.selectList("communityMapper.selectSearchGoodListAll", keyword, rowBounds);
+	}
+
+	public ArrayList<Community> selectSearchGoodList(SqlSession sqlSession, PageInfo pi, HashMap<String, String> map) {
+		int offset = (pi.getCurrentPage() - 1) * pi.getBoardLimit();
+		int limit = pi.getBoardLimit();
+		RowBounds rowBounds = new RowBounds(offset, limit);
+		
+		return (ArrayList)sqlSession.selectList("communityMapper.selectSearchGoodList", map, rowBounds);
+	}
+	
+	public CommunityAttachment selectCommunityAt(SqlSession sqlSession, int communityNo) {
+		return (CommunityAttachment)sqlSession.selectOne("communityMapper.selectCommunityAt", communityNo);
+	}
+	
+	public int deleteCommunity(SqlSession sqlSession, int communityNo) {
+		return sqlSession.update("communityMapper.deleteCommunity", communityNo);
+	}
+	
+	public int deleteCommunityAt(SqlSession sqlSession, int communityNo) {
+		return sqlSession.update("communityMapper.deleteCommunityAt", communityNo);
+	}
+	
+	public int communityGood(SqlSession sqlSession, int communityNo) {
+		return sqlSession.update("communityMapper.communityGood", communityNo);
+	}
+	
+	public int communityBad(SqlSession sqlSession, int communityNo) {
+		return sqlSession.update("communityMapper.communityBad", communityNo);
+	}
+	
+	public int insertComment(SqlSession sqlSession, BoardComment bc) {
+		return sqlSession.update("communityMapper.insertComment", bc);
+	}
+	
+	public ArrayList<BoardComment> selectCommentList(SqlSession sqlSession, int communityNo){
+		return (ArrayList)sqlSession.selectList("communityMapper.selectCommentList", communityNo);
+	}
+	
+	public ArrayList<Community> selectCommunityDay(SqlSession sqlSession) {
+		RowBounds rowBounds = new RowBounds(0, 5);
+		
+		return (ArrayList)sqlSession.selectList("communityMapper.selectCommunityDay", null, rowBounds);
+	}
+	
+	public ArrayList<Community> selectCommunityWeek(SqlSession sqlSession) {
+		RowBounds rowBounds = new RowBounds(0, 5);
+		
+		return (ArrayList)sqlSession.selectList("communityMapper.selectCommunityWeek", null, rowBounds);
+	}
 //	public int insertCommunity(Connection conn, Community c) {
 //		int result = 0;
 //		

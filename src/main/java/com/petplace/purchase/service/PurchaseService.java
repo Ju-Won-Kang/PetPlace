@@ -22,4 +22,6 @@ public interface PurchaseService {
     ArrayList<PurchaseList> selectPurchaseList(PageInfo pi);
 
     int insertWayBill(int purchaseNo, String wayBill);
+    
+
 }
