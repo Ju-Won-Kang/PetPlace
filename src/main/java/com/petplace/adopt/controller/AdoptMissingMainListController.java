@@ -34,7 +34,7 @@ public class AdoptMissingMainListController extends HttpServlet {
 		AdoptService aService = new AdoptServiceImpl();
 		System.out.println("Ajaxstart");
 		ArrayList<Adopt> list = aService.selectMissingMainList();
-		System.out.println("Ajaxend" + list);
+		System.out.println("missingAjaxend" + list);
 		
 		response.setContentType("application/json; charset=utf-8");
 		new Gson().toJson(list, response.getWriter());

@@ -49,11 +49,16 @@ public class AdoptDao {
 	
 	// 메인페이지 유기/실종
 	public ArrayList<Adopt> selectMissingMainList(SqlSession sqlSession){
-		return (ArrayList)sqlSession.selectList("adoptMapper.selectMissingMainList");
+		RowBounds rowBounds = new RowBounds(0, 8);
+		return (ArrayList)sqlSession.selectList("adoptMapper.selectMissingMainList", null, rowBounds);
 	}
 	
 	// 메인페이지 분양
 	public ArrayList<Adopt> selectDistributeMainList(SqlSession sqlSession){
-		return (ArrayList)sqlSession.selectList("adoptMapper.selectDistributeMainList");
+		RowBounds rowBounds = new RowBounds(0, 10);
+		
+		ArrayList<Adopt> list = (ArrayList)sqlSession.selectList("adoptMapper.selectDistributeMainList", null, rowBounds);
+		System.out.println("disDao" + list);
+		return list;
 	}
 }

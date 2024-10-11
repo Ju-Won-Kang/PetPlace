@@ -82,6 +82,7 @@
     <url-pattern>/adoptEnrollForm.do</url-pattern>
   </servlet-mapping>
   <servlet>
+    <description></description>
     <display-name>communitySearchList.do</display-name>
     <servlet-name>communitySearchList.do</servlet-name>
     <servlet-class>com.petplace.community.controller.CommunitySearchListController</servlet-class>
@@ -159,6 +160,8 @@
   <servlet-mapping>
     <servlet-name>adoptDistributeMainList.do</servlet-name>
     <url-pattern>/adoptDistributeMainList.do</url-pattern>
+  </servlet-mapping>
+  <servlet>  
     <display-name>cUpdate.do</display-name>
     <servlet-name>cUpdate.do</servlet-name>
     <servlet-class>com.petplace.community.controller.CommunityUpdateController</servlet-class>

@@ -102,7 +102,7 @@ public class AdoptServiceImpl implements AdoptService{
 		SqlSession sqlSession = Template.getSqlSession();
 		
 		ArrayList<Adopt> list = aDao.selectDistributeMainList(sqlSession);
-		
+		System.out.println("disSer" + list);
 		sqlSession.close();
 		return list;
 	}

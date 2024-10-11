@@ -109,16 +109,14 @@ a {
 
 #adopt-img .swiper-slide img {
     display: block;
-    width: 100%;
-    height: 100%;
     object-fit: contain;
     margin: 0 auto;
 }
 
 #adopt-img .test3-text {
     width: 50%;
-    height: 100%;
-    padding-left: 15px;
+    height: 85%;
+    padding-left: 5px;
     display: flex;
     align-items: center;
 }
@@ -379,8 +377,8 @@ a {
 
 #missing-img-text .swiper-slide img {
     display: block;
-    width: 70%;
-    height: 70%;
+    width: 200px;
+    height: 200px;
     object-fit: contain;
     margin: 0 auto;
 }
@@ -507,10 +505,25 @@ a {
     margin: auto;
 }
 
-.test{
+.test3{
     width: 200px;
     height: 190px;
-    margin-top: 20px;
+}
+
+#missing-area a{
+    display: flex;
+}
+
+#missing-area p{
+    width: 250px;
+    height: 200px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+
+.test{
+    display: flex;
+    align-items: center;
 }
 
 #distribute-area a{
@@ -518,8 +531,13 @@ a {
 }
 
 #distribute-area p{
-    width: 250px;
-    height: 190px;
+    width: 122px;
+    height: 140px;
     text-overflow: ellipsis;
     overflow: hidden;
+}
+
+#distribute-area img{
+    width: 130px;
+    height: 180px;
 }

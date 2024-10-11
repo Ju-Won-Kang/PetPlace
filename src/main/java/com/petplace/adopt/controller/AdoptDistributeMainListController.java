@@ -34,7 +34,7 @@ public class AdoptDistributeMainListController extends HttpServlet {
 		AdoptService aService = new AdoptServiceImpl();
 		System.out.println("Ajaxstart");
 		ArrayList<Adopt> list = aService.selectDistributeMainList();
-		System.out.println("Ajaxend" + list);
+		System.out.println("distributeAjaxend" + list);
 		
 		response.setContentType("application/json; charset=utf-8");
 		new Gson().toJson(list, response.getWriter());

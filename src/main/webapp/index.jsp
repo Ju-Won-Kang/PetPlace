@@ -28,7 +28,7 @@
                     <div id="adopt-img">
                         <!-- swiper js -->
                         <div class="swiper adoption-swiper">
-                            <div class="swiper-wrapper" id="missing-area">
+                            <div class="swiper-wrapper" id="distribute-area">
 								<div class="spinner-border"></div>
                             </div>
                             <div class="swiper-pagination"></div>
@@ -38,16 +38,16 @@
 
                         <!-- Initialize Swiper -->
                         <script>
-                            function selectMissingList(){
+                            function selectDistributeList(){
                                 $.ajax({
-                                    url : "adoptMissingMainList.do",
+                                    url : "adoptDistributeMainList.do",
                                     contentType: "application/json",
                                     data : {
                                     },
                                     success : function(res){
                                     	console.log("성공!");
                                         console.log(res);
-                                        const missingList = document.querySelector('#missing-area');
+                                        const distributeList = document.querySelector('#distribute-area');
                                         const contextPath = '<%= request.getContextPath() %>';
                                         let str = "";
                                         for (let a of res) {
@@ -66,7 +66,7 @@
                                                 + "</div>";
                                         }
                                         
-                                        missingList.innerHTML = str;
+                                        distributeList.innerHTML = str;
                                         
                                         var adoptSwiper = new Swiper(".adoption-swiper", {
                                             slidesPerView: 3,
@@ -235,7 +235,7 @@
                     <div id="missing-img-text">
                         <!-- swiper js -->
                         <div class="swiper missing-swiper">
-                            <div class="swiper-wrapper" id="distribute-area">
+                            <div class="swiper-wrapper" id="missing-area">
 								<div class="spinner-border"></div>
                             </div>
                             <div class="swiper-pagination"></div>
@@ -245,26 +245,26 @@
 
                         <!-- Initialize Swiper -->
                         <script>
-                            function selectDistributeList(){
+                            function selectMissingList(){
                                 $.ajax({
-                                    url : "adoptDistributeMainList.do",
+                                    url : "adoptMissingMainList.do",
                                     contentType: "application/json",
                                     data : {
                                     },
                                     success : function(res){
                                     	console.log("성공!");
                                         console.log(res);
-                                        const distributeList = document.querySelector('#distribute-area');
+                                        const missingList = document.querySelector('#missing-area');
                                         const contextPath = '<%= request.getContextPath() %>';
                                         let str = "";
                                         for (let a of res) {
                                         	console.log(a);
                                             str += "<div class='swiper-slide'>"
                                                 + "<a href=\"" + contextPath + "/adoptDetail.do?bno=" + a.boardNo + "&bType=" + a.boardType + "\">"
-                                                + "<div class='test3'>"
+                                                + "<div class='test'>"
                                                 + "<img src=\"" + contextPath + "/" + a.adoptImg + "\">" // contextPath 사용
                                                 + "</div>"
-                                                + "<div class='test3-text'>"
+                                                + "<div class='test-text'>"
                                                 + "<p>"
                                                 + a.boardDetail 
                                                 + "</p>"
@@ -273,7 +273,7 @@
                                                 + "</div>";
                                         }
                                         
-                                        distributeList.innerHTML = str;
+                                        missingList.innerHTML = str;
                                         
                                         var adoptdistributeSwiper = new Swiper(".missing-swiper", {
                                             slidesPerView: 1,
