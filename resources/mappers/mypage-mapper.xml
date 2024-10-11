@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mypageMapper">
+	<resultMap id="petinfoResult" type="Petinfo">
+		<result column="PET_NAME" property="petName" />
+		<result column="PET_TYPE" property="petType" />
+		<result column="PET_BIRTH" property="petBirth" />
+		<result column="PET_GENDER" property="petGender" />
+	</resultMap>
+
+	<select id="selectPetinfo" resultMap="petinfoResult">
+		SELECT PET_NAME, PET_TYPE, TO_CHAR(PET_BIRTH, 'YYYY-MM-DD') AS PET_BIRTH,
+		PET_GENDER
+		FROM pet
+		WHERE member_id = #{userId}
+	</select>
+
+</mapper>
