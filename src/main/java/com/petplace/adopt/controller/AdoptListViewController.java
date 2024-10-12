@@ -47,6 +47,8 @@ public class AdoptListViewController extends HttpServlet {
         System.out.println(list);
         request.setAttribute("list", list);
         
+        request.setAttribute("boardType", boardType);
+        
         request.setAttribute("pi", pi);
         request.getRequestDispatcher("views/adopt/adoptListView.jsp").forward(request, response);
     }

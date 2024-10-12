@@ -13,19 +13,19 @@
     <div class="community-info-content">
         <div class="community-info">
             <div>
-                <p id="community-info-title">제목${c.communityTitle}</p>
+                <p id="community-info-title">${a.boardTitle}</p>
             </div>
             <div id="community-info-two">
-                <p id="community-info-nick">작성자: ${a.memberId}</p>
-                <p id="community-info-date">작성일: ${a.boardDate}</p>
+                <p id="community-info-nick">${a.memberId}</p>
+                <p id="community-info-date">${a.boardDate}</p>
                 <p id="community-select-count">조회수 ${a.boardViews}</p>
-                <c:if test="${loginUser.memberId eq a.memberId }">
+                <c:if test="${loginUser.memberId eq a.memberId}">
                 <form id="modify-btn-form" action="adoptDetail.do">
-                	<input type="hidden" name="cno" value="${a.boardNo }">
+                	<input type="hidden" name="ano" value="${a.boardNo}">
                 	<button>수정</button>
                 </form>
                 <form action="communityDelete.do">
-                	<input type="hidden" name="cno" value="${a.boardNo }">
+                	<input type="hidden" name="ano" value="${a.boardNo}">
                 	<button>삭제</button>
                 </form>
                 </c:if>

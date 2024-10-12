@@ -230,20 +230,8 @@ td, th{
     margin: 5px 10px 0 0;
 }
 
-.page-btn{ 
-    width: 100%;
-    height: 20%;
-    text-align: center;
-    margin-top: 50px;
-}
-
-.page-btn > button{
-    width: 30px;
-    height: 30px;
-    background-color: white;
-    border: none;
-}
-
-.page-num-btn:focus{
-    background-color: rgba(218, 224, 236, 1);
+#pagenation{
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
 }

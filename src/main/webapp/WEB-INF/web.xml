@@ -143,6 +143,25 @@
   </servlet-mapping>
   <servlet>
     <description></description>
+    <display-name>adoptMissingMainList.do</display-name>
+    <servlet-name>adoptMissingMainList.do</servlet-name>
+    <servlet-class>com.petplace.adopt.controller.AdoptMissingMainListController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>adoptMissingMainList.do</servlet-name>
+    <url-pattern>/adoptMissingMainList.do</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>adoptDistributeMainList.do</display-name>
+    <servlet-name>adoptDistributeMainList.do</servlet-name>
+    <servlet-class>com.petplace.adopt.controller.AdoptDistributeMainListController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>adoptDistributeMainList.do</servlet-name>
+    <url-pattern>/adoptDistributeMainList.do</url-pattern>
+  </servlet-mapping>
+  <servlet>  
     <display-name>cUpdate.do</display-name>
     <servlet-name>cUpdate.do</servlet-name>
     <servlet-class>com.petplace.community.controller.CommunityUpdateController</servlet-class>
