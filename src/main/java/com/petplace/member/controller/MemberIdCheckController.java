@@ -22,6 +22,7 @@ public class MemberIdCheckController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String checkId = request.getParameter("checkId");
+        System.out.println(checkId);
         int checkIdCount = new MemberService().checkId(checkId);
         if(checkIdCount > 0){
             response.getWriter().print("NNNNN");

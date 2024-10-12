@@ -96,7 +96,7 @@ public class CommunityInsertController extends HttpServlet {
 						//CommunityAttachment atC = new CommunityAttachment();
 						atC.setOriginName(originName);
 						atC.setChangeName(changeName);
-						atC.setFilePath("/images/community_upfile/");
+						atC.setFilePath("images/community_upfile/");
 						
 						//list.add(atC);
 					}
@@ -107,14 +107,14 @@ public class CommunityInsertController extends HttpServlet {
 			HttpSession session = request.getSession();
 			if(result > 0) {//성공
 				session.setAttribute("alertMsg", "커뮤니티 게시글 등록에 성공했습니다.");
-				response.sendRedirect(request.getContextPath() + "/communityList.do?cpage=1");
+				response.sendRedirect(request.getContextPath() + "/communityList.do?cpage=1&category=all&array=1");
 			} else { //실패 -> 업로드된 파일 삭제해주고 에러페이지
 				 
 				 //for(CommunityAttachment at : list) {
 					 new File(savePath + atC.getChangeName()).delete();
 				 //}
 				 session.setAttribute("alertMsg", "커뮤니티 게시글 등록에 실패하였습니다.");
-				 response.sendRedirect(request.getContextPath() + "/communityList.do?cpage=1");
+				 response.sendRedirect(request.getContextPath() + "/communityList.do?cpage=1&category=all&array=1");
 			}
 		}
 	}

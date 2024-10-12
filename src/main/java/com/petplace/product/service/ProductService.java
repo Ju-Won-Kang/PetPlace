@@ -29,6 +29,11 @@ import static com.petplace.common.JDBCTemplate.getConnection;
  * 2024. 9. 24.        jun       최초 생성
  */
 public class ProductService {
+    /**
+     * 현재 등록된 카테고리 리스트를 조회하는 메서드
+     *
+     * @return 조회된 카테고리 리스트
+     */
     public ArrayList<Category> selectCategoryList() {
         SqlSession sqlSession = Template.getSqlSession();
         ArrayList<Category> cList = new ProductDao().selectCategoryList(sqlSession);
@@ -49,7 +54,7 @@ public class ProductService {
 
         int result1 = pDao.insertProduct(sqlSession, p);
         int result2 = 1;
-        for (AttachmentProduct at : list){
+        for (AttachmentProduct at : list) {
             result2 *= pDao.enrollAttachmentList(sqlSession, at);
         }
         System.out.println(result2);
@@ -133,7 +138,7 @@ public class ProductService {
 
         if (result1 > 0) {
             result2 = new ProductDao().deleteAttachmentProduct(sqlSession, p.getProductNo());
-            for(AttachmentProduct at : list){
+            for (AttachmentProduct at : list) {
                 HashMap<String, Object> map = new HashMap<>();
                 map.put("refPNo", p.getProductNo());
                 map.put("originName", at.getOriginName());
@@ -162,6 +167,7 @@ public class ProductService {
 
     /**
      * 상품 Delete, 첨부파일 Delete(Update로 STATUS = 'N'으로 변경)
+     *
      * @param productNo 삭제하고자하는 상품 번호
      * @return
      */
@@ -173,7 +179,7 @@ public class ProductService {
         int result2 = 0;
         if (result1 > 0) {
             result2 = new ProductDao().disableAttachmentProduct(sqlSession, productNo);
-            if(result2 > 0){
+            if (result2 > 0) {
                 sqlSession.commit();
             }
         } else {

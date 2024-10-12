@@ -24,22 +24,151 @@
 		<result column="FILE_PATH" property="filePath"/>
 		<result column="UPLOAD_DATE" property="uploadDate"/>
 	</resultMap>
+	<resultMap id="commentResultSet" type="BoardComment">
+		<result column="COMMENT_NO" property="commentNo"/>
+		<result column="COMMUNITY_NO" property="communityNo"/>
+		<result column="BOARD_NO" property="boardNo"/>
+		<result column="MEMBER_ID" property="memberId"/>
+		<result column="COMMENT_DETAIL" property="commentDetail"/>
+		<result column="COMMENT_DATE" property="commentDate"/>
+		<result column="NICKNAME" property="nickname"/>
+	</resultMap>
 	
+	<select id="selectListAllCount" resultType="_int">
+		SELECT COUNT(*) AS COUNT
+		  FROM COMMUNITY
+		WHERE COMMUNITY_STATUS = 'Y'
+	</select>
 	<select id="selectListCount" resultType="_int">
 		SELECT COUNT(*) AS COUNT
 		  FROM COMMUNITY
+		 WHERE COMMUNITY_CATEGORY = #{communityCategory}
+		   AND COMMUNITY_STATUS = 'Y'
+	</select>
+	<select id="selectSearchAllCount" resultType="_int">
+		SELECT COUNT(*) AS COUNT
+		  FROM COMMUNITY
+		 WHERE COMMUNITY_TITLE LIKE '%' || #{keyword} || '%'
+		   AND COMMUNITY_STATUS = 'Y'
+	</select>
+	<select id="selectSearchCount" resultType="_int">
+		SELECT COUNT(*) AS COUNT
+		  FROM COMMUNITY
+		 WHERE COMMUNITY_CATEGORY = #{category}
+  		   AND COMMUNITY_TITLE LIKE '%' || #{keyword} || '%'
+  		   AND COMMUNITY_STATUS = 'Y'
+	</select>
+	<select id="selectListAll" resultMap="communityResultSet">
+		SELECT COMMUNITY_NO,
+			   NICKNAME,
+			   COMMUNITY_CATEGORY,
+			   COMMUNITY_TITLE,
+			   TO_CHAR(COMMUNITY_DATE, 'YYYY-MM-DD') AS COMMUNITY_DATE,
+			   COMMUNITY_VIEWS,
+			   COMMUNITY_GOOD
+		  FROM COMMUNITY C
+		  JOIN MEMBER USING(MEMBER_ID)
+		 WHERE C.COMMUNITY_STATUS = 'Y'
+		 ORDER BY COMMUNITY_NO DESC
 	</select>
 	<select id="selectList" resultMap="communityResultSet">
 		SELECT COMMUNITY_NO,
 			   NICKNAME,
 			   COMMUNITY_CATEGORY,
 			   COMMUNITY_TITLE,
-			   COMMUNITY_DATE,
+			   TO_CHAR(COMMUNITY_DATE, 'YYYY-MM-DD') AS COMMUNITY_DATE,
 			   COMMUNITY_VIEWS,
 			   COMMUNITY_GOOD
 		  FROM COMMUNITY C
 		  JOIN MEMBER USING(MEMBER_ID)
+		 WHERE COMMUNITY_CATEGORY = #{communityCategory}
+		   AND COMMUNITY_STATUS = 'Y'
 		 ORDER BY COMMUNITY_NO DESC
+	</select>
+	<select id="selectGoodListAll" resultMap="communityResultSet">
+		SELECT COMMUNITY_NO,
+			   NICKNAME,
+			   COMMUNITY_CATEGORY,
+			   COMMUNITY_TITLE,
+			   TO_CHAR(COMMUNITY_DATE, 'YYYY-MM-DD') AS COMMUNITY_DATE,
+			   COMMUNITY_VIEWS,
+			   COMMUNITY_GOOD
+		  FROM COMMUNITY C
+		  JOIN MEMBER USING(MEMBER_ID)
+		 WHERE C.COMMUNITY_STATUS = 'Y'
+		 ORDER BY COMMUNITY_GOOD DESC
+	</select>
+	<select id="selectGoodList" resultMap="communityResultSet">
+		SELECT COMMUNITY_NO,
+			   NICKNAME,
+			   COMMUNITY_CATEGORY,
+			   COMMUNITY_TITLE,
+			   TO_CHAR(COMMUNITY_DATE, 'YYYY-MM-DD') AS COMMUNITY_DATE,
+			   COMMUNITY_VIEWS,
+			   COMMUNITY_GOOD
+		  FROM COMMUNITY C
+		  JOIN MEMBER USING(MEMBER_ID)
+		 WHERE COMMUNITY_CATEGORY = #{communityCategory}
+		   AND COMMUNITY_STATUS = 'Y'
+		 ORDER BY COMMUNITY_GOOD DESC
+	</select>
+	<select id="selectSearchListAll" resultMap="communityResultSet">
+		SELECT COMMUNITY_NO,
+			   NICKNAME,
+			   COMMUNITY_CATEGORY,
+			   COMMUNITY_TITLE,
+			   TO_CHAR(COMMUNITY_DATE, 'YYYY-MM-DD') AS COMMUNITY_DATE,
+			   COMMUNITY_VIEWS,
+			   COMMUNITY_GOOD
+		  FROM COMMUNITY C
+		  JOIN MEMBER USING(MEMBER_ID)
+		 WHERE COMMUNITY_TITLE LIKE '%' || #{keyword} || '%'
+		   AND COMMUNITY_STATUS = 'Y'
+		 ORDER BY COMMUNITY_NO DESC
+	</select>
+	<select id="selectSearchList" resultMap="communityResultSet">
+		SELECT COMMUNITY_NO,
+			   NICKNAME,
+			   COMMUNITY_CATEGORY,
+			   COMMUNITY_TITLE,
+			   TO_CHAR(COMMUNITY_DATE, 'YYYY-MM-DD') AS COMMUNITY_DATE,
+			   COMMUNITY_VIEWS,
+			   COMMUNITY_GOOD
+		  FROM COMMUNITY C
+		  JOIN MEMBER USING(MEMBER_ID)
+		 WHERE COMMUNITY_CATEGORY = #{category}
+  		   AND COMMUNITY_TITLE LIKE '%' || #{keyword} || '%'
+  		   AND COMMUNITY_STATUS = 'Y'
+		 ORDER BY COMMUNITY_NO DESC
+	</select>
+	<select id="selectSearchGoodListAll" resultMap="communityResultSet">
+		SELECT COMMUNITY_NO,
+			   NICKNAME,
+			   COMMUNITY_CATEGORY,
+			   COMMUNITY_TITLE,
+			  TO_CHAR(COMMUNITY_DATE, 'YYYY-MM-DD') AS COMMUNITY_DATE,
+			   COMMUNITY_VIEWS,
+			   COMMUNITY_GOOD
+		  FROM COMMUNITY C
+		  JOIN MEMBER USING(MEMBER_ID)
+		 WHERE COMMUNITY_TITLE LIKE '%' || #{keyword} || '%'
+		   AND COMMUNITY_STATUS = 'Y'
+		 ORDER BY COMMUNITY_GOOD DESC
+	</select>
+	<select id="selectSearchGoodList" resultMap="communityResultSet">
+		SELECT COMMUNITY_NO,
+			   NICKNAME,
+			   COMMUNITY_CATEGORY,
+			   COMMUNITY_TITLE,
+			   TO_CHAR(COMMUNITY_DATE, 'YYYY-MM-DD') AS COMMUNITY_DATE,
+			   COMMUNITY_VIEWS,
+			   COMMUNITY_GOOD
+		  FROM COMMUNITY C
+		  JOIN MEMBER USING(MEMBER_ID)
+		 WHERE COMMUNITY_CATEGORY = #{category}
+  		   AND COMMUNITY_TITLE LIKE '%' || #{keyword} || '%'
+  		   AND COMMUNITY_STATUS = 'Y'
+		 ORDER BY COMMUNITY_GOOD DESC
 	</select>
 	<insert id="insertCommunity" parameterType="Community">
 		INSERT
@@ -85,6 +214,25 @@
 								  SYSDATE
 								 )
 	</insert>
+	<insert id="insertCommunityAttachmentU" parameterType="CommunityAttachment">
+		INSERT
+		INTO ATTACHMENT_COMMUNITY(
+								  FILE_NO,
+								  REF_CNO,
+								  ORIGIN_NAME,
+								  CHANGE_NAME,
+								  FILE_PATH,
+								  UPLOAD_DATE
+								  )
+						   VALUES(
+								  SEQ_ACNO.NEXTVAL,
+								  #{refCno},
+								  #{originName},
+								  #{changeName},
+								  #{filePath},
+								  SYSDATE
+								 )
+	</insert>
 	<update id="increaseCount" parameterType="_int">
 		UPDATE COMMUNITY
 		   SET COMMUNITY_VIEWS = COMMUNITY_VIEWS + 1
@@ -92,11 +240,12 @@
 	</update>
 	<select id="selectCommunity" resultMap="communityResultSet">
 		SELECT COMMUNITY_NO,
+			   MEMBER_ID,
 			   NICKNAME,
 			   COMMUNITY_CATEGORY,
 			   COMMUNITY_TITLE,
 			   COMMUNITY_DETAIL,
-			   COMMUNITY_DATE,
+			   TO_CHAR(COMMUNITY_DATE, 'YYYY-MM-DD') AS COMMUNITY_DATE,
 			   COMMUNITY_VIEWS,
 			   COMMUNITY_GOOD,
 			   COMMUNITY_BAD
@@ -105,4 +254,83 @@
 		 WHERE COMMUNITY_NO = #{communityNo}
 		 ORDER BY COMMUNITY_NO DESC
 	</select>
+	<select id="selectCommunityAt" resultMap="communityAtResultSet">
+		SELECT FILE_PATH,
+			   CHANGE_NAME,
+			   ORIGIN_NAME,
+			   REF_CNO
+		  FROM ATTACHMENT_COMMUNITY
+		 WHERE REF_CNO = #{communityNo}
+		   AND STATUS = 'Y'
+	</select>
+	<update id="deleteCommunity">
+		UPDATE COMMUNITY
+		   SET COMMUNITY_STATUS = 'N'
+		 WHERE COMMUNITY_NO = #{communityNo}
+	</update>
+	<update id="deleteCommunityAt">
+		UPDATE ATTACHMENT_COMMUNITY
+		   SET STATUS = 'N'
+		 WHERE REF_CNO = #{communityNo}
+		   AND STATUS = 'Y'
+	</update>
+	<update id="communityGood">
+		UPDATE COMMUNITY
+		   SET COMMUNITY_GOOD = COMMUNITY_GOOD + 1
+		 WHERE COMMUNITY_NO = #{communityNo}
+	</update>
+	<update id="communityBad">
+		UPDATE COMMUNITY
+		   SET COMMUNITY_BAD = COMMUNITY_BAD + 1
+		 WHERE COMMUNITY_NO = #{communityNo}
+	</update>
+	<insert id="insertComment">
+		INSERT INTO BOARD_COMMENT(
+								  COMMENT_NO,
+								  COMMUNITY_NO,
+								  MEMBER_ID,
+								  COMMENT_DETAIL,
+								  COMMENT_DATE
+								  )
+						   VALUES(
+						   		  SEQ_CMNO.NEXTVAL,
+						   		  #{communityNo},
+						   		  #{memberId},
+						   		  #{commentDetail},
+						   		  SYSDATE
+								  )
+	</insert>
+	<select id="selectCommentList" resultMap="commentResultSet">
+		SELECT COMMENT_NO,
+			   COMMUNITY_NO,
+			   MEMBER_ID,
+			   COMMENT_DETAIL,
+			   COMMENT_DATE,
+			   NICKNAME
+		  FROM BOARD_COMMENT
+		  JOIN MEMBER USING(MEMBER_ID)
+		 WHERE COMMUNITY_NO = #{communityNo}
+		 ORDER BY COMMENT_NO ASC
+	</select>
+	<select id="selectCommunityDay" resultMap="communityResultSet">
+		SELECT COMMUNITY_NO,
+			   COMMUNITY_TITLE
+		  FROM COMMUNITY
+	  	 WHERE COMMUNITY_DATE BETWEEN SYSDATE - 1 AND SYSDATE
+	  ORDER BY COMMUNITY_GOOD DESC
+	</select>
+	<select id="selectCommunityWeek" resultMap="communityResultSet">
+		SELECT COMMUNITY_NO,
+			   COMMUNITY_TITLE
+		  FROM COMMUNITY
+	  	 WHERE COMMUNITY_DATE BETWEEN SYSDATE - 7 AND SYSDATE
+	  ORDER BY COMMUNITY_GOOD DESC
+	</select>
+	<update id="updateCommunity">
+		UPDATE COMMUNITY
+		   SET COMMUNITY_CATEGORY = #{communityCategory},
+		   	   COMMUNITY_TITLE = #{communityTitle},
+		   	   COMMUNITY_DETAIL = #{communityDetail}
+		 WHERE COMMUNITY_NO = #{communityNo} 
+	</update>
 </mapper>

@@ -1,12 +1,14 @@
 package com.petplace.community.service;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import org.apache.ibatis.session.SqlSession;
 
 import com.petplace.common.PageInfo;
 import com.petplace.common.Template;
 import com.petplace.community.model.dao.CommunityDao;
+import com.petplace.community.model.vo.BoardComment;
 import com.petplace.community.model.vo.Community;
 import com.petplace.community.model.vo.CommunityAttachment;
 
@@ -22,6 +24,15 @@ public class CommunityServiceImple implements CommunityService {
 		sqlSession.close();
 		return listCount;
 	}
+	
+	@Override
+	public int selectListCount(String category) {
+		SqlSession sqlSession = Template.getSqlSession();
+		int listCount = cDao.selectListCount(sqlSession, category);
+		
+		sqlSession.close();
+		return listCount;
+	}
 
 	@Override
 	public ArrayList<Community> selectList(PageInfo pi) {
@@ -32,6 +43,32 @@ public class CommunityServiceImple implements CommunityService {
 		return list;
 	}
 
+	@Override
+	public ArrayList<Community> selectList(PageInfo pi, String category) {
+		SqlSession sqlSession = Template.getSqlSession();
+		ArrayList<Community> list = cDao.selectList(sqlSession, pi, category);
+		
+		sqlSession.close();
+		return list;
+	}
+	
+	@Override
+	public ArrayList<Community> selectGoodList(PageInfo pi) {
+		SqlSession sqlSession = Template.getSqlSession();
+		ArrayList<Community> list = cDao.selectGoodList(sqlSession, pi);
+		
+		sqlSession.close();
+		return list;
+	}
+
+	@Override
+	public ArrayList<Community> selectGoodList(PageInfo pi, String category) {
+		SqlSession sqlSession = Template.getSqlSession();
+		ArrayList<Community> list = cDao.selectGoodList(sqlSession, pi, category);
+		
+		sqlSession.close();
+		return list;
+	}
 	@Override
 	public int insertCommunity(Community c, CommunityAttachment atC) {
 		SqlSession sqlSession = Template.getSqlSession();
@@ -64,50 +101,187 @@ public class CommunityServiceImple implements CommunityService {
 		} else {
 			sqlSession.rollback();
 		}
+		sqlSession.close();
 		return c;
 	}
-	
-	
-/*	
-	public int selectListCount() {
-		Connection conn = getConnection();
+
+	@Override
+	public int selectSearchCount(String keyword) {
+		SqlSession sqlSession = Template.getSqlSession();
+		int listCount = cDao.selectSearchCount(sqlSession, keyword);
 		
-		int listCount = new CommunityDao().selectListCount(conn);
-		close(conn);
-		
+		sqlSession.close();
 		return listCount;
 	}
-	
-	public ArrayList<Community> selectList(PageInfo pi) {
-		Connection conn = getConnection();
+
+	@Override
+	public int selectSearchCount(HashMap<String, String> map) {
+		SqlSession sqlSession = Template.getSqlSession();
+		int listCount = cDao.selectSearchCount(sqlSession, map);
 		
-		ArrayList<Community> list = new CommunityDao().selectList(conn, pi);
-		close(conn);
+		sqlSession.close();
+		return listCount;
+	}
+
+	@Override
+	public ArrayList<Community> selectSearchList(PageInfo pi, String keyword) {
+		SqlSession sqlSession = Template.getSqlSession();
+		ArrayList<Community> list = cDao.selectSearchList(sqlSession, pi, keyword);
+		
+		sqlSession.close();
+		return list;
+	}
+
+	@Override
+	public ArrayList<Community> selectSearchList(PageInfo pi, HashMap<String, String> map) {
+		SqlSession sqlSession = Template.getSqlSession();
+		ArrayList<Community> list = cDao.selectSearchList(sqlSession, pi, map);
+		
+		sqlSession.close();
+		return list;
+	}
+	
+	@Override
+	public ArrayList<Community> selectSearchGoodList(PageInfo pi, String keyword) {
+		SqlSession sqlSession = Template.getSqlSession();
+		ArrayList<Community> list = cDao.selectSearchGoodList(sqlSession, pi, keyword);
+		
+		sqlSession.close();
+		return list;
+	}
+
+	@Override
+	public ArrayList<Community> selectSearchGoodList(PageInfo pi, HashMap<String, String> map) {
+		SqlSession sqlSession = Template.getSqlSession();
+		ArrayList<Community> list = cDao.selectSearchGoodList(sqlSession, pi, map);
+		
+		sqlSession.close();
+		return list;
+	}
+
+	@Override
+	public CommunityAttachment selectCommunityAt(int communityNo) {
+		SqlSession sqlSession = Template.getSqlSession();
+		CommunityAttachment atC = cDao.selectCommunityAt(sqlSession, communityNo);
+		
+		sqlSession.close();
+		return atC;
+	}
+
+	@Override
+	public Community selectCommunity(int communityNo) {
+		SqlSession sqlSession = Template.getSqlSession();
+		Community c = cDao.selectCommunity(sqlSession, communityNo);
+		
+		sqlSession.close();
+		return c;
+	}
+
+	@Override
+	public int deleteCommunity(int communityNo) {
+		SqlSession sqlSession = Template.getSqlSession();
+		int result = cDao.deleteCommunity(sqlSession, communityNo);
+		if(result > 0) {
+			sqlSession.commit();
+		} else {
+			sqlSession.rollback();
+		}
+		sqlSession.close();
+		return result;
+	}
+
+	@Override
+	public int deleteCommunityAt(int communityNo) {
+		SqlSession sqlSession = Template.getSqlSession();
+		int result = cDao.deleteCommunityAt(sqlSession, communityNo);
+		if(result > 0) {
+			sqlSession.commit();
+		} else {
+			sqlSession.rollback();
+		}
+		sqlSession.close();
+		return result;
+	}
+
+	@Override
+	public int communityGood(int communityNo) {
+		SqlSession sqlSession = Template.getSqlSession();
+		int result = cDao.communityGood(sqlSession, communityNo);
+		if(result > 0) {
+			sqlSession.commit();
+		} else {
+			sqlSession.rollback();
+		}
+		sqlSession.close();
+		return result;
+	}
+
+	@Override
+	public int communityBad(int communityNo) {
+		SqlSession sqlSession = Template.getSqlSession();
+		int result = cDao.communityBad(sqlSession, communityNo);
+		if(result > 0) {
+			sqlSession.commit();
+		} else {
+			sqlSession.rollback();
+		}
+		sqlSession.close();
+		return result;
+	}
+
+	@Override
+	public int insertComment(BoardComment bc) {
+		SqlSession sqlSession = Template.getSqlSession();
+		int result = cDao.insertComment(sqlSession, bc);
+		if(result > 0) {
+			sqlSession.commit();
+		} else {
+			sqlSession.rollback();
+		}
+		sqlSession.close();
+		return result;
+	}
+
+	@Override
+	public ArrayList<BoardComment> selectCommentList(int communityNo) {
+		SqlSession sqlSession = Template.getSqlSession();
+		ArrayList<BoardComment> list = cDao.selectCommentList(sqlSession, communityNo);
+		
+		sqlSession.close();
+		
+		return list;
+	}
+
+	@Override
+	public ArrayList<Community> selectCommunityDay() {
+		SqlSession sqlSession = Template.getSqlSession();
+		ArrayList<Community> list = cDao.selectCommunityDay(sqlSession);
+		
+		sqlSession.close();
 		
 		return list;
 	}
 	
-	public int insertCommunity(Community c, ArrayList<CommunityAttachment> list) {
-		Connection conn = getConnection();
+	@Override
+	public ArrayList<Community> selectCommunityWeek() {
+		SqlSession sqlSession = Template.getSqlSession();
+		ArrayList<Community> list = cDao.selectCommunityWeek(sqlSession);
 		
-		CommunityDao bDao = new CommunityDao();
-		int result1 = bDao.insertCommunity(conn, c);
-		int result2 = 1;
+		sqlSession.close();
 		
-		if(list != null) {
-			result2 = bDao.insertCommunityAttachmentList(conn, list);
-		}
-		
-		if(result1 > 0 && result2 > 0) {
-			commit(conn);
-		} else {
-			rollback(conn);
-		}
-				
-		close(conn);
-		
-		return result1 * result2;
+		return list;
 	}
-	
-*/
+
+	@Override
+	public int updateCommunity(Community c, CommunityAttachment atC) {
+		SqlSession sqlSession = Template.getSqlSession();
+		int result = cDao.updateCommunity(sqlSession, c, atC);
+		if(result > 0) {
+			sqlSession.commit();
+		} else {
+			sqlSession.rollback();
+		}
+		sqlSession.close();
+		return result;
+	}
 }

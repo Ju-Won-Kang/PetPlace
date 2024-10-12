@@ -28,21 +28,12 @@ import java.util.Properties;
  * 2024. 9. 29.        jun       최초 생성
  */
 public class ReviewDao {
-    private Properties prop = new Properties();
-
-    public ReviewDao() {
-        String filePath = ReviewDao.class.getResource("/db/sql/review-mapper.xml").getPath();
-        try {
-            prop.loadFromXML(new FileInputStream(filePath));
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-    }
 
     /**
      * 리뷰 listCount 조회
-     * @param conn
-     * @return
+     *
+     * @param sqlSession sqlSession 객체
+     * @return 총 리뷰 개수
      */
     public int selectListCount(SqlSession sqlSession) {
         return sqlSession.selectOne("reviewMapper.selectListCount");
@@ -50,22 +41,24 @@ public class ReviewDao {
 
     /**
      * 리뷰 list 조회
-     * @param conn
-     * @param pi
-     * @return
+     *
+     * @param sqlSession sqlSession 객체
+     * @param pi PageInfo 객체
+     * @return 리뷰 목록 리스트 객체
      */
     public ArrayList<ReviewList> selectReviewList(SqlSession sqlSession, PageInfo pi) {
         int offset = (pi.getCurrentPage() - 1) * pi.getBoardLimit();
         int limit = pi.getBoardLimit();
         RowBounds rowBounds = new RowBounds(offset, limit);
-        return (ArrayList)sqlSession.selectList("reviewMapper.selectReviewList", null, rowBounds);
+        return (ArrayList) sqlSession.selectList("reviewMapper.selectReviewList", null, rowBounds);
     }
 
     /**
      * 리뷰 삭제
-     * @param conn
-     * @param reviewNo 삭제하고자하는 리뷰 번호
-     * @return
+     *
+     * @param sqlSession sqlSession 객체
+     * @param reviewNo   삭제할 리뷰 번호
+     * @return 결과값
      */
     public int deleteReview(SqlSession sqlSession, int reviewNo) {
         return sqlSession.delete("reviewMapper.deleteReview", reviewNo);

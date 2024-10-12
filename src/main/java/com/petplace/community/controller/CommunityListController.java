@@ -36,11 +36,35 @@ public class CommunityListController extends HttpServlet {
 		
 		String category = request.getParameter("category");
 		int currentPage = Integer.parseInt(request.getParameter("cpage"));
-		int listCount = cService.selectListCount(); //총 게시글 수
+		int arrayPage = Integer.parseInt(request.getParameter("array"));
+		
+		int listCount = 0;
+		
+		if(category.equals("all")) {
+			listCount = cService.selectListCount(); //총 게시글 수
+		} else {
+			listCount = cService.selectListCount(category); //총 게시글 수
+		}
+		
+		System.out.println(listCount);
 		
 		PageInfo pi = Template.getPageInfo(listCount, currentPage, 10, 10);
 		
-		ArrayList<Community> list = cService.selectList(pi);
+		ArrayList<Community> list = null;
+		if(arrayPage == 1) {
+			if(category.equals("all")) {
+				list = cService.selectList(pi);
+			} else {
+				list = cService.selectList(pi, category);
+			}
+		} else {
+			if(category.equals("all")) {
+				list = cService.selectGoodList(pi);
+			} else {
+				list = cService.selectGoodList(pi, category);
+			}
+		}
+		
 		
 		request.setAttribute("list", list);
 		request.setAttribute("pi", pi);

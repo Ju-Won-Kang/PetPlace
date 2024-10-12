@@ -3,6 +3,7 @@ package com.petplace.community.controller;
 import java.io.IOException;
 
 import com.petplace.community.model.vo.Community;
+import com.petplace.community.model.vo.CommunityAttachment;
 import com.petplace.community.service.CommunityService;
 import com.petplace.community.service.CommunityServiceImple;
 
@@ -34,11 +35,13 @@ public class CommunityDetailController extends HttpServlet {
 		CommunityService cService = new CommunityServiceImple();
 		
 		Community c = cService.increaseCount(communityNo);
+		CommunityAttachment atC = cService.selectCommunityAt(communityNo);
 		
 		if(c != null) {
-			//ArrayList<Reply> list = bService.selectReplyList(boardNo);
-			
-			//request.setAttribute("list", list);
+			if(atC != null) {
+				
+				request.setAttribute("atC", atC);
+			}
 			request.setAttribute("c", c);
 			request.getRequestDispatcher("views/community/communityDetail.jsp").forward(request, response);
 		} else {
