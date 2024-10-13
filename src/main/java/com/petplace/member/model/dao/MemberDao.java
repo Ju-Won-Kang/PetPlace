@@ -15,20 +15,7 @@ import com.petplace.member.model.vo.Member;
 import org.apache.ibatis.session.SqlSession;
 
 public class MemberDao {
-<<<<<<< HEAD
-	
-	
-	public Member loginMember(SqlSession sqlSession, String userId) {
-		return sqlSession.selectOne("memberMapper.selectHashedMember", userId);
-	}
-	public int enrollMember(SqlSession sqlSession, Member hashedMember){
-		return sqlSession.insert("memberMapper.enrollMember", hashedMember);
-	}
-	public int checkId(SqlSession sqlSession, String checkId){
-		System.out.println(checkId);
-		return sqlSession.selectOne("memberMapper.checkId", checkId);
-	}
-=======
+
 
     /**
      * 로그인 처리 메서드
@@ -63,6 +50,5 @@ public class MemberDao {
         System.out.println(checkId);
         return sqlSession.selectOne("memberMapper.checkId", checkId);
     }
->>>>>>> 9112c46073e4a5254abf39458db74998e1887751
 
 }

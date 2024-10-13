@@ -1,29 +1,3 @@
-<<<<<<< HEAD
-<%@ page language="java" contentType="text/html;charset=UTF-8" pageEncoding="UTF-8"%>
-  
- <%@ page import="java.sql.*" %>
- <%@ page import="java.util.ArrayList" %>
- <%@ page import="com.petplace.shopping.model.dto.ShoppingDetailList" %>
-
- <%
-    String loginAlert = (String) request.getAttribute("loginAlert");
-    if (loginAlert != null) {
- %>
-    <script>alert('<%= loginAlert %>');</script>
- <%
-    }
- %>
-
- <%
-    ArrayList<ShoppingDetailList> list = (ArrayList<ShoppingDetailList>)(request.getAttribute("product"));
-        if (list != null && !list.isEmpty()) {
-            // 리스트가 비어 있지 않을 때만 실행
-
-        for(ShoppingDetailList item : list){
-        System.out.println(item.getFileLevel());
-        int fileL = list.get(0).getFileLevel();
-        }
-=======
 <%@ page language="java" contentType="text/html;charset=UTF-8"
          pageEncoding="UTF-8" %>
 
@@ -33,17 +7,12 @@
     ArrayList<ShoppingDetailList> list = (ArrayList<ShoppingDetailList>) (request.getAttribute("product"));
     for (ShoppingDetailList item : list) {
         System.out.println(item.getFileLevel());
->>>>>>> 9112c46073e4a5254abf39458db74998e1887751
     }
 %>
 
 <%
-<<<<<<< HEAD
-    int starRating = 0; 
-=======
 
     int starRating = 0;
->>>>>>> 9112c46073e4a5254abf39458db74998e1887751
     if (list != null && list.size() > 0) {
         starRating = list.get(0).getFileLevel(); // 예시로 첫 번째 항목의 fileLevel 값을 사용
     }
@@ -78,12 +47,8 @@
                 </div>
                 <div id="main-info-bottom-star">
                     <!-------------- 별점 출력  ----------->
-<<<<<<< HEAD
-                    <div class="starDiv"></div><p id="review">&nbsp${product[0].reviewCount}개 상품평</p>
-=======
                     <div id="starDiv"></div>
                     <p id="review">&nbsp${product[0].reviewCount}개 상품평</p>
->>>>>>> 9112c46073e4a5254abf39458db74998e1887751
                 </div>
 
             </div>
@@ -186,27 +151,10 @@
                 <div id="recent"> 최신순</div>
             </div>
 
-<<<<<<< HEAD
-        <!--------------리뷰 ---------------->
-        <div id="review-wrap">
-            <div id="all-review">
-                <div>
-                    <span id="allRevice-text">전체리뷰 </span><span>${reviewCount}건</span>
-                </div>
-                <hr>
-                <div id="recent"> 최신순</div>
-            </div>
-
-            <c:forEach var="item" items="${list}">
-
-                <div id="review-wrapper">
-                    <div id="review">
-=======
             <c:forEach var="item" items="${list}">
 
                 <div id="review-wrapper">
                     <div id="review1">
->>>>>>> 9112c46073e4a5254abf39458db74998e1887751
                         <div id="review-left">
                             <div><img src="images/user.png" alt="User"></div>
                             <div id="review-NameDiv"><p id="review-name">${item.memberId}</p></div>
@@ -215,11 +163,7 @@
                             <p>${item.reviewDate}</p>
                         </div>
                     </div>
-<<<<<<< HEAD
-                   
-=======
 
->>>>>>> 9112c46073e4a5254abf39458db74998e1887751
                     <div id="review-bottom">
                         <div id="review-middle">
                             <p id="product-name"><b>구매제품</b> - ${product[0].productName}</p>
@@ -228,30 +172,12 @@
                             </div>
                         </div>
                         <div id="textbox-wrap">
-<<<<<<< HEAD
-                            <div id="textbox"  name="" id="">${item.reviewDetail}</div>
-                            
-=======
                             <div id="textbox" name="" id="">${item.reviewDetail}</div>
 
->>>>>>> 9112c46073e4a5254abf39458db74998e1887751
                         </div>
                     </div>
                 </div>
             </c:forEach>
-<<<<<<< HEAD
-        </div>   
-    </div>
-    <!-- <a href="<%=contextPath%>/shopping.do?cpage=1">기타</a> -->
-   
-    <script> 
-    // <!-----------------------별 출력 ------------------------>
-        let contextPath = '<%= request.getContextPath() %>';
-        let review_Count = parseInt(document.getElementById("review").textContent);
-
-        let starRating = 3; // 임시로 별점 3점 넣어둠
-        if (review_Count == 0) {
-=======
         </div>
     </div>
     </div>
@@ -269,7 +195,6 @@
 
         let starRating = 3; // 임시로 별점3점 넣어둠
         if (review_Count == 0) {    //리뷰가 0개면 빈 별
->>>>>>> 9112c46073e4a5254abf39458db74998e1887751
             starRating = 0;
         }
 

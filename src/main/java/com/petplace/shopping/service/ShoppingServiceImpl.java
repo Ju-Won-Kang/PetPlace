@@ -10,12 +10,9 @@ import org.apache.ibatis.session.SqlSession;
 import com.petplace.common.PageInfo;
 import com.petplace.common.Template;
 import com.petplace.purchase.model.vo.Purchase;
-<<<<<<< HEAD
-import com.petplace.review.model.vo.Review;
-import com.petplace.shopping.dao.ShoppingDao;
-=======
+
 import com.petplace.shopping.model.dao.ShoppingDao;
->>>>>>> 9112c46073e4a5254abf39458db74998e1887751
+
 import com.petplace.shopping.model.dto.ShoppingComplete;
 import com.petplace.shopping.model.dto.ShoppingDetailList;
 import com.petplace.shopping.model.dto.ShoppingList;
@@ -141,26 +138,6 @@ public class ShoppingServiceImpl implements ShoppingService {
 		return result;
 	}
 
-	@Override
-	public int selectReviewCount(int productNo) {
-		SqlSession sqlSession = Template.getSqlSession();
-		int result = sDao.selectReviewCount(sqlSession, productNo);
-		
-		sqlSession.close();
-		return result;
-	}
-
-	@Override
-	public ArrayList<Review> selectReviewList(int productNo) {
-		SqlSession sqlSession = Template.getSqlSession();
-		
-		System.out.println();
-		ArrayList<Review> list = (ArrayList)sDao.selectReviewList(sqlSession, productNo);
-		sqlSession.close();
-		
-		return list;
-		
-	}
 	
 
 	public ArrayList<ShoppingList> selectShoppingTopList() {
@@ -173,7 +150,7 @@ public class ShoppingServiceImpl implements ShoppingService {
 	public int selectReviewCount(int productNo) {
 		SqlSession sqlSession = Template.getSqlSession();
 		int result = sDao.selectReviewCount(sqlSession, productNo);
-
+		
 		sqlSession.close();
 		return result;
 	}
