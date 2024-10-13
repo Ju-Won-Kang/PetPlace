@@ -6,6 +6,7 @@ import java.util.HashMap;
 import com.petplace.adopt.model.vo.Adopt;
 import com.petplace.adopt.model.vo.AdoptAttachment;
 import com.petplace.common.PageInfo;
+import com.petplace.community.model.vo.CommunityAttachment;
 
 public interface AdoptService {
 	// 입양 게시판 불러오기
@@ -30,4 +31,10 @@ public interface AdoptService {
 	int selectSearchListCount(HashMap<String, String> map);
 	
 	ArrayList<Adopt> selectSearchList(HashMap<String, String> map, PageInfo pi);
+	
+	//delete
+	public int deleteAdopt(int adoptNo);
+	public int deleteAdoptAt(int adoptNo);
+	
+	public AdoptAttachment selectAdoptAt(int boardNo);
 }

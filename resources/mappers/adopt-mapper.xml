@@ -16,6 +16,15 @@
         <result column="TITLE_IMG" property="adoptImg"/>
         <result column="ADOPT_CATEGORY" property="adoptCategory"/>
     </resultMap>
+    <resultMap id="adoptAtResultSet" type="AdoptAttachment">
+		<result column="FILE_NO" property="fileNo"/>
+		<result column="REF_ANO" property="refAno"/>
+		<result column="ORIGIN_NAME" property="originName"/>
+		<result column="CHANGE_NAME" property="changeName"/>
+		<result column="FILE_PATH" property="filePath"/>
+		<result column="UPLOAD_DATE" property="uploadDate"/>
+		<result column="BOARD_TYPE" property="boardType"/>
+	</resultMap>
     
     <!-- 총 게시글 개수 -->
     <select id="selectAdoptListCount" resultType="_int">
@@ -40,6 +49,7 @@
     	  JOIN MEMBER USING (MEMBER_ID)
     	  JOIN ATTACHMENT_ADOPT ON (REF_ANO = BOARD_NO)
     	 WHERE S.BOARD_TYPE = #{boardType}
+    	   AND ADOPT_STATUS = 'Y'
     	 ORDER BY S.BOARD_NO DESC
     </select>
     
@@ -104,6 +114,7 @@
     <!-- 게시글 상세 조회 -->
     <select id="selectDetailList" resultMap="adoptListSet">
     	SELECT BOARD_TITLE,
+    		   BOARD_NO,
     		   MEMBER_ID,
     		   BOARD_DATE,
     		   BOARD_VIEWS,
@@ -124,6 +135,7 @@
     	  FROM SALE_MISSING SM
           JOIN ATTACHMENT_ADOPT ON (REF_ANO = BOARD_NO)
     	 WHERE SM.BOARD_TYPE = 'A'
+    	   AND ADOPT_STATUS = 'Y'
     	 ORDER BY BOARD_VIEWS DESC
     </select>
     
@@ -136,6 +148,7 @@
     	  FROM SALE_MISSING SM
           JOIN ATTACHMENT_ADOPT ON (REF_ANO = BOARD_NO)
     	 WHERE SM.BOARD_TYPE = 'B'
+    	   AND ADOPT_STATUS = 'Y'
     	 ORDER BY BOARD_VIEWS DESC
     </select>
     
@@ -178,4 +191,28 @@
 		 </if>
     	 ORDER BY S.BOARD_NO DESC
     </select>
+    
+  	<update id="deleteAdopt">
+		UPDATE SALE_MISSING
+		   SET ADOPT_STATUS = 'N'
+		 WHERE BOARD_NO = #{boardNo}
+	</update>
+	
+	<update id="deleteAdoptAt">
+		UPDATE ATTACHMENT_ADOPT
+		   SET STATUS = 'N'
+		 WHERE REF_ANO = #{boardNo}
+		   AND STATUS = 'Y'
+	</update>
+	
+	<select id="selectAdoptAt" resultMap="adoptAtResultSet">
+		SELECT FILE_PATH,
+			   CHANGE_NAME,
+			   ORIGIN_NAME,
+			   BOARD_TYPE,
+			   REF_ANO
+		  FROM ATTACHMENT_ADOPT
+		 WHERE REF_ANO = #{boardNo}
+		   AND STATUS = 'Y'
+	</select>
 </mapper>

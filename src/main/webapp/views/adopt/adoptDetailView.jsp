@@ -20,14 +20,7 @@
                 <p id="community-info-date">${a.boardDate}</p>
                 <p id="community-select-count">조회수 ${a.boardViews}</p>
                 <c:if test="${loginUser.memberId eq a.memberId}">
-                <form id="modify-btn-form" action="adoptDetail.do">
-                	<input type="hidden" name="ano" value="${a.boardNo}">
-                	<button>수정</button>
-                </form>
-                <form action="communityDelete.do">
-                	<input type="hidden" name="ano" value="${a.boardNo}">
-                	<button>삭제</button>
-                </form>
+                	<button onclick="location.href='adoptDelete.do?bno=${a.boardNo }'">삭제</button>
                 </c:if>
             </div>
         </div>

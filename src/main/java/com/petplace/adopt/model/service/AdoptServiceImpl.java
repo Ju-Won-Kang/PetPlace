@@ -10,6 +10,7 @@ import com.petplace.adopt.model.vo.Adopt;
 import com.petplace.adopt.model.vo.AdoptAttachment;
 import com.petplace.common.PageInfo;
 import com.petplace.common.Template;
+import com.petplace.community.model.vo.CommunityAttachment;
 
 public class AdoptServiceImpl implements AdoptService{
 	
@@ -127,6 +128,41 @@ public class AdoptServiceImpl implements AdoptService{
 		sqlSession.close();
 		
 		return list;
+	}
+	
+	@Override
+	public int deleteAdopt(int boardNo) {
+		SqlSession sqlSession = Template.getSqlSession();
+		int result = aDao.deleteAdopt(sqlSession, boardNo);
+		if(result > 0) {
+			sqlSession.commit();
+		} else {
+			sqlSession.rollback();
+		}
+		sqlSession.close();
+		return result;
+	}
+
+	@Override
+	public int deleteAdoptAt(int boardNo) {
+		SqlSession sqlSession = Template.getSqlSession();
+		int result = aDao.deleteAdoptAt(sqlSession, boardNo);
+		if(result > 0) {
+			sqlSession.commit();
+		} else {
+			sqlSession.rollback();
+		}
+		sqlSession.close();
+		return result;
+	}
+	
+	@Override
+	public AdoptAttachment selectAdoptAt(int boardNo) {
+		SqlSession sqlSession = Template.getSqlSession();
+		AdoptAttachment aAt = aDao.selectAdoptAt(sqlSession, boardNo);
+		
+		sqlSession.close();
+		return aAt;
 	}
 
 }
