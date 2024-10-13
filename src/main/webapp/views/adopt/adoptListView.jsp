@@ -306,6 +306,38 @@
 							</c:otherwise>
 						</c:choose>
 						<c:choose>
+							<c:when test="${pi.currentPage eq pi.maxPage}">
+                                <li class="page-item disabled"><c:choose>
+                                	<c:when test="${category ne null}">
+	                                    <a
+											href="adoptSearch.do?cpage=${pi.endPage + 1}&boardType=${boardType}&category=${category}"
+											class="page-link"> <span aria-hidden="true">&raquo;</span>
+										</a>
+                                    </c:when>
+                                    <c:otherwise>
+                                    	<a
+											href="adoptSearch.do?cpage=${pi.endPage + 1}&boardType=${boardType}"
+											class="page-link"> <span aria-hidden="true">&raquo;</span>
+										</a>
+                                    </c:otherwise>
+                                </c:choose></li>
+                            </c:when>
+                            <c:when test="${(pi.endPage / pi.boardLimit)  < pi.maxPage and (pi.endPage eq pi.maxPage)}">
+                                <li class="page-item"><c:choose>
+                                	<c:when test="${category ne null}">
+	                                    <a
+											href="adoptSearch.do?cpage=${pi.endPage}&boardType=${boardType}&category=${category}"
+											class="page-link"> <span aria-hidden="true">&raquo;</span>
+										</a>
+                                    </c:when>
+                                    <c:otherwise>
+                                    	<a
+											href="adoptSearch.do?cpage=${pi.endPage}&boardType=${boardType}"
+											class="page-link"> <span aria-hidden="true">&raquo;</span>
+										</a>
+                                    </c:otherwise>
+                                </c:choose></li>
+                            </c:when>
 							<c:when test="${(pi.endPage / boardLimit)  < pi.maxPage}">
 								<li class="page-item"><c:choose>
 										<c:when test="${category ne null}">
@@ -473,6 +505,38 @@
 							</c:otherwise>
 						</c:choose>
 						<c:choose>
+							<c:when test="${pi.currentPage eq pi.maxPage}">
+                                <li class="page-item disabled"><c:choose>
+                                	<c:when test="${category ne null}">
+	                                    <a
+											href="adoptSearch.do?cpage=${pi.endPage + 1}&boardType=${boardType}&category=${category}&keyword=${keyword}"
+											class="page-link"> <span aria-hidden="true">&raquo;</span>
+										</a>
+                                    </c:when>
+                                    <c:otherwise>
+                                    	<a
+											href="adoptSearch.do?cpage=${pi.endPage + 1}&boardType=${boardType}&keyword=${keyword}"
+											class="page-link"> <span aria-hidden="true">&raquo;</span>
+										</a>
+                                    </c:otherwise>
+                                </c:choose></li>
+                            </c:when>
+                            <c:when test="${(pi.endPage / pi.boardLimit)  < pi.maxPage and (pi.endPage eq pi.maxPage)}">
+                                <li class="page-item"><c:choose>
+                                	<c:when test="${category ne null}">
+	                                    <a
+											href="adoptSearch.do?cpage=${pi.endPage}&boardType=${boardType}&category=${category}&keyword=${keyword}"
+											class="page-link"> <span aria-hidden="true">&raquo;</span>
+										</a>
+                                    </c:when>
+                                    <c:otherwise>
+                                    	<a
+											href="adoptSearch.do?cpage=${pi.endPage}&boardType=${boardType}&keyword=${keyword}"
+											class="page-link"> <span aria-hidden="true">&raquo;</span>
+										</a>
+                                    </c:otherwise>
+                                </c:choose></li>
+                            </c:when>
 							<c:when test="${(pi.endPage / boardLimit)  < pi.maxPage}">
 								<li class="page-item"><c:choose>
 										<c:when test="${category ne null}">
