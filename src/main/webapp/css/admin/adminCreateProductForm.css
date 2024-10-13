@@ -41,8 +41,7 @@ body * {
 }
 
 .expose {
-    /*display: inline-flex;*/
-
+    display: inline-flex !important;
 }
 
 #category {
@@ -60,6 +59,7 @@ form button[type=submit]:active {
     width: 35% !important;
 }
 
+
 /* placeholder CSS */
 .form-control::placeholder {
     color: #8a8a8a;
@@ -67,3 +67,5 @@ form button[type=submit]:active {
     /*font-weight: bold;*/
     text-align: right;
 }
+
+

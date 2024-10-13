@@ -11,15 +11,15 @@ import com.petplace.community.service.CommunityService;
 import com.petplace.community.service.CommunityServiceImple;
 
 /**
- * Servlet implementation class CommunityBadController
+ * Servlet implementation class CommentDeleteController
  */
-public class CommunityBadController extends HttpServlet {
+public class CommentDeleteController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public CommunityBadController() {
+    public CommentDeleteController() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -28,15 +28,17 @@ public class CommunityBadController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		int commentNo = Integer.parseInt(request.getParameter("cmno"));
 		int communityNo = Integer.parseInt(request.getParameter("cno"));
-		
 		CommunityService cService = new CommunityServiceImple();
 		
-		int result = cService.communityBad(communityNo);
+		int result = cService.deleteComment(commentNo);
 		
 		if(result > 0) {
+			request.setAttribute("alertMsg", "댓글 삭제 성공");
 			response.sendRedirect(request.getContextPath() + "/communityDetail.do?cno=" + communityNo);
 		} else {
+			request.setAttribute("alertMsg", "댓글 삭제 실패");
 			response.sendRedirect(request.getContextPath() + "/communityDetail.do?cno=" + communityNo);
 		}
 	}

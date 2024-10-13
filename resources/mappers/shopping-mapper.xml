@@ -94,7 +94,7 @@
 		  FROM PRODUCT
 		 WHERE STATUS = 'Y'
 		 <if test="category != null">
-  		 	AND PRODUCT_CATEGORY = #{category}
+  		 	AND PRODUCT_CATEGORY not in('강아지','고양이')
   		 </if>
 	</select>
 	
@@ -156,7 +156,7 @@
 		 WHERE P.STATUS = 'Y'
 		   AND FILE_LEVEL = 1
 		 <if test="category != null">
-  		 	AND PRODUCT_CATEGORY = #{category}
+  		 	AND PRODUCT_CATEGORY not in ('강아지','고양이')
   		 </if>
 		 GROUP BY PRODUCT_NO, 
 		       PRODUCT_NAME, 
