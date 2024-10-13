@@ -5,6 +5,7 @@ import java.util.HashMap;
 
 import com.petplace.common.PageInfo;
 import com.petplace.purchase.model.vo.Purchase;
+import com.petplace.review.model.vo.Review;
 import com.petplace.shopping.model.dto.ShoppingComplete;
 import com.petplace.shopping.model.dto.ShoppingDetailList;
 import com.petplace.shopping.model.dto.ShoppingList;
@@ -27,5 +28,10 @@ public interface ShoppingService {
 	public abstract int insertPurchase(Purchase purchase);
 
 	ArrayList<ShoppingList> selectShoppingTopList();
+	//리뷰 총 개수
+	public abstract int selectReviewCount(int productNo);
+
+	//리뷰 리스트 가져오기
+	public abstract ArrayList<Review> selectReviewList(int productNo);
 	
 }

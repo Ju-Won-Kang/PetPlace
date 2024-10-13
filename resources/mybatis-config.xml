@@ -21,6 +21,7 @@
   <typeAlias type="com.petplace.shopping.model.dto.ShoppingComplete" alias="ShoppingComplete"/>
   <typeAlias type="com.petplace.purchase.model.vo.Purchase" alias="Purchase"/>
   <typeAlias type="com.petplace.review.model.dto.ReviewList" alias="ReviewList"/>
+  <typeAlias type="com.petplace.review.model.vo.Review" alias="Review"/>
   <typeAlias type="com.petplace.product.model.vo.Product" alias="Product"/>
   <typeAlias type="com.petplace.product.model.vo.AttachmentProduct" alias="AttachmentProduct"/>
   <typeAlias type="com.petplace.admin.model.dto.Category" alias="Category"/>

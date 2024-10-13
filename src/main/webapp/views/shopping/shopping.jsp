@@ -6,6 +6,7 @@
     PageInfo pi = (PageInfo)request.getAttribute("pi");
     ArrayList<ShoppingList> list = (ArrayList<ShoppingList>)request.getAttribute("list");
 
+    java.text.NumberFormat numberFormat = java.text.NumberFormat.getInstance();
     int currentPage = pi.getCurrentPage();
     int startPage = pi.getStartPage();
     int endPage = pi.getEndPage();
@@ -67,7 +68,7 @@
                         <!-- 리뷰를 아직 만들지 않아 상품평의 개수도 추후에 추가할 예정 -->
                         <div class="dogFood-info">
                             <p class="dogFood-name"><%=s.getProductName() %></p>
-                            <p class="dogFood-price"><%=s.getPrice() %> 원</p>
+                            <p class="dogFood-price"><%=numberFormat.format(s.getPrice()) %>원</p>
 							<div id="dogFood-star">
 								<c:forEach var="i" begin="1" end="<%=s.getStar() %>" step="1">
 									<img class="dogFood-etc" id="stars" src="<%=contextPath%>/images/fullStar.png">
