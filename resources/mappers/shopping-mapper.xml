@@ -290,7 +290,6 @@
 			#{cardNo}
 			)
 	</insert>
-<<<<<<< HEAD
 	
 	<select id="selectReviewCount" resultType="_int">
 		SELECT COUNT(*) AS "COUNT"
@@ -309,8 +308,7 @@
 			FROM REVIEW	
 		   WHERE PRODUCT_NO = #{productNo}
 	</select>
-	
-=======
+
 	<select id="selectShoppingTopList" resultMap="selectShoppingList">
 		SELECT P.PRODUCT_NO,
 		P.PRODUCT_NAME,
@@ -328,5 +326,5 @@
 		AND A.FILE_LEVEL = 1
 		ORDER BY COUNT_PURCHASE.PURCHASE_COUNT
 	</select>
->>>>>>> 7f6f2b64fd1080b6d25924a07c8b7c1ce2007f9a
+
 </mapper>

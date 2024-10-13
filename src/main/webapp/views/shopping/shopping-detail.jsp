@@ -217,7 +217,7 @@
             // 채워진 별 이미지 추가
             for (let i = 0; i < starRating; i++) {
                 const starImg = document.createElement("img");
-                starImg.src = contextPath + "/images/star.png";
+                starImg.src = contextPath + "/images/fullStar.png";
                 starImg.alt = "star";
                 starImg.classList.add("star");
 
@@ -227,7 +227,7 @@
             // 빈 별 이미지 추가
             for (let i = Math.floor(starRating); i < maxRating; i++) {
                 const emptyStarImg = document.createElement("img");
-                emptyStarImg.src = contextPath + "/images/star_empty.png";
+                emptyStarImg.src = contextPath + "/images/emptyStar.png";
                 emptyStarImg.alt = "빈 별";
                 emptyStarImg.classList.add("star");
 
@@ -247,6 +247,7 @@
         
         // -----------------------------------상품 수량 가격-----------------------------------
         const productPrice = parseInt(document.getElementById("bigPrice").textContent.trim(), 10);
+
 
         const shippingCost = 3000; // 기본 배송비
         const freeShippingThreshold = 20000; // 무료 배송 기준 금액
