@@ -8,16 +8,15 @@ import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 /**
- * Servlet implementation class AdoptListViewServlet
+ * Servlet implementation class AdoptEnrollFormController
  */
-@WebServlet(name = "adoptList.do", urlPatterns = { "/adoptList.do" })
-public class AdoptListViewServlet extends HttpServlet {
+public class AdoptEnrollFormController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public AdoptListViewServlet() {
+    public AdoptEnrollFormController() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -26,7 +25,7 @@ public class AdoptListViewServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.getRequestDispatcher("views/adopt/adoptListView.jsp").forward(request,response);
+		request.getRequestDispatcher("views/adopt/adoptEnrollForm.jsp").forward(request, response);
 	}
 
 	/**

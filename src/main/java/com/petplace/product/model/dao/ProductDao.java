@@ -35,7 +35,7 @@ public class ProductDao {
     /**
      * Product 테이블의 전체 상품에서 카테고리명을 가져오는 메서드
      *
-     * @param conn Connection 객체
+     * @param sqlSession sqlSession 객체
      * @return 카테고리 리스트 객체
      */
     public ArrayList<Category> selectCategoryList(SqlSession sqlSession) {
@@ -43,10 +43,10 @@ public class ProductDao {
     }
 
     /**
-     * 상품 등록
+     * 상품 등록 메서드
      *
-     * @param conn Connection 객체
-     * @param p    Request시 Parameter 정보를 담은 Product 객체
+     * @param sqlSession sqlSession 객체
+     * @param p          Request시 Parameter 정보를 담은 Product 객체
      * @return DB에 Insert 결과값
      */
     public int insertProduct(SqlSession sqlSession, Product p) {
@@ -56,8 +56,8 @@ public class ProductDao {
     /**
      * 상품 썸네일, 상품 상세정보 파일 등록
      *
-     * @param conn Connection 객체
-     * @param list 썸네일, 상품 상세정보 파일 정보를 담은 리스트
+     * @param sqlSession sqlSession 객체
+     * @param at         썸네일, 상품 상세정보 파일 정보를 담은 리스트
      * @return DB에 Insert 결과값
      */
     public int enrollAttachmentList(SqlSession sqlSession, AttachmentProduct at) {
@@ -67,8 +67,8 @@ public class ProductDao {
     /**
      * 총 상품 개수 조회
      *
-     * @param conn
-     * @return
+     * @param sqlSession sqlSession 객체
+     * @return 상품 리스트 개수
      */
     public int selectListCount(SqlSession sqlSession) {
         return sqlSession.selectOne("productMapper.selectListCount");
@@ -77,9 +77,9 @@ public class ProductDao {
     /**
      * 페이징 처리를 위한 상품 리스트 조회
      *
-     * @param conn
-     * @param pi
-     * @return
+     * @param sqlSession sqlSession 객체
+     * @param pi         페이징 처리를 위한 PageInfo 객체
+     * @return 상품 리스트 객체
      */
     public ArrayList<Product> selectProductList(SqlSession sqlSession, PageInfo pi) {
         int offset = (pi.getCurrentPage() - 1) * pi.getBoardLimit();
@@ -91,9 +91,9 @@ public class ProductDao {
     /**
      * 특정 상품 첨부파일 리스트 조회
      *
-     * @param conn
-     * @param productNo
-     * @return
+     * @param sqlSession sqlSession 객체
+     * @param productNo  상품 번호
+     * @return 특정 상품 첨부파일 리스트 객체
      */
     public ArrayList<AttachmentProduct> selectAttachment(SqlSession sqlSession, int productNo) {
         return (ArrayList) sqlSession.selectList("productMapper.selectAttachment", productNo);
@@ -102,9 +102,9 @@ public class ProductDao {
     /**
      * 특정 상품 정보 조회
      *
-     * @param conn
-     * @param productNo
-     * @return
+     * @param sqlSession sqlSession 객체
+     * @param productNo  상품 번호
+     * @return 특정 상품 정보 객체
      */
     public Product selectProduct(SqlSession sqlSession, int productNo) {
         return sqlSession.selectOne("productMapper.selectProduct", productNo);
@@ -113,9 +113,9 @@ public class ProductDao {
     /**
      * 상품 정보 수정
      *
-     * @param conn
-     * @param p    수정한 상품 정보
-     * @return
+     * @param sqlSession sqlSession 객체
+     * @param p          수정된 정보를 담은 객체
+     * @return 결과값
      */
     public int updateProduct(SqlSession sqlSession, Product p) {
         return sqlSession.update("productMapper.updateProduct", p);
@@ -124,9 +124,9 @@ public class ProductDao {
     /**
      * 참조하는 상품 첨부파일 전부 삭제
      *
-     * @param conn
-     * @param productNo
-     * @return
+     * @param sqlSession sqlSession 객체
+     * @param productNo  특정 상품 번호
+     * @return 결과값
      */
     public int deleteAttachmentProduct(SqlSession sqlSession, int productNo) {
         return sqlSession.delete("productMapper.deleteAttachmentProduct", productNo);
@@ -135,21 +135,20 @@ public class ProductDao {
     /**
      * 특정 상품번호로 첨부파일 리스트 저장
      *
-     * @param conn
-     * @param list      첨부파일 리스트
-     * @param productNo 참조하는 상품번호
-     * @return
+     * @param sqlSession sqlSession 객체
+     * @param map        첨부파일과 상품 번호를 담은 Map 객체
+     * @return 결과값
      */
     public int insertAttachmentList(SqlSession sqlSession, HashMap<String, Object> map) {
         return sqlSession.insert("productMapper.insertAttachmentList", map);
     }
 
     /**
-     * 상품 STATUS 변경
+     * 상품 STATUS 변경 메서드
      *
-     * @param conn
-     * @param productNo
-     * @return
+     * @param sqlSession sqlSession 객체
+     * @param productNo  상품 번호
+     * @return 결과값
      */
     public int deleteProduct(SqlSession sqlSession, int productNo) {
         return sqlSession.update("productMapper.deleteProduct", productNo);
@@ -158,9 +157,9 @@ public class ProductDao {
     /**
      * 참조하는 상품 삭제시 첨부파일 STATUS 변경
      *
-     * @param conn
-     * @param productNo
-     * @return
+     * @param sqlSession sqlSession 객체
+     * @param productNo  상품번호
+     * @return 결과값
      */
     public int disableAttachmentProduct(SqlSession sqlSession, int productNo) {
         return sqlSession.update("productMapper.disableAttachmentProduct", productNo);

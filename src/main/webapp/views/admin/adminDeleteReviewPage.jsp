@@ -194,7 +194,6 @@
                         <button type="submit" class="btn btn-danger">리뷰 삭제</button>
                     </div>
                 </form>
-
             </div>
         </div>
     </div>

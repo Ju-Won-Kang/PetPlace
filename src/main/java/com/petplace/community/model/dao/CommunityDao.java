@@ -148,6 +148,18 @@ public class CommunityDao {
 		
 		return (ArrayList)sqlSession.selectList("communityMapper.selectCommunityWeek", null, rowBounds);
 	}
+	
+	public int updateCommunity(SqlSession sqlSession, Community c, CommunityAttachment atC) {
+		int result1 = sqlSession.update("communityMapper.updateCommunity", c);
+		System.out.println(atC.getRefCno());
+		System.out.println(atC);
+		int result2 = 1;
+		if(atC.getChangeName() != null) {
+			result2 = sqlSession.insert("communityMapper.insertCommunityAttachmentU", atC);
+		}
+		return result1 * result2;
+		
+	}
 //	public int insertCommunity(Connection conn, Community c) {
 //		int result = 0;
 //		

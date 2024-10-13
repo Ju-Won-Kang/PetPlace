@@ -1,16 +1,22 @@
+/* 공통 스타일 */
 body * {
     box-sizing: border-box;
 }
 
 body {
+    font-family: 'Poor Story', sans-serif;
+    margin: 0;
+    padding: 0;
     width: 100%;
     height: 100%;
     min-width: 1143px;
+    background-color: #f2f2f2;
 }
 
 header {
     width: 1400px;
     margin: auto;
+    position: relative;
 }
 
 header > #header-wrap {
@@ -21,7 +27,6 @@ header > #header-wrap {
     align-items: center;
     gap: 100px;
     border-bottom: 1px solid #c4c4c4;
-
 }
 
 header a {
@@ -34,63 +39,119 @@ header a {
     border: none;
 }
 
-header {
-    position: relative;
-}
-
+/* 로그인 폼 스타일 */
 #user-info {
     position: absolute;
     top: 100%;
     right: 10px;
-    border: 1px solid black;
-    width: 250px;
-    height: 280px;
+    width: 300px;
+    height: auto;
     background: rgb(239, 244, 255);
+    color: black;
+    border: 1px solid black;
     z-index: 10;
     border-radius: 10px;
-    box-shadow: 2px 2px 8px;
+    box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.3);
+    text-align: center;
+    padding: 20px;
+    display: none;
+}
+
+/* JavaScript로 표시 상태 제어 */
+#user-info.expose {
+    display: block;
 }
 
 #user-info > p {
-    text-align: center;
-    width: 100%;
-    height: 15%;
-    padding: 15px 0;
     font-size: 16px;
-    font-weight: 600;
+    font-weight: bold;
+    color: black;
+    margin-bottom: 15px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.3);
+    padding-bottom: 10px;
 }
 
-#user-img {
+/* 프로필 이미지 스타일 */
+#user-info .profile-image {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    overflow: hidden;
+    background-color: #ccc;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 20px;
+}
+
+#user-info .profile-image img {
     width: 100%;
-    height: 20%;
-    background: url(../../images/user.png) no-repeat center/contain;
-    margin-top: 15px;
+    height: 100%;
+    object-fit: cover;
 }
 
+/* 로그인 입력 필드 스타일 */
 #login-form {
     text-align: center;
+    padding: 10px 20px;
 }
 
-#user > img {
-    background-color: white;
+#login-form input[type="text"],
+#login-form input[type="password"] {
+    width: 100%;
+    margin: 10px 0;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 14px;
 }
-.hide{
-    display: none ;
+
+/* 로그인 버튼 스타일 */
+#login-form button {
+    width: 100%;
+    padding: 12px;
+    margin-top: 15px;
+    border: none;
+    border-radius: 5px;
+    background-color: #007bff;
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
-.expose{
-    display: block ;
+
+#login-form button:hover {
+    background-color: #0056b3;
 }
 
+/* 비밀번호 찾기 및 회원가입 링크 스타일 */
+.link-container {
+    margin-top: 15px;
+    font-size: 14px;
+    color: #666;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    white-space: nowrap;
+}
 
+.link-container a {
+    color: #666;
+    text-decoration: none;
+}
 
+.link-container a:hover {
+    text-decoration: underline;
+}
 
-/* 프로필 카드 스타일 */
+/* 로그인 후 스타일 */
 #profile-card {
     position: absolute;
     top: 100%;
     right: 10px;
-
-    z-index: 10;
     width: 250px;
     background-color: white;
     border-radius: 10px;
@@ -99,47 +160,96 @@ header {
     margin: 20px auto;
     text-align: center;
     font-size: 16px;
+    z-index: 10;
 }
-#profile-card .nickname {
-    font-size: 24px;
-    margin-bottom: 10px;
+
+#profile-card p {
+    font-size: 18px; /* 프로필 텍스트 크기 조정 */
     font-weight: bold;
     color: #333;
+    margin-bottom: 10px;
 }
-#profile-card .profile-image img {
-    width: 60px; /* 프로필 이미지 크기 */
-    height: 60px;
+
+#profile-card .nickname {
+    font-size: 20px; /* 닉네임 텍스트 크기 조정 */
+    margin-bottom: 10px;
+    color: #333;
+}
+
+#profile-card .profile-image {
+    width: 80px; /* 프로필 이미지 크기 조정 */
+    height: 80px;
     border-radius: 50%;
     background-color: #ccc;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 15px; /* 가운데 정렬을 위해 margin 조정 */
 }
+
+#profile-card .profile-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
 #profile-card .link {
     font-size: 16px;
     color: #666;
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
     padding: 10px 0;
+    gap: 10px;
 }
+
 #profile-card .link a {
     color: red;
     font-weight: bold;
     text-decoration: none;
 }
+
 #profile-card .link a:hover {
     text-decoration: underline;
 }
+
 #profile-card .menu-list {
     list-style: none;
     padding: 0;
     margin: 20px 0;
     text-align: left;
 }
+
 #profile-card .menu-list li {
     padding: 10px;
     border-bottom: 1px solid #ccc;
     font-size: 16px;
     color: #333;
 }
+
 #profile-card .menu-list li:last-child {
     border-bottom: none;
+}
+
+/* 숨김/표시 클래스 */
+.hide {
+    display: none;
+}
+
+.expose {
+    display: block;
+}
+
+#login-form > form button[type=submit]{
+    background-color: #77a2f5;
+}
+#login-form > form button[type=button]{
+    background-color: #77a2f5;
+}
+#login-form > form button[type=submit]:hover{
+    background-color: #3775f3;
+}
+#login-form > form button[type=button]:hover{
+    background-color: #3775f3;
 }

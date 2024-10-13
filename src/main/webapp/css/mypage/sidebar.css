@@ -7,6 +7,7 @@ nav {
     padding: 20px;
     border-right: 1px solid #ccc;
 }
+
 nav div {
     display: flex;
     align-items: center;
@@ -15,12 +16,19 @@ nav div {
     padding: 10px 0;
     border-bottom: 1px solid #ddd;
 }
+
 nav img {
     width: 40px;
     height: 40px;
     margin-right: 10px;
 }
+
 nav label {
     font-size: 16px;
     color: #333;
+}
+
+.sidebar-wrapper {
+    flex: 0 0 200px; /* 사이드바 고정 너비 */
+    margin-right: 20px;
 }

@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="adoptMapper">
+    <resultMap id="adoptListSet" type="Adopt">
+        <result column="BOARD_NO" property="boardNo"/>
+        <result column="MEMBER_ID" property="memberId"/>
+        <result column="BOARD_TITLE" property="boardTitle"/>
+        <result column="BOARD_DETAIL" property="boardDetail"/>
+        <result column="BOARD_DATE" property="boardDate"/>
+        <result column="BOARD_VIEWS" property="boardViews"/>
+        <result column="PLACE" property="place"/>
+        <result column="FIND_DATE" property="findDate"/>
+        <result column="BOARD_TYPE" property="boardType"/>
+        <result column="TITLE_IMG" property="adoptImg"/>
+        <result column="ADOPT_CATEGORY" property="adoptCategory"/>
+    </resultMap>
+    
+    <!-- 총 게시글 개수 -->
+    <select id="selectAdoptListCount" resultType="_int">
+    	SELECT COUNT(*) AS "COUNT"
+    	  FROM SALE_MISSING
+    	 WHERE BOARD_TYPE = #{boardType}
+    </select>
+    
+    <!-- 게시글 조회 -->
+    <select id="selectAdoptList" resultMap="adoptListSet">
+    	SELECT S.BOARD_NO,
+    		   MEMBER_ID,
+    		   BOARD_TITLE,
+    		   BOARD_DETAIL,
+    		   BOARD_DATE,
+    		   BOARD_VIEWS,
+    		   PLACE,
+    		   TO_CHAR(FIND_DATE, 'YYYY-MM-DD') AS "FIND_DATE",
+    		   S.BOARD_TYPE,
+    		   FILE_PATH || CHANGE_NAME AS "TITLE_IMG"
+    	  FROM SALE_MISSING S
+    	  JOIN MEMBER USING (MEMBER_ID)
+    	  JOIN ATTACHMENT_ADOPT ON (REF_ANO = BOARD_NO)
+    	 WHERE S.BOARD_TYPE = #{boardType}
+    	 ORDER BY S.BOARD_NO DESC
+    </select>
+    
+    <!-- 게시글 글 삽입 -->
+    <insert id="insertAdopt" parameterType="Adopt">
+    	INSERT INTO SALE_MISSING
+    	(
+    		BOARD_NO,
+    		BOARD_TITLE,
+    		MEMBER_ID,
+    		BOARD_DETAIL,
+    		BOARD_VIEWS,
+    		PLACE,
+    		FIND_DATE,
+    		BOARD_TYPE,
+    		ADOPT_CATEGORY
+    	)
+    	VALUES
+    	(
+    		SEQ_AANO.NEXTVAL,
+    		#{boardTitle},
+    		#{memberId},
+    		#{boardDetail},
+    		#{boardViews},
+    		#{place},
+    		#{findDate},
+    		#{boardType},
+    		#{adoptCategory}
+    	)
+    </insert>
+    
+    <!-- 게시글 첨부파일 삽입 -->
+    <insert id="insertadoptAttachmentList" parameterType="AdoptAttachment">
+    	INSERT INTO ATTACHMENT_ADOPT
+    	(
+    		FILE_NO,
+			REF_ANO,
+			ORIGIN_NAME,
+			CHANGE_NAME,
+			FILE_PATH,
+			BOARD_TYPE
+    	)
+    	VALUES
+    	(
+    		SEQ_AFNO.NEXTVAL,
+    		SEQ_AANO.CURRVAL,
+    		#{originName},
+    		#{changeName},
+    		#{filePath},
+    		#{boardType}
+    	)
+    </insert>
+    
+    <!-- 게시글 조회수 증가 -->
+    <update id="increaseCount">
+    	UPDATE SALE_MISSING
+    	   SET BOARD_VIEWS = BOARD_VIEWS + 1
+    	 WHERE BOARD_NO = #{boardNo}
+    	   AND BOARD_TYPE = #{boardType}
+    </update>
+    
+    <!-- 게시글 상세 조회 -->
+    <select id="selectDetailList" resultMap="adoptListSet">
+    	SELECT BOARD_TITLE,
+    		   MEMBER_ID,
+    		   BOARD_DATE,
+    		   BOARD_VIEWS,
+    		   FILE_PATH || CHANGE_NAME AS "TITLE_IMG",
+    		   BOARD_DETAIL
+    	  FROM SALE_MISSING SM
+    	  JOIN ATTACHMENT_ADOPT ON (REF_ANO = BOARD_NO)
+    	 WHERE BOARD_NO = #{boardNo}
+    	   AND SM.BOARD_TYPE = #{boardType}
+    </select>
+    
+    <!-- 메인페이지 유기/실종 -->
+    <select id="selectMissingMainList" resultMap="adoptListSet">
+    	SELECT BOARD_NO,
+    		   SM.BOARD_TYPE,
+    		   FILE_PATH || CHANGE_NAME AS "TITLE_IMG",
+    		   BOARD_DETAIL
+    	  FROM SALE_MISSING SM
+          JOIN ATTACHMENT_ADOPT ON (REF_ANO = BOARD_NO)
+    	 WHERE SM.BOARD_TYPE = 'A'
+    	 ORDER BY BOARD_VIEWS DESC
+    </select>
+    
+    <!-- 메인페이지 분양 -->
+    <select id="selectDistributeMainList" resultMap="adoptListSet">
+    	SELECT BOARD_NO,
+    		   SM.BOARD_TYPE,
+    		   FILE_PATH || CHANGE_NAME AS "TITLE_IMG",
+    		   BOARD_DETAIL
+    	  FROM SALE_MISSING SM
+          JOIN ATTACHMENT_ADOPT ON (REF_ANO = BOARD_NO)
+    	 WHERE SM.BOARD_TYPE = 'B'
+    	 ORDER BY BOARD_VIEWS DESC
+    </select>
+    
+    <!-- 검색 게시글 개수 -->
+    <select id="selectSearchListCount" resultType="_int">
+    	SELECT COUNT(*) AS "COUNT"
+    	  FROM SALE_MISSING
+    	 WHERE BOARD_TYPE = #{boardType}
+		 <if test="category">
+		   AND ADOPT_CATEGORY = #{category}
+		 </if>
+		 <if test="keyword != null">
+		   AND (BOARD_TITLE LIKE '%' || #{keyword} || '%'
+		    OR BOARD_DETAIL LIKE '%' || #{keyword} || '%')
+		 </if>
+    </select>
+    
+    <!-- 검색 게시글 조회 -->
+    <select id="selectSearchList" resultMap="adoptListSet">
+    	SELECT S.BOARD_NO,
+    		   MEMBER_ID,
+    		   BOARD_TITLE,
+    		   BOARD_DETAIL,
+    		   BOARD_DATE,
+    		   BOARD_VIEWS,
+    		   PLACE,
+    		   TO_CHAR(FIND_DATE, 'YYYY-MM-DD') AS "FIND_DATE",
+    		   S.BOARD_TYPE,
+    		   FILE_PATH || CHANGE_NAME AS "TITLE_IMG"
+    	  FROM SALE_MISSING S
+    	  JOIN MEMBER USING (MEMBER_ID)
+    	  JOIN ATTACHMENT_ADOPT ON (REF_ANO = BOARD_NO)
+    	 WHERE S.BOARD_TYPE = #{boardType}
+    	 <if test="category">
+		   AND ADOPT_CATEGORY = #{category}
+		 </if>
+		 <if test="keyword != null">
+		   AND (BOARD_TITLE LIKE '%' || #{keyword} || '%'
+		    OR BOARD_DETAIL LIKE '%' || #{keyword} || '%')
+		 </if>
+    	 ORDER BY S.BOARD_NO DESC
+    </select>
+</mapper>

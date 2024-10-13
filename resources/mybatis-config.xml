@@ -27,10 +27,13 @@
   <typeAlias type="com.petplace.admin.model.dto.Category" alias="Category"/>
   <typeAlias type="com.petplace.inquiry.model.dto.InquiryList" alias="InquiryList"/>
   <typeAlias type="com.petplace.inquiry.model.vo.Inquiry" alias="Inquiry"/>
+  <typeAlias type="com.petplace.adopt.model.vo.Adopt" alias="Adopt"/>
+  <typeAlias type="com.petplace.adopt.model.vo.AdoptAttachment" alias="AdoptAttachment"/>
   <typeAlias type="com.petplace.community.model.vo.BoardComment" alias="BoardComment"/>
   <typeAlias type="com.petplace.member.model.dto.HashedMember" alias="HashedMember"/>
   <typeAlias type="com.petplace.shopping.model.dto.UserInfo" alias="UserInfo"/>
   <typeAlias type="com.petplace.member.model.vo.Member" alias="Member"/>
+  <typeAlias type="com.petplace.mypage.model.dto.Petinfo" alias="Petinfo"/>
   <!-- Common -->
   <typeAlias type="java.util.HashMap" alias="HashMap"/>
   <typeAlias type="java.util.List" alias="List"/>
@@ -66,6 +69,8 @@
     <mapper resource="/mappers/review-mapper.xml"/>
     <mapper resource="/mappers/inquiry-mapper.xml"/>
     <mapper resource="/mappers/shopping-mapper.xml"/>
+    <mapper resource="/mappers/adopt-mapper.xml"/>
     <mapper resource="/mappers/member-mapper.xml"/>
+    <mapper resource="/mappers/mypage-mapper.xml"/>
   </mappers>
 </configuration>

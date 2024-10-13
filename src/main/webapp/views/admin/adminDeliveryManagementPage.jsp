@@ -71,8 +71,8 @@
                                 </c:choose>
                                 <td>${purchase.quantity}</td>
                                 <td>${purchase.memberId}</td>
-                                <td>${purchase.payType}</td>
-                                <td>${purchase.amountPrice}</td>
+                                <td>${purchase.payType}카드</td>
+                                <td><fmt:formatNumber type="currency" value="${purchase.amountPrice}"/></td>
                                 <td>${purchase.request}</td>
                                 <td>${purchase.purchaseDate}</td>
                                 <td>
@@ -206,7 +206,7 @@
 
                     <!-- Modal footer -->
                     <div class="modal-footer">
-                        <button type="submit" class="btn btn-secondary">문의 답변</button>
+                        <button type="submit" class="btn btn-secondary">운송장 번호 등록</button>
                     </div>
                 </form>
             </div>
