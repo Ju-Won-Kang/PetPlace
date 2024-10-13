@@ -20,21 +20,20 @@
     <input type="hidden" name="cno" value="${c.communityNo }">
     <div id="title-form">
       <select name="category" required>
-        <option value="" selected disabled hidden>카테고리</option>
-        <option value="개">개</option>
-        <option value="고양이">고양이</option>
-        <option value="기타">기타</option>
+        <option value="개" <c:if test="${c.communityCategory == '개'}">selected</c:if>>개</option>
+        <option value="고양이" <c:if test="${c.communityCategory == '고양이'}">selected</c:if>>고양이</option>
+        <option value="기타" <c:if test="${c.communityCategory == '기타'}">selected</c:if>>기타</option>
       </select>
       &nbsp;&nbsp;&nbsp;
       <label>
         <b>제목</b>&nbsp;
-        <input type="text" name="title" size="130" value="${c.communityTitle}">
+        <input type="text" name="title" size="130" value="${c.communityTitle}" required>
       </label>
     </div>
     <br>
     <div id="content-form">
       <div>
-        <textarea name="detail" id="">${c.communityDetail}</textarea>
+        <textarea name="detail" id="" required>${c.communityDetail}</textarea>
         <br>
         <c:if test="${not empty atC }">
         	<input type="file" name="cimg">

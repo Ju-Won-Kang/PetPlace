@@ -160,3 +160,7 @@ div{
     display: flex;
     justify-content: center;
 }
+
+.main-color{
+    color: #7A97CC;
+}

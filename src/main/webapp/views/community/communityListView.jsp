@@ -36,6 +36,9 @@
 		<a href="javascript:arrL('2')" class="list-btn">추천순</a>
 		<input type="text" class="search-bar" name="keyword" id="keyword" onkeyup="enterkey()">
 		<script>
+
+			
+
 			// 현재 URL의 쿼리스트링을 가져옴
 			const params = new URLSearchParams(window.location.search);
 
@@ -44,6 +47,9 @@
 			const array = params.get('array');
 			const keyword = params.get('keyword');
 
+			if (window.location.pathname.includes('communitySearchList.do')) {
+					document.getElementById('keyword').value = keyword;
+			}
 			// 현재 URL의 pathname 가져오기
 			const pathname = window.location.pathname;
 

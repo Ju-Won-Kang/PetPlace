@@ -28,15 +28,15 @@
       &nbsp;&nbsp;&nbsp;
       <label>
         <b>제목</b>&nbsp;
-        <input type="text" name="title" size="130">
+        <input type="text" name="title" size="130" required>
       </label>
     </div>
     <br>
     <div id="content-form">
       <div>
-        <textarea name="detail" id=""></textarea>
+        <textarea name="detail" id="" required></textarea>
         <br>
-        <input type="file" name="cimg">
+        <input type="file" name="cimg" vlaue="">
       </div>
       
     </div>
