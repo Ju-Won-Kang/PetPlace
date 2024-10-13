@@ -129,7 +129,7 @@
                         </button>
                     </c:when>
                     <c:otherwise>
-                        <button type="button" class="btn btn-secondary btn-sm" data-bs-toggle="modal"
+                        <button type="button" id="QnA" data-bs-toggle="modal"
                                 data-bs-target="#inquiryModal">Q & A
                         </button>
                     </c:otherwise>
@@ -215,6 +215,8 @@
 
         // 숫자로 변환된 가격에 toLocaleString() 적용 후 다시 출력
         priceElement.textContent = priceValue.toLocaleString() + "원";
+        let totalEl = document.querySelector("#totalPrice");
+        totalEl.textContent = priceValue.toLocaleString() + "원";
 
 // -----------------------------------100g당 가격-----------------------------------
         window.onload = function() {

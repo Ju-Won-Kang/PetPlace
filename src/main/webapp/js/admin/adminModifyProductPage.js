@@ -35,7 +35,7 @@ function modifyProudct(productNo) {
                         case "productName":
                             str += "<div class=\"input-group input-group-sm mb-3 w-50\">\n" +
                                 "    <span class=\"input-group-text\">상품명</span>\n" +
-                                "    <input type=\"text\" class=\"form-control\" readonly name=\"productName\" value=" + productInfo.productName + ">\n" +
+                                "    <input type=\"text\" class=\"form-control\" readonly name=\"productName\" value=\"" + productInfo.productName + "\">\n" +
                                 "</div>"
                             break;
                         case "company":
@@ -59,7 +59,7 @@ function modifyProudct(productNo) {
                         case "ingredient":
                             str += "<div class=\"input-group input-group-sm mb-3 w-50\">\n" +
                                 "    <span class=\"input-group-text\">주원료</span>\n" +
-                                "    <input type=\"text\" class=\"form-control\" required name=\"ingredient\" value="+productInfo.ingredient + ">\n" +
+                                "    <input type=\"text\" class=\"form-control\" required name=\"ingredient\" value=\""+productInfo.ingredient + "\">\n" +
                                 "</div>"
                             break;
                         case "origin":
