@@ -138,4 +138,44 @@
     	 WHERE SM.BOARD_TYPE = 'B'
     	 ORDER BY BOARD_VIEWS DESC
     </select>
+    
+    <!-- 검색 게시글 개수 -->
+    <select id="selectSearchListCount" resultType="_int">
+    	SELECT COUNT(*) AS "COUNT"
+    	  FROM SALE_MISSING
+    	 WHERE BOARD_TYPE = #{boardType}
+		 <if test="category">
+		   AND ADOPT_CATEGORY = #{category}
+		 </if>
+		 <if test="keyword != null">
+		   AND (BOARD_TITLE LIKE '%' || #{keyword} || '%'
+		    OR BOARD_DETAIL LIKE '%' || #{keyword} || '%')
+		 </if>
+    </select>
+    
+    <!-- 검색 게시글 조회 -->
+    <select id="selectSearchList" resultMap="adoptListSet">
+    	SELECT S.BOARD_NO,
+    		   MEMBER_ID,
+    		   BOARD_TITLE,
+    		   BOARD_DETAIL,
+    		   BOARD_DATE,
+    		   BOARD_VIEWS,
+    		   PLACE,
+    		   TO_CHAR(FIND_DATE, 'YYYY-MM-DD') AS "FIND_DATE",
+    		   S.BOARD_TYPE,
+    		   FILE_PATH || CHANGE_NAME AS "TITLE_IMG"
+    	  FROM SALE_MISSING S
+    	  JOIN MEMBER USING (MEMBER_ID)
+    	  JOIN ATTACHMENT_ADOPT ON (REF_ANO = BOARD_NO)
+    	 WHERE S.BOARD_TYPE = #{boardType}
+    	 <if test="category">
+		   AND ADOPT_CATEGORY = #{category}
+		 </if>
+		 <if test="keyword != null">
+		   AND (BOARD_TITLE LIKE '%' || #{keyword} || '%'
+		    OR BOARD_DETAIL LIKE '%' || #{keyword} || '%')
+		 </if>
+    	 ORDER BY S.BOARD_NO DESC
+    </select>
 </mapper>

@@ -107,4 +107,26 @@ public class AdoptServiceImpl implements AdoptService{
 		return list;
 	}
 
+	@Override
+	public int selectSearchListCount(HashMap<String, String> map) {
+		SqlSession sqlSession = Template.getSqlSession();
+		
+		int searchCount = aDao.selectSearchListCount(sqlSession, map);
+		
+		sqlSession.close();
+		
+		return searchCount;
+	}
+
+	@Override
+	public ArrayList<Adopt> selectSearchList(HashMap<String, String> map, PageInfo pi) {
+		SqlSession sqlSession = Template.getSqlSession();
+		
+		ArrayList<Adopt> list = aDao.selectSearchList(sqlSession, map, pi);
+		System.out.println("Searchend" + list);
+		sqlSession.close();
+		
+		return list;
+	}
+
 }

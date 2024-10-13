@@ -61,4 +61,19 @@ public class AdoptDao {
 		System.out.println("disDao" + list);
 		return list;
 	}
+	
+	// 검색한 목록 게시글 개수
+	public int selectSearchListCount(SqlSession sqlSession, HashMap<String, String> map) {
+		return sqlSession.selectOne("adoptMapper.selectSearchListCount", map);
+	}
+	
+	public ArrayList<Adopt> selectSearchList(SqlSession sqlSession, HashMap<String, String> map, PageInfo pi){
+		int offset = (pi.getCurrentPage() - 1) * pi.getBoardLimit();
+		int limit = pi.getBoardLimit();
+		RowBounds rowBounds = new RowBounds(offset, limit);
+		
+		System.out.println("searchDao" + map);
+		
+		return (ArrayList)sqlSession.selectList("adoptMapper.selectSearchList", map, rowBounds);
+	}
 }

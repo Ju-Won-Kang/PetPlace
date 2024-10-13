@@ -26,4 +26,8 @@ public interface AdoptService {
 	
 	// 메인페이지 분양 조회
 	ArrayList<Adopt> selectDistributeMainList();
+	
+	int selectSearchListCount(HashMap<String, String> map);
+	
+	ArrayList<Adopt> selectSearchList(HashMap<String, String> map, PageInfo pi);
 }

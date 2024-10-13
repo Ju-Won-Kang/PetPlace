@@ -21,7 +21,7 @@
     <div id="title-form">
       <select name="boardType" required onchange="handleOptionChange(this)">
         <option value="" selected disabled hidden>게시판 종류</option>
-        <option value="A" onclick="missingOption()">실종/유기</option>
+        <option value="A" onclick="missingOption()">유기/실종</option>
         <option value="B" onclick="distributeOption()">분양</option>
       </select>
       <select name="category" required>

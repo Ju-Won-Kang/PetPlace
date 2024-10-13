@@ -22,22 +22,18 @@
         </div>
         <form class="find-pet-option" action="adoptSearch.do">
             <div class="select-pet-place">
+            	<input type="hidden" name="cpage" value="1">
             	<input type="hidden" name="boardType" value="${boardType}">
                 <select id="select-pet-type" name="category">
-                    <option value="all">동물종류</option>
-                    <option value="cat">고양이</option>
-                    <option value="dog">강아지</option>
-                    <option value="etc">기타</option>
+                    <option value="" selected disabled hidden>동물종류</option>
+                    <option value="고양이">고양이</option>
+                    <option value="개">강아지</option>
+                    <option value="기타">기타</option>
                 </select>
 
-                <!-- 반복으로 위치 받아야함 -->
-                <select id="select-find-place" name="place">
-                    <option value="all">위치</option>
-                    <option value="suwon">수원시</option>
-                </select>
             </div>
             <div id="find-pet-area">
-                <input type="text" placeholder="검색">
+                <input type="text" name="keyword" value="${keyword}" placeholder="검색">
                 <button type="submit"><img src="<%=contextPath%>/images/Search.png"></button>
             </div>
         </form>

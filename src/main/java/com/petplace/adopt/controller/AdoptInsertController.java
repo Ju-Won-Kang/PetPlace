@@ -124,7 +124,7 @@ public class AdoptInsertController extends HttpServlet {
 				response.sendRedirect(request.getContextPath() + "/adoptList.do?cpage=1&boardType=A");
 			} else { //실패 -> 업로드된 파일 삭제해주고 에러페이지
 				 
-				 //for(CommunityAttachment at : list) {
+				 //for(AdoptAttachment at : list) {
 					 new File(savePath + aAt.getChangeName()).delete();
 				 //}
 				 session.setAttribute("alertMsg", "입양 게시글 등록에 실패하였습니다.");
