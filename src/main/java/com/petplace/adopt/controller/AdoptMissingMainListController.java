@@ -1,23 +1,28 @@
 package com.petplace.adopt.controller;
 
+import java.io.IOException;
+import java.util.ArrayList;
+
+import com.google.gson.Gson;
+import com.petplace.adopt.model.service.AdoptService;
+import com.petplace.adopt.model.service.AdoptServiceImpl;
+import com.petplace.adopt.model.vo.Adopt;
+
 import jakarta.servlet.ServletException;
-import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import java.io.IOException;
 
 /**
- * Servlet implementation class MissingDetailViewServlet
+ * Servlet implementation class AdoptMissingMainListController
  */
-@WebServlet(name = "missingDetail.do", urlPatterns = { "/missingDetail.do" })
-public class MissingDetailViewServlet extends HttpServlet {
+public class AdoptMissingMainListController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public MissingDetailViewServlet() {
+    public AdoptMissingMainListController() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -26,7 +31,13 @@ public class MissingDetailViewServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.getRequestDispatcher("views/adopt/missingDetailView.jsp").forward(request,response);
+		AdoptService aService = new AdoptServiceImpl();
+		System.out.println("Ajaxstart");
+		ArrayList<Adopt> list = aService.selectMissingMainList();
+		System.out.println("missingAjaxend" + list);
+		
+		response.setContentType("application/json; charset=utf-8");
+		new Gson().toJson(list, response.getWriter());
 	}
 
 	/**
