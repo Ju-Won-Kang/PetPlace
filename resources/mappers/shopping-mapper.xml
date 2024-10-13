@@ -65,7 +65,6 @@
 		<result column="MEMBER_ADDRESS" property="address"/>
 	</resultMap>
 	
-	
 	<resultMap id="insertPurchase" type="Purchase">
 		<result column="PURCHASE_NO" property="purchaseNo"/>
 		<result column="PRODUCT_NO" property="productName"/>
@@ -78,11 +77,18 @@
 		<result column="WAYBILL" property="purchaseNo"/>
 		<result column="PURCHASE_NO" property="purchaseNo"/>
 		<result column="MULTI_DETAIL" property="purchaseNo"/>
-		
-	
 	</resultMap>
 	
-
+	<resultMap id="reviewResultSet" type="Review">
+		<result column="REVIEW_NO" property="reviewNo"/>
+		<result column="MEMBER_ID" property="memberId"/>
+		<result column="PRODUCT_NO" property="productNo"/>
+		<result column="STAR" property="star"/>
+		<result column="REVIEW_DETAIL" property="reviewDetail"/>
+		<result column="REVIEW_DATE" property="reviewDate"/>
+	</resultMap>
+	
+	
 
 	<select id="selectShoppingListCount" resultType="_int">
 		SELECT COUNT(*) AS "COUNT"
@@ -284,5 +290,23 @@
 			#{cardNo}
 			)
 	</insert>
+	
+	<select id="selectReviewCount" resultType="_int">
+		SELECT COUNT(*) AS "COUNT"
+		  FROM REVIEW
+		 WHERE PRODUCT_NO = #{productNo}
+	</select>
+	
+	<!-- 리뷰리스트 가져오기 -->
+	<select id="selectReviewList" resultMap="reviewResultSet">
+		  SELECT REVIEW_NO,
+				 MEMBER_ID,
+				 PRODUCT_NO,
+				 STAR,
+				 REVIEW_DETAIL,
+				 REVIEW_DATE
+			FROM REVIEW	
+		   WHERE PRODUCT_NO = #{productNo}
+	</select>
 	
 </mapper>

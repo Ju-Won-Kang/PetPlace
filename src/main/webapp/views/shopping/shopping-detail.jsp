@@ -1,22 +1,37 @@
-<%@ page language="java" contentType="text/html;charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html;charset=UTF-8" pageEncoding="UTF-8"%>
   
  <%@ page import="java.sql.*" %>
- <%@ page import="java.util.ArrayList, com.petplace.shopping.model.dto.ShoppingDetailList" %>
-<%
-    ArrayList<ShoppingDetailList> list = (ArrayList<ShoppingDetailList>)(request.getAttribute("product"));
-    for(ShoppingDetailList item : list){
-        System.out.println(item.getFileLevel());
+ <%@ page import="java.util.ArrayList" %>
+ <%@ page import="com.petplace.shopping.model.dto.ShoppingDetailList" %>
+
+ <%
+    String loginAlert = (String) request.getAttribute("loginAlert");
+    if (loginAlert != null) {
+ %>
+    <script>alert('<%= loginAlert %>');</script>
+ <%
     }
-    int fileL = list.get(0).getFileLevel();
+ %>
+
+ <%
+    ArrayList<ShoppingDetailList> list = (ArrayList<ShoppingDetailList>)(request.getAttribute("product"));
+        if (list != null && !list.isEmpty()) {
+            // 리스트가 비어 있지 않을 때만 실행
+
+        for(ShoppingDetailList item : list){
+        System.out.println(item.getFileLevel());
+        int fileL = list.get(0).getFileLevel();
+        }
+    }
 %>
+
 <%
-    
     int starRating = 0; 
     if (list != null && list.size() > 0) {
         starRating = list.get(0).getFileLevel(); // 예시로 첫 번째 항목의 fileLevel 값을 사용
     }
 %>
+
 <!DOCTYPE html>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html lang="en">
@@ -37,12 +52,6 @@
                     </c:if>
                 </c:forEach>
             </div>
-            <div id="subFoods">
-                <div class="subFood-img"></div>
-                <div class="subFood-img"></div>
-                <div class="subFood-img"></div>
-                <div class="subFood-img"></div>
-            </div>
         </div>
         <div id="right-body">
             <div id="main-info">
@@ -52,7 +61,7 @@
                 </div>
                 <div id="main-info-bottom-star">
                     <!-------------- 별점 출력  ----------->
-                    <div id="starDiv"></div><p id="review">&nbsp${product[0].reviewCount}개 상품평</p>
+                    <div class="starDiv"></div><p id="review">&nbsp${product[0].reviewCount}개 상품평</p>
                 </div>
 
             </div>
@@ -110,18 +119,17 @@
                 <input type="hidden" name="productPrice" value="${product[0].price}">
 
                 <div id="shopping-buttons">
-                    <button id="buy-btn">구매하기</button>
+                    <button class="three-btn" id="buy-btn">구매하기</button>
                 </div>
             </form>
         </div>
     </div>
-
     <div id="bottom-body">
         <div id="bottom-body-1Line">
             <div id="pro-detail-review-QNA">
-                <div>상품상세</div>
-                <div>리뷰</div>
-<%--                <div onclick="">Q & A</div>--%>
+                <div><button id="rev-detail-btn">상품상세</button></div>
+                <div><button id="rev-list-btn">리뷰</button></div> <!--클릭하면 리뷰로 이동-->
+<!-- <%--                <div class="three-btn" onclick="">Q & A</div>--%> -->
                 <c:choose>
                     <c:when test="${empty loginUser}">
                         <button type="button" class="btn btn-secondary btn-sm" data-bs-toggle="modal"
@@ -136,22 +144,7 @@
                 </c:choose>
             </div>
         </div>
-
-
-        <div id="review-wrap">
-            <div id="all-review">
-                <div><h1>전체리뷰</h1> 192건</div>
-                <hr>
-                <div></div>
-                
-            </div>
-
-            
-
-
-
-        </div>
-
+        
         <div id="detailInfoImg">
             <c:forEach var="i" begin="0" end="${product.size()}" step="1">
                 <c:if test="${product[i].fileLevel == 2}">
@@ -160,45 +153,84 @@
             </c:forEach>
         </div>
 
+        <!-- ------------리뷰 ---------------->
+        <div id="review-wrap">
+            <div id="all-review">
+                <div>
+                    <span id="allRevice-text">전체리뷰 </span><span>${reviewCount}건</span>
+                </div>
+                <hr>
+                <div id="recent"> 최신순</div>
+            </div>
+
+            <c:forEach var="item" items="${list}">
+
+                <div id="review-wrapper">
+                    <div id="review">
+                        <div id="review-left">
+                            <div><img src="images/user.png" alt="User"></div>
+                            <div id="review-NameDiv"><p id="review-name">${item.memberId}</p></div>
+                        </div>
+                        <div id="review-date">
+                            <p>${item.reviewDate}</p>
+                        </div>
+                    </div>
+                   
+                    <div id="review-bottom">
+                        <div id="review-middle">
+                            <p id="product-name"><b>구매제품</b> - ${product[0].productName}</p>
+                            <div id="star-wrap">
+                                <div class="starDiv"></div>
+                            </div>
+                        </div>
+                        <div id="textbox-wrap">
+                            <div id="textbox"  name="" id="">${item.reviewDetail}</div>
+                            
+                        </div>
+                    </div>
+                </div>
+            </c:forEach>
+        </div>   
     </div>
-
-    <a href="<%=contextPath%>/shopping.do?cpage=1">기타</a>
-
+    <!-- <a href="<%=contextPath%>/shopping.do?cpage=1">기타</a> -->
    
     <script> 
     // <!-----------------------별 출력 ------------------------>
         let contextPath = '<%= request.getContextPath() %>';
         let review_Count = parseInt(document.getElementById("review").textContent);
 
-
-        let starRating = 3; // 임시로 별점3점 넣어둠
-        if(review_Count==0){    //리뷰가 0개면 빈 별
+        let starRating = 3; // 임시로 별점 3점 넣어둠
+        if (review_Count == 0) {
             starRating = 0;
         }
 
         const maxRating = 5;
-        const starRatingDiv = document.getElementById("starDiv");
-        starRatingDiv.innerHTML = ''; // 이전에 추가된 별 이미지가 있으면 삭제
+        const starRatingDivs = document.getElementsByClassName("starDiv"); // 모든 starDiv 요소 가져오기
 
-        for (let i = 0; i < starRating; i++) {
-           // 별 이미지를 위한 img 요소 생성
-           const starImg = document.createElement("img");
-            starImg.src = contextPath + "/images/star.png";
-            starImg.alt = "star";
-            starImg.classList.add("star");
+        Array.from(starRatingDivs).forEach(starRatingDiv => {
+            starRatingDiv.innerHTML = ''; // 이전에 추가된 별 이미지가 있으면 삭제
 
-            // starDiv에 별 이미지 추가
-            starRatingDiv.appendChild(starImg);
-        }
+            // 채워진 별 이미지 추가
+            for (let i = 0; i < starRating; i++) {
+                const starImg = document.createElement("img");
+                starImg.src = contextPath + "/images/star.png";
+                starImg.alt = "star";
+                starImg.classList.add("star");
 
-        // 빈 별 출력
-        for (let i = Math.floor(starRating); i < maxRating; i++) {
-            const emptyStarImg = document.createElement("img");
-            emptyStarImg.src = contextPath + "/images/star_empty.png"; // 빈 별 이미지 경로
-            emptyStarImg.alt = "빈 별";
-            emptyStarImg.classList.add("star");
-            starRatingDiv.appendChild(emptyStarImg);
-        }
+                starRatingDiv.appendChild(starImg);
+            }
+
+            // 빈 별 이미지 추가
+            for (let i = Math.floor(starRating); i < maxRating; i++) {
+                const emptyStarImg = document.createElement("img");
+                emptyStarImg.src = contextPath + "/images/star_empty.png";
+                emptyStarImg.alt = "빈 별";
+                emptyStarImg.classList.add("star");
+
+                starRatingDiv.appendChild(emptyStarImg);
+            }
+        });
+
         
         // -----------------------------------상품 수량 가격-----------------------------------
         const productPrice = parseInt(document.getElementById("bigPrice").textContent.trim(), 10);

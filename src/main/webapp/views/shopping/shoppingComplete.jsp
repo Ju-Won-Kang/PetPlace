@@ -68,10 +68,6 @@
 				</thead>
 				<tbody>
 					<tr>
-						<td class="info-small-title">운송장 번호</td>
-						<td class="buy-user-info">${list.wayBill}</td>
-					</tr>
-					<tr>
 						<td class="info-small-title">상품명</td>
 						<td class="buy-user-info">${list.productName}</td>
 					</tr>

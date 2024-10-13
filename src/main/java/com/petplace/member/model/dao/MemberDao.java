@@ -15,17 +15,7 @@ import com.petplace.member.model.vo.Member;
 import org.apache.ibatis.session.SqlSession;
 
 public class MemberDao {
-	private Properties prop = new Properties();
 	
-	public MemberDao() {
-		String filePath = MemberDao.class.getResource("/mappers/member-mapper.xml").getPath();
-
-		try {
-			prop.loadFromXML(new FileInputStream(filePath));
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-	}
 	
 	public Member loginMember(SqlSession sqlSession, String userId) {
 		return sqlSession.selectOne("memberMapper.selectHashedMember", userId);

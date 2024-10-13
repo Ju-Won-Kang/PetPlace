@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ page import="com.petplace.common.PageInfo, java.util.ArrayList, com.petplace.shopping.model.dto.ShoppingList, com.petplace.review.model.vo.Review" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <%
     PageInfo pi = (PageInfo)request.getAttribute("pi");
     ArrayList<ShoppingList> list = (ArrayList<ShoppingList>)request.getAttribute("list");
@@ -11,6 +12,7 @@
     int endPage = pi.getEndPage();
     int maxPage = pi.getMaxPage();
 %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -59,7 +61,6 @@
             <div id="dogproduct-line1">
                 <% for(ShoppingList s : list) { %>
                     <div class="dogFood">
-                        
                         <div onclick="location.href='<%=contextPath%>/shoppingdetail.do?productNo=<%=s.getProductNo() %>'" class="dogFood-img">
                             <img class="product_1-img" src="<%=contextPath%>/<%=s.getProductImg()%>" alt="프로베스트 사료">
                         </div>
@@ -75,7 +76,7 @@
 								<c:forEach var="i" begin="<%=s.getStar() + 1 %>" end="5" step="1">
 									<img class="dogFood-etc" id="stars" src="<%=contextPath%>/images/star_empty.png">
 								</c:forEach>
-								<p class="dogFood-etc" id="star-after"><%=s.getReviewCount() %>개 상품평</p>
+								<p class="dogFood-etc" id="star-after">&nbsp;<%=s.getReviewCount()%>개 상품평</p>
 							</div>
                         </div>
                     </div>
@@ -158,8 +159,6 @@
                         </c:otherwise>
                     </c:choose>
 
-
-
                     <c:forEach var="page" begin="${pi.startPage}" end="${pi.endPage}" step="1">
                         <c:choose>
                             <c:when test="${page == pi.currentPage}">
@@ -188,9 +187,7 @@
                             </c:otherwise>
                         </c:choose>
                     </c:forEach>
-                    
-                    
-                    
+                                        
                     <c:choose>
                         <c:when test="${pi.currentPage < pi.maxPage}">
                             <li class="page-item">
@@ -333,8 +330,7 @@
                         </c:otherwise>
                     </c:choose>
 
-
-
+                
                     <c:forEach var="page" begin="${pi.startPage}" end="${pi.endPage}" step="1">
                         <c:choose>
                             <c:when test="${page == pi.currentPage}">
@@ -364,8 +360,7 @@
                         </c:choose>
                     </c:forEach>
                     
-                    
-                    
+                                    
                     <c:choose>
                         <c:when test="${pi.currentPage < pi.maxPage}">
                             <li class="page-item">

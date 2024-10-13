@@ -10,14 +10,13 @@ import org.apache.ibatis.session.SqlSession;
 
 import com.petplace.common.PageInfo;
 import com.petplace.purchase.model.vo.Purchase;
+import com.petplace.review.model.vo.Review;
 import com.petplace.shopping.model.dto.ShoppingComplete;
 import com.petplace.shopping.model.dto.ShoppingDetailList;
 import com.petplace.shopping.model.dto.ShoppingList;
 import com.petplace.shopping.model.dto.UserInfo;
 
 public class ShoppingDao {
-	
-	private Properties prop = new Properties();
 
 	public int selectShoppingListCount(SqlSession sqlSession, String category) {
 		return sqlSession.selectOne("shoppingMapper.selectShoppingListCount", category);
@@ -74,7 +73,6 @@ public class ShoppingDao {
 	    return sqlSession.selectOne("shoppingMapper.selectShoppingCompleteList", params);
 	}
 
-
 	public UserInfo selectUserInfoList(SqlSession sqlSession, String userId){
 		return (UserInfo)sqlSession.selectOne("shoppingMapper.selectUserInfoList",userId);
 	}
@@ -82,6 +80,17 @@ public class ShoppingDao {
 	public int insertPurchase(SqlSession sqlSession, Purchase purchase) {
 		System.out.println(purchase);
 		return sqlSession.insert("shoppingMapper.insertPurchase", purchase);
+	}
+	
+	public int selectReviewCount(SqlSession sqlSession, int productNo) {
+		int result = sqlSession.selectOne("shoppingMapper.selectReviewCount", productNo);
+		return result;
+	}
+	
+	// 모든 리뷰 ArrayList가져오기
+	public ArrayList<Review> selectReviewList(SqlSession sqlSession, int productNo) {
+		
+		return (ArrayList)sqlSession.selectList("shoppingMapper.selectReviewList", productNo);
 	}
 	
 }

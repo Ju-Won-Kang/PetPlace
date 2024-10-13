@@ -9,6 +9,7 @@ import org.apache.ibatis.session.SqlSession;
 import com.petplace.common.PageInfo;
 import com.petplace.common.Template;
 import com.petplace.purchase.model.vo.Purchase;
+import com.petplace.review.model.vo.Review;
 import com.petplace.shopping.dao.ShoppingDao;
 import com.petplace.shopping.model.dto.ShoppingComplete;
 import com.petplace.shopping.model.dto.ShoppingDetailList;
@@ -44,33 +45,24 @@ public class ShoppingServiceImpl implements ShoppingService {
 	@Override
 	public ArrayList<ShoppingDetailList> selectDetailProduct(int productNo) {
 		SqlSession sqlSession = Template.getSqlSession();
-
 		ArrayList<ShoppingDetailList> product = sDao.selectDetailProduct(sqlSession, productNo);
-		
 		sqlSession.close();
-		
 		return product;
 	}
 	
 	@Override
 	public ArrayList<ShoppingList> selectShoppingPetList(PageInfo pi, String category) {
 		SqlSession sqlSession = Template.getSqlSession();
-		
 		ArrayList<ShoppingList> list = sDao.selectShoppingPetList(sqlSession, pi, category);
-		
 		sqlSession.close();
-		
 		return list;
 	}
 
 	@Override
 	public int selectSearchCount(HashMap<String, String> map) {
 		SqlSession sqlSession = Template.getSqlSession();
-		
 		int result = sDao.selectSearchCount(sqlSession, map);
-		
 		sqlSession.close();
-		
 		return result;
 	}
 	
@@ -113,8 +105,9 @@ public class ShoppingServiceImpl implements ShoppingService {
 		Map<String, Object> params = new HashMap<>();
 	    params.put("productNo", productNo);
 	    params.put("memberId", memberId);
-
-	    return sDao.selectShoppingCompleteList(sqlSession, params);
+	    ShoppingComplete result = sDao.selectShoppingCompleteList(sqlSession, params);
+	    
+	    return result;
 	}
 
 
@@ -123,7 +116,7 @@ public class ShoppingServiceImpl implements ShoppingService {
 		SqlSession sqlSession = Template.getSqlSession();
 		
 		UserInfo list = sDao.selectUserInfoList(sqlSession, userId);
-		
+		sqlSession.close();
 		return list;
 	}
 
@@ -139,8 +132,30 @@ public class ShoppingServiceImpl implements ShoppingService {
 			sqlSession.rollback();
 			System.out.println("커밋실패..");
 		}
+		sqlSession.close();
 		return result;
 	}
 
+	@Override
+	public int selectReviewCount(int productNo) {
+		SqlSession sqlSession = Template.getSqlSession();
+		int result = sDao.selectReviewCount(sqlSession, productNo);
+		
+		sqlSession.close();
+		return result;
+	}
+
+	@Override
+	public ArrayList<Review> selectReviewList(int productNo) {
+		SqlSession sqlSession = Template.getSqlSession();
+		
+		System.out.println();
+		ArrayList<Review> list = (ArrayList)sDao.selectReviewList(sqlSession, productNo);
+		sqlSession.close();
+		
+		return list;
+		
+	}
+	
 
 }

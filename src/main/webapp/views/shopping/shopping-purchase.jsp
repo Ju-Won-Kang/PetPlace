@@ -40,7 +40,6 @@
                 <tr>
                     <td>배송 요청사항</td>
                     <td><input name="request" type="text" name="request"></td>
-
                 </tr>
             </table>
 
