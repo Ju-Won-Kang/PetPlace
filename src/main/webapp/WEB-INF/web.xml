@@ -170,4 +170,14 @@
     <servlet-name>cUpdate.do</servlet-name>
     <url-pattern>/cUpdate.do</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>deletecComment.do</display-name>
+    <servlet-name>deletecComment.do</servlet-name>
+    <servlet-class>com.petplace.community.controller.CommentDeleteController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>deletecComment.do</servlet-name>
+    <url-pattern>/deletecComment.do</url-pattern>
+  </servlet-mapping>
 </web-app>

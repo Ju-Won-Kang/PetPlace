@@ -92,6 +92,7 @@
                                     </c:if>
                                 </c:forEach>
                                 <option value="고양이">고양이</option>
+                                <option value="강아지">강아지</option>
                                 <option id="other-option" value="other">기타</option>
                             </select>
                         </div>

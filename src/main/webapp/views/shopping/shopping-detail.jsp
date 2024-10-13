@@ -181,10 +181,6 @@
         </div>
     </div>
     </div>
-
-    <a href="<%=contextPath%>/shopping.do?cpage=1">기타</a>
-
-
     <script>
 
 

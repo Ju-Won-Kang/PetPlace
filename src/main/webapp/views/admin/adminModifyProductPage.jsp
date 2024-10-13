@@ -149,7 +149,7 @@
                             </c:otherwise>
                         </c:choose>
                         <c:choose>
-                            <c:when test="${(pi.endPage / boardLimit)  < pi.maxPage}">
+                            <c:when test="${(pi.endPage / pi.boardLimit)  < pi.maxPage}">
                                 <li class="page-item">
                                     <a href="${pageContext.request.contextPath}/adminModifyProduct.pd?cpage=${pi.endPage + 1}"
                                        class="page-link">
