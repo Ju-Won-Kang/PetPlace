@@ -26,14 +26,14 @@ import com.petplace.community.service.CommunityServiceImple;
  */
 public class CommunityUpdateController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public CommunityUpdateController() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
+
+	/**
+	 * @see HttpServlet#HttpServlet()
+	 */
+	public CommunityUpdateController() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
@@ -41,28 +41,28 @@ public class CommunityUpdateController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
 		CommunityService cService = new CommunityServiceImple();
-		
-		
+
+
 		if(JakartaServletFileUpload.isMultipartContent(request)) {
 			//1.파일용량제한
 			int fileMaxSize = 1024 * 1024 * 10; //10mb
 			int requestMaxSize = 1024 * 1024 * 20; //20
-			
+
 			//2. 전달파일 저장경로
 			String savePath = request.getServletContext().getRealPath("/images/community_upfile/");
-			
+
 			//3.DiskFileItemFactory(파일을 임시로 저장) 객체 생성
 			DiskFileItemFactory factory = DiskFileItemFactory.builder().get();
-			
+
 			//JakartaServletFileUpload http요청으로 들어온 파일데이터를 파싱 -> 개별FileItem 객체로 변환
 			JakartaServletFileUpload upload = new JakartaServletFileUpload(factory);
-			
+
 			upload.setFileSizeMax(fileMaxSize);
 			upload.setSizeMax(requestMaxSize);
-			
+
 			//요청으로부터 파일 아이템 파싱
 			List<FileItem> formItems = upload.parseRequest(request);
-			
+
 			//추가할 데이터
 			Community c = new Community();
 			//ArrayList<CommunityAttachment> list = new ArrayList<>();
@@ -71,25 +71,31 @@ public class CommunityUpdateController extends HttpServlet {
 				System.out.println(item);
 				if(item.isFormField()) {
 					switch(item.getFieldName()) {
-					case "cno":
-						c.setCommunityNo(Integer.parseInt(item.getString(Charset.forName("utf-8"))));
-						System.out.println("cno=" + c.getCommunityNo());
-						CommunityAttachment resultAt = cService.selectCommunityAt(c.getCommunityNo());
-						atC.setRefCno(resultAt.getRefCno());
-						System.out.println(resultAt.getRefCno());
-						break;
-					case "memberId":
-						c.setMemberId(item.getString(Charset.forName("utf-8")));
-						break;
-					case "category":
-						c.setCommunityCategory(item.getString(Charset.forName("utf-8")));
-						break;
-					case "title":
-						c.setCommunityTitle(item.getString(Charset.forName("utf-8")));
-						break;
-					case "detail":
-						c.setCommunityDetail(item.getString(Charset.forName("utf-8")));
-						break;
+						case "cno":
+							c.setCommunityNo(Integer.parseInt(item.getString(Charset.forName("utf-8"))));
+							System.out.println("cno=" + c.getCommunityNo());
+							CommunityAttachment resultAt = cService.selectCommunityAt(c.getCommunityNo());
+
+							if(resultAt != null) {
+								atC.setRefCno(resultAt.getRefCno());
+								System.out.println(resultAt.getRefCno());
+							} else {
+								System.out.println("No CommunityAttachment found for communityNo: " + c.getCommunityNo());
+							}
+							break;
+
+						case "memberId":
+							c.setMemberId(item.getString(Charset.forName("utf-8")));
+							break;
+						case "category":
+							c.setCommunityCategory(item.getString(Charset.forName("utf-8")));
+							break;
+						case "title":
+							c.setCommunityTitle(item.getString(Charset.forName("utf-8")));
+							break;
+						case "detail":
+							c.setCommunityDetail(item.getString(Charset.forName("utf-8")));
+							break;
 					}
 				} else {
 					String originName = item.getName();
@@ -99,32 +105,32 @@ public class CommunityUpdateController extends HttpServlet {
 						String tmpName = "CommunityFile_" + System.currentTimeMillis();
 						String type = originName.substring(originName.lastIndexOf("."));
 						String changeName = tmpName + type; //서버에 저장할 파일명
-						
+
 						File f = new File(savePath, changeName);
-                        item.write(f.toPath());
-                        
+						item.write(f.toPath());
+
 						//CommunityAttachment atC = new CommunityAttachment();
 						atC.setOriginName(originName);
 						atC.setChangeName(changeName);
 						atC.setFilePath("images/community_upfile/");
-						
+
 						//list.add(atC);
 					}
 				}
 			}
-			
+
 			int result = cService.updateCommunity(c, atC);
 			HttpSession session = request.getSession();
 			if(result > 0) {//성공
 				session.setAttribute("alertMsg", "커뮤니티 게시글 수정에 성공했습니다.");
 				response.sendRedirect(request.getContextPath() + "/communityList.do?cpage=1&category=all&array=1");
 			} else { //실패 -> 업로드된 파일 삭제해주고 에러페이지
-				 
-				 //for(CommunityAttachment at : list) {
-					 new File(savePath + atC.getChangeName()).delete();
-				 //}
-				 session.setAttribute("alertMsg", "커뮤니티 게시글 수정에 실패하였습니다.");
-				 response.sendRedirect(request.getContextPath() + "/communityList.do?cpage=1&category=all&array=1");
+
+				//for(CommunityAttachment at : list) {
+				new File(savePath + atC.getChangeName()).delete();
+				//}
+				session.setAttribute("alertMsg", "커뮤니티 게시글 수정에 실패하였습니다.");
+				response.sendRedirect(request.getContextPath() + "/communityList.do?cpage=1&category=all&array=1");
 			}
 		}
 	}
