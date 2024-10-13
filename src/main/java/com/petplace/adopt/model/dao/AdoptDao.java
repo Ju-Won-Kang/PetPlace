@@ -9,6 +9,7 @@ import org.apache.ibatis.session.SqlSession;
 import com.petplace.adopt.model.vo.Adopt;
 import com.petplace.adopt.model.vo.AdoptAttachment;
 import com.petplace.common.PageInfo;
+import com.petplace.community.model.vo.CommunityAttachment;
 
 public class AdoptDao {
 	
@@ -75,5 +76,17 @@ public class AdoptDao {
 		System.out.println("searchDao" + map);
 		
 		return (ArrayList)sqlSession.selectList("adoptMapper.selectSearchList", map, rowBounds);
+	}
+	
+	public int deleteAdopt(SqlSession sqlSession, int boardNo) {
+		return sqlSession.update("adoptMapper.deleteAdopt", boardNo);
+	}
+	
+	public int deleteAdoptAt(SqlSession sqlSession, int boardNo) {
+		return sqlSession.update("adoptMapper.deleteAdoptAt", boardNo);
+	}
+	
+	public AdoptAttachment selectAdoptAt(SqlSession sqlSession, int boardNo) {
+		return (AdoptAttachment)sqlSession.selectOne("adoptMapper.selectAdoptAt", boardNo);
 	}
 }
