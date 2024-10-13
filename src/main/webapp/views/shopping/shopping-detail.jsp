@@ -309,12 +309,12 @@
                         <h4>상품명 : ${product[0].productName}</h4>
                         <div class="input-group input-group-sm mb-3 w-75">
                             <span class="input-group-text">문의 제목</span>
-                            <input type="text" class="form-control" name="inquiryTitle">
+                            <input type="text" class="form-control" name="inquiryTitle" required>
                         </div>
                         <div class="input-group input-group-sm mb-3 w-75">
-                            <span class="input-group-text">문의 내용</span>
+                            <span class="input-group-text" >문의 내용</span>
                             <%--                            <input type="text" class="form-control" name="inquiryTitle">--%>
-                            <textarea name="inquiryDetail" class="form-control" cols="50" rows="6"></textarea>
+                            <textarea name="inquiryDetail" class="form-control" cols="50" rows="6" required></textarea>
                         </div>
                     </div>
 

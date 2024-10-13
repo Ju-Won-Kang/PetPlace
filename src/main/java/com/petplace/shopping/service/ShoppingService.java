@@ -21,6 +21,7 @@ public interface ShoppingService {
 	
 	public abstract int selectSearchCount(HashMap<String, String> map);
 	public abstract int selectSearchCount(String keyword);
+	
 	public abstract ArrayList<ShoppingList> selectSearchAllList(String keyword, PageInfo pi);
 	public abstract ArrayList<ShoppingList> selectSearchPetList(HashMap<String, String> map, PageInfo pi);
 	

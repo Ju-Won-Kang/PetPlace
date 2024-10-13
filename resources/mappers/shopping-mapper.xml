@@ -289,24 +289,6 @@
 			#{cardNo}
 			)
 	</insert>
-	
-	<select id="selectReviewCount" resultType="_int">
-		SELECT COUNT(*) AS "COUNT"
-		  FROM REVIEW
-		 WHERE PRODUCT_NO = #{productNo}
-	</select>
-	
-	<!-- 리뷰리스트 가져오기 -->
-	<select id="selectReviewList" resultMap="reviewResultSet">
-		  SELECT REVIEW_NO,
-				 MEMBER_ID,
-				 PRODUCT_NO,
-				 STAR,
-				 REVIEW_DETAIL,
-				 REVIEW_DATE
-			FROM REVIEW	
-		   WHERE PRODUCT_NO = #{productNo}
-	</select>
 
 	<select id="selectShoppingTopList" resultMap="selectShoppingList">
 		SELECT P.PRODUCT_NO,

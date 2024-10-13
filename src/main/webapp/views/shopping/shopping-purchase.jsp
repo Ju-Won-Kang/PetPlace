@@ -91,11 +91,11 @@
                 </tr>
                 <tr>
                     <td>카드번호</td>
-                    <td><input name="cardNum" type="text" placeholder="카드번호 입력"></td>
+                    <td><input name="cardNum" type="text" placeholder="카드번호 입력" required></td>
                 </tr>
                 <tr>
                     <td>카드 비밀번호</td>
-                    <td><input name="cardPwd" type="password" placeholder="비밀번호 입력"></td>
+                    <td><input name="cardPwd" type="password" placeholder="비밀번호 입력" required></td>
                 </tr>
             </table>
             <br><br>
