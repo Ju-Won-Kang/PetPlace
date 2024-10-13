@@ -264,7 +264,7 @@
 
                     <!-- Modal footer -->
                     <div class="modal-footer">
-                        <button type="submit" class="btn btn-secondary">상품 수정</button>
+                        <button type="submit" class="btn btn-secondary">문의 하기</button>
                     </div>
                 </form>
             </div>

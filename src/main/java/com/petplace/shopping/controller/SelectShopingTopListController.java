@@ -30,7 +30,6 @@ public class SelectShopingTopListController extends HttpServlet {
         if (list == null){
             response.getWriter().print("NNNNN");
         }else{
-//            response.getWriter().print("NNNNY");
             response.setContentType("application/json; charset=utf-8");
             new Gson().toJson(list, response.getWriter());
         }

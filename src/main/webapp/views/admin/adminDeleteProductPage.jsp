@@ -60,7 +60,7 @@
                                 <td>${product.productCategory}</td>
                                 <td>${product.productName}</td>
                                 <td>${product.productWeight} kg</td>
-                                <td>${product.price}원</td>
+                                <td><fmt:formatNumber type="currency" value="${product.price}"/></td>
                                 <td>${product.inventory}개</td>
                                 <td>${product.enrollDate}</td>
                                 <td>
