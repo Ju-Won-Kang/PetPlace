@@ -35,11 +35,26 @@
 <body>
     <%@include file="../common/nav.jsp"%>
     <div id="menubar">
+        <%
+            // 현재 선택된 카테고리 값 확인 (null이면 "전체"로 설정)
+            String selectedCategory = request.getParameter("category");
+            if (selectedCategory == null) {
+                selectedCategory = "전체";
+            }
+        %>
+
         <div id="animal-category">
-            <a href="<%=contextPath%>/shopping.do?cpage=1">전체</a>
-            <a href="<%=contextPath%>/shopping.do?cpage=1&category=강아지">멍멍이</a>
-            <a href="<%=contextPath%>/shopping.do?cpage=1&category=고양이">냥</a>
-            <a href="<%=contextPath%>/shopping.do?cpage=1&category=기타">기타</a>
+            <!-- 전체 카테고리가 선택되었을 때 main-color 클래스 추가 -->
+            <a href="<%=contextPath%>/shopping.do?cpage=1" class="<%= "전체".equals(selectedCategory) ? "main-color" : "" %>">전체</a>
+
+            <!-- 강아지 카테고리가 선택되었을 때 main-color 클래스 추가 -->
+            <a href="<%=contextPath%>/shopping.do?cpage=1&category=강아지" class="<%= "강아지".equals(selectedCategory) ? "main-color" : "" %>">멍멍이</a>
+
+            <!-- 고양이 카테고리가 선택되었을 때 main-color 클래스 추가 -->
+            <a href="<%=contextPath%>/shopping.do?cpage=1&category=고양이" class="<%= "고양이".equals(selectedCategory) ? "main-color" : "" %>">냥</a>
+
+            <!-- 기타 카테고리가 선택되었을 때 main-color 클래스 추가 -->
+            <a href="<%=contextPath%>/shopping.do?cpage=1&category=기타" class="<%= "기타".equals(selectedCategory) ? "main-color" : "" %>">기타</a>
         </div>
         <form action="shoppingSearch.do">
 	        <div id="search-area">
