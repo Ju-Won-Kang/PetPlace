@@ -35,6 +35,7 @@ public interface ShoppingService {
 	
 	//리뷰 리스트 가져오기
 	public abstract ArrayList<Review> selectReviewList(int productNo);
-	
+
+	ArrayList<ShoppingList> selectShoppingTopList();
 	
 }

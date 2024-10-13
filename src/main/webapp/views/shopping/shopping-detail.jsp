@@ -153,7 +153,7 @@
             </c:forEach>
         </div>
 
-        <!-- ------------리뷰 ---------------->
+        <!--------------리뷰 ---------------->
         <div id="review-wrap">
             <div id="all-review">
                 <div>
@@ -207,8 +207,12 @@
         const maxRating = 5;
         const starRatingDivs = document.getElementsByClassName("starDiv"); // 모든 starDiv 요소 가져오기
 
-        Array.from(starRatingDivs).forEach(starRatingDiv => {
-            starRatingDiv.innerHTML = ''; // 이전에 추가된 별 이미지가 있으면 삭제
+        for (let i = 0; i < starRating; i++) {
+           // 별 이미지를 위한 img 요소 생성
+           const starImg = document.createElement("img");
+            starImg.src = contextPath + "/images/fullStar.png";
+            starImg.alt = "star";
+            starImg.classList.add("star");
 
             // 채워진 별 이미지 추가
             for (let i = 0; i < starRating; i++) {
@@ -229,12 +233,20 @@
 
                 starRatingDiv.appendChild(emptyStarImg);
             }
-        });
+        };
 
+
+        // 빈 별 출력
+        for (let i = Math.floor(starRating); i < maxRating; i++) {
+            const emptyStarImg = document.createElement("img");
+            emptyStarImg.src = contextPath + "/images/emptyStar.png"; // 빈 별 이미지 경로
+            emptyStarImg.alt = "빈 별";
+            emptyStarImg.classList.add("star");
+            starRatingDiv.appendChild(emptyStarImg);
+        }
         
         // -----------------------------------상품 수량 가격-----------------------------------
         const productPrice = parseInt(document.getElementById("bigPrice").textContent.trim(), 10);
-
 
         const shippingCost = 3000; // 기본 배송비
         const freeShippingThreshold = 20000; // 무료 배송 기준 금액
@@ -243,7 +255,7 @@
         const totalPriceElement = document.getElementById("totalPrice");
 
         function updatePrice() {
-            const productCount = parseInt(productCountInput.value); 
+            const productCount = parseInt(productCountInput.value);
             const totalProductPrice = productPrice * productCount;
             let finalPrice = totalProductPrice;
             totalPriceElement.textContent = finalPrice.toLocaleString() + "원";

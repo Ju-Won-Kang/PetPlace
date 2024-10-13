@@ -71,10 +71,10 @@
                             <p class="dogFood-price"><%=s.getPrice() %> 원</p>
 							<div id="dogFood-star">
 								<c:forEach var="i" begin="1" end="<%=s.getStar() %>" step="1">
-									<img class="dogFood-etc" id="stars" src="<%=contextPath%>/images/star.png">
+									<img class="dogFood-etc" id="stars" src="<%=contextPath%>/images/fullStar.png">
 								</c:forEach>
 								<c:forEach var="i" begin="<%=s.getStar() + 1 %>" end="5" step="1">
-									<img class="dogFood-etc" id="stars" src="<%=contextPath%>/images/star_empty.png">
+									<img class="dogFood-etc" id="stars" src="<%=contextPath%>/images/emptyStar.png">
 								</c:forEach>
 								<p class="dogFood-etc" id="star-after">&nbsp;<%=s.getReviewCount()%>개 상품평</p>
 							</div>
