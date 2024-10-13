@@ -38,13 +38,18 @@ public class OrderPurchaseController extends HttpServlet {
 		//세션 로그인 정보로 db에서 정보가져오기
 		HttpSession session = request.getSession(); 
 		Member loginUser = (Member)session.getAttribute("loginUser");
+		if(loginUser == null){
+			session.setAttribute("alertMsg","로그인 후 구매가 가능합니다.");
+			response.sendRedirect(request.getContextPath() + "/shoppingdetail.do?productNo=" + productNo);
+			return;
+		}
 		String userId = loginUser.getMemberId();
-		
+
 		ShoppingService sService = new ShoppingServiceImpl();
 		UserInfo userInfo = sService.selectUserInfoList(userId);
-		
-		request.setAttribute("productCount", productCount); 
-		request.setAttribute("userId", userId); 
+
+		request.setAttribute("productCount", productCount);
+		request.setAttribute("userId", userId);
 		request.setAttribute("userInfo", userInfo);
 		request.setAttribute("productName", productName);
 		request.setAttribute("totalProductPrice",totalProductPrice);

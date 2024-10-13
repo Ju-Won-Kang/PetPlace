@@ -1,18 +1,18 @@
 <%@ page language="java" contentType="text/html;charset=UTF-8"
-    pageEncoding="UTF-8"%>
-  
- <%@ page import="java.sql.*" %>
- <%@ page import="java.util.ArrayList, com.petplace.shopping.model.dto.ShoppingDetailList" %>
+         pageEncoding="UTF-8" %>
+
+<%@ page import="java.sql.*" %>
+<%@ page import="java.util.ArrayList, com.petplace.shopping.model.dto.ShoppingDetailList" %>
 <%
-    ArrayList<ShoppingDetailList> list = (ArrayList<ShoppingDetailList>)(request.getAttribute("product"));
-    for(ShoppingDetailList item : list){
+    ArrayList<ShoppingDetailList> list = (ArrayList<ShoppingDetailList>) (request.getAttribute("product"));
+    for (ShoppingDetailList item : list) {
         System.out.println(item.getFileLevel());
     }
     int fileL = list.get(0).getFileLevel();
 %>
 <%
-    
-    int starRating = 0; 
+
+    int starRating = 0;
     if (list != null && list.size() > 0) {
         starRating = list.get(0).getFileLevel(); // 예시로 첫 번째 항목의 fileLevel 값을 사용
     }
@@ -26,22 +26,16 @@
     <link rel="stylesheet" href="css/shopping/shopping-detail.css"> <!-- css연결 -->
 </head>
 <body>
-    <%@include file="../common/nav.jsp"%>
+    <%@include file="../common/nav.jsp" %>
 
     <div id="body-wrap">
         <div id="left-body">
-            <div id="mainFood"> 
+            <div id="mainFood">
                 <c:forEach var="i" begin="0" end="${product.size()}" step="1">
                     <c:if test="${product[i].fileLevel == 1}">
                         <img src="${product[i].productImg}" alt="">
                     </c:if>
                 </c:forEach>
-            </div>
-            <div id="subFoods">
-                <div class="subFood-img"></div>
-                <div class="subFood-img"></div>
-                <div class="subFood-img"></div>
-                <div class="subFood-img"></div>
             </div>
         </div>
         <div id="right-body">
@@ -52,7 +46,8 @@
                 </div>
                 <div id="main-info-bottom-star">
                     <!-------------- 별점 출력  ----------->
-                    <div id="starDiv"></div><p id="review">&nbsp${product[0].reviewCount}개 상품평</p>
+                    <div id="starDiv"></div>
+                    <p id="review">&nbsp${product[0].reviewCount}개 상품평</p>
                 </div>
 
             </div>
@@ -69,7 +64,9 @@
                     </div>
                     <div id="delivery-price">
                         <div class="firstTd">배송비</div>
-                        <div>3000원 <div id="free-del-price"></div></div>
+                        <div>3000원
+                            <div id="free-del-price"></div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -87,7 +84,7 @@
                     </tr>
                     <tr class="product-info">
                         <td>중량</td>
-                        <td id="productWeight">${product[0].productWeight}kg  </td>
+                        <td id="productWeight">${product[0].productWeight}kg</td>
                     </tr>
                     <tr class="product-info">
                         <td>칼로리</td>
@@ -100,8 +97,10 @@
                 <div id="prouduct-count-wrap">
                     <h4><b>상품 수량</b></h4>
                     <div id="btn-wrap">
-                        <input type="number" id="productCount" name="productCount" value="1" min="1" max="10" width="50px" >
-                        <div id="totalPrice" class="price" >${product[0].price}원</div>  <!--"원"까지 들어갈 것 같아서 hidden으로 전송-->
+                        <input type="number" id="productCount" name="productCount" value="1" min="1" max="10"
+                               width="50px">
+                        <div id="totalPrice" class="price">${product[0].price}원</div>
+                        <!--"원"까지 들어갈 것 같아서 hidden으로 전송-->
                     </div>
                 </div>
                 <!-- 숨겨진 필드로 상품정보 전송 -->
@@ -121,15 +120,14 @@
             <div id="pro-detail-review-QNA">
                 <div>상품상세</div>
                 <div>리뷰</div>
-<%--                <div onclick="">Q & A</div>--%>
                 <c:choose>
                     <c:when test="${empty loginUser}">
-                        <button type="button" class="btn btn-secondary btn-sm" data-bs-toggle="modal"
+                        <button type="button" id="QnA" data-bs-toggle="modal"
                                 data-bs-target="#inquiryModal" disabled>Q & A
                         </button>
                     </c:when>
                     <c:otherwise>
-                        <button type="button" class="btn btn-secondary btn-sm" data-bs-toggle="modal"
+                        <button type="button" id="QnA" data-bs-toggle="modal"
                                 data-bs-target="#inquiryModal">Q & A
                         </button>
                     </c:otherwise>
@@ -144,20 +142,59 @@
                 </c:if>
             </c:forEach>
         </div>
+        <div id="review-wrap">
+            <div id="all-review">
+                <div>
+                    <span id="allRevice-text">전체리뷰 </span><span>${reviewCount}건</span>
+                </div>
+                <hr>
+                <div id="recent"> 최신순</div>
+            </div>
 
+            <c:forEach var="item" items="${list}">
+
+                <div id="review-wrapper">
+                    <div id="review1">
+                        <div id="review-left">
+                            <div><img src="images/user.png" alt="User"></div>
+                            <div id="review-NameDiv"><p id="review-name">${item.memberId}</p></div>
+                        </div>
+                        <div id="review-date">
+                            <p>${item.reviewDate}</p>
+                        </div>
+                    </div>
+
+                    <div id="review-bottom">
+                        <div id="review-middle">
+                            <p id="product-name"><b>구매제품</b> - ${product[0].productName}</p>
+                            <div id="star-wrap">
+                                <div class="starDiv"></div>
+                            </div>
+                        </div>
+                        <div id="textbox-wrap">
+                            <div id="textbox" name="" id="">${item.reviewDetail}</div>
+
+                        </div>
+                    </div>
+                </div>
+            </c:forEach>
+        </div>
+    </div>
     </div>
 
     <a href="<%=contextPath%>/shopping.do?cpage=1">기타</a>
 
-   
-    <script> 
-    // <!-----------------------별 출력 ------------------------>
+
+    <script>
+
+
+        // <!-----------------------별 출력 ------------------------>
         let contextPath = '<%= request.getContextPath() %>';
         let review_Count = parseInt(document.getElementById("review").textContent);
 
 
         let starRating = 3; // 임시로 별점3점 넣어둠
-        if(review_Count==0){    //리뷰가 0개면 빈 별
+        if (review_Count == 0) {    //리뷰가 0개면 빈 별
             starRating = 0;
         }
 
@@ -166,8 +203,8 @@
         starRatingDiv.innerHTML = ''; // 이전에 추가된 별 이미지가 있으면 삭제
 
         for (let i = 0; i < starRating; i++) {
-           // 별 이미지를 위한 img 요소 생성
-           const starImg = document.createElement("img");
+            // 별 이미지를 위한 img 요소 생성
+            const starImg = document.createElement("img");
             starImg.src = contextPath + "/images/fullStar.png";
             starImg.alt = "star";
             starImg.classList.add("star");
@@ -184,7 +221,7 @@
             emptyStarImg.classList.add("star");
             starRatingDiv.appendChild(emptyStarImg);
         }
-        
+
         // -----------------------------------상품 수량 가격-----------------------------------
         const productPrice = parseInt(document.getElementById("bigPrice").textContent.trim(), 10);
 
@@ -196,7 +233,7 @@
         const totalPriceElement = document.getElementById("totalPrice");
 
         function updatePrice() {
-            const productCount = parseInt(productCountInput.value); 
+            const productCount = parseInt(productCountInput.value);
             const totalProductPrice = productPrice * productCount;
             let finalPrice = totalProductPrice;
             totalPriceElement.textContent = finalPrice.toLocaleString() + "원";
@@ -204,35 +241,37 @@
 
         productCountInput.addEventListener("input", updatePrice);
 
-        window.onload = function() {
+        window.onload = function () {
             updatePrice();
         };
-// -----------------------------------1000단위 , 삽입---------------------------------
+        // -----------------------------------1000단위 , 삽입---------------------------------
         const priceElement = document.getElementById("bigPrice");
 
         // 텍스트 내용을 가져와 숫자만 추출 (숫자 아닌 부분은 제거)
-        const priceValue = parseInt(priceElement.textContent,10);
+        const priceValue = parseInt(priceElement.textContent, 10);
 
         // 숫자로 변환된 가격에 toLocaleString() 적용 후 다시 출력
         priceElement.textContent = priceValue.toLocaleString() + "원";
+        let totalEl = document.querySelector("#totalPrice");
+        totalEl.textContent = priceValue.toLocaleString() + "원";
 
-// -----------------------------------100g당 가격-----------------------------------
-        window.onload = function() {
-        // 상품 가격 추출
-        const productPriceText = document.getElementById("bigPrice").textContent.trim();
-        const productPrice = parseInt(productPriceText.replace(/,/g, ''), 10);
+        // -----------------------------------100g당 가격-----------------------------------
+        window.onload = function () {
+            // 상품 가격 추출
+            const productPriceText = document.getElementById("bigPrice").textContent.trim();
+            const productPrice = parseInt(productPriceText.replace(/,/g, ''), 10);
 
-        document.getElementById("bigPrice").textContent = productPrice.toLocaleString() + "원";
+            document.getElementById("bigPrice").textContent = productPrice.toLocaleString() + "원";
 
-        const productWeightText = document.getElementById("productWeight").textContent;
-        const productWeightToKg = parseFloat(productWeightText);
-        const productWeightInGrams = productWeightToKg * 1000;
+            const productWeightText = document.getElementById("productWeight").textContent;
+            const productWeightToKg = parseFloat(productWeightText);
+            const productWeightInGrams = productWeightToKg * 1000;
 
-        // 100g당 가격 계산
-        const pricePer100g = Math.floor((productPrice / productWeightInGrams) * 100);
+            // 100g당 가격 계산
+            const pricePer100g = Math.floor((productPrice / productWeightInGrams) * 100);
 
-        document.getElementById("100gPrice").innerHTML = "&nbsp;100당 " + pricePer100g.toLocaleString() + "원";
-}
+            document.getElementById("100gPrice").innerHTML = "&nbsp;100당 " + pricePer100g.toLocaleString() + "원";
+        }
     </script>
 
     <div class="modal fade" id="inquiryModal">
@@ -257,7 +296,7 @@
                         </div>
                         <div class="input-group input-group-sm mb-3 w-75">
                             <span class="input-group-text">문의 내용</span>
-<%--                            <input type="text" class="form-control" name="inquiryTitle">--%>
+                            <%--                            <input type="text" class="form-control" name="inquiryTitle">--%>
                             <textarea name="inquiryDetail" class="form-control" cols="50" rows="6"></textarea>
                         </div>
                     </div>
