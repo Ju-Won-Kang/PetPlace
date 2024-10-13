@@ -158,7 +158,14 @@ public class CommunityDao {
 			result2 = sqlSession.insert("communityMapper.insertCommunityAttachmentU", atC);
 		}
 		return result1 * result2;
-		
+	}
+	
+	public int deleteComment(SqlSession sqlSession, int commentNo) {
+		return sqlSession.delete("communityMapper.deleteComment", commentNo);
+	}
+	
+	public int updateComment(SqlSession sqlSession, BoardComment bc) {
+		return sqlSession.update("communityMapper.updateComment", bc);
 	}
 //	public int insertCommunity(Connection conn, Community c) {
 //		int result = 0;

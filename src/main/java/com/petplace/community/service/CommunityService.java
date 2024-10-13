@@ -35,11 +35,13 @@ public interface CommunityService {
 	//update
 	public Community selectCommunity(int communityNo);
 	public int updateCommunity(Community c, CommunityAttachment atC);
-	
+	public int updateComment(BoardComment bc);
+
 	//delete
 	public int deleteCommunity(int communityNo);
 	public int deleteCommunityAt(int communityNo);
-	
+	public int deleteComment(int commentNo);
+
 	//추천 비추
 	public int communityGood(int communityNo);
 	public int communityBad(int communityNo);

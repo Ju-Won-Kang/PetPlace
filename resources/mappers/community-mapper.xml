@@ -317,14 +317,16 @@
 			   COMMUNITY_TITLE
 		  FROM COMMUNITY
 	  	 WHERE COMMUNITY_DATE BETWEEN SYSDATE - 1 AND SYSDATE
-	  ORDER BY COMMUNITY_GOOD DESC
+	  	   AND COMMUNITY_STATUS = 'Y'
+	  ORDER BY (COMMUNITY_GOOD * 1000000) + COMMUNITY_VIEWS DESC
 	</select>
 	<select id="selectCommunityWeek" resultMap="communityResultSet">
 		SELECT COMMUNITY_NO,
 			   COMMUNITY_TITLE
 		  FROM COMMUNITY
 	  	 WHERE COMMUNITY_DATE BETWEEN SYSDATE - 7 AND SYSDATE
-	  ORDER BY COMMUNITY_GOOD DESC
+	  	   AND COMMUNITY_STATUS = 'Y'
+	  ORDER BY (COMMUNITY_GOOD * 1000000) + COMMUNITY_VIEWS DESC
 	</select>
 	<update id="updateCommunity">
 		UPDATE COMMUNITY
@@ -332,5 +334,14 @@
 		   	   COMMUNITY_TITLE = #{communityTitle},
 		   	   COMMUNITY_DETAIL = #{communityDetail}
 		 WHERE COMMUNITY_NO = #{communityNo} 
+	</update>
+	<delete id="deleteComment">
+		DELETE FROM BOARD_COMMENT
+		 WHERE COMMENT_NO = #{commentNo}
+	</delete>
+	<update id="updateComment">
+		UPDATE BOARD_COMMENT
+		   SET COMMENT_DETAIL = #{commentDetail}
+		 WHERE COMMENT_NO = #{commentNo}
 	</update>
 </mapper>
