@@ -15,6 +15,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/admin/adminPageHeader.css">
+    <script src="js/admin/adminPageHeader.js"></script>
     <title>Title</title>
 </head>
 <body>
@@ -29,28 +30,29 @@
             <a href="" class="hidden">입양</a>
             <a href="" class="hidden">동물병원찾기</a>
             <a href="" class="hidden">기능</a>
-            <button type="button" id="user" onclick="userBtn()">
-                <img src="images/user.png">
+            <button type="button" id="user" onclick="userBtn_2()">
+                <img src="images/user.png" alt="User">
             </button>
-            <div id="user-info">
-                <p>USER</p>
-                <div id="user-img"></div>
-                <div id="login-form">
-                    <form action="">
-                        <input type="text" name="userId" placeholder="아이디" required>
-                        <input type="password" name="userPwd" placeholder="비밀번호" required> <br> <br>
-                        <button type="submit">로그인</button>
-                        <button type="button">회원가입</button>
-                    </form>
+            <div id="profile-card" class="hide">
+                <p>프로필</p>
+                <div class="profile-image" style="text-align: center;">
+                    <img src="images/usericon.png" alt="Profile Image"
+                         style="display: block; margin: 0 auto;">
                 </div>
+                <div class="nickname"
+                     style="text-align: center; margin-top: 10px;">${loginUser.nickName}</div>
+                <div id="profile-links"
+                     style="text-align: center; margin-top: 10px;">
+                    <!-- 마이페이지와 로그아웃 링크 -->
+                    <span><a href="${pageContext.request.contextPath}/mypage.me">마이페이지</a></span> | <span><a
+                        href="${pageContext.request.contextPath}/logout.me"
+                        style="color: red;">로그아웃</a></span>
+                </div>
+                <div class="menu-list"
+                     style="text-align: center; margin-top: 20px;">
 
+                </div>
             </div>
-            <script>
-                function searchHospital() {
-                    console.log(location.href);
-                    location.href = 'searchHospital.do';
-                }
-            </script>
         </div>
     </header>
 </body>

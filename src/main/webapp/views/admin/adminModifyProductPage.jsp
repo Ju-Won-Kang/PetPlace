@@ -61,7 +61,7 @@
                                 <td>${product.productCategory}</td>
                                 <td>${product.productName}</td>
                                 <td>${product.productWeight} kg</td>
-                                <td>${product.price}원</td>
+                                <td><fmt:formatNumber type="currency" value="${product.price}"/></td>
                                 <td>${product.inventory}개</td>
                                 <td>${product.enrollDate}</td>
                                 <td>
@@ -176,7 +176,7 @@
 
                 <!-- Modal Header -->
                 <div class="modal-header">
-                    <h4 class="modal-title">Modal Heading</h4>
+                    <h4 class="modal-title"></h4>
                     <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                 </div>
 

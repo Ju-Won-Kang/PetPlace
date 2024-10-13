@@ -310,38 +310,7 @@
                         <div class="swiper product-swiper">
                             <div class="swiper-wrapper" id="product">
                                 <div class="spinner-border"></div>
-<%--                                <div class="swiper-slide">--%>
-<%--                                    <a href="">--%>
-<%--                                        <div class="test2">--%>
-<%--                                            <img src="images/product1.png">--%>
-<%--                                        </div>--%>
-<%--                                        <div class="test2-text"></div>--%>
-<%--                                        <p>--%>
-<%--                                            Soft밥(소고기/3kg) <br>--%>
-<%--                                            22,000원--%>
-<%--                                        </p>--%>
-<%--                                    </a>--%>
-<%--                                </div>--%>
-<%--                                <div class="swiper-slide">--%>
-<%--                                    <a href="">--%>
-<%--                                        <div class="test2">--%>
-<%--                                            <img src="images/product2.png">--%>
-<%--                                        </div>--%>
-<%--                                        <div class="test2-text">--%>
-<%--                                            <p>--%>
-<%--                                                프로베스트 독 5kg <br>--%>
-<%--                                                28,000원--%>
-<%--                                            </p>--%>
-<%--                                        </div>--%>
-<%--                                    </a>--%>
-<%--                                </div>--%>
-<%--                                <div class="swiper-slide"><img src="images/image%209.png"><label>고양이</label></div>--%>
-<%--                                <div class="swiper-slide"><img src="images/image%2010.png"><label>고양이</label></div>--%>
-<%--                                <div class="swiper-slide">Slide 5</div>--%>
-<%--                                <div class="swiper-slide">Slide 6</div>--%>
-<%--                                <div class="swiper-slide">Slide 7</div>--%>
-<%--                                <div class="swiper-slide">Slide 8</div>--%>
-<%--                                <div class="swiper-slide">Slide 9</div>--%>
+
                             </div>
                             <div class="swiper-pagination"></div>
                         </div>

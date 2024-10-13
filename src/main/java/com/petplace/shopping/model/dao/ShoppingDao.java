@@ -84,7 +84,7 @@ public class ShoppingDao {
 		return sqlSession.insert("shoppingMapper.insertPurchase", purchase);
 	}
 	public ArrayList<ShoppingList> selectShoppingTopList(SqlSession sqlSession){
-		RowBounds rowBounds = new RowBounds(1, 6);
+		RowBounds rowBounds = new RowBounds(0, 5);
 		return (ArrayList) sqlSession.selectList("shoppingMapper.selectShoppingTopList", null, rowBounds);
 	}
 
