@@ -65,7 +65,6 @@
 		<result column="MEMBER_ADDRESS" property="address"/>
 	</resultMap>
 	
-	
 	<resultMap id="insertPurchase" type="Purchase">
 		<result column="PURCHASE_NO" property="purchaseNo"/>
 		<result column="PRODUCT_NO" property="productName"/>
@@ -78,9 +77,8 @@
 		<result column="WAYBILL" property="purchaseNo"/>
 		<result column="PURCHASE_NO" property="purchaseNo"/>
 		<result column="MULTI_DETAIL" property="purchaseNo"/>
-		
-	
 	</resultMap>
+
 	<resultMap id="reviewResultSet" type="Review">
 		<result column="REVIEW_NO" property="reviewNo"/>
 		<result column="MEMBER_ID" property="memberId"/>
@@ -291,6 +289,7 @@
 			#{cardNo}
 			)
 	</insert>
+
 	<select id="selectShoppingTopList" resultMap="selectShoppingList">
 		SELECT P.PRODUCT_NO,
 		P.PRODUCT_NAME,
@@ -308,6 +307,7 @@
 		AND A.FILE_LEVEL = 1
 		ORDER BY COUNT_PURCHASE.PURCHASE_COUNT
 	</select>
+
 	<select id="selectReviewCount" resultType="_int">
 		SELECT COUNT(*) AS "COUNT"
 		FROM REVIEW
@@ -325,4 +325,5 @@
 		FROM REVIEW
 		WHERE PRODUCT_NO = #{productNo}
 	</select>
+
 </mapper>

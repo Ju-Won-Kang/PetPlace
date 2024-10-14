@@ -85,6 +85,8 @@ div{
     justify-content: space-around;
 }
 
+
+
 .dogFood{        
     width: 196px;
     display: inline-block;
@@ -149,7 +151,7 @@ div{
 }
 
 #star-after{
-    color: blue;
+    /* color: blue; */
 }
 
 #dogFood-star{

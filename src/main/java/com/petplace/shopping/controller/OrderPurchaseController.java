@@ -23,7 +23,6 @@ import com.petplace.shopping.service.ShoppingServiceImpl;
 public class OrderPurchaseController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
       
-
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		int productNo =Integer.parseInt(request.getParameter("productNo"));
