@@ -14,33 +14,47 @@ import com.petplace.member.model.vo.Member;
 import org.apache.ibatis.session.SqlSession;
 
 public class MemberService {
+    /**
+     * 로그인을 처리 메서드
+     *
+     * @param userId 사용자가 입력한 userId
+     * @return Member 객체
+     */
+    public Member loginMember(String userId) {
+        SqlSession sqlSession = Template.getSqlSession();
+        // DB에서 user 정보 가져오기
+        Member m = new MemberDao().loginMember(sqlSession, userId);
+        sqlSession.close();
+        return m;
+    }
 
-	public Member loginMember(String userId) {
-		SqlSession sqlSession = Template.getSqlSession();
-		// DB에서 user 정보 가져오기
-		Member m = new MemberDao().loginMember(sqlSession, userId);
+    /**
+     * 회원가입 처리 메서드
+     *
+     * @param enrollMember 회원가입 정보 객체
+     * @return 결과값
+     */
+    public int enrollMember(Member enrollMember) {
+        SqlSession sqlSession = Template.getSqlSession();
+        int result = new MemberDao().enrollMember(sqlSession, enrollMember);
+        if (result > 0) {
+            sqlSession.commit();
+        } else {
+            sqlSession.rollback();
+        }
+        sqlSession.close();
+        return result;
+    }
 
-		sqlSession.close();
-		return m;
-	}
-	public int enrollMember(Member hashedMember){
-		SqlSession sqlSession = Template.getSqlSession();
-		// 해싱 처리
-
-		System.out.println(hashedMember);
-		int result = new MemberDao().enrollMember(sqlSession,hashedMember);
-		if (result > 0) {
-			sqlSession.commit();
-		} else {
-			sqlSession.rollback();
-		}
-		sqlSession.close();
-		return result;
-
-	}
-	public int checkId(String checkId){
-		SqlSession sqlSession = Template.getSqlSession();
-		int checkIdCount = new MemberDao().checkId(sqlSession, checkId);
-		return checkIdCount;
-	}
+    /**
+     * 아이디 중복체크 메서드
+     *
+     * @param checkId 중복확인 대상 아이디
+     * @return 중복된 아이디를 가진 멤버 개수
+     */
+    public int checkId(String checkId) {
+        SqlSession sqlSession = Template.getSqlSession();
+        int checkIdCount = new MemberDao().checkId(sqlSession, checkId);
+        return checkIdCount;
+    }
 }

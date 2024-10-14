@@ -148,6 +148,25 @@ public class CommunityDao {
 		
 		return (ArrayList)sqlSession.selectList("communityMapper.selectCommunityWeek", null, rowBounds);
 	}
+	
+	public int updateCommunity(SqlSession sqlSession, Community c, CommunityAttachment atC) {
+		int result1 = sqlSession.update("communityMapper.updateCommunity", c);
+		System.out.println(atC.getRefCno());
+		System.out.println(atC);
+		int result2 = 1;
+		if(atC.getChangeName() != null) {
+			result2 = sqlSession.insert("communityMapper.insertCommunityAttachmentU", atC);
+		}
+		return result1 * result2;
+	}
+	
+	public int deleteComment(SqlSession sqlSession, int commentNo) {
+		return sqlSession.delete("communityMapper.deleteComment", commentNo);
+	}
+	
+	public int updateComment(SqlSession sqlSession, BoardComment bc) {
+		return sqlSession.update("communityMapper.updateComment", bc);
+	}
 //	public int insertCommunity(Connection conn, Community c) {
 //		int result = 0;
 //		

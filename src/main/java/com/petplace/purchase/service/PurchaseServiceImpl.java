@@ -54,4 +54,8 @@ public class PurchaseServiceImpl implements PurchaseService{
         sqlSession.close();
         return result;
     }
+
+
+	
+	
 }

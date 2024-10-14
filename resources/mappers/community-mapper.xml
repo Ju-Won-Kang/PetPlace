@@ -214,6 +214,25 @@
 								  SYSDATE
 								 )
 	</insert>
+	<insert id="insertCommunityAttachmentU" parameterType="CommunityAttachment">
+		INSERT
+		INTO ATTACHMENT_COMMUNITY(
+								  FILE_NO,
+								  REF_CNO,
+								  ORIGIN_NAME,
+								  CHANGE_NAME,
+								  FILE_PATH,
+								  UPLOAD_DATE
+								  )
+						   VALUES(
+								  SEQ_ACNO.NEXTVAL,
+								  #{refCno},
+								  #{originName},
+								  #{changeName},
+								  #{filePath},
+								  SYSDATE
+								 )
+	</insert>
 	<update id="increaseCount" parameterType="_int">
 		UPDATE COMMUNITY
 		   SET COMMUNITY_VIEWS = COMMUNITY_VIEWS + 1
@@ -238,9 +257,11 @@
 	<select id="selectCommunityAt" resultMap="communityAtResultSet">
 		SELECT FILE_PATH,
 			   CHANGE_NAME,
-			   ORIGIN_NAME
+			   ORIGIN_NAME,
+			   REF_CNO
 		  FROM ATTACHMENT_COMMUNITY
 		 WHERE REF_CNO = #{communityNo}
+		   AND STATUS = 'Y'
 	</select>
 	<update id="deleteCommunity">
 		UPDATE COMMUNITY
@@ -251,6 +272,7 @@
 		UPDATE ATTACHMENT_COMMUNITY
 		   SET STATUS = 'N'
 		 WHERE REF_CNO = #{communityNo}
+		   AND STATUS = 'Y'
 	</update>
 	<update id="communityGood">
 		UPDATE COMMUNITY
@@ -288,20 +310,38 @@
 		  FROM BOARD_COMMENT
 		  JOIN MEMBER USING(MEMBER_ID)
 		 WHERE COMMUNITY_NO = #{communityNo}
-		 ORDER BY COMMENT_NO DESC
+		 ORDER BY COMMENT_NO ASC
 	</select>
 	<select id="selectCommunityDay" resultMap="communityResultSet">
 		SELECT COMMUNITY_NO,
 			   COMMUNITY_TITLE
 		  FROM COMMUNITY
 	  	 WHERE COMMUNITY_DATE BETWEEN SYSDATE - 1 AND SYSDATE
-	  ORDER BY COMMUNITY_GOOD DESC
+	  	   AND COMMUNITY_STATUS = 'Y'
+	  ORDER BY (COMMUNITY_GOOD * 1000000) + COMMUNITY_VIEWS DESC
 	</select>
 	<select id="selectCommunityWeek" resultMap="communityResultSet">
 		SELECT COMMUNITY_NO,
 			   COMMUNITY_TITLE
 		  FROM COMMUNITY
 	  	 WHERE COMMUNITY_DATE BETWEEN SYSDATE - 7 AND SYSDATE
-	  ORDER BY COMMUNITY_GOOD DESC
+	  	   AND COMMUNITY_STATUS = 'Y'
+	  ORDER BY (COMMUNITY_GOOD * 1000000) + COMMUNITY_VIEWS DESC
 	</select>
+	<update id="updateCommunity">
+		UPDATE COMMUNITY
+		   SET COMMUNITY_CATEGORY = #{communityCategory},
+		   	   COMMUNITY_TITLE = #{communityTitle},
+		   	   COMMUNITY_DETAIL = #{communityDetail}
+		 WHERE COMMUNITY_NO = #{communityNo} 
+	</update>
+	<delete id="deleteComment">
+		DELETE FROM BOARD_COMMENT
+		 WHERE COMMENT_NO = #{commentNo}
+	</delete>
+	<update id="updateComment">
+		UPDATE BOARD_COMMENT
+		   SET COMMENT_DETAIL = #{commentDetail}
+		 WHERE COMMENT_NO = #{commentNo}
+	</update>
 </mapper>

@@ -1,0 +1,150 @@
+* {
+    box-sizing: border-box;
+    font-family: sans-serif;
+}
+
+body {
+    height: 100vh;
+    width: 1000px;
+    min-width: 1000px; /* 최소 너비 설정 */
+    box-sizing: border-box;
+}
+
+.complete-page{
+    max-width: 1400px;
+    width: 1000px;
+    margin: auto;
+}
+
+#order-complete{
+    width: 100%;
+    height: 50px;
+    margin-top: 20px;
+    border-bottom: 1px solid rgb(206, 206, 206);
+}
+
+#order-complete > h2{
+    font-weight: 600;
+}
+
+#complete-message{
+    width: 100%;
+    height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-bottom: 1px solid rgb(206, 206, 206);
+}
+
+#complete-message > h3{
+    font-weight: 600;    
+    margin: 0;
+}
+
+#complete-message > p{
+    font-size: 28px;
+    margin: 0;
+}
+
+#product-buy-info{
+    width: 85%;
+    height: 90px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-bottom: 1px solid rgb(206, 206, 206);
+    margin: auto;
+    margin-bottom: 15px;
+}
+
+#product-buy-info > h4{
+    font-weight: 600;
+}
+
+.buy-info-table{
+    width: 85%;
+    margin: auto;
+    display: flex;
+    height: 350px;
+    margin-bottom: 15px;
+}
+
+.buy-info-table > table{
+    width: 50%;
+}
+
+.buy-info-table thead > tr{
+    height: 80px;
+}
+
+.info-large-title{
+    font-size: 20px;
+    font-weight: 600;
+}
+
+.buy-info-table tbody > tr{
+    height: 30px;
+}
+
+.buy-info-table tbody tr{
+    font-weight: 600;
+}
+
+.info-small-title{
+    text-align: start;
+}
+
+.buy-user-info{
+    text-align: end;
+}
+
+.left-info-table{
+    border-right: 1px solid rgb(206, 206, 206);
+}
+
+.left-info-table > thead th{
+    padding-right: 50px;
+}
+
+.left-info-table > tbody td{
+    padding-right: 50px;
+}
+
+.right-info-table > thead th{
+    padding-left: 50px;
+}
+
+.right-info-table > tbody td{
+    padding-left: 50px;
+}
+
+#all-buy-money{
+    color: red;
+}
+
+.home-continue-button{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-top: 1px solid rgb(206, 206, 206);
+    padding-top: 30px;
+}
+
+.home-continue-button button{
+    border: 1px solid black;
+    border-radius: 7px;
+    width: 200px;
+    height: 35px;
+    font-size: 18px;
+    font-weight: 600;
+}
+
+#home-button{
+    background-color: white;
+    margin-right: 20px;
+}
+
+#continue-button{
+    background-color: rgba(218, 224, 236, 1);
+    margin-left: 20px;
+}

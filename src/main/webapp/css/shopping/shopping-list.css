@@ -85,8 +85,10 @@ div{
     justify-content: space-around;
 }
 
+
+
 .dogFood{        
-    width: 150px;
+    width: 196px;
     display: inline-block;
 }
 
@@ -135,14 +137,32 @@ div{
     margin: 0px 0px 0px 0px;
 }
 
-#stars{
-
-    color: rgb(239, 239, 50);
-}
-
 #buttons > button{
     padding-inline: 6px;
     background: none;
     border: none;
     font-weight: 600;
+}
+
+#stars{
+    display: flex;
+    width: 15px;
+    height: 15px;
+}
+
+#star-after{
+    /* color: blue; */
+}
+
+#dogFood-star{
+    display: flex;
+}
+
+#pagenation{
+    display: flex;
+    justify-content: center;
+}
+
+.main-color{
+    color: #7A97CC !important;
 }

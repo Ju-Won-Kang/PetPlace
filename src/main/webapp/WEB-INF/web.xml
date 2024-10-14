@@ -34,6 +34,15 @@
   </servlet-mapping>
   <servlet>
     <description></description>
+    <display-name>shoppingSearch.do</display-name>
+    <servlet-name>shoppingSearch.do</servlet-name>
+    <servlet-class>com.petplace.shopping.controller.ShoppingSearchController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>shoppingSearch.do</servlet-name>
+    <url-pattern>/shoppingSearch.do</url-pattern>
+  </servlet-mapping>
+  <servlet>
     <display-name>communityWrite.do</display-name>
     <servlet-name>communityWrite.do</servlet-name>
     <servlet-class>com.petplace.community.controller.CommunityEnrollController</servlet-class>
@@ -61,6 +70,16 @@
   <servlet-mapping>
     <servlet-name>communityDetail.do</servlet-name>
     <url-pattern>/communityDetail.do</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>adoptEnrollForm.do</display-name>
+    <servlet-name>adoptEnrollForm.do</servlet-name>
+    <servlet-class>com.petplace.adopt.controller.AdoptEnrollFormController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>adoptEnrollForm.do</servlet-name>
+    <url-pattern>/adoptEnrollForm.do</url-pattern>
   </servlet-mapping>
   <servlet>
     <description></description>
@@ -121,5 +140,44 @@
   <servlet-mapping>
     <servlet-name>selectCommunityWeek.do</servlet-name>
     <url-pattern>/selectCommunityWeek.do</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>adoptMissingMainList.do</display-name>
+    <servlet-name>adoptMissingMainList.do</servlet-name>
+    <servlet-class>com.petplace.adopt.controller.AdoptMissingMainListController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>adoptMissingMainList.do</servlet-name>
+    <url-pattern>/adoptMissingMainList.do</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>adoptDistributeMainList.do</display-name>
+    <servlet-name>adoptDistributeMainList.do</servlet-name>
+    <servlet-class>com.petplace.adopt.controller.AdoptDistributeMainListController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>adoptDistributeMainList.do</servlet-name>
+    <url-pattern>/adoptDistributeMainList.do</url-pattern>
+  </servlet-mapping>
+  <servlet>  
+    <display-name>cUpdate.do</display-name>
+    <servlet-name>cUpdate.do</servlet-name>
+    <servlet-class>com.petplace.community.controller.CommunityUpdateController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>cUpdate.do</servlet-name>
+    <url-pattern>/cUpdate.do</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>deletecComment.do</display-name>
+    <servlet-name>deletecComment.do</servlet-name>
+    <servlet-class>com.petplace.community.controller.CommentDeleteController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>deletecComment.do</servlet-name>
+    <url-pattern>/deletecComment.do</url-pattern>
   </servlet-mapping>
 </web-app>

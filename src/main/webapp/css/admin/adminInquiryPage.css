@@ -48,7 +48,7 @@ tbody tr {
     width: 80px;
 }
 #wrap > table th:nth-child(3) {
-    width: 80px;
+    width: 300px;
 }
 
 #wrap > table th:nth-child(4) {

@@ -71,8 +71,8 @@
                                 </c:choose>
                                 <td>${purchase.quantity}</td>
                                 <td>${purchase.memberId}</td>
-                                <td>${purchase.payType}</td>
-                                <td>${purchase.amountPrice}</td>
+                                <td>${purchase.payType}카드</td>
+                                <td><fmt:formatNumber type="currency" value="${purchase.amountPrice}"/></td>
                                 <td>${purchase.request}</td>
                                 <td>${purchase.purchaseDate}</td>
                                 <td>
@@ -167,6 +167,21 @@
                             </c:otherwise>
                         </c:choose>
                         <c:choose>
+                            <c:when test="${pi.currentPage eq pi.maxPage}">
+                                <li class="page-item disabled">
+                                    <a href="#" class="page-link">
+                                        <span aria-hidden="true">&raquo;</span>
+                                    </a>
+                                </li>
+                            </c:when>
+                            <c:when test="${(pi.endPage / pi.boardLimit)  < pi.maxPage and (pi.endPage eq pi.maxPage)}">
+                                <li class="page-item">
+                                    <a href="${pageContext.request.contextPath}/adminDeliveryManagement.pd?cpage=${pi.endPage}"
+                                       class="page-link">
+                                        <span aria-hidden="true">&raquo;</span>
+                                    </a>
+                                </li>
+                            </c:when>
                             <c:when test="${(pi.endPage / boardLimit)  < pi.maxPage}">
                                 <li class="page-item">
                                     <a href="${pageContext.request.contextPath}/adminDeliveryManagement.pd?cpage=${pi.endPage + 1}"
@@ -206,7 +221,7 @@
 
                     <!-- Modal footer -->
                     <div class="modal-footer">
-                        <button type="submit" class="btn btn-secondary">문의 답변</button>
+                        <button type="submit" class="btn btn-secondary">운송장 번호 등록</button>
                     </div>
                 </form>
             </div>

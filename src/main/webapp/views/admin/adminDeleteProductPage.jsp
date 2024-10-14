@@ -60,7 +60,7 @@
                                 <td>${product.productCategory}</td>
                                 <td>${product.productName}</td>
                                 <td>${product.productWeight} kg</td>
-                                <td>${product.price}원</td>
+                                <td><fmt:formatNumber type="currency" value="${product.price}"/></td>
                                 <td>${product.inventory}개</td>
                                 <td>${product.enrollDate}</td>
                                 <td>
@@ -148,6 +148,21 @@
                             </c:otherwise>
                         </c:choose>
                         <c:choose>
+                            <c:when test="${pi.currentPage eq pi.maxPage}">
+                                <li class="page-item disabled">
+                                    <a href="#" class="page-link">
+                                        <span aria-hidden="true">&raquo;</span>
+                                    </a>
+                                </li>
+                            </c:when>
+                            <c:when test="${(pi.endPage / pi.boardLimit)  < pi.maxPage and (pi.endPage eq pi.maxPage)}">
+                                <li class="page-item">
+                                    <a href="${pageContext.request.contextPath}/adminDeleteProduct.pd?cpage=${pi.endPage}"
+                                       class="page-link">
+                                        <span aria-hidden="true">&raquo;</span>
+                                    </a>
+                                </li>
+                            </c:when>
                             <c:when test="${(pi.endPage / boardLimit)  < pi.maxPage}">
                                 <li class="page-item">
                                     <a href="${pageContext.request.contextPath}/adminDeleteProduct.pd?cpage=${pi.endPage + 1}"

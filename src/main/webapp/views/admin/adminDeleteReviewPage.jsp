@@ -154,7 +154,22 @@
                             </c:otherwise>
                         </c:choose>
                         <c:choose>
-                            <c:when test="${(pi.endPage / boardLimit)  < pi.maxPage}">
+                            <c:when test="${pi.currentPage eq pi.maxPage}">
+                                <li class="page-item disabled">
+                                    <a href="#" class="page-link">
+                                        <span aria-hidden="true">&raquo;</span>
+                                    </a>
+                                </li>
+                            </c:when>
+                            <c:when test="${(pi.endPage / pi.boardLimit)  < pi.maxPage and (pi.endPage eq pi.maxPage)}">
+                                <li class="page-item">
+                                    <a href="${pageContext.request.contextPath}/adminDeleteReview.re?cpage=${pi.endPage}"
+                                       class="page-link">
+                                        <span aria-hidden="true">&raquo;</span>
+                                    </a>
+                                </li>
+                            </c:when>
+                            <c:when test="${(pi.endPage / pi.boardLimit)  < pi.maxPage}">
                                 <li class="page-item">
                                     <a href="${pageContext.request.contextPath}/adminDeleteReview.re?cpage=${pi.endPage + 1}"
                                        class="page-link">
@@ -194,7 +209,6 @@
                         <button type="submit" class="btn btn-danger">리뷰 삭제</button>
                     </div>
                 </form>
-
             </div>
         </div>
     </div>

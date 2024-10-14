@@ -1,10 +1,10 @@
 package com.petplace.common;
 
-import com.google.common.hash.Hashing;
-
 import java.nio.charset.StandardCharsets;
 import java.security.SecureRandom;
 import java.util.Base64;
+
+import com.google.common.hash.Hashing;
 
 /**
  * packageName    : com.petplace.common
@@ -25,6 +25,7 @@ public class ShaUtil {
         random.nextBytes(salt);
         return Base64.getEncoder().encodeToString(salt);
     }
+    
     public static String sha256WithSaltEncode(String plainText, String salt){
         return Hashing.sha256().hashString(plainText + salt, StandardCharsets.UTF_8).toString();
     }

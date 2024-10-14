@@ -271,4 +271,43 @@ public class CommunityServiceImple implements CommunityService {
 		
 		return list;
 	}
+
+	@Override
+	public int updateCommunity(Community c, CommunityAttachment atC) {
+		SqlSession sqlSession = Template.getSqlSession();
+		int result = cDao.updateCommunity(sqlSession, c, atC);
+		if(result > 0) {
+			sqlSession.commit();
+		} else {
+			sqlSession.rollback();
+		}
+		sqlSession.close();
+		return result;
+	}
+
+	@Override
+	public int deleteComment(int commentNo) {
+		SqlSession sqlSession = Template.getSqlSession();
+		int result = cDao.deleteComment(sqlSession, commentNo);
+		if(result > 0) {
+			sqlSession.commit();
+		} else {
+			sqlSession.rollback();
+		}
+		sqlSession.close();
+		return result;
+	}
+
+	@Override
+	public int updateComment(BoardComment bc) {
+		SqlSession sqlSession = Template.getSqlSession();
+		int result = cDao.updateComment(sqlSession, bc);
+		if(result > 0) {
+			sqlSession.commit();
+		} else {
+			sqlSession.rollback();
+		}
+		sqlSession.close();
+		return result;
+	}
 }
