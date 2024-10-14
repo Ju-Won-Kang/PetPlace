@@ -3,10 +3,7 @@ body * {
 }
 
 body {
-<<<<<<< HEAD
-=======
     /*border: solid black;*/
->>>>>>> 9112c46073e4a5254abf39458db74998e1887751
     height: 100vh;
     width: 1400px;
     min-width: 1000px; /* 최소 너비 설정 */
@@ -32,15 +29,11 @@ body {
 #left-body {
     margin-right: 10px;
     width: 500px;
-<<<<<<< HEAD
-    height: 500px;
-=======
 }
 #left-body img{
     max-height: 100%;
     width: 100%;
     object-fit: contain;
->>>>>>> 9112c46073e4a5254abf39458db74998e1887751
 }
 
 #right-body {
@@ -259,13 +252,9 @@ table{
 
 
 #bottom-body{
-<<<<<<< HEAD
-    width:67.5%;
-=======
     border: 1px solid rgb(205, 205, 205);
     /*width:67.5%;*/
     width: 1400px;
->>>>>>> 9112c46073e4a5254abf39458db74998e1887751
     margin: auto;
 }
 
@@ -387,11 +376,7 @@ table{
     margin-left: 0px;
 }
 
-<<<<<<< HEAD
-#review{
-=======
 #review1{
->>>>>>> 9112c46073e4a5254abf39458db74998e1887751
     border: 1px black;
     display: flex;
     justify-content: space-between;
@@ -448,11 +433,8 @@ table{
 #PI{
     width: 100%;
     height: 100%;
-<<<<<<< HEAD
+
     object-fit: contain; /*비율유지*/
-=======
-    object-fit: contain; /비율유지/
->>>>>>> 9112c46073e4a5254abf39458db74998e1887751
 }
 
 #star-wrap{

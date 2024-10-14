@@ -8,8 +8,8 @@
     for (ShoppingDetailList item : list) {
         System.out.println(item.getFileLevel());
     }
+    int fileL = list.get(0).getFileLevel();
 %>
-
 <%
 
     int starRating = 0;
@@ -17,7 +17,6 @@
         starRating = list.get(0).getFileLevel(); // 예시로 첫 번째 항목의 fileLevel 값을 사용
     }
 %>
-
 <!DOCTYPE html>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html lang="en">
@@ -110,11 +109,12 @@
                 <input type="hidden" name="productPrice" value="${product[0].price}">
 
                 <div id="shopping-buttons">
-                    <button class="three-btn" id="buy-btn">구매하기</button>
+                    <button id="buy-btn">구매하기</button>
                 </div>
             </form>
         </div>
     </div>
+
     <div id="bottom-body">
         <div id="bottom-body-1Line">
             <div id="pro-detail-review-QNA">
@@ -134,7 +134,7 @@
                 </c:choose>
             </div>
         </div>
-        
+
         <div id="detailInfoImg">
             <c:forEach var="i" begin="0" end="${product.size()}" step="1">
                 <c:if test="${product[i].fileLevel == 2}">
@@ -195,7 +195,8 @@
         }
 
         const maxRating = 5;
-        const starRatingDivs = document.getElementsByClassName("starDiv"); // 모든 starDiv 요소 가져오기
+        const starRatingDiv = document.getElementById("starDiv");
+        starRatingDiv.innerHTML = ''; // 이전에 추가된 별 이미지가 있으면 삭제
 
         for (let i = 0; i < starRating; i++) {
             // 별 이미지를 위한 img 요소 생성
@@ -204,27 +205,9 @@
             starImg.alt = "star";
             starImg.classList.add("star");
 
-            // 채워진 별 이미지 추가
-            for (let i = 0; i < starRating; i++) {
-                const starImg = document.createElement("img");
-                starImg.src = contextPath + "/images/fullStar.png";
-                starImg.alt = "star";
-                starImg.classList.add("star");
-
-                starRatingDiv.appendChild(starImg);
-            }
-
-            // 빈 별 이미지 추가
-            for (let i = Math.floor(starRating); i < maxRating; i++) {
-                const emptyStarImg = document.createElement("img");
-                emptyStarImg.src = contextPath + "/images/emptyStar.png";
-                emptyStarImg.alt = "빈 별";
-                emptyStarImg.classList.add("star");
-
-                starRatingDiv.appendChild(emptyStarImg);
-            }
-        };
-
+            // starDiv에 별 이미지 추가
+            starRatingDiv.appendChild(starImg);
+        }
 
         // 빈 별 출력
         for (let i = Math.floor(starRating); i < maxRating; i++) {
@@ -308,7 +291,7 @@
                             <input type="text" class="form-control" name="inquiryTitle" required>
                         </div>
                         <div class="input-group input-group-sm mb-3 w-75">
-                            <span class="input-group-text" >문의 내용</span>
+                            <span class="input-group-text">문의 내용</span>
                             <%--                            <input type="text" class="form-control" name="inquiryTitle">--%>
                             <textarea name="inquiryDetail" class="form-control" cols="50" rows="6" required></textarea>
                         </div>
