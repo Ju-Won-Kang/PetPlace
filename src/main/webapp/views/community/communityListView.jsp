@@ -136,9 +136,9 @@
 			<nav class="pagination d-flex justify-content-center">
 				<ul class="pagination">
 					<c:choose>
-						<c:when test="${pi.startPage != 1 || (pi.startPage / pi.boardLimit)  > 1}">
+						<c:when test="${pi.currentPage != 1 || (pi.startPage / pi.boardLimit)  > 1}">
 							<li class="page-item">
-								<a href="javascript:pageL('${pi.startPage - pi.boardLimit}')"
+								<a href="javascript:pageL(1)"
 								   class="page-link">
 									<span aria-hidden="true">&laquo;</span>
 								</a>

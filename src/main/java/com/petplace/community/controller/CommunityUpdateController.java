@@ -67,6 +67,7 @@ public class CommunityUpdateController extends HttpServlet {
 			Community c = new Community();
 			//ArrayList<CommunityAttachment> list = new ArrayList<>();
 			CommunityAttachment atC = new CommunityAttachment();
+			CommunityAttachment resultAt = null;
 			for(FileItem item : formItems) { //일반파라미터
 				System.out.println(item);
 				if(item.isFormField()) {
@@ -74,7 +75,7 @@ public class CommunityUpdateController extends HttpServlet {
 						case "cno":
 							c.setCommunityNo(Integer.parseInt(item.getString(Charset.forName("utf-8"))));
 							System.out.println("cno=" + c.getCommunityNo());
-							CommunityAttachment resultAt = cService.selectCommunityAt(c.getCommunityNo());
+							resultAt = cService.selectCommunityAt(c.getCommunityNo());
 
 							if(resultAt != null) {
 								atC.setRefCno(resultAt.getRefCno());
@@ -101,6 +102,9 @@ public class CommunityUpdateController extends HttpServlet {
 					String originName = item.getName();
 					if(originName.length() > 0) { //파일 업로드시
 						//고유한 파일명 생성
+						if(resultAt == null) {
+							atC.setRefCno(c.getCommunityNo());
+						}
 						cService.deleteCommunityAt(c.getCommunityNo());
 						String tmpName = "CommunityFile_" + System.currentTimeMillis();
 						String type = originName.substring(originName.lastIndexOf("."));
@@ -142,5 +146,4 @@ public class CommunityUpdateController extends HttpServlet {
 		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
-
 }

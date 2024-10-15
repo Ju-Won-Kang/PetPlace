@@ -87,7 +87,7 @@
                             <select id="select-category" class="form-select form-select-lg" name="productCategory"
                                     onchange="CheckOther();">
                                 <c:forEach var="c" items="${category}">
-                                    <c:if test="${c.productCategory != '고양이'}">
+                                    <c:if test="${c.productCategory != '고양이' and c.productCategory != '강아지'}">
                                         <option value="${c.productCategory}">${c.productCategory}</option>
                                     </c:if>
                                 </c:forEach>

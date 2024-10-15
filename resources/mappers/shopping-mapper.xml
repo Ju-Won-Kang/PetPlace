@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper
-        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
-        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
-        
+		PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+		"https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
 <mapper namespace="shoppingMapper">
 	<resultMap id="shoppingResultSet" type="Shopping">
 		<result column="PRODUCT_NO" property="productNo"/>
@@ -30,7 +30,7 @@
 		<result column="REVIEW_COUNT" property="reviewCount"/>
 		<result column="PRODUCT_IMG" property="productImg"/>
 	</resultMap>
-	
+
 	<resultMap  id="selectDetailResultSet" type="ShoppingDetailList">
 		<result column="PRODUCT_NO" property="productNo"/>
 		<result column="PRODUCT_NAME" property="productName"/>
@@ -46,7 +46,7 @@
 		<result column="PRODUCT_WEIGHT" property="productWeight"/>
 		<result column="KCAL" property="kcal"/>
 	</resultMap>
-	
+
 	<resultMap id="ShoppingCompleteList" type="ShoppingComplete">
 		<result column="MEMBER_NAME" property="memberName"/>
 		<result column="PHONE" property="phone"/>
@@ -58,14 +58,14 @@
 		<result column="AMOUNT_PRICE" property="amountPrice"/>
 		<result column="PURCHASE_DATE" property="purchaseDate"/>
 	</resultMap>
-	
+
 	<resultMap id="UserInfoList" type="UserInfo">
 		<result column="MEMBER_NAME" property="userName"/>
 		<result column="PHONE" property="phone"/>
 		<result column="MEMBER_ADDRESS" property="address"/>
 	</resultMap>
-	
-	
+
+
 	<resultMap id="insertPurchase" type="Purchase">
 		<result column="PURCHASE_NO" property="purchaseNo"/>
 		<result column="PRODUCT_NO" property="productName"/>
@@ -78,8 +78,8 @@
 		<result column="WAYBILL" property="purchaseNo"/>
 		<result column="PURCHASE_NO" property="purchaseNo"/>
 		<result column="MULTI_DETAIL" property="purchaseNo"/>
-		
-	
+
+
 	</resultMap>
 	<resultMap id="reviewResultSet" type="Review">
 		<result column="REVIEW_NO" property="reviewNo"/>
@@ -93,13 +93,13 @@
 
 	<select id="selectShoppingListCount" resultType="_int">
 		SELECT COUNT(*) AS "COUNT"
-		  FROM PRODUCT
-		 WHERE STATUS = 'Y'
-		 <if test="category != null">
-  		 	AND PRODUCT_CATEGORY not in('강아지','고양이')
-  		 </if>
+		FROM PRODUCT
+		WHERE STATUS = 'Y'
+		<if test="category != null">
+			AND PRODUCT_CATEGORY not in('강아지','고양이')
+		</if>
 	</select>
-	
+
 	<select id="selectDetailProduct" resultMap="selectDetailResultSet" parameterType="_int">
 		SELECT P.PRODUCT_NO,
 		P.PRODUCT_NAME,
@@ -123,173 +123,179 @@
 	</select>
 
 	<select id="selectShoppingAllList" resultMap="selectShoppingList">
-		SELECT PRODUCT_NO,
-		       PRODUCT_NAME,
-		       PRICE,
-		       PRODUCT_CATEGORY,
-		       STAR,
-		       COUNT(REVIEW_NO) AS "REVIEW_COUNT",
-		       FILE_PATH || CHANGE_NAME AS "PRODUCT_IMG"
-		  FROM PRODUCT P
-		  JOIN ATTACHMENT_PRODUCT ON (PRODUCT_NO = REF_PNO)
-		  LEFT JOIN REVIEW R USING(PRODUCT_NO)
-		 WHERE P.STATUS = 'Y'
-		   AND FILE_LEVEL = 1
-		 GROUP BY PRODUCT_NO, 
-		       PRODUCT_NAME, 
-		       PRICE, 
-		       PRODUCT_CATEGORY, 
-		       STAR, 
-		       FILE_PATH, 
-		       CHANGE_NAME
-		 ORDER BY PRODUCT_NO DESC
+		SELECT P.PRODUCT_NO,
+		P.PRODUCT_NAME,
+		P.PRICE,
+		P.PRODUCT_CATEGORY,
+		CEIL(AVG(R.STAR)) AS "STAR",
+		COUNT(R.REVIEW_NO) AS "REVIEW_COUNT",
+		A.FILE_PATH || A.CHANGE_NAME AS "PRODUCT_IMG"
+		FROM PRODUCT P
+		JOIN ATTACHMENT_PRODUCT A ON P.PRODUCT_NO = A.REF_PNO
+		LEFT JOIN REVIEW R ON P.PRODUCT_NO = R.PRODUCT_NO
+		WHERE P.STATUS = 'Y'
+		AND A.FILE_LEVEL = 1
+		GROUP BY P.PRODUCT_NO,
+		P.PRODUCT_NAME,
+		P.PRICE,
+		P.PRODUCT_CATEGORY,
+		A.FILE_PATH,
+		A.CHANGE_NAME
+		ORDER BY P.PRODUCT_NO DESC
 	</select>
 	<select id="selectShoppingPetList" resultMap="selectShoppingList">
-		SELECT PRODUCT_NO,
-		       PRODUCT_NAME,
-		       PRICE,
-		       PRODUCT_CATEGORY,
-		       STAR,
-		       COUNT(REVIEW_NO) AS "REVIEW_COUNT",
-		       FILE_PATH || CHANGE_NAME AS "PRODUCT_IMG"
-		  FROM PRODUCT P
-		  JOIN ATTACHMENT_PRODUCT ON (PRODUCT_NO = REF_PNO)
-		  LEFT JOIN REVIEW R USING(PRODUCT_NO)
-		 WHERE P.STATUS = 'Y'
-		   AND FILE_LEVEL = 1
-		 <if test="category != null">
-  		 	AND PRODUCT_CATEGORY not in ('강아지','고양이')
-  		 </if>
-		 GROUP BY PRODUCT_NO, 
-		       PRODUCT_NAME, 
-		       PRICE, 
-		       PRODUCT_CATEGORY, 
-		       STAR, 
-		       FILE_PATH, 
-		       CHANGE_NAME
-		 ORDER BY PRODUCT_NO DESC
+		SELECT P.PRODUCT_NO,
+		P.PRODUCT_NAME,
+		P.PRICE,
+		P.PRODUCT_CATEGORY,
+		CEIL(AVG(R.STAR)) AS "STAR",
+		COUNT(R.REVIEW_NO) AS "REVIEW_COUNT",
+		A.FILE_PATH || A.CHANGE_NAME AS "PRODUCT_IMG"
+		FROM PRODUCT P
+		JOIN ATTACHMENT_PRODUCT A ON P.PRODUCT_NO = A.REF_PNO
+		LEFT JOIN REVIEW R ON P.PRODUCT_NO = R.PRODUCT_NO
+		WHERE P.STATUS = 'Y'
+		AND A.FILE_LEVEL = 1
+		<if test="category != null">
+			and P.PRODUCT_CATEGORY = #{category}
+		</if>
+		<if test="category == '기타'">
+			AND P.PRODUCT_CATEGORY NOT IN ('강아지', '고양이')
+		</if>
+		GROUP BY P.PRODUCT_NO,
+		P.PRODUCT_NAME,
+		P.PRICE,
+		P.PRODUCT_CATEGORY,
+		A.FILE_PATH,
+		A.CHANGE_NAME
+		ORDER BY P.PRODUCT_NO DESC
 	</select>
 	<select id="selectSearchPetCount" resultType="_int">
 		SELECT COUNT(*)
-  		  FROM PRODUCT
-  		 WHERE STATUS = 'Y'
-		 <if test="category != null">
-  		 	AND PRODUCT_CATEGORY = #{category}
-  		 </if>
-  		    AND PRODUCT_NAME LIKE '%' || #{keyword} || '%'
+		FROM PRODUCT
+		WHERE STATUS = 'Y'
+		<if test="category != null">
+			AND PRODUCT_CATEGORY = #{category}
+		</if>
+		AND PRODUCT_NAME LIKE '%' || #{keyword} || '%'
 	</select>
 	<select id="selectSearchAllCount" resultType="_int">
 		SELECT COUNT(*)
-  		  FROM PRODUCT
-  		 WHERE STATUS = 'Y'
-  		   AND PRODUCT_NAME LIKE '%' || #{keyword} || '%'
+		FROM PRODUCT
+		WHERE STATUS = 'Y'
+		AND PRODUCT_NAME LIKE '%' || #{keyword} || '%'
 	</select>
 	<select id="selectSearchAllList" resultMap="selectShoppingList">
-		SELECT PRODUCT_NO,
-		       PRODUCT_NAME,
-		       PRICE,
-		       PRODUCT_CATEGORY,
-		       STAR,
-		       COUNT(REVIEW_NO) AS "REVIEW_COUNT",
-		       FILE_PATH || CHANGE_NAME AS "PRODUCT_IMG"
-		  FROM PRODUCT P
-		  JOIN ATTACHMENT_PRODUCT ON (PRODUCT_NO = REF_PNO)
-		  LEFT JOIN REVIEW R USING(PRODUCT_NO)
-		 WHERE P.STATUS = 'Y'
-		   AND FILE_LEVEL = 1
-		   AND PRODUCT_NAME LIKE '%' || #{keyword} || '%'
-		 GROUP BY PRODUCT_NO, 
-		       PRODUCT_NAME, 
-		       PRICE, 
-		       PRODUCT_CATEGORY, 
-		       STAR,
-		       FILE_PATH, 
-		       CHANGE_NAME
-		 ORDER BY PRODUCT_NO DESC
+		SELECT P.PRODUCT_NO,
+		P.PRODUCT_NAME,
+		P.PRICE,
+		P.PRODUCT_CATEGORY,
+		CEIL(AVG(R.STAR)) AS "STAR",
+		COUNT(R.REVIEW_NO) AS "REVIEW_COUNT",
+		A.FILE_PATH || A.CHANGE_NAME AS "PRODUCT_IMG"
+		FROM PRODUCT P
+		JOIN ATTACHMENT_PRODUCT A ON P.PRODUCT_NO = A.REF_PNO
+		LEFT JOIN REVIEW R ON P.PRODUCT_NO = R.PRODUCT_NO
+		WHERE P.STATUS = 'Y'
+		AND A.FILE_LEVEL = 1
+		AND P.PRODUCT_NAME LIKE '%' || #{keyword} || '%'
+		GROUP BY P.PRODUCT_NO,
+		P.PRODUCT_NAME,
+		P.PRICE,
+		P.PRODUCT_CATEGORY,
+		A.FILE_PATH,
+		A.CHANGE_NAME
+		ORDER BY P.PRODUCT_NO DESC
 	</select>
 	<select id="selectSearchPetList" resultMap="selectShoppingList">
-		SELECT PRODUCT_NO,
-		       PRODUCT_NAME,
-		       PRICE,
-		       PRODUCT_CATEGORY,
-		       STAR,
-		       COUNT(REVIEW_NO) AS "REVIEW_COUNT",
-		       FILE_PATH || CHANGE_NAME AS "PRODUCT_IMG"
-		  FROM PRODUCT P
-		  JOIN ATTACHMENT_PRODUCT ON (PRODUCT_NO = REF_PNO)
-		  LEFT JOIN REVIEW R USING(PRODUCT_NO)
-		 WHERE P.STATUS = 'Y'
-		   AND FILE_LEVEL = 1
-		 <if test="category != null">
-  		 	AND PRODUCT_CATEGORY = #{category}
-  		 </if>
-  		    AND PRODUCT_NAME LIKE '%' || #{keyword} || '%'
-		 GROUP BY PRODUCT_NO, 
-		       PRODUCT_NAME, 
-		       PRICE, 
-		       PRODUCT_CATEGORY, 
-		       STAR, 
-		       FILE_PATH, 
-		       CHANGE_NAME
-		 ORDER BY PRODUCT_NO DESC
+		SELECT
+		P.PRODUCT_NO,
+		P.PRODUCT_NAME,
+		P.PRICE,
+		P.PRODUCT_CATEGORY,
+		CEIL(AVG(R.STAR)) AS "STAR",
+		COUNT(R.REVIEW_NO) AS "REVIEW_COUNT",
+		A.FILE_PATH || A.CHANGE_NAME AS "PRODUCT_IMG"
+		FROM
+		PRODUCT P
+		JOIN
+		ATTACHMENT_PRODUCT A ON P.PRODUCT_NO = A.REF_PNO
+		LEFT JOIN
+		REVIEW R ON P.PRODUCT_NO = R.PRODUCT_NO
+		WHERE
+		P.STATUS = 'Y'
+		AND A.FILE_LEVEL = 1
+		<if test="category != null">
+			AND P.PRODUCT_CATEGORY = #{category}
+		</if>
+		AND P.PRODUCT_NAME LIKE '%' || #{keyword} || '%'
+		GROUP BY
+		P.PRODUCT_NO,
+		P.PRODUCT_NAME,
+		P.PRICE,
+		P.PRODUCT_CATEGORY,
+		A.FILE_PATH,
+		A.CHANGE_NAME
+		ORDER BY
+		P.PRODUCT_NO DESC
 	</select>
-	
+
 	<select id="selectShoppingCompleteList" resultMap="ShoppingCompleteList" parameterType="map">
-    SELECT MEMBER_NAME,
-           PHONE,
-           MEMBER_ID,
-           MEMBER_ADDRESS,
-           REQUEST,
-           WAYBILL,
-           PRODUCT_NAME,
-           AMOUNT_PRICE,
-           PURCHASE_DATE
-      FROM MEMBER
-      JOIN PURCHASE USING(MEMBER_ID)
-      JOIN PRODUCT USING(PRODUCT_NO)
-     WHERE PRODUCT_NO = #{productNo, jdbcType=INTEGER}
-       AND MEMBER_ID = #{memberId, jdbcType=VARCHAR}
-       AND PURCHASE_DATE = (
-           SELECT MAX(PURCHASE_DATE) 
-             FROM PURCHASE 
-            WHERE PRODUCT_NO = #{productNo, jdbcType=INTEGER} 
-              AND MEMBER_ID = #{memberId, jdbcType=VARCHAR}
-       )
-</select>
+		SELECT MEMBER_NAME,
+		PHONE,
+		MEMBER_ID,
+		MEMBER_ADDRESS,
+		REQUEST,
+		WAYBILL,
+		PRODUCT_NAME,
+		AMOUNT_PRICE,
+		PURCHASE_DATE
+		FROM MEMBER
+		JOIN PURCHASE USING(MEMBER_ID)
+		JOIN PRODUCT USING(PRODUCT_NO)
+		WHERE PRODUCT_NO = #{productNo, jdbcType=INTEGER}
+		AND MEMBER_ID = #{memberId, jdbcType=VARCHAR}
+		AND PURCHASE_DATE = (
+		SELECT MAX(PURCHASE_DATE)
+		FROM PURCHASE
+		WHERE PRODUCT_NO = #{productNo, jdbcType=INTEGER}
+		AND MEMBER_ID = #{memberId, jdbcType=VARCHAR}
+		)
+	</select>
 
 
-	
+
 	<!-- 유저정보 가져오는 sql -->
 	<select id="selectUserInfoList" resultMap="UserInfoList">
-		 SELECT	MEMBER_NAME,
-		 		PHONE,
-		 		MEMBER_ADDRESS
-		   FROM MEMBER
-		  WHERE	MEMBER_ID = #{userId}
+		SELECT	MEMBER_NAME,
+		PHONE,
+		MEMBER_ADDRESS
+		FROM MEMBER
+		WHERE	MEMBER_ID = #{userId}
 	</select>
-	
+
 	<!-- Purchase객체 Insert -->
 	<insert id="insertPurchase" parameterType="Purchase">
 		INSERT INTO PURCHASE(
-			PURCHASE_NO,
-			MEMBER_ID,
-			PRODUCT_NO,
-			QUANTITY,
-			AMOUNT_PRICE,
-			PAY_TYPE,
-			REQUEST,
-			CARD_NO
-			)
-			values(
-			SEQ_PCNO.NEXTVAL,
-			#{memberId},
-			#{productNo},
-			#{quantity},
-			#{amountPrice},
-			#{payType},
-			#{request},
-			#{cardNo}
-			)
+		PURCHASE_NO,
+		MEMBER_ID,
+		PRODUCT_NO,
+		QUANTITY,
+		AMOUNT_PRICE,
+		PAY_TYPE,
+		REQUEST,
+		CARD_NO
+		)
+		values(
+		SEQ_PCNO.NEXTVAL,
+		#{memberId},
+		#{productNo},
+		#{quantity},
+		#{amountPrice},
+		#{payType},
+		#{request},
+		#{cardNo}
+		)
 	</insert>
 	<select id="selectShoppingTopList" resultMap="selectShoppingList">
 		SELECT P.PRODUCT_NO,

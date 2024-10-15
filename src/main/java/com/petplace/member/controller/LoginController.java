@@ -39,7 +39,10 @@ public class LoginController extends HttpServlet {
 
 		Member loginUser = new MemberService().loginMember(userId);
 		// 요청으로 들어온 비밀번호 해싱처리
-		String hashedUserPwd = ShaUtil.sha256WithSaltEncode(userPwd, loginUser.getSalt());
+		String hashedUserPwd = "";
+		if(loginUser !=null){
+			hashedUserPwd = ShaUtil.sha256WithSaltEncode(userPwd, loginUser.getSalt());
+		}
 		HttpSession session = request.getSession();
 
 		System.out.println(loginUser);

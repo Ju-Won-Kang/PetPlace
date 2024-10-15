@@ -67,6 +67,7 @@ public class ShoppingSearchController extends HttpServlet {
 		request.setAttribute("keyword", keyword);
 		
 		request.getRequestDispatcher("views/shopping/shopping.jsp").forward(request, response);
+		System.out.println("페이지 " + list);
 	}
 
 	/**

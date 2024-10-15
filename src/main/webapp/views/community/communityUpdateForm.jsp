@@ -35,9 +35,9 @@
       <div>
         <textarea name="detail" id="" required>${c.communityDetail}</textarea>
         <br>
-        <c:if test="${not empty atC }">
+<%--        <c:if test="${not empty atC }">--%>
         	<input type="file" name="cimg">
-        </c:if>
+<%--        </c:if>--%>
       </div>
       
     </div>
